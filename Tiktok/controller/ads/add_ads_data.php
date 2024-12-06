@@ -21,8 +21,13 @@ if (isset($_POST['create'])) {
     $cost = (float)$_POST['cost']; 
     $clicks = (int)$_POST['clicks'];
 
-    $sql = "INSERT INTO adsdata (onoff, videoname, adsname, status, adgroupname, result, imprs, reach, cost, click)
-            VALUES ($onoff, '$videoname', '$adsname', '$status', '$adsgroupname', $results, $imprs, $reach, $cost, $clicks)";
+    $sqlSelectDate = "SELECT * FROM daterange WHERE userid = {$_SESSION['userid']}";
+    $dateResult = $conn->query($sqlSelectDate);
+    $dateRow = $dateResult->fetch_assoc();
+    $date = date('Y-m-d', strtotime($dateRow['enddate']));
+
+    $sql = "INSERT INTO adsdata (onoff, videoname, adsname, status, adgroupname, result, imprs, reach, cost, click, date)
+            VALUES ($onoff, '$videoname', '$adsname', '$status', '$adsgroupname', $results, $imprs, $reach, $cost, $clicks, '$date')";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'New ad data added successfully!']);
         exit();

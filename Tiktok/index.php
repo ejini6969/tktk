@@ -2410,7 +2410,7 @@ session_start();
                                     }
 
                                     // ~~~~~~~~~~~~~~ PHP get Row Id and insert data (FOR EACH ROW) ~~~~~~~~~~~~~~~~
-                                    $sqlSelectAdsData = "SELECT * FROM adsdata";
+                                    $sqlSelectAdsData = "SELECT * FROM adsdata where date BETWEEN '$startdate' and '$enddate'";
                                     $adsDataResult = $conn->query($sqlSelectAdsData);
                                     while ($adsDataRow = $adsDataResult->fetch_assoc()) {
                                         $isOnOff = $adsDataRow['onoff'] == 1 ? 'checked' : '';
@@ -3107,8 +3107,6 @@ session_start();
         </section>
     </main>
 
-
-
     <!--------------------------------------------------------------------------- HEADER TOOLS SUBMENU ---------------------------------------------------------------------------------->
     <div class="header-tools-submenu py-2 px-3">
         <div class="column no-pad-left">
@@ -3186,11 +3184,189 @@ session_start();
         <div x-arrow="" class="arrow"></div>
     </div>
 
+    <!--------------------------------------------------------------------------------- DATE SUBMENU -------------------------------------------------------------------------------------------->$_COOKIE
+    <div class="date-submenu">
+        <div class="compare-row">
+            <span class="compare-text">Compare</span>
+            <div role="switch" class="vi-switch vi-tooltip item"
+                aria-describedby="vi-tooltip-9378" tabindex="0">
+                <input type="checkbox" class="vi-switch__input">
+                <span class="vi-switch__core"></span>
+            </div>
+        </div>
+        <div class=date-content>
+            <div class="date-left">
+                <button class="dl1">Lifetime</button>
+                <button class="dl2">Today</button>
+                <button class="dl3">Yesterday</button>
+                <button class="dl4">Last 7 days</button>
+                <button class="dl5">Last 14 days</button>
+                <button class="dl6">Last 30 days</button>
+                <button class="dl7">This week</button>
+                <button class="dl8">Last week</button>
+                <button class="dl9">This month</button>
+                <button class="dl10">Last month</button>
+            </div>
+            <div class="date-right">
+                <div class="nov">
+                    <div class="nov-header">
+                        <button class="back-to-jan vi-icon-d-arrow-left"></button>
+                        <button class="back-to-prev vi-icon-arrow-left"></button>
+                        <span class="nov-txt">November 2024</span>
+                    </div>
+                    <table class="nov-content">
+                        <tbody>
+                            <tr class="dayofweek">
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                            <tr class="daynumber">
+                                <td>27</td>
+                                <td>28</td>
+                                <td>29</td>
+                                <td>30</td>
+                                <td>31</td>
+                                <td>1</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                                <td>15</td>
+                                <td>16</td>
+                            </tr>
+                            <tr>
+                                <td>17</td>
+                                <td>18</td>
+                                <td>19</td>
+                                <td>20</td>
+                                <td>21</td>
+                                <td>22</td>
+                                <td>23</td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td>25</td>
+                                <td>26</td>
+                                <td>27</td>
+                                <td>28</td>
+                                <td>29</td>
+                                <td>30</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="dec">
+                    <div class="dec-header">
+                        <span class="dec-txt">December 2024</span>
+                        <button class="back-to-next vi-icon-arrow-right"></button>
+                        <button class="back-to-dec vi-icon-d-arrow-right"></button>
+                    </div>
+                    <table class="dec-content">
+                        <tbody>
+                            <tr class="dayofweek">
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                            <tr>
+                                <td>27</td>
+                                <td>28</td>
+                                <td>29</td>
+                                <td>30</td>
+                                <td>31</td>
+                                <td>1</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                                <td>15</td>
+                                <td>16</td>
+                            </tr>
+                            <tr>
+                                <td>17</td>
+                                <td>18</td>
+                                <td>19</td>
+                                <td>20</td>
+                                <td>21</td>
+                                <td>22</td>
+                                <td>23</td>
+                            </tr>
+                            <tr>
+                                <td>24</td>
+                                <td>25</td>
+                                <td>26</td>
+                                <td>27</td>
+                                <td>28</td>
+                                <td>29</td>
+                                <td>30</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-------------------------------------------------------------------------------- TABLE HEADER REFRESH SUBMENU ----------------------------------------------------------------------------->
     <<?php
         $randomMinutes = rand(30, 240);
         $lastUpdatedTime = date('Y-m-d H:i:s', strtotime("-$randomMinutes minutes"));
         ?>
+
         <div class="table-header-refresh-submenu">
         <span>Refresh<br>Last updated time: <?php echo $lastUpdatedTime ?></span>
         <div x-arrow="" class="arrow"></div>
