@@ -2845,7 +2845,7 @@ session_start();
                                                         <div class="index_content_KjME1 index_infraPreviewContent_oXXGi">
                                                             <div class="index_normalCreative_tS2ek">
                                                                 <div class="infra-preview-form-wrapper">
-                                                                    <form action="">
+                                                                    <form action="" class="vi-form vi-form--label-top creative-form_form_PrQb4">
                                                                         <section class="index_container_qIZOO card-container--mini index_creativeType_bJoYx d-none">
                                                                             <div class="card-cont index_bodyWrapper_qF6uZ card-container__body-wrapper--mini">
                                                                                 <div class="switch-container" style="font-size: 18px;">
@@ -3060,13 +3060,157 @@ session_start();
                                                                                                                             <span class="index_numberCounter_rx8dY"><span>53</span><span>/</span><span>100</span></span>
                                                                                                                         </div>
                                                                                                                     </div>
+                                                                                                                    <!--  -->
+                                                                                                                    <div class="index_smartBtns_s3l9C">
+                                                                                                                        <div class="index_btnGuide_pYIPM">
+                                                                                                                            <button data-testid="creative-title-index-3swsqj" type="button" class="vi-button vi-byted-button vi-button--default" data-tea-entry-type="2" data-tea-click="smart_text_btn_click,creation_component_click" data-tea-expose="smart_text_btn_expose,creation_component_show" data-tea-std_component_name="creative_title_smart_text_button"><!----><!----><span><span style="margin-right: 3px;">Smart Text</span><i class="vi-icon-question vi-tooltip index_container_o5F6i" data-tea-hover="" click-key="create_campaign_smarttext__hover_msg_link" aria-describedby="vi-tooltip-3744" tabindex="0"></i></span></button>
+                                                                                                                        </div>
+                                                                                                                    </div>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
+
+                                                                                                    <!--  -->
+                                                                                                    <div>
+                                                                                                        <div class="index-new_creativeCta_Cnwe9">
+                                                                                                            <div class="index-new_ctaTitle_jE4_w index-new_ctaSwitchTitle_B_x9m">
+                                                                                                                <div data-testid="cta-switch-index-ssicLG" role="switch" aria-disabled="true" class="vi-switch is-disabled">
+                                                                                                                    <input data-testid="switch-component-rZhLsB" type="checkbox" name="" true-value="true" disabled="disabled" class="vi-switch__input"><!---->
+                                                                                                                    <span class="vi-switch__core" style="width: 40px;"></span><!---->
+                                                                                                                </div>
+                                                                                                                <div class="index_titleForm_DV6gU index_switchTitle_iphwb"><div>Call to action</div></div>
+                                                                                                                <i class="vi-icon-question vi-tooltip index-new_titleTooltip_fgyup" aria-describedby="vi-tooltip-7862" tabindex="0"></i>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                    <!--  -->
+
+                                                                                                    <div class="index_subFormGroupWrap_d7xIX">
+                                                                                                        <div class="vi-form-item index_attachmentCreativeForm_I1yss">
+                                                                                                            <label for="cardId" class="vi-form-item__label">
+                                                                                                                <span class="index_attachmentCreativeFormItemLabel_nId9n"><!---->
+                                                                                                                    <span>
+                                                                                                                        <span> Interactive add-ons </span>
+                                                                                                                    </span>
+                                                                                                                    <span>
+                                                                                                                        <i data-testid="creative-attachment-index-9BMD5F" class="vi-icon-question index_toolTipsIcon_vJpX2 vi-popover__reference" aria-describedby="vi-popover-8962" tabindex="0"></i>
+                                                                                                                    </span>
+                                                                                                                </span><!---->
+                                                                                                            </label>
+                                                                                                            <!--  -->
+                                                                                                            <div class="vi-form-item__content">
+                                                                                                                <div class="index_addOnContainer_AwPLJ">
+                                                                                                                    <div>
+                                                                                                                        <div class="index_addOnSelector_EnaR4">
+                                                                                                                            <button data-testid="creative_attachment_toolOpen" type="button" class="vi-button vi-byted-button vi-button--default" data-tea-click="creation_component_click" data-tea-expose="create_ad_attached_creative_editor_expose_new,creation_component_show" data-tea-std_component_name="creative_attached_creative_editor" data-tea-scene="2"><!----><!----><span><div class="index_btnWrapper_hZtAf"><i class="index_btnIcon_ALiez vi-icon2-add-small"></i><span class="btn-text">Create</span></div></span></button>
+                                                                                                                            <button data-testid="creative_attachment_openTool" type="button" class="vi-button vi-byted-button vi-button--default" data-tea-click="assets_creative_from_library,creation_component_click" data-tea-scene="2" data-tea-expose="create_ad_attached_creative_editor_expose_library,creation_component_show" data-tea-objective_type="5" data-tea-std_component_name="creative_attached_creative_library"><!----><!----><span><span class="index_btnWrapper_hZtAf"><i class="index_btnIcon_ALiez vi-icon2-add-small"></i><span class="btn-text">Choose from library</span></span></span></button>
+                                                                                                                        </div>
+                                                                                                                    </div>
+
+                                                                                                                    <!--  -->
+                                                                                                                    <div class="recommend-add-ons_recommendAddOnsContainer_KpHSF">
+                                                                                                                        <div class="recommend-add-ons_recommendAddOns_kD3ii">
+                                                                                                                            <div class="recommend-add-ons_recommendAddOnsTitle_kJWrL">
+                                                                                                                                <span class="recommend-add-ons_recommendAddOnsTitleLeft_Pkhdl">
+                                                                                                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJQSURBVHgB1ZdNbtNAFMf/45A4EUVKbmBYITbl4wAkJ2gX7NveoNk5q4x3gQ2+QX0AJOgBkJwFEiugJ8A3sCVa4qTEj+dKASf+GhdbqL9FIr95nvm/+XjzDPxnRBVneer3qdc+FpH2kt98+qeBEPCvBxGdA9eunA081T6VBMQDo9u2Ae0ISpADrCwVIaUCrMniiBDZINFHNTwgYhF7TpGTVtRomYspEUdTffAYg7s/s8yraZFT7gxMJ5engrS3qAGKorH1Zs+GqgBp+gZE5+stI89QQAHE6lnWnshZgrasbfAYEfeln2U27Rpuoof+HY2wHsnZAzdpyZgBjr4pSBzumtIChLaPphDaAUoFUCLD1Y+xa9jaA9JcsAPlrv/Bqw6MR4WpA4Ef4fzdNf9Tjod4KGc9b/N0D4r0B5z8X7QU/FrYfx5h/vEXVNgW0A0DhHqmYxzR509rPH5SNgOEiy/rfIcwDJKP6WM4ufJrzQFJOCHJ1/cHSVPWJpyjOVJ9ZxxDOGgKQR9QKkBfuewYoH68rKs5JUDKQcBrNUbtRFaWNfc6lpOf73k/HKIWhMNn/ySrJf9M6csTlvcN/wpxH2E3d0ZzBdwshb4csXoXt2eOZW8kbZG7p9SKUvPymF0NVIK8snpQWcBfIT+GPGlD1DBwZQFScmke6r6Kb1ENuIuGangqTkKDch6p+GVE/IESltULXvK6rVXAhrjWJ4jhtpU8hKuxtAeVsqhyPbCBi5YhgWS6hWPptuPLxkEFKgvgJeDE0rngemfryhYkfIiWi7vGbxuvzdGrz059AAAAAElFTkSuQmCC">
+                                                                                                                                    <span>Recommended add-ons: 
+                                                                                                                                        <span place="recommend_mode" class="recommend-add-ons_recommendAddOnsTitleDynamic_P_JBk">Based on ads performance</span>
+                                                                                                                                    </span>
+                                                                                                                                </span>
+                                                                                                                                <button data-testid="creative-attachment-recommend-add-ons-4Aj1Zh" type="button" aria-label="Close" class="recommend-add-ons_closeBtn_ijw74"><i class="vi-dialog__close vi-icon vi-icon-close"></i></button>
+                                                                                                                            </div>
+                                                                                                                            <div class="recommend-add-ons_cardsContainerMultiple_txniv">
+                                                                                                                                <div class="vi-row" style="margin-left: -8.5px; margin-right: -8.5px;">
+                                                                                                                                    <div class="vi-col vi-col-8" style="padding-left: 8.5px; padding-right: 8.5px;">
+                                                                                                                                        <div class="recommend-add-ons_addOnTitle_gnOMJ">Superlike</div>
+                                                                                                                                        <img src="https://p16-ad-sg.tiktokcdn.com/obj/ad-site-i18n-sg/superlike_thumb.png">
+                                                                                                                                        <button data-testid="creative-attachment-recommend-add-ons-7N2Peo" type="button" class="vi-button vi-byted-button vi-button--default recommend-add-ons_button_MNXmu"><!----><!----><span> Create </span></button>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="vi-col vi-col-8" style="padding-left: 8.5px; padding-right: 8.5px;">
+                                                                                                                                        <div class="recommend-add-ons_addOnTitle_gnOMJ">Display Card</div>
+                                                                                                                                        <img src="https://p16-ad-sg.ibyteimg.com/obj/ad-site-i18n-sg/add_on_Display_Card.png">
+                                                                                                                                        <button data-testid="creative-attachment-recommend-add-ons-7N2Peo" type="button" class="vi-button vi-byted-button vi-button--default recommend-add-ons_button_MNXmu"><!----><!----><span> Create </span></button>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="vi-col vi-col-8" style="padding-left: 8.5px; padding-right: 8.5px;">
+                                                                                                                                        <div class="recommend-add-ons_addOnTitle_gnOMJ">Pop-Out Showcase</div>
+                                                                                                                                        <img src="https://p16-ad-sg.tiktokcdn.com/obj/ad-site-i18n-sg/pop_out_showcase_thumb.png">
+                                                                                                                                        <button data-testid="creative-attachment-recommend-add-ons-7N2Peo" type="button" class="vi-button vi-byted-button vi-button--default recommend-add-ons_button_MNXmu"><!----><!----><span> Create </span></button>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                    </div>
+                                                                                                    
+
+                                                                                                    <!--  -->
+
+                                                                                                    <div class="index_subFormGroupWrap_d7xIX index_destinationContentWrap_YFzRX index_subFormGroupWrapWithLine_PCC0m">
+                                                                                                        <div class="expansion-panel index_expansionPanelTitle_o158M">
+                                                                                                            <div data-testid="expansion-panel-index-dgK4Lq" class="panel-head index_panelHead_vfl3R index_titleHead_T_IKq">
+                                                                                                                <i class="index_arrowIcon_LXP5m vi-icon2-tri-arrowdown"></i>
+                                                                                                                <div class="index_label_xmyC6 index_titleLabel_u6Ksf">
+                                                                                                                    <span>Destination</span>
+                                                                                                                <!---->
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                    <!--  -->
+                                                                                                    <div class="index_subFormGroupWrap_d7xIX index_subFormGroupWrapWithLine_PCC0m">
+                                                                                                        <div class="vi-form-item" style="margin-top: 32px;     margin-bottom: 24px !important;">
+                                                                                                            <div class="vi-form-item__content">
+                                                                                                                <div class="aigc-disclosure__container aigc-disclosure__container--disabled">
+                                                                                                                    <div class="aigc-disclosure__titleContainer">
+                                                                                                                        <label data-testid="creative_aigcDisclosure_checkbox" role="checkbox" aria-disabled="true" class="vi-checkbox is-disabled aigc-disclosure__checkbox">
+                                                                                                                            <span aria-checked="mixed" class="vi-checkbox__input is-disabled">
+                                                                                                                                <span class="vi-checkbox__inner"></span>
+                                                                                                                                <input data-testid="checkbox-checkbox-wgAVEU" type="checkbox" aria-hidden="true" disabled="disabled" class="vi-checkbox__original" value="">
+                                                                                                                            </span><!---->
+                                                                                                                        </label>
+                                                                                                                        <div data-testid="aigc-disclosure-index-1rUayB" class="aigc-disclosure__title">
+                                                                                                                            <span class="vi-tooltip" aria-describedby="vi-tooltip-1403" tabindex="0">This ad contains AI-generated content</span>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div class="vi-tooltip aigc-disclosure__desc" aria-describedby="vi-tooltip-7901" tabindex="0">
+                                                                                                                        <span>Our advertising policies require the labeling of AI-generated content. By clicking this checkbox you confirm that your content conforms to our guidelines for AI-generated content. This can't be changed once you submit the ad. 
+                                                                                                                            <x-bo-wc-co-learn-more-link-zf4j78m6 class="aigc-disclosure__link" place="learn_more"> Learn more </x-bo-wc-co-learn-more-link-zf4j78m6>
+                                                                                                                        </span>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <!--  -->
+                                                                                                        <div class="ad-form-creative-lib-auth" style="margin-top: 16px;">
+                                                                                                            <label class="vi-checkbox is-disabled is-checked">
+                                                                                                                <span aria-checked="mixed" class="vi-checkbox__input is-disabled is-checked">
+                                                                                                                     <span class="vi-checkbox__inner"></span>
+                                                                                                                     <input data-testid="checkbox-checkbox-wgAVEU" type="checkbox" aria-hidden="true" disabled="disabled" class="vi-checkbox__original" value="">
+                                                                                                                </span>
+                                                                                                                <span class="vi-checkbox__label">
+                                                                                                                    <div class="withdraw-label">
+                                                                                                                        <span>Creative is authorized for 
+                                                                                                                            <a place="x" href="https://ads.tiktok.com/business/creativecenter" target="_blank">TikTok For Business Creative Center</a>. To change, 
+                                                                                                                            <a place="y" href="https://ads.tiktok.com/help/article?aid=200851762113375780" target="_blank">withdraw the authorization</a>.
+                                                                                                                        </span>
+                                                                                                                    </div><!---->
+                                                                                                                </span>
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    </div>
                                                                                                 </div>
+                                                                                            
                                                                                             </div>
                                                                                         </div>
+
                                                                                     </div>
                                                                                 </div>
                                                                             </section>
