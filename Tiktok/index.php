@@ -2786,7 +2786,7 @@ session_start();
             </div>
 
             <!-- edit tab -->
-            <div class="edit-tag sideslip d-none">
+            <div class="edit-tag sideslip">
                 <div class="d-flex">
                     <div class=" m-0 p-0 side-left">
                         <div class="tab-item-close">
@@ -3028,6 +3028,32 @@ session_start();
                                                                                                     </div>
                                                                                                     
                                                                                                     
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="small-gap-form">
+                                                                                                <div class="index_adDetailForm_ee8jc">
+                                                                                                    <div class="vi-form-item index_creativeTitle_EsafH">
+                                                                                                        <div class="vi-form-item__content">
+                                                                                                            <div class="vi-form-item inline-item is-success">
+                                                                                                                <div class="index_label_e6vx9">
+                                                                                                                    <div>
+                                                                                                                        <span id="material_title_label">Text</span>
+                                                                                                                        <i class="vi-icon-question vi-tooltip" aria-describedby="vi-tooltip-311" tabindex="0" style="margin-left: 4px;"></i>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <div class="index_warper_Xa3hd">
+                                                                                                                    <div class="vi-tooltip index_textareaCounter_scUDE index_inputBox_kL_B8">
+                                                                                                                        <div class="index_content_zzTib">
+                                                                                                                            <div class="vi-textarea index_inputClass_GE6yT">
+                                                                                                                                
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
