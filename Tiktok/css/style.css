@@ -1813,9 +1813,15 @@ th.draggable.dragging {
     border-bottom: 1px solid #ececed;
     line-height: 28px;
     height: 35px;
-    padding: 1px 8px;
-    justify-content: end;
+    padding: 1px 18px;
     display: flex;
+    justify-content: end;
+}
+
+.date-submenu .compare-row .compare-text{
+    font-size: 14px;
+    color: #121415;
+    margin-right: 8px;
 }
 
 .date-submenu .compare-row .vi-switch .vi-switch__input{
@@ -1850,7 +1856,7 @@ th.draggable.dragging {
     width: 14px;
     left: 55%;
     top: 0;
-    margin-left: -15px;
+    margin-right: 8px;
 }
 
 .data-submenu .compare-row .on-off-dark-bg .vi-switch .vi-switch__core{
@@ -1895,6 +1901,29 @@ th.draggable.dragging {
     text-align: left;
     text-overflow: ellipsis;
     width: 100%;
+    cursor: pointer;
+}
+
+.date-content .date-left button:hover{
+    color: #017976;
+}
+
+:not(.TTAMMAIN-origin-scrollbar)::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+:not(.TTAMMAIN-origin-scrollbar)::-webkit-scrollbar-button {
+    display: none;
+}
+
+:not(.TTAMMAIN-origin-scrollbar)::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(51, 51, 51, .5);
+}
+
+:not(.TTAMMAIN-origin-scrollbar)::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(51, 51, 51, .16);
 }
 
 .date-content .date-right{
@@ -1910,61 +1939,113 @@ th.draggable.dragging {
 }
 
 .date-content .date-right .nov .nov-header, .date-content .date-right .dec .dec-header{
+    font-size: 14px;
     background-color: #f8f8f9;
     border-bottom: 1px solid #ececed;
-    font-size: 14px;
-    height: 38px;
     line-height: 38px;
+    height: 38px;
     padding: 0 10px;
     position: relative;
     display: flex;
-    text-align: center;
-    justify-content: center;
 }
 
 .date-content .date-right .nov .nov-header button, .date-content .date-right .dec .dec-header button{
+    font-size: 12px;
     background: 0 0;
     border: 0;
     color: #6d6e70;
     cursor: pointer;
-    font-size: 12px;
     outline: 0;
 }
 
 .date-content .date-right .nov .nov-header .nov-txt{
     font-weight: 500;
-    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .date-content .date-right .dec .dec-header .dec-txt{
     font-weight: 500;
-    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .date-content .date-right table{
     font-size: 12px;
+    border-collapse: separate;
+    width: 100%;
     padding: 0 16px 8px;
     table-layout: fixed;
-    width: 100%;
 }
 
 .date-content .date-right table .dayofweek th{
+    font-weight: 400;
     border-bottom: 1px solid #ececed;
     color: #121415;
-    font-weight: 400;
     padding: 2.5px;
+    text-align: center;
 }
 
-.date-content .date-right table .daynumber th{
+.date-content .date-right table td{
     box-sizing: border-box;
+    line-height: 22px;
     height: 24px;
-    cursor: pointer;
+    width: 24px;
+    margin: 0 auto;
     padding: 4px 0;
     position: relative;
     text-align: center;
-    width: 32px;
+    cursor: pointer; 
 }
 
+.date-content .date-right table td:hover{
+    background-color: #ececed;
+    border-color: #ececed;
+    color: #121415;
+}
+
+.date-content .date-right table .greyout{
+    color: #a9abac;
+}
+
+.date-content .date-right table td.greyout:hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: #a9abac; 
+}
+
+.date-submenu .date-footer{
+    background-color: #fff;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top: 1px solid #ececed;
+    height: 35px;
+    padding: 0 6px;
+    position: relative;
+    text-align: right;
+}
+
+.date-submenu .date-footer button{
+    font-size: 12px;
+    font-weight: 400;
+    background: #f2f3f3;
+    border: 0 #d3d4d5;
+    border-radius: 4px;
+    line-height: 1;
+    height: 26px;
+    display: inline-block;
+    margin: 4px 0;
+    padding: 7px 8px;
+    text-align: center;
+    justify-content: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.date-submenu .date-footer .date-apply{
+    background-color: #009995;
+    border-color: #009995;
+    color: #fff;
+    margin-left: 10px;
+}
 /* =========================================================================== TABLE HEADER REFRESH SUBMENU ================================================================== */
 .table-header-refresh-submenu{
     font-size: 12px;
