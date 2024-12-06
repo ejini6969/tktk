@@ -2786,7 +2786,7 @@ session_start();
             </div>
 
             <!-- edit tab -->
-            <div class="edit-tag sideslip">
+            <div class="edit-tag sideslip d-none">
                 <div class="d-flex">
                     <div class=" m-0 p-0 side-left">
                         <div class="tab-item-close">
