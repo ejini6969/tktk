@@ -35,6 +35,7 @@ session_start();
     <!-- Own Stylesheets -->
     <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'" href="./css/style.css">
     <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'" href="./css/icons.css">
+    <link rel="preload" as="style" onload="this.onload=null; this.rel='stylesheet'" href="./css/edit_tag.css">
 
     <!-- Date Range Picker CSS -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
@@ -61,6 +62,7 @@ session_start();
 </head>
 
 <body>
+    
     <!------------------------------------------------------------------------------------- SVG ----------------------------------------------------------------------------------------------->
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         style="position: absolute; width: 0; height: 0" aria-hidden="true" id="__SVG_SPRITE_NODE__"
@@ -283,6 +285,7 @@ session_start();
                 d="M2 4C3.10457 4 4 3.10457 4 2C4 0.89543 3.10457 0 2 0C0.89543 0 0 0.89543 0 2C0 3.10457 0.89543 4 2 4Z"
                 fill="#F45858"></path>
         </symbol>
+        
         <symbol xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="icon-header-account"
             elementtiming="element-timing">
             <path opacity=".01" fill="#fff" d="M0 0h14v14H0z"></path>
@@ -621,6 +624,14 @@ session_start();
             <path fill-rule="evenodd" clip-rule="evenodd"
                 d="M41 40a6 6 0 01-6 6H13a6 6 0 01-6-6V8a6 6 0 016-6h22a6 6 0 016 6v32zm-6 2a2 2 0 002-2v-2.999H11v3a2 2 0 002 2h22zm2-34a2 2 0 00-2-2H13a2 2 0 00-2 2v25.001h26v-25zm-11 4.001a2 2 0 000-4h-4a2 2 0 000 4h4z"
                 fill="currentColor"></path>
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" id="icon-single-video-ads-icon">
+            <path d="M20 0H0V20H20V0Z" fill="none" fill-opacity="0.01"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.75008 3.33366C3.51996 3.33366 3.33341 3.52021 3.33341 3.75033V16.2503C3.33341 16.4804 3.51996 16.667 3.75008 16.667H16.2501C16.4802 16.667 16.6667 16.4804 16.6667 16.2503V3.75033C16.6667 3.52021 16.4802 3.33366 16.2501 3.33366H3.75008ZM1.66675 3.75033C1.66675 2.59973 2.59949 1.66699 3.75008 1.66699H16.2501C17.4007 1.66699 18.3334 2.59973 18.3334 3.75033V16.2503C18.3334 17.4009 17.4007 18.3337 16.2501 18.3337H3.75008C2.59949 18.3337 1.66675 17.4009 1.66675 16.2503V3.75033Z" fill="#currentColor"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5001 6.25228C17.5 6.71252 17.1269 7.08555 16.6666 7.08547L3.33328 7.08312C2.87305 7.08304 2.50002 6.70988 2.5001 6.24964C2.50018 5.7894 2.87334 5.41637 3.33358 5.41645L16.6669 5.4188C17.1271 5.41888 17.5002 5.79204 17.5001 6.25228Z" fill="#currentColor"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.24476 6.38497C5.8445 6.1578 5.70896 5.65192 5.94204 5.25506L7.55662 2.50589C7.78969 2.10903 8.30311 1.97148 8.70337 2.19866C9.10363 2.42583 9.23917 2.93171 9.00609 3.32857L7.39151 6.07774C7.15844 6.4746 6.64502 6.61215 6.24476 6.38497Z" fill="#currentColor"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.505 6.38497C11.1047 6.1578 10.9692 5.65192 11.2023 5.25506L12.8169 2.50589C13.0499 2.10903 13.5634 1.97148 13.9636 2.19866C14.3639 2.42583 14.4994 2.93171 14.2663 3.32857L12.6518 6.07774C12.4187 6.4746 11.9053 6.61215 11.505 6.38497Z" fill="#currentColor"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.92275 8.44215C8.18401 8.29423 8.50464 8.29828 8.76208 8.45274L12.9287 10.9527C13.1798 11.1033 13.3333 11.3746 13.3333 11.6673C13.3333 11.96 13.1798 12.2313 12.9287 12.3819L8.76208 14.8819C8.50464 15.0364 8.18401 15.0404 7.92275 14.8925C7.66149 14.7446 7.5 14.4675 7.5 14.1673V9.16732C7.5 8.86709 7.66149 8.59007 7.92275 8.44215ZM9.16667 10.6391V12.6955L10.8803 11.6673L9.16667 10.6391Z" fill="#currentColor"></path>
         </symbol>
         <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none"
             id="campaign-list-icon-suggestion-center-operation" elementtiming="element-timing">
@@ -2459,14 +2470,14 @@ session_start();
                                                                 aria-describedby="vi-popover-6619" tabindex="0"></i>
                                                         </span>
                                                         <div class="toolkit" id="toolkit">
-                                                            <div class="view-data">
+                                                            <div class="view-data" id="editAdsRowBtn" onclick="editAdsRow('ads-rw-<?php echo $rowId; ?>')">
                                                                 <svg aria-hidden="true" class="icon svg-icon">
                                                                     <use xlink:href="#campaign-list-icon-view-data-bar">
                                                                     </use>
                                                                 </svg>
                                                                 View data
                                                             </div>
-                                                            <div class="edit-data" id="editAdsRowBtn" onclick="editAdsRow('ads-rw-<?php echo $rowId; ?>')">
+                                                            <div class="edit-data" >
                                                                 <i class="vi-icon2-edit"></i>
                                                                 Edit
                                                             </div>
@@ -2769,6 +2780,273 @@ session_start();
                                     </span>
                                 </button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- edit tab -->
+            <div class="edit-tag sideslip">
+                <div class="d-flex">
+                    <div class=" m-0 p-0 side-left">
+                        <div class="tab-item-close">
+                           <div class="close-btn">
+                            <svg data-v-0efd789f="" aria-hidden="true" class="close-button__icon svg-icon" elementtiming="element-timing">
+                                    <use xlink:href="#campaign-list-icon-common-drawer-close" elementtiming="element-timing"></use>
+                                </svg>
+                           </div>
+                        </div>
+                        <div class="tab-item-others">
+                            <div class="common-drawer-tab vi-tooltip tab-item tab-item--active">
+                                <svg data-v-534b78c5="" aria-hidden="true" class="svg-icon tab-item__icon" elementtiming="element-timing">
+                                    <use xlink:href="#campaign-list-icon-common-drawer-edit" elementtiming="element-timing"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="tab-item-others">
+                            <div class="common-drawer-tab vi-tooltip tab-item">
+                                <svg data-v-534b78c5="" aria-hidden="true" class="svg-icon tab-item__icon" elementtiming="element-timing">
+                                    <use xlink:href="#campaign-list-icon-common-drawer-viewdata" elementtiming="element-timing"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="tab-item-others">
+                            <div class="common-drawer-tab vi-tooltip tab-item">
+                                <svg data-v-534b78c5="" aria-hidden="true" class="svg-icon tab-item__icon" elementtiming="element-timing">
+                                    <use xlink:href="#campaign-list-icon-common-drawer-log" elementtiming="element-timing"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="tab-item-others">
+                            <div class="common-drawer-tab vi-tooltip tab-item">
+                                <svg data-v-534b78c5="" aria-hidden="true" class="svg-icon tab-item__icon" elementtiming="element-timing">
+                                    <use xlink:href="#campaign-list-icon-common-drawer-analysis" elementtiming="element-timing"></use>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="ppackage">
+                            <div class="creation-app">
+                                <div class="" style="height: calc(0px + 100vh);">
+                                    <div class="index_creationContent_sDXMS">
+                                        <div class="index_editCreative_KssUQ">
+                                            <div class="index_editTitle_Bm3Ny">
+                                                <div class="index_editTitleText_fDLPl">
+                                                    <span>Edit ad</span>
+                                                </div>
+                                                <span class="index_editTitleId_w0jhq">Ad ID: 1817573122007073</span>
+                                            </div>
+
+                                            <!-- contnet -->
+                                             <div class="index_creativeGateway_QieEM">
+                                                <div class="index_container_QB1YE">
+                                                    <div class="index_wrapper_MbXmy">
+                                                        <div class="index_content_KjME1 index_infraPreviewContent_oXXGi">
+                                                            <div class="index_normalCreative_tS2ek">
+                                                                <div class="infra-preview-form-wrapper">
+                                                                    <form action="">
+                                                                        <section class="index_container_qIZOO card-container--mini index_creativeType_bJoYx d-none">
+                                                                            <div class="card-cont index_bodyWrapper_qF6uZ card-container__body-wrapper--mini">
+                                                                                <div class="switch-container" style="font-size: 18px;">
+                                                                                    <div class="index_switchContent_BQSqd">
+                                                                                        <div class="vi-tooltip index_switchWrapper_lVIeH">
+                                                                                        <span content="" placement="bottom" effect="light" class="index_switch_fSi_w"><!---->
+                                                                                            <div data-testid="switch-container-index-jW96vy" role="switch" aria-disabled="true" class="vi-switch is-disabled">
+                                                                                                <input data-testid="switch-component-rZhLsB" type="checkbox" name="" true-value="true" disabled="disabled" class="vi-switch__input"><!---->
+                                                                                                <span class="vi-switch__core" style="width: 40px;">
+
+                                                                                                </span><!---->
+                                                                                            </div>
+                                                                                        </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </section>
+
+                                                                        <section class="index_container_qIZOO card-container--min">
+                                                                            <div class="card-title index_title_gRuIn">
+                                                                                <span> Ad name </span>
+                                                                            </div>
+                                                                            <div class="">
+                                                                                <div class="card-cont index_bodyWrapper_qF6uZ card-container__body-wrapper--min">
+                                                                                    <div class="" style="margin-top: 24px;">
+                                                                                       <div class="vi-form-item">
+                                                                                            <div class="vi-form-item__content">
+                                                                                                <div class="vi-tag-input">
+                                                                                                    <div class="vi-input">
+                                                                                                    <input type="text" autocomplete="off" id="ad-base-name" data-testid="creative-name-content-48DpDT" placeholder="Enter ad name" data-tea-expose="new_create_ad_creative_name_expose,creation_component_show,topview_module_show" data-tea-click="new_create_ad_creative_name,creation_component_click,click_topview_module" data-tea-std_component_name="creative_name" data-tea-location="creative_name" class="vi-input__inner">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="">
+                                                                                                <button data-testid="creative-name-content-mFsCQi" type="button" class="vi-button vi-byted-button vi-tooltip vi-button--text content_generateBtn_nhoCv" aria-describedby="vi-tooltip-7066" tabindex="0"><!----><!----><span>
+                                                                                                    <i class="vi-icon-plus"></i> Add creative name </span>
+                                                                                                </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                       </div> 
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </section>
+
+                                                                        <div class="vui-section index_wrapper_Rzbdf">
+                                                                            <section class="index_container_qIZOO card-container--small index_creativeIdentity_z5fTL index_container_ANo3M identity-container index_newAdPreviewCreativeIdentity_TgENK">
+                                                                                <div class="index_header_ujMpj index_header_CI0MP">
+                                                                                    <div class="index_titleWrapper_zkkmZ">
+                                                                                        <div class="index_title_EZZfA">
+                                                                                            <span class="index_titleContent_THeOd">Identity</span>
+                                                                                            <i class="vi-icon-question vi-tooltip" aria-describedby="vi-tooltip-8652" tabindex="0"></i>
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="card-cont index_bodyWrapper_qF6uZ card-container__body-wrapper--small">
+                                                                                    <div class="index_identityTypeSelector_DUiuW identity-type-selector">
+                                                                                        <div class="vi-tooltip index_tooltipWrap_S4jat">
+                                                                                            <div class="vi-switch is-disabled">
+                                                                                                <input data-testid="switch-component-rZhLsB" type="checkbox" name="" true-value="true" disabled="disabled" class="vi-switch__input">
+                                                                                                <span class="vi-switch__core" style="width: 40px;"></span>
+                                                                                            </div>
+                                                                                            <span class="index_switchText_YhSUx index_disabledSwitch_ctiDl"> Use TikTok account to deliver Spark Ads </span>
+                                                                                            <i class="vi-icon-question vi-tooltip" aria-describedby="vi-tooltip-2089" tabindex="0"></i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!--  -->
+                                                                                    <div class="vi-form-item">
+                                                                                        <div class="vi-form-item__content">
+                                                                                            <div class="index_customIdentityTitle_MRQNI">
+                                                                                                Set custom identity 
+                                                                                                <i class="vi-icon-question vi-tooltip" aria-describedby="vi-tooltip-2330" tabindex="0"></i>
+                                                                                            </div>
+                                                                                            <!--  -->
+                                                                                            <div>
+                                                                                                <div class="custom-identity-list_customIdentityWarpper_EfZzh">
+                                                                                                    <div class="index_identitySelector_IpQui">
+                                                                                                        <div class="d-flex">
+                                                                                                            <div class="vi-input vi-input--prefix vi-input--suffix index_identityInputTag_uKsaY">
+                                                                                                                <input type="text" autocomplete="off" placeholder="Select an identity" data-testid="creative_identity_select" readonly="readonly" class="vi-input__inner" value="asiagamecenter">
+                                                                                                                <span class="vi-input__prefix">
+                                                                                                                    <img data-v-307cd3e6="" src="https://lf16-ttmp.tiktokstaticb.com/obj/ttastatic-sg/biz_manager_creation/statics/images/identity-default-avatar81d7ba6f.png" class="index_identityAvator_CNpqR">
+                                                                                                                </span>
+                                                                                                                <span class="vi-input__suffix"><span class="vi-input__suffix-inner"><i class="vi-input__icon vi-icon-arrow-down"></i></span><!----></span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <button data-testid="creative_identity_customAddAccount" type="button" class="vi-button vi-byted-button vi-button--text custom-identity-list_addIcon_jwc8L" data-tea-expose="topview_module_show" data-tea-click="upgrade_identity_create_new_custom_identity,click_topview_module" data-tea-location="create_new_identity"><!----><i class="vi-icon2-add-small"></i><span><span class="custom-identity-list_text_q5HM6">Create new custom identity</span></span></button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </section>
+
+                                                                            <!--  -->
+                                                                            <section class="index_container_qIZOO card-container--small index_creativeDetail_YFxAd index_container_jJVLj index_newAdPreviewCreativeDetail_NeKQl">
+                                                                                <div class="index_header_ujMpj">
+                                                                                    <div class="card-title index_title_gRuIn">
+                                                                                        <span> Ad details </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <div class="card-cont index_bodyWrapper_qF6uZ card-container__body-wrapper--small">
+                                                                                        <div class="content_material_naFc3">
+                                                                                            <div class="index_subFormGroupStyle_DLfEO" style="margin-top: -24px;margin-bottom: 32px;">
+                                                                                                <div class="index_subFormTitle_Tw0sV"> Ad format </div>
+                                                                                                <div class="vi-form-item index_container_rfbhC">
+                                                                                                    <div class="vi-form-item__content">
+                                                                                                        <ul class="index_list_c7P98">
+                                                                                                            <span class="index_item_Bv1GU">
+                                                                                                            <li data-tea-creative-type="2" data-tea="create_ad_creative_type,creation_component_click" data-tea-expose="create_ad_creative_type_expose,creation_component_show" data-tea-std_component_name="creative_ad_type_2" data-tea-is_aia="0" class="vi-popover__reference" aria-describedby="vi-popover-1459" tabindex="0">
+                                                                                                                <div data-testid="creative_adType_item2" class="creative-type-selector-tab_typeSelectorWrap_i1TQl creative-type-selector-tab_active_QijEm creative-type-selector-tab_disabled_jFYDk">
+                                                                                                                    <div class="creative-type-selector-tab_contentWrap_itt4r">
+                                                                                                                        <div class="index_typeContent_d8hkl">
+                                                                                                                            <svg aria-hidden="true" class="svg-icon index_icon_KaveR">
+                                                                                                                                <use xlink:href="#icon-single-video-ads-icon"></use>
+                                                                                                                            </svg>
+                                                                                                                    <div class="index_titleWrap_sw9ty"><span class="index_title_HvT8l"> Single video <!----></span><span class="index_subTitle_HlO8W"> Create an ad with one video or multiple images. <span><div data-testid="popover-main-5Uvc3C" role="tooltip" id="vi-popover-6847" aria-hidden="true" class="vi-popover vi-popper" style="width: 150px; max-width: none; display: none;"><!----><!----><div class="index_musicCarouselIntroduceWrap_E7CKV"><img src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/lm_zkh_rvarpa/ljhwZthlaukjlkulzlp/ads_manager_creation/music-carousel-introduce-hq.gif" class="index_musicCarouselIntroduceImage_DnO83"></div></div></span></span></div></div></div>
+                                                                                                                </div>
+                                                                                                            </li>
+
+                                                                                                                    
+                                                                                                            </span>
+                                                                                                        </ul>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <!--  -->
+                                                                                            <div class="index_mediaMaterial_pydlm">
+                                                                                                <div class="non-aco-compose_nonAco_P672R non-aco-compose_subFormGroupStyle__12eJ">
+                                                                                                    <div class="non-aco-compose_subFormTitle_TYApu">
+                                                                                                        <span>Ad creative</span>
+                                                                                                    </div>
+                                                                                                    <div class="index_videoOrImage_DDn_c">
+                                                                                                        <div class="index_materialTitleBox_F2qbS index_materialTitleBoxHaveContent_BIYH6">
+                                                                                                            <span class="index_materialTitleLabel_KwLCh">
+                                                                                                                <span id="creative_material_detail_label">Video</span>
+                                                                                                            </span>
+                                                                                                            <div class="vi-badge new-feature-badge">
+                                                                                                                <button data-testid="creative_detail_nonAcoSingleVideoVideoEditor" type="button" class="vi-button vi-byted-button vi-button--text vi-button--small index_editorBtn_eBfzh" data-tea-expose="creative_video_editor_expose,creation_component_show" data-tea-click="creative_video_editor_click,creation_component_click" data-tea-entry_type="video-editor-btn" data-tea-std_component_name="creative_video_editor" data-tea-editor_traffic_direction="Video editor"><!----><!----><span><i class="vi-icon2-video-o index_videoEditIcon_gaRNa"></i><span>TikTok Video Editor</span></span></button>
+                                                                                                            </div>
+                                                                                                            <sup class="vi-badge__content is-fixed">New</sup>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    
+                                                                                                    <div class="vi-form-item" style="margin-bottom: 0px;">
+                                                                                                        <div class="index_materialButtons_MHlWC">
+                                                                                                            <div class="selected-video_videoMaterialDetail_Hwpva">
+                                                                                                                <div class="index_selectedMaterial_flUcr index_selectedMaterialFirst_bwOhS material-detail-wrapper">
+                                                                                                                    <div class="index_materialInfoBox_DHQJy material-info-box">
+                                                                                                                        <div class="index_videoCover_IE4o0 material-cover">
+                                                                                                                            <img src="https://p16-ad-sg.tiktokcdn.com/origin/tos-alisg-p-0051c001-sg/ochweuG7QLAfgHFkUKIASPMgGgT6e2RRcFfiAF" class="index_image_HuhDS">
+                                                                                                                        </div>
+                                                                                                                        <div class="index_materialDescBox_SFJ1s material-desc-wrapper">
+                                                                                                                            <div class="index_leftCol_hTivQ left-col">
+                                                                                                                                <div class="index_info_oKP9I material-info">
+                                                                                                                                    <span class="vi-tooltip index_fileNameBox_Y5gc3 file-name" aria-describedby="vi-tooltip-6066" tabindex="0">KWAI VISUAL (5).mp4</span>
+                                                                                                                                    <span class="index_videoInfo_RPWNi material-detail-wrapper"><span class="index_label_psoD1 video-duration">00:05 &nbsp;|</span><span class="index_label_psoD1 material-resolution">1080x1920</span></span>
+                                                                                                                                </div>
+
+                                                                                                                                <div class="index_controlBar_Ekzhz material-detail-control-bar">
+                                                                                                                                    <div>
+                                                                                                                                        <div style="display: inline-block;">
+                                                                                                                                            <div class="vi-dropdown">
+                                                                                                                                            <span class="vi-tooltip vi-dropdown-selfdefine" aria-describedby="vi-tooltip-8070" tabindex="0" aria-haspopup="list" aria-controls="dropdown-menu-9420" role="button"><button data-testid="creative_material_selectedUpdate" type="button" class="vi-button vi-byted-button vi-button--text vi-button--small material-update-dropdown-new_editBtn_bWPbG"><!----><i class="vi-icon2-edit"></i><span> Update </span></button></span>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                        <button data-testid="creative_detail_materialSelectedChangeCover" type="button" class="vi-button vi-byted-button vi-button--text vi-button--small selected-video_coverButton_KCOw0" style="margin-left: 10px;"><!----><!----><span><i class="vi-icon2-picture selected-video_pictureIcon_RQdqZ"></i><span>Thumbnail</span><!----></span></button> 
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    
+                                                                                                    
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </section>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                    
                         </div>
                     </div>
                 </div>
