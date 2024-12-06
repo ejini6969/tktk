@@ -907,3 +907,57 @@ li {
 .material-update-dropdown-new_editBtn_bWPbG i {
     vertical-align: bottom;
 }
+
+
+.index_creativeTitle_EsafH {
+    position: relative;
+    margin-bottom: 0px !important;
+}
+
+
+.vi-form-item__content {
+    line-height: 34px;
+    position: relative;
+    font-size: 14px;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+}
+
+.small-gap-form .vi-form-item.inline-item {
+    margin-bottom: 0;
+}
+
+.index_label_e6vx9 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: #121415 !important;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 8px;
+}
+
+
+.index_creativeTitle_EsafH .index_inputBox_kL_B8 {
+    margin-top: 8px;
+}
+
+.index_textareaCounter_scUDE {
+    position: relative;
+    line-height: 1.5;
+    border: 1px solid transparent;
+    background-color: #f2f3f3 !important;
+    border-radius: 4px;
+    transition: border-color .2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.vi-textarea {
+    display: inline-block;
+    width: 100%;
+    vertical-align: bottom;
+    font-size: 14px;
+}
+
