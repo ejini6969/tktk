@@ -961,3 +961,43 @@ li {
     font-size: 14px;
 }
 
+.index_textareaCounter_scUDE textarea {
+    border: 0 !important;
+    box-shadow: 0 0 0 0 !important;
+    padding-right: 20px !important;
+}
+
+.index_textareaCounter_scUDE .index_btnsWrap_FzwEz {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+    padding-bottom: 6px;
+    border-radius: 4px;
+}
+
+
+.iconBox {
+    display: flex;
+    align-items: center;
+}
+
+.index_problemIcon_mSzNj {
+    color: #faad15;
+}
+
+.index_textareaCounter_scUDE .index_btnsWrap_FzwEz i {
+    cursor: pointer;
+}
+
+
+.index_textareaCounter_scUDE .index_numberCounter_rx8dY {
+    color: #c1c1c1;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: right;
+}
+
+.index_textareaCounter_scUDE .index_numberCounter_rx8dY span {
+    vertical-align: middle;
+}

@@ -3046,8 +3046,18 @@ session_start();
                                                                                                                     <div class="vi-tooltip index_textareaCounter_scUDE index_inputBox_kL_B8">
                                                                                                                         <div class="index_content_zzTib">
                                                                                                                             <div class="vi-textarea index_inputClass_GE6yT">
-                                                                                                                                
+                                                                                                                            <textarea id="ad-detail-display-text" data-testid="textarea-counter-index-sVMqWU" placeholder="Enter ad text" rows="3" spellcheck="false" class="vi-textarea__inner" style="resize: none; min-height: 31px; height: 31px;"></textarea>
                                                                                                                             </div>
+                                                                                                                        </div>
+                                                                                                                        <div class="comp-textarea-counter-btns index_btnsWrap_FzwEz">
+                                                                                                                            <span>
+                                                                                                                                <div class="vi-popover__reference">
+                                                                                                                                    <div class="iconBox" style="margin-right: 0px;"><!---->
+                                                                                                                                        <i class="vi-icon2-circle-warning index_problemIcon_mSzNj"></i>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </span>
+                                                                                                                            <span class="index_numberCounter_rx8dY"><span>53</span><span>/</span><span>100</span></span>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                 </div>
