@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2024 at 08:08 AM
+-- Generation Time: Dec 06, 2024 at 03:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,16 +42,19 @@ CREATE TABLE `adsdata` (
   `cpr` decimal(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED,
   `click` int(11) DEFAULT NULL,
   `ctr` decimal(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED,
-  `videoname` varchar(255) NOT NULL
+  `videoname` varchar(255) NOT NULL,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `adsdata`
 --
 
-INSERT INTO `adsdata` (`id`, `onoff`, `adsname`, `status`, `adgroupname`, `imprs`, `cost`, `reach`, `result`, `click`, `videoname`) VALUES
-(1, 1, 'ONE AND ONLY ADS', 'Not delivering', 'GROUP of Conda', 12, 23.50, 11, 19, 33, 'video3.mp4'),
-(21, 1, 'AD TEST FTW', 'Inactive', 'GROUP BBC', 11, 25.00, 14, 22, 16, 'video2.mp4');
+INSERT INTO `adsdata` (`id`, `onoff`, `adsname`, `status`, `adgroupname`, `imprs`, `cost`, `reach`, `result`, `click`, `videoname`, `date`) VALUES
+(1, 1, '1203-1203', 'Not delivering', 'GROUP of Conda', 12, 23.50, 11, 19, 33, 'video2.mp4', '2024-12-03'),
+(32, 0, '1204-1204', 'Active', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video3.mp4', '2024-12-04'),
+(33, 1, '1205-1205', 'Active', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video.mp4', '2024-12-05'),
+(35, 1, '1206-1206', 'Active', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video2.mp4', '2024-12-06');
 
 --
 -- Triggers `adsdata`
@@ -113,17 +116,18 @@ CREATE TABLE `adsgroupdata` (
   `cpm` decimal(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED,
   `cpc` decimal(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED,
   `cpr` decimal(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED,
-  `ctr` decimal(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED
+  `ctr` decimal(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `adsgroupdata`
 --
 
-INSERT INTO `adsgroupdata` (`id`, `onoff`, `adsgroupname`, `status`, `adsgroupid`, `cost`, `reach`, `imprs`, `result`, `click`) VALUES
-(1, 1, 'dgdfgdgdf', 'Inactive', 23435345344, 37.00, 8, 3, 2, 11),
-(6, 1, 'Ad Group Name 1', 'Not delivering', 16534534645751, 120.50, 3000, 5000, 100, 150),
-(7, 1, 'Ad Group Name 1', 'Active', 16534534645751, 120.50, 3000, 5000, 100, 150);
+INSERT INTO `adsgroupdata` (`id`, `onoff`, `adsgroupname`, `status`, `adsgroupid`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) VALUES
+(1, 1, 'dgdfgdgdf', 'Inactive', 23435345344, 37.00, 8, 3, 2, 11, '2024-12-03'),
+(6, 1, 'Ad Group Name 1', 'Not delivering', 16534534645751, 120.50, 3000, 5000, 100, 150, NULL),
+(7, 1, 'Ad Group Name 1', 'Active', 16534534645751, 120.50, 3000, 5000, 100, 150, NULL);
 
 --
 -- Triggers `adsgroupdata`
@@ -202,17 +206,18 @@ CREATE TABLE `campaigndata` (
   `cpm` decimal(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED,
   `cpc` decimal(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED,
   `cpr` decimal(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED,
-  `ctr` decimal(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED
+  `ctr` decimal(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `campaigndata`
 --
 
-INSERT INTO `campaigndata` (`id`, `onoff`, `campaignname`, `status`, `cost`, `reach`, `imprs`, `result`, `click`) VALUES
-(1, 0, 'DOUBLE CAMPAIGN', 'Inactive', 37.00, 8, 3, 2, 11),
-(2, 1, 'dfgdgd', 'Active', 120.50, 3000, 5000, 11, 150),
-(5, 1, 'Sample Campaign Name', 'Not delivering', 120.50, 3000, 5000, 100, 150);
+INSERT INTO `campaigndata` (`id`, `onoff`, `campaignname`, `status`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) VALUES
+(1, 0, 'DOUBLE CAMPAIGN', 'Inactive', 37.00, 8, 3, 2, 11, NULL),
+(2, 1, 'dfgdgd', 'Active', 120.50, 3000, 5000, 11, 150, NULL),
+(5, 1, 'Sample Campaign Name', 'Not delivering', 120.50, 3000, 5000, 100, 150, NULL);
 
 --
 -- Triggers `campaigndata`
@@ -289,7 +294,7 @@ CREATE TABLE `daterange` (
 --
 
 INSERT INTO `daterange` (`userid`, `startdate`, `enddate`) VALUES
-(1, '2024-11-30', '2024-12-06');
+(1, '2024-12-04', '2024-12-06');
 
 -- --------------------------------------------------------
 
@@ -324,15 +329,16 @@ CREATE TABLE `totaladsdata` (
   `totalcpm` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalcost` / `totalimprs` * 1000 end) STORED,
   `totalcpc` decimal(10,2) GENERATED ALWAYS AS (case when `totalclick` = 0 then 0 else `totalcost` / `totalclick` end) STORED,
   `totalcpr` decimal(10,2) GENERATED ALWAYS AS (case when `totalresult` = 0 then 0 else `totalcost` / `totalresult` end) STORED,
-  `totalctr` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalclick` / `totalimprs` * 100 end) STORED
+  `totalctr` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalclick` / `totalimprs` * 100 end) STORED,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `totaladsdata`
 --
 
-INSERT INTO `totaladsdata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`) VALUES
-(48.50, 25, 23, 41, 49);
+INSERT INTO `totaladsdata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`, `date`) VALUES
+(385.00, 9011, 15012, 319, 483, NULL);
 
 -- --------------------------------------------------------
 
@@ -349,15 +355,16 @@ CREATE TABLE `totaladsgroupdata` (
   `totalcpm` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalcost` / `totalimprs` * 1000 end) STORED,
   `totalcpc` decimal(10,2) GENERATED ALWAYS AS (case when `totalclick` = 0 then 0 else `totalcost` / `totalclick` end) STORED,
   `totalcpr` decimal(10,2) GENERATED ALWAYS AS (case when `totalresult` = 0 then 0 else `totalcost` / `totalresult` end) STORED,
-  `totalctr` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalclick` / `totalimprs` * 100 end) STORED
+  `totalctr` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalclick` / `totalimprs` * 100 end) STORED,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `totaladsgroupdata`
 --
 
-INSERT INTO `totaladsgroupdata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`) VALUES
-(278.00, 6008, 10003, 202, 311);
+INSERT INTO `totaladsgroupdata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`, `date`) VALUES
+(278.00, 6008, 10003, 202, 311, NULL);
 
 -- --------------------------------------------------------
 
@@ -374,15 +381,16 @@ CREATE TABLE `totalcampaigndata` (
   `totalcpm` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalcost` / `totalimprs` * 1000 end) STORED,
   `totalcpc` decimal(10,2) GENERATED ALWAYS AS (case when `totalclick` = 0 then 0 else `totalcost` / `totalclick` end) STORED,
   `totalcpr` decimal(10,2) GENERATED ALWAYS AS (case when `totalresult` = 0 then 0 else `totalcost` / `totalresult` end) STORED,
-  `totalctr` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalclick` / `totalimprs` * 100 end) STORED
+  `totalctr` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalclick` / `totalimprs` * 100 end) STORED,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `totalcampaigndata`
 --
 
-INSERT INTO `totalcampaigndata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`) VALUES
-(278.00, 6008, 10003, 113, 311);
+INSERT INTO `totalcampaigndata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`, `date`) VALUES
+(278.00, 6008, 10003, 113, 311, NULL);
 
 --
 -- Indexes for dumped tables
@@ -438,7 +446,7 @@ ALTER TABLE `timezone`
 -- AUTO_INCREMENT for table `adsdata`
 --
 ALTER TABLE `adsdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `adsgroupdata`
