@@ -1,3 +1,15 @@
+:root
+{
+    --ix-preview-box-padding-vertical: 16px;
+    --ix-color-gray-11: #121212;
+    --color-white: #fff;
+    --ix-ads-preview-color__white: #fff;
+    --ix-preview-box-padding-vertical: 16px;
+    --ix-preview-box-padding-horizontal: 16px;
+    --ix-preview-box-padding-horizontal-neg: -16px;
+}
+
+
 .edit-tag
 {
     top: 70px;
@@ -1414,4 +1426,914 @@ li {
 .index_attachmentCreativeFormItemLabel_nId9n .index_toolTipsIcon_vJpX2 {
     line-height: 22px;
     margin-left: 4px;
+}
+.xgplayer {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    white-space: normal;
+    word-wrap: normal;
+    overflow-wrap: normal;
+}
+
+.x-ix-ad-pr-ix-video .xgplayer {
+    cursor: default;
+}
+
+.x-ix-ad-pr-ix-video .xgplayer.xgplayer-inactive {
+    cursor: default;
+}
+
+a {
+    color: #017976 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.index_preview_ojtvd {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 288px;
+    height: 100%;
+}
+
+
+.index_previewInner_AnXJE {
+    position: sticky;
+    top: 16px;
+}
+
+
+.x-ads-preview {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 2* var(--ix-preview-box-padding-vertical, 16px));
+    padding: var(--ix-preview-box-padding-vertical, 16px) var(--ix-preview-box-padding-horizontal, 16px);
+    line-height: 1;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--ix-color-gray-11);
+    text-align: left;
+    background-color: white;
+    border-radius: 4px;
+    user-select: none;
+}
+
+.index_main_L_AC9
+{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 660px;
+}
+
+.x-ad-preview-scrollbar {
+    overflow: hidden auto;
+}
+
+.x-ads-preview__appicon {
+    position: relative;
+    width: 256px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.x-preview-app-icon {
+    z-index: 11;
+}
+
+
+.x-adview-app-icon {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+}
+
+.x-adview-app-icon__main {
+    display: flex;
+    gap: 16px;
+}
+
+.x-adview-app-icon-item {
+    position: relative;
+    height: 100%;
+}
+
+.x-adview-app-icon__icon-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.x-adview-app-icon__option {
+    position: relative;
+    padding-left: 13px;
+}
+
+.x-adview-app-icon__full_screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background: #f2f2f2;
+    cursor: pointer;
+}
+
+.x-adview-app-icon__option:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 32px;
+    background:#e3e3e3;
+}
+
+.x-adview-app-icon__full_screen svg {
+    display: block;
+}
+
+.x-ix-full-screen__no_full_screen_box {
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.x-ix-full-screen__full_screen_box {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+    background-color: #fff;
+}
+
+.x-ads-preview__options {
+    width: 256px;
+    display: flex;
+    gap: 2px;
+}
+
+.x-ads-preview__optionsx
+{
+    margin-bottom: 12px;
+}
+
+.x-ix-select-placement {
+   
+   
+}
+
+.x-ads-preview__options__item {
+    flex: 1 1 0%;
+}
+
+.x-ix-select-placement__option {
+    border-radius: 4px;
+    background-color: #f2f2f2;
+}
+
+
+.select__selected-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fields-presenter {
+    display: flex;
+    align-items: flex-start;
+    overflow: auto;
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    border: 1px solid #d3d4d5 !important;
+    border-radius: var(--x-size__inspace-radius, 4px);
+    line-height: 1;
+    box-sizing: border-box;
+    transition: all 0.1s ease-in-out 0s;
+}
+
+.fold {
+    transform: rotate(0deg);
+    transition: transform 0.5s ease 0s;
+    width: 1em;
+    height: 1em;
+    position: relative;
+    vertical-align: middle;
+    right: 5%;
+}
+
+.fields-presenter--filled {
+    background: #f2f3f3 !important;
+    border-color: #f2f3f3 !important;
+    align-items: center;
+}
+
+.fields-presenter--xs {
+    font-size: 12px;
+    line-height: calc(var(--x-size__formitem-height-xs) - 4px);
+    padding: 1px 0px 1px 12px;
+}
+
+.fields-presenter__content {
+    flex: 1 1 0%;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    gap: 4px;
+}
+
+.icon {
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    left: 0px;
+    top: 0px;
+}
+
+
+.x-ix-mobile__mobile {
+    position: relative;
+    width: 256px;
+    overflow: hidden;
+    transition: all 0.5s ease 0s;
+    display: flex;
+    height: 100%;
+}
+
+
+.x-ix-mobile__app {
+    flex: 0 0 256px;
+    height: 100%;
+    background-color: #8a8a8a;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ebebeb;
+    box-sizing: border-box;
+}
+
+.x-ix-mobile__placement {
+    position: absolute;
+    inset: 0px;
+}
+
+.x-ix-ad-pr-placement-infeed {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.x-ix-ad-pr-placement-infeed__player {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    height: calc(100% - 54.4820512821px);
+}
+
+ .tiktok__player {
+    z-index: 1;
+}
+
+.xgplayer .xgplayer-poster {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    transition: opacity .3s ease, visibility .3s ease;
+    pointer-events: none;
+}
+
+.x-ix-ad-pr-ix-video {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.x-ix-ad-pr-ix-video__play-wrap {
+    position: relative;
+    height: 100%;
+}
+
+.xgplayer video {
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.xgplayer video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+}
+
+.x-ix-ad-pr-ix-video__ix-player-starttime .xgplayer .xgplayer-poster {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.x-ix-ad-pr-ix-video .xgplayer-poster {
+    background-size: cover;
+}
+
+.x-ads-preview__main {
+    position: relative;
+    width: 256px;
+    overflow: hidden;
+    height: 555.323px;
+}
+
+
+.tiktok-infeed-header-com-bg {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.004) 7.86%, rgba(0, 0, 0, 0.01) 15.13%, rgba(0, 0, 0, 0.024) 21.91%, rgba(0, 0, 0, 0.043) 28.29%, rgba(0, 0, 0, 0.063) 34.35%, rgba(0, 0, 0, 0.086) 40.18%, rgba(0, 0, 0, 0.11) 45.88%, rgba(0, 0, 0, 0.133) 51.53%, rgba(0, 0, 0, 0.157) 57.23%, rgba(0, 0, 0, 0.176) 63.06%, rgba(0, 0, 0, 0.196) 69.12%, rgba(0, 0, 0, 0.216) 75.5%, rgba(0, 0, 0, 0.227) 82.28%, rgba(0, 0, 0, 0.235) 89.55%, rgba(0, 0, 0, 0.24) 97.41%);
+}
+
+.x-ix-ad-pr-placement-infeed__top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 89.2717948718px;
+    color: white;
+    z-index: 4;
+}
+
+.x-ix-ad-pr-tiktok-status-bar {
+    display: block;
+    width: 100%;
+    height: 30.8512820513px;
+    background: transparent url(https://sf16-sg.tiktokcdn.com/obj/eden-sg/10eh7vhogupqvhog/7813956867649867.png) top / contain no-repeat;
+    transform: translateZ(0);
+}
+
+.x-ix-ad-pr-placement-infeed__nav-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 28.8820512821px;
+    background: transparent url(https://sf16-sg.tiktokcdn.com/obj/eden-sg/10eh7vhogupqvhog/54632240723265.png) top / contain no-repeat;
+    transform: translateZ(0);
+}
+
+.tiktok__texts-cta {
+    position: absolute;
+    box-sizing: border-box;
+    width: 256px;
+    bottom: 0px;
+    padding: 32.8205px 65.641px 63.6718px 7.87692px;
+    color: white;
+    z-index: 4;
+    pointer-events: none;
+    background: linear-gradient(rgba(0, 0, 0, 0) -0.28%, rgba(0, 0, 0, 0.004) 7.6%, rgba(0, 0, 0, 0.016) 14.9%, rgba(0, 0, 0, 0.03) 21.7%, rgba(0, 0, 0, 0.05) 28.09%, rgba(0, 0, 0, 0.08) 34.16%, rgba(0, 0, 0, 0.106) 40.01%, rgba(0, 0, 0, 0.133) 45.73%, rgba(0, 0, 0, 0.165) 51.4%, rgba(0, 0, 0, 0.196) 57.11%, rgba(0, 0, 0, 0.224) 62.96%, rgba(0, 0, 0, 0.247) 69.04%, rgba(0, 0, 0, 0.27) 75.43%, rgba(0, 0, 0, 0.286) 82.23%, rgba(0, 0, 0, 0.298) 89.52%, rgba(0, 0, 0, 0.3) 97.4%);
+}
+
+.x-ix-ad-pr-control-texts {
+    pointer-events: auto;
+    margin-bottom: 9.1897435897px;
+}
+
+.x-ix-ad-pr-control-texts__identity {
+    display: flex;
+    gap: 2.6256410256px;
+    color: white;
+    font-size: 11.158974359px;
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.x-ix-ad-pr-control-texts__identity-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.x-ix-ad-pr-control-texts__text {
+    font-size: 9.1897435897px;
+    letter-spacing: 0.093px;
+    margin: 5.2512820513px 0;
+    line-height: 1.3;
+    user-select: none;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.x-ix-ad-pr-control-texts__text-ellipsis-content_hide {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+ .x-ix-ad-pr-control-texts__text-ellipsis-placeholder {
+    float: right;
+}
+
+.x-ix-ad-pr-control-texts__text {
+    font-size: 9.1897435897px;
+    letter-spacing: 0.093px;
+    margin: 5.2512820513px 0;
+    line-height: 1.3;
+    user-select: none;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.x-ix-ad-pr-control-texts__sponsored {
+    display: flex;
+    margin: 5.2512820513px 0;
+    gap: 2.6256410256px;
+    pointer-events: none;
+}
+
+.x-ix-sponsored {
+    display: flex;
+    background: rgba(255, 255, 255, 0.34);
+    border-radius: 1.3128205128px;
+}
+.x-ix-sponsored span {
+    display: block;
+    height: 10.5025641026px;
+    line-height: 10.5025641026px;
+    padding: 0 3.2820512821px;
+    font-size: 6.5641025641px;
+    border-radius: 1.3128205128px;
+}
+
+
+.tiktok__like-music {
+    position: absolute;
+    right: 3.93846px;
+    bottom: 66.9538px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13.1282px;
+    z-index: 7;
+}
+
+.x-ix-ad-pr-control-identity {
+    position: relative;
+    color: #fff;
+}
+
+.x-ix-ad-image_img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: inherit;
+}
+
+.x-ix-ad-pr-control-identity__avatar {
+    overflow: hidden;
+    display: block;
+    width: 28.8820512821px;
+    height: 28.8820512821px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+
+.x-ix-ad-image {
+    position: relative;
+    display: block;
+}
+
+
+.x-ix-ad-pr-control-like-share {
+    display: flex;
+    flex-direction: column;
+    font-size: 8.5333333333px;
+    justify-content: center;
+    gap: 11.8153846154px;
+    color: white;
+    font-weight: 500;
+}
+
+.x-ix-ad-pr-control-like-share span {
+    display: block;
+    font-size: 0;
+}
+
+.x-ix-ad-pr-control-like-share svg {
+    width: 21.0051282051px;
+}
+
+.x-adview-control-music {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 26.2564102564px;
+    height: 26.2564102564px;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M20 40c11.046 0 20-8.954 20-20S31.046 0 20 0 0 8.954 0 20s8.954 20 20 20z' fill='url(%23paint0_angular_3576_86940)'/%3E%3Cdefs%3E%3CradialGradient id='paint0_angular_3576_86940' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='matrix(20 0 0 20 20 20)'%3E%3Cstop offset='.131' stop-color='%23151515'/%3E%3Cstop offset='.397' stop-color='%23393939'/%3E%3Cstop offset='.632' stop-color='%23161616'/%3E%3Cstop offset='.889' stop-color='%23393939'/%3E%3C/radialGradient%3E%3C/defs%3E%3C/svg%3E");
+    background-size: contain;
+}
+
+.x-preview-tiktok-menu {
+    width: 100%;
+    height: 54.4820512821px;
+    background: #000 url(https://sf16-sg.tiktokcdn.com/obj/eden-sg/10eh7vhogupqvhog/6431269930350056.png) top / contain no-repeat;
+    background-size: 100% auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.xgplayer-loading {
+    display: none;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+
+.x-ix-ad-pr-player-controls__play-status{position:absolute;width:80px;height:80px;left:50%;top:50%;z-index:19;display:flex;align-items:center;justify-content:center;transform:translate(-50%, -50%)}.x-ix-ad-pr-player-controls__play-status-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background-color:var(--ix-player-controls-bg);border-radius:50%;cursor:pointer;transition:all 0.5s}.x-ix-ad-pr-player-controls__play-status-icon{opacity:0.8}.x-ix-ad-pr-player-controls__play-status-wrap:hover .x-ix-ad-pr-player-controls__play-status-icon{opacity:1}
+
+.x-ix-ad-pr-ix-video .xgplayer-loading {
+    width: 36.758974359px;
+    height: 36.758974359px;
+}
+
+.xgplayer-loading svg, .xgplayer-loading img {
+    width: 100%;
+    height: 100%;
+}
+
+.x-ix-ad-pr-ix-video .xgplayer-loading path {
+    fill: #009995 !important
+}
+
+.xg-loading-inner {
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform-origin: center;
+    animation: loadingRotate 1s .1s linear infinite;
+}
+
+
+.x-ads-preview__progress-bar, .x-ads-preview__safe-zone {
+    width: 256px;
+    margin-top: 12px;
+}
+
+.x-ix-ad-pr-video-progress-bar__section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 26px;
+}
+
+
+.x-ix-ad-pr-video-progress-bar__progress-bar-wrap {
+    position: relative;
+    flex-grow: 1;
+    padding: 6px 0;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+.x-ix-ad-pr-video-progress-bar__progress-bar {
+    position: relative;
+    border-radius: 3px;
+    background-color: #e3e3e3;
+}
+
+.x-ix-ad-pr-video-progress-bar__progress-bar::before, .x-ix-ad-pr-video-progress-bar__progress-bar::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: -6px;
+    width: 12px;
+    height: 100%;
+    border-radius: 3px;
+    background: #009995 !important;
+}
+
+.x-ix-ad-pr-video-progress-bar__progress-bar {
+    position: relative;
+    border-radius: 3px;
+    background-color: #e3e3e3;
+}
+
+.x-ix-ad-pr-video-progress-bar__progress {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    background-color: #009995 !important;
+    width: 0;
+    border-radius: 3px;
+}
+
+.x-ix-ad-pr-video-progress-bar__section-bar-play .x-ix-ad-pr-video-progress-bar__progress {
+    transition: all 0.1;
+}
+
+.x-ix-ad-pr-video-progress-bar__thumb {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transform: translateX(-50%) translateY(-25%);
+    background: white;
+    cursor: pointer;
+}
+
+
+.x-ix-ad-pr-video-progress-bar__section-bar-play .x-ix-ad-pr-video-progress-bar__thumb {
+    transition: left 0.1;
+}
+
+
+.x-ix-ad-pr-video-progress-bar__thumb_hover_area {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #009995 !important;
+}
+
+.x-ix-ad-pr-video-progress-bar__progress-bar::after {
+    z-index: 0;
+    background: #e3e3e3;
+}
+
+
+.x-ix-ad-pr-video-progress-bar__time {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 80px;
+    margin-left: 8px;
+    font-size: 12px;
+    color: #121212;
+}
+
+
+/* .index_container_kTOYi {
+    min-width: 600px;
+} */
+
+.card-container--small {
+    padding: 24px 24px;
+}
+
+.index_header_ujMpj {
+    position: relative;
+}
+
+.index_title_ukT5R {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+.index_title_ukT5R .index_titleOption_Kn_RQ {
+    color: #a9abac !important;
+    font-weight: 400;
+}
+
+.card-container--small .card-container__body-wrapper--small {
+    margin-top: 24px;
+}
+
+.index_fixStyle_FK4i5 {
+    position: relative;
+    left: -12px;
+    width: calc(100% + 24px);
+}
+
+
+.ttam-tracking-background-container {
+    margin-top: 8px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.ttam-tracking-background-container__focus {
+    padding: 12px;
+    position: relative;
+}
+
+.ttam-tracking-background-container__focus_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ttam-tracking-background-container__focus_title {
+    font-weight: 500;
+    color: #121415 !important;
+}
+
+.ttam-tracking-background-container__focus_icon {
+    color: #333;
+    background: #f2f3f3 !important;
+    width: 34px;
+    height: 34px;
+    line-height: 38px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    right: 12px;
+}
+
+
+.ttam-tracking-background-container__focus_body {
+    margin-top: 8px;
+    margin-right: 50px;
+}
+
+
+.ttam-tracking-background-container__focus_item {
+    line-height: 22px;
+    font-size: 14px;
+    margin-bottom: 4px;
+    display: flex;
+}
+
+
+.overflow-tooltip {
+    width: 100%;
+    white-space: nowrap;
+}
+
+.ttam-tracking-background-container__focus_value {
+    color: #121415 !important;
+}
+
+.overflow-tooltip .label-container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+.prefix-content
+{
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+
+.ttam-tracking-background-container__focus_label {
+    color:#6d6e70 !important;
+    flex-shrink: 0;
+    margin-right: 2px;
+}
+
+.overflow-tooltip .label-container .label-content {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.overflow-tooltip .label-container .prefix-content, .overflow-tooltip .label-container .suffix-content, .overflow-tooltip .label-container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+
+.creative-track-url-item-base_trackUrlTitle_lnCkD {
+    margin: 24px 0 8px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+
+.creative-track-url-item-base_trackUrlWrap_fI1xU {
+    margin-top: 8px;
+    padding: 16px 24px;
+    background: rgba(248, 248, 249, .5);
+    position: relative;
+}
+
+.creative-track-url-item-base_trackUrlWrap_fI1xU .creative-track-url-item-base_impressionItem_GPUne {
+    margin-bottom: 24px;
+}
+
+.creative-track-url-item-base_trackUrlWrap_fI1xU .creative-track-url-item-base_trackItem_tM7Dv .vi-form-item__label {
+    font-weight: 500;
+}
+
+.vi-form--label-top .vi-form-item__label {
+    display: inline-block;
+    text-align: left;
+    padding: 0 0 8px;
+    line-height: 22px;
+}
+
+.vi-form-item__content {
+    line-height: 34px;
+    position: relative;
+    font-size: 14px;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.vi-tooltip {
+    cursor: pointer;
+}
+
+.vi-input {
+    position: relative;
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+}
+
+
+.creative-track-url-item-base_trackUrlWrap_fI1xU .creative-track-url-item-base_trackItem_tM7Dv .vi-input-track {
+    width: 480px;
+}
+
+.index_creationContent_sDXMS .vi-form-item:last-child {
+    margin-bottom: 0;
+}
+
+
+.creative-track-viewability_trackItemView_nIvPh {
+    margin: 24px 0 0 !important;
+}
+
+.index_buttons-container_F_WAC {
+    position: sticky;
+    bottom: 69px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 13px 24px;
+    background: white;
+    box-shadow: inset 0px 1px 0px #f2f3f3 !important;
+}
+
+
+.index_buttons-container_F_WAC .index_left_RWOSn {
+    flex-shrink: 0;
+}
+
+
+.index_buttons-container_F_WAC .index_right_DVwG_.index_rightFullWith_us5Rj {
+    width: 100%;
+}
+
+.index_buttons-container_F_WAC .index_right_DVwG_ {
+    display: flex;
+    flex-shrink: 1;
+    justify-content: space-between;
+}
+
+
+.index_nextContainer_EUvtk {
+    display: flex;
+    margin-left: 16px;
+    justify-content: space-between;
+    justify-items: center;
+}
+
+.index_prefix_umVaI {
+    display: flex;
+    align-items: center;
+}
+
+
+.vi-button--primary {
+    color: #FFFFFF;
+    background-color: #009995;
+    border-color: #009995;
 }
