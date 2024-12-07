@@ -1949,6 +1949,10 @@ th.draggable.dragging {
     display: flex;
 }
 
+.date-content .date-right .nov .nov-header button:hover{
+    color: #017976;
+}
+
 .date-content .date-right .nov .nov-header button, .date-content .date-right .dec .dec-header button{
     font-size: 12px;
     background: 0 0;
@@ -1986,30 +1990,61 @@ th.draggable.dragging {
 
 .date-content .date-right table td{
     box-sizing: border-box;
-    line-height: 22px;
+    height: 24px;
+    width: 24px;
+    top: 4px;
+}
+
+.date-content .date-right table td span {
+    display: inline-flex;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-sizing: border-box;
+    line-height: 24px;
     height: 24px;
     width: 24px;
     margin: 0 auto;
-    padding: 4px 0;
-    position: relative;
     text-align: center;
-    cursor: pointer; 
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
-.date-content .date-right table td:hover{
+.date-content .date-right table td span:hover{
     background-color: #ececed;
     border-color: #ececed;
     color: #121415;
 }
 
-.date-content .date-right table .greyout{
+.date-content .date-right table td .greyout{
     color: #a9abac;
 }
 
-.date-content .date-right table td.greyout:hover {
+.date-content .date-right table td .greyout:hover {
     background-color: transparent;
     border-color: transparent;
     color: #a9abac; 
+}
+
+.date-content .date-right table .today{
+    border-color: #009995;
+    border-radius: 4px;
+    color: #009995;
+}
+
+.date-content .date-right table .today:hover{
+    background-color: #ececed;
+    border-color: #009995;
+    color: #009995;
+}
+
+.date-content .date-right table .select-date{
+    background-color: #009995;
+    color: white;
+}
+
+.date-content .date-right table .range-date {
+    background-color: #ececed;
 }
 
 .date-submenu .date-footer{
