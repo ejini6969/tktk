@@ -62,7 +62,7 @@ session_start();
 </head>
 
 <body>
-    
+
     <!------------------------------------------------------------------------------------- SVG ----------------------------------------------------------------------------------------------->
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         style="position: absolute; width: 0; height: 0" aria-hidden="true" id="__SVG_SPRITE_NODE__"
@@ -285,7 +285,7 @@ session_start();
                 d="M2 4C3.10457 4 4 3.10457 4 2C4 0.89543 3.10457 0 2 0C0.89543 0 0 0.89543 0 2C0 3.10457 0.89543 4 2 4Z"
                 fill="#F45858"></path>
         </symbol>
-        
+
         <symbol xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="icon-header-account"
             elementtiming="element-timing">
             <path opacity=".01" fill="#fff" d="M0 0h14v14H0z"></path>
@@ -2477,7 +2477,7 @@ session_start();
                                                                 </svg>
                                                                 View data
                                                             </div>
-                                                            <div class="edit-data" >
+                                                            <div class="edit-data">
                                                                 <i class="vi-icon2-edit"></i>
                                                                 Edit
                                                             </div>
@@ -2786,15 +2786,15 @@ session_start();
             </div>
 
             <!-- edit tab -->
-            <div class="edit-tag sideslip">
+            <div class="edit-tag sideslip d-none">
                 <div class="d-flex">
                     <div class=" m-0 p-0 side-left">
                         <div class="tab-item-close">
-                           <div class="close-btn">
-                            <svg data-v-0efd789f="" aria-hidden="true" class="close-button__icon svg-icon" elementtiming="element-timing">
+                            <div class="close-btn">
+                                <svg data-v-0efd789f="" aria-hidden="true" class="close-button__icon svg-icon" elementtiming="element-timing">
                                     <use xlink:href="#campaign-list-icon-common-drawer-close" elementtiming="element-timing"></use>
                                 </svg>
-                           </div>
+                            </div>
                         </div>
                         <div class="tab-item-others">
                             <div class="common-drawer-tab vi-tooltip tab-item tab-item--active">
@@ -2839,7 +2839,7 @@ session_start();
                                             </div>
 
                                             <!-- contnet -->
-                                             <div class="index_creativeGateway_QieEM">
+                                            <div class="index_creativeGateway_QieEM">
                                                 <div class="index_container_QB1YE">
                                                     <div class="index_wrapper_MbXmy">
                                                         <div class="index_content_KjME1 index_infraPreviewContent_oXXGi">
@@ -2851,14 +2851,14 @@ session_start();
                                                                                 <div class="switch-container" style="font-size: 18px;">
                                                                                     <div class="index_switchContent_BQSqd">
                                                                                         <div class="vi-tooltip index_switchWrapper_lVIeH">
-                                                                                        <span content="" placement="bottom" effect="light" class="index_switch_fSi_w"><!---->
-                                                                                            <div data-testid="switch-container-index-jW96vy" role="switch" aria-disabled="true" class="vi-switch is-disabled">
-                                                                                                <input data-testid="switch-component-rZhLsB" type="checkbox" name="" true-value="true" disabled="disabled" class="vi-switch__input"><!---->
-                                                                                                <span class="vi-switch__core" style="width: 40px;">
+                                                                                            <span content="" placement="bottom" effect="light" class="index_switch_fSi_w"><!---->
+                                                                                                <div data-testid="switch-container-index-jW96vy" role="switch" aria-disabled="true" class="vi-switch is-disabled">
+                                                                                                    <input data-testid="switch-component-rZhLsB" type="checkbox" name="" true-value="true" disabled="disabled" class="vi-switch__input"><!---->
+                                                                                                    <span class="vi-switch__core" style="width: 40px;">
 
-                                                                                                </span><!---->
-                                                                                            </div>
-                                                                                        </span>
+                                                                                                    </span><!---->
+                                                                                                </div>
+                                                                                            </span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -2872,20 +2872,20 @@ session_start();
                                                                             <div class="">
                                                                                 <div class="card-cont index_bodyWrapper_qF6uZ card-container__body-wrapper--min">
                                                                                     <div class="" style="margin-top: 24px;">
-                                                                                       <div class="vi-form-item">
+                                                                                        <div class="vi-form-item">
                                                                                             <div class="vi-form-item__content">
                                                                                                 <div class="vi-tag-input">
                                                                                                     <div class="vi-input">
-                                                                                                    <input type="text" autocomplete="off" id="ad-base-name" data-testid="creative-name-content-48DpDT" placeholder="Enter ad name" data-tea-expose="new_create_ad_creative_name_expose,creation_component_show,topview_module_show" data-tea-click="new_create_ad_creative_name,creation_component_click,click_topview_module" data-tea-std_component_name="creative_name" data-tea-location="creative_name" class="vi-input__inner">
+                                                                                                        <input type="text" autocomplete="off" id="ad-base-name" data-testid="creative-name-content-48DpDT" placeholder="Enter ad name" data-tea-expose="new_create_ad_creative_name_expose,creation_component_show,topview_module_show" data-tea-click="new_create_ad_creative_name,creation_component_click,click_topview_module" data-tea-std_component_name="creative_name" data-tea-location="creative_name" class="vi-input__inner">
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="">
-                                                                                                <button data-testid="creative-name-content-mFsCQi" type="button" class="vi-button vi-byted-button vi-tooltip vi-button--text content_generateBtn_nhoCv" aria-describedby="vi-tooltip-7066" tabindex="0"><!----><!----><span>
-                                                                                                    <i class="vi-icon-plus"></i> Add creative name </span>
-                                                                                                </button>
+                                                                                                    <button data-testid="creative-name-content-mFsCQi" type="button" class="vi-button vi-byted-button vi-tooltip vi-button--text content_generateBtn_nhoCv" aria-describedby="vi-tooltip-7066" tabindex="0"><!----><!----><span>
+                                                                                                            <i class="vi-icon-plus"></i> Add creative name </span>
+                                                                                                    </button>
                                                                                                 </div>
                                                                                             </div>
-                                                                                       </div> 
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -2898,7 +2898,7 @@ session_start();
                                                                                         <div class="index_title_EZZfA">
                                                                                             <span class="index_titleContent_THeOd">Identity</span>
                                                                                             <i class="vi-icon-question vi-tooltip" aria-describedby="vi-tooltip-8652" tabindex="0"></i>
-                                                                                            
+
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -2917,7 +2917,7 @@ session_start();
                                                                                     <div class="vi-form-item">
                                                                                         <div class="vi-form-item__content">
                                                                                             <div class="index_customIdentityTitle_MRQNI">
-                                                                                                Set custom identity 
+                                                                                                Set custom identity
                                                                                                 <i class="vi-icon-question vi-tooltip" aria-describedby="vi-tooltip-2330" tabindex="0"></i>
                                                                                             </div>
                                                                                             <!--  -->
@@ -2958,18 +2958,24 @@ session_start();
                                                                                                     <div class="vi-form-item__content">
                                                                                                         <ul class="index_list_c7P98">
                                                                                                             <span class="index_item_Bv1GU">
-                                                                                                            <li data-tea-creative-type="2" data-tea="create_ad_creative_type,creation_component_click" data-tea-expose="create_ad_creative_type_expose,creation_component_show" data-tea-std_component_name="creative_ad_type_2" data-tea-is_aia="0" class="vi-popover__reference" aria-describedby="vi-popover-1459" tabindex="0">
-                                                                                                                <div data-testid="creative_adType_item2" class="creative-type-selector-tab_typeSelectorWrap_i1TQl creative-type-selector-tab_active_QijEm creative-type-selector-tab_disabled_jFYDk">
-                                                                                                                    <div class="creative-type-selector-tab_contentWrap_itt4r">
-                                                                                                                        <div class="index_typeContent_d8hkl">
-                                                                                                                            <svg aria-hidden="true" class="svg-icon index_icon_KaveR">
-                                                                                                                                <use xlink:href="#icon-single-video-ads-icon"></use>
-                                                                                                                            </svg>
-                                                                                                                    <div class="index_titleWrap_sw9ty"><span class="index_title_HvT8l"> Single video <!----></span><span class="index_subTitle_HlO8W"> Create an ad with one video or multiple images. <span><div data-testid="popover-main-5Uvc3C" role="tooltip" id="vi-popover-6847" aria-hidden="true" class="vi-popover vi-popper" style="width: 150px; max-width: none; display: none;"><!----><!----><div class="index_musicCarouselIntroduceWrap_E7CKV"><img src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/lm_zkh_rvarpa/ljhwZthlaukjlkulzlp/ads_manager_creation/music-carousel-introduce-hq.gif" class="index_musicCarouselIntroduceImage_DnO83"></div></div></span></span></div></div></div>
-                                                                                                                </div>
-                                                                                                            </li>
+                                                                                                                <li data-tea-creative-type="2" data-tea="create_ad_creative_type,creation_component_click" data-tea-expose="create_ad_creative_type_expose,creation_component_show" data-tea-std_component_name="creative_ad_type_2" data-tea-is_aia="0" class="vi-popover__reference" aria-describedby="vi-popover-1459" tabindex="0">
+                                                                                                                    <div data-testid="creative_adType_item2" class="creative-type-selector-tab_typeSelectorWrap_i1TQl creative-type-selector-tab_active_QijEm creative-type-selector-tab_disabled_jFYDk">
+                                                                                                                        <div class="creative-type-selector-tab_contentWrap_itt4r">
+                                                                                                                            <div class="index_typeContent_d8hkl">
+                                                                                                                                <svg aria-hidden="true" class="svg-icon index_icon_KaveR">
+                                                                                                                                    <use xlink:href="#icon-single-video-ads-icon"></use>
+                                                                                                                                </svg>
+                                                                                                                                <div class="index_titleWrap_sw9ty"><span class="index_title_HvT8l"> Single video <!----></span><span class="index_subTitle_HlO8W"> Create an ad with one video or multiple images. <span>
+                                                                                                                                            <div data-testid="popover-main-5Uvc3C" role="tooltip" id="vi-popover-6847" aria-hidden="true" class="vi-popover vi-popper" style="width: 150px; max-width: none; display: none;"><!----><!---->
+                                                                                                                                                <div class="index_musicCarouselIntroduceWrap_E7CKV"><img src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/lm_zkh_rvarpa/ljhwZthlaukjlkulzlp/ads_manager_creation/music-carousel-introduce-hq.gif" class="index_musicCarouselIntroduceImage_DnO83"></div>
+                                                                                                                                            </div>
+                                                                                                                                        </span></span></div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </li>
 
-                                                                                                                    
+
                                                                                                             </span>
                                                                                                         </ul>
                                                                                                     </div>
@@ -2993,7 +2999,7 @@ session_start();
                                                                                                             <sup class="vi-badge__content is-fixed">New</sup>
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                    
+
                                                                                                     <div class="vi-form-item" style="margin-bottom: 0px;">
                                                                                                         <div class="index_materialButtons_MHlWC">
                                                                                                             <div class="selected-video_videoMaterialDetail_Hwpva">
@@ -3013,10 +3019,10 @@ session_start();
                                                                                                                                     <div>
                                                                                                                                         <div style="display: inline-block;">
                                                                                                                                             <div class="vi-dropdown">
-                                                                                                                                            <span class="vi-tooltip vi-dropdown-selfdefine" aria-describedby="vi-tooltip-8070" tabindex="0" aria-haspopup="list" aria-controls="dropdown-menu-9420" role="button"><button data-testid="creative_material_selectedUpdate" type="button" class="vi-button vi-byted-button vi-button--text vi-button--small material-update-dropdown-new_editBtn_bWPbG"><!----><i class="vi-icon2-edit"></i><span> Update </span></button></span>
+                                                                                                                                                <span class="vi-tooltip vi-dropdown-selfdefine" aria-describedby="vi-tooltip-8070" tabindex="0" aria-haspopup="list" aria-controls="dropdown-menu-9420" role="button"><button data-testid="creative_material_selectedUpdate" type="button" class="vi-button vi-byted-button vi-button--text vi-button--small material-update-dropdown-new_editBtn_bWPbG"><!----><i class="vi-icon2-edit"></i><span> Update </span></button></span>
                                                                                                                                             </div>
                                                                                                                                         </div>
-                                                                                                                                        <button data-testid="creative_detail_materialSelectedChangeCover" type="button" class="vi-button vi-byted-button vi-button--text vi-button--small selected-video_coverButton_KCOw0" style="margin-left: 10px;"><!----><!----><span><i class="vi-icon2-picture selected-video_pictureIcon_RQdqZ"></i><span>Thumbnail</span><!----></span></button> 
+                                                                                                                                        <button data-testid="creative_detail_materialSelectedChangeCover" type="button" class="vi-button vi-byted-button vi-button--text vi-button--small selected-video_coverButton_KCOw0" style="margin-left: 10px;"><!----><!----><span><i class="vi-icon2-picture selected-video_pictureIcon_RQdqZ"></i><span>Thumbnail</span><!----></span></button>
                                                                                                                                     </div>
                                                                                                                                 </div>
                                                                                                                             </div>
@@ -3026,8 +3032,8 @@ session_start();
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                    
-                                                                                                    
+
+
                                                                                                 </div>
                                                                                             </div>
 
@@ -3046,7 +3052,7 @@ session_start();
                                                                                                                     <div class="vi-tooltip index_textareaCounter_scUDE index_inputBox_kL_B8">
                                                                                                                         <div class="index_content_zzTib">
                                                                                                                             <div class="vi-textarea index_inputClass_GE6yT">
-                                                                                                                            <textarea id="ad-detail-display-text" data-testid="textarea-counter-index-sVMqWU" placeholder="Enter ad text" rows="3" spellcheck="false" class="vi-textarea__inner" style="resize: none; min-height: 31px; height: 31px;"></textarea>
+                                                                                                                                <textarea id="ad-detail-display-text" data-testid="textarea-counter-index-sVMqWU" placeholder="Enter ad text" rows="3" spellcheck="false" class="vi-textarea__inner" style="resize: none; min-height: 31px; height: 31px;"></textarea>
                                                                                                                             </div>
                                                                                                                         </div>
                                                                                                                         <div class="comp-textarea-counter-btns index_btnsWrap_FzwEz">
@@ -3079,7 +3085,9 @@ session_start();
                                                                                                                     <input data-testid="switch-component-rZhLsB" type="checkbox" name="" true-value="true" disabled="disabled" class="vi-switch__input"><!---->
                                                                                                                     <span class="vi-switch__core" style="width: 40px;"></span><!---->
                                                                                                                 </div>
-                                                                                                                <div class="index_titleForm_DV6gU index_switchTitle_iphwb"><div>Call to action</div></div>
+                                                                                                                <div class="index_titleForm_DV6gU index_switchTitle_iphwb">
+                                                                                                                    <div>Call to action</div>
+                                                                                                                </div>
                                                                                                                 <i class="vi-icon-question vi-tooltip index-new_titleTooltip_fgyup" aria-describedby="vi-tooltip-7862" tabindex="0"></i>
                                                                                                             </div>
                                                                                                         </div>
@@ -3104,7 +3112,9 @@ session_start();
                                                                                                                 <div class="index_addOnContainer_AwPLJ">
                                                                                                                     <div>
                                                                                                                         <div class="index_addOnSelector_EnaR4">
-                                                                                                                            <button data-testid="creative_attachment_toolOpen" type="button" class="vi-button vi-byted-button vi-button--default" data-tea-click="creation_component_click" data-tea-expose="create_ad_attached_creative_editor_expose_new,creation_component_show" data-tea-std_component_name="creative_attached_creative_editor" data-tea-scene="2"><!----><!----><span><div class="index_btnWrapper_hZtAf"><i class="index_btnIcon_ALiez vi-icon2-add-small"></i><span class="btn-text">Create</span></div></span></button>
+                                                                                                                            <button data-testid="creative_attachment_toolOpen" type="button" class="vi-button vi-byted-button vi-button--default" data-tea-click="creation_component_click" data-tea-expose="create_ad_attached_creative_editor_expose_new,creation_component_show" data-tea-std_component_name="creative_attached_creative_editor" data-tea-scene="2"><!----><!----><span>
+                                                                                                                                    <div class="index_btnWrapper_hZtAf"><i class="index_btnIcon_ALiez vi-icon2-add-small"></i><span class="btn-text">Create</span></div>
+                                                                                                                                </span></button>
                                                                                                                             <button data-testid="creative_attachment_openTool" type="button" class="vi-button vi-byted-button vi-button--default" data-tea-click="assets_creative_from_library,creation_component_click" data-tea-scene="2" data-tea-expose="create_ad_attached_creative_editor_expose_library,creation_component_show" data-tea-objective_type="5" data-tea-std_component_name="creative_attached_creative_library"><!----><!----><span><span class="index_btnWrapper_hZtAf"><i class="index_btnIcon_ALiez vi-icon2-add-small"></i><span class="btn-text">Choose from library</span></span></span></button>
                                                                                                                         </div>
                                                                                                                     </div>
@@ -3115,7 +3125,7 @@ session_start();
                                                                                                                             <div class="recommend-add-ons_recommendAddOnsTitle_kJWrL">
                                                                                                                                 <span class="recommend-add-ons_recommendAddOnsTitleLeft_Pkhdl">
                                                                                                                                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJQSURBVHgB1ZdNbtNAFMf/45A4EUVKbmBYITbl4wAkJ2gX7NveoNk5q4x3gQ2+QX0AJOgBkJwFEiugJ8A3sCVa4qTEj+dKASf+GhdbqL9FIr95nvm/+XjzDPxnRBVneer3qdc+FpH2kt98+qeBEPCvBxGdA9eunA081T6VBMQDo9u2Ae0ISpADrCwVIaUCrMniiBDZINFHNTwgYhF7TpGTVtRomYspEUdTffAYg7s/s8yraZFT7gxMJ5engrS3qAGKorH1Zs+GqgBp+gZE5+stI89QQAHE6lnWnshZgrasbfAYEfeln2U27Rpuoof+HY2wHsnZAzdpyZgBjr4pSBzumtIChLaPphDaAUoFUCLD1Y+xa9jaA9JcsAPlrv/Bqw6MR4WpA4Ef4fzdNf9Tjod4KGc9b/N0D4r0B5z8X7QU/FrYfx5h/vEXVNgW0A0DhHqmYxzR509rPH5SNgOEiy/rfIcwDJKP6WM4ufJrzQFJOCHJ1/cHSVPWJpyjOVJ9ZxxDOGgKQR9QKkBfuewYoH68rKs5JUDKQcBrNUbtRFaWNfc6lpOf73k/HKIWhMNn/ySrJf9M6csTlvcN/wpxH2E3d0ZzBdwshb4csXoXt2eOZW8kbZG7p9SKUvPymF0NVIK8snpQWcBfIT+GPGlD1DBwZQFScmke6r6Kb1ENuIuGangqTkKDch6p+GVE/IESltULXvK6rVXAhrjWJ4jhtpU8hKuxtAeVsqhyPbCBi5YhgWS6hWPptuPLxkEFKgvgJeDE0rngemfryhYkfIiWi7vGbxuvzdGrz059AAAAAElFTkSuQmCC">
-                                                                                                                                    <span>Recommended add-ons: 
+                                                                                                                                    <span>Recommended add-ons:
                                                                                                                                         <span place="recommend_mode" class="recommend-add-ons_recommendAddOnsTitleDynamic_P_JBk">Based on ads performance</span>
                                                                                                                                     </span>
                                                                                                                                 </span>
@@ -3147,7 +3157,7 @@ session_start();
                                                                                                         </div>
 
                                                                                                     </div>
-                                                                                                    
+
 
                                                                                                     <!--  -->
 
@@ -3157,7 +3167,7 @@ session_start();
                                                                                                                 <i class="index_arrowIcon_LXP5m vi-icon2-tri-arrowdown"></i>
                                                                                                                 <div class="index_label_xmyC6 index_titleLabel_u6Ksf">
                                                                                                                     <span>Destination</span>
-                                                                                                                <!---->
+                                                                                                                    <!---->
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -3180,7 +3190,7 @@ session_start();
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                     <div class="vi-tooltip aigc-disclosure__desc" aria-describedby="vi-tooltip-7901" tabindex="0">
-                                                                                                                        <span>Our advertising policies require the labeling of AI-generated content. By clicking this checkbox you confirm that your content conforms to our guidelines for AI-generated content. This can't be changed once you submit the ad. 
+                                                                                                                        <span>Our advertising policies require the labeling of AI-generated content. By clicking this checkbox you confirm that your content conforms to our guidelines for AI-generated content. This can't be changed once you submit the ad.
                                                                                                                             <x-bo-wc-co-learn-more-link-zf4j78m6 class="aigc-disclosure__link" place="learn_more"> Learn more </x-bo-wc-co-learn-more-link-zf4j78m6>
                                                                                                                         </span>
                                                                                                                     </div>
@@ -3192,13 +3202,13 @@ session_start();
                                                                                                         <div class="ad-form-creative-lib-auth" style="margin-top: 16px;">
                                                                                                             <label class="vi-checkbox is-disabled is-checked">
                                                                                                                 <span aria-checked="mixed" class="vi-checkbox__input is-disabled is-checked">
-                                                                                                                     <span class="vi-checkbox__inner"></span>
-                                                                                                                     <input data-testid="checkbox-checkbox-wgAVEU" type="checkbox" aria-hidden="true" disabled="disabled" class="vi-checkbox__original" value="">
+                                                                                                                    <span class="vi-checkbox__inner"></span>
+                                                                                                                    <input data-testid="checkbox-checkbox-wgAVEU" type="checkbox" aria-hidden="true" disabled="disabled" class="vi-checkbox__original" value="">
                                                                                                                 </span>
                                                                                                                 <span class="vi-checkbox__label">
                                                                                                                     <div class="withdraw-label">
-                                                                                                                        <span>Creative is authorized for 
-                                                                                                                            <a place="x" href="https://ads.tiktok.com/business/creativecenter" target="_blank">TikTok For Business Creative Center</a>. To change, 
+                                                                                                                        <span>Creative is authorized for
+                                                                                                                            <a place="x" href="https://ads.tiktok.com/business/creativecenter" target="_blank">TikTok For Business Creative Center</a>. To change,
                                                                                                                             <a place="y" href="https://ads.tiktok.com/help/article?aid=200851762113375780" target="_blank">withdraw the authorization</a>.
                                                                                                                         </span>
                                                                                                                     </div><!---->
@@ -3207,7 +3217,7 @@ session_start();
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                            
+
                                                                                             </div>
                                                                                         </div>
 
@@ -3221,12 +3231,12 @@ session_start();
                                                         </div>
                                                     </div>
                                                 </div>
-                                             </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                    
+
                         </div>
                     </div>
                 </div>
@@ -3684,58 +3694,58 @@ session_start();
                                 <th>Sat</th>
                             </tr>
                             <tr>
-                                <td class="greyout">27</td>
-                                <td class="greyout">28</td>
-                                <td class="greyout">29</td>
-                                <td class="greyout">30</td>
-                                <td class="greyout">31</td>
-                                <td>1</td>
-                                <td>2</td>
+                                <td><span class="greyout">27</span></td>
+                                <td><span class="greyout">28</span></td>
+                                <td><span class="greyout">29</span></td>
+                                <td><span class="greyout">30</span></td>
+                                <td><span class="greyout">31</span></td>
+                                <td><span>1</span></td>
+                                <td><span>2</span></td>
                             </tr>
                             <tr>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
+                                <td><span>3</span></td>
+                                <td><span>4</span></td>
+                                <td><span>5</span></td>
+                                <td><span>6</span></td>
+                                <td><span>7</span></td>
+                                <td><span>8</span></td>
+                                <td><span>9</span></td>
                             </tr>
                             <tr>
-                                <td>10</td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>14</td>
-                                <td>15</td>
-                                <td>16</td>
+                                <td><span>10</span></td>
+                                <td><span>11</span></td>
+                                <td><span>12</span></td>
+                                <td><span>13</span></td>
+                                <td><span>14</span></td>
+                                <td><span>15</span></td>
+                                <td><span>16</span></td>
                             </tr>
                             <tr>
-                                <td>17</td>
-                                <td>18</td>
-                                <td>19</td>
-                                <td>20</td>
-                                <td>21</td>
-                                <td>22</td>
-                                <td>23</td>
+                                <td><span>17</span></td>
+                                <td><span>18</span></td>
+                                <td><span>19</span></td>
+                                <td><span>20</span></td>
+                                <td><span>21</span></td>
+                                <td><span>22</span></td>
+                                <td><span>23</span></td>
                             </tr>
                             <tr>
-                                <td>24</td>
-                                <td>25</td>
-                                <td>26</td>
-                                <td>27</td>
-                                <td>28</td>
-                                <td>29</td>
-                                <td>30</td>
+                                <td><span>24</span></td>
+                                <td><span>25</span></td>
+                                <td><span>26</span></td>
+                                <td><span>27</span></td>
+                                <td><span>28</span></td>
+                                <td><span>29</span></td>
+                                <td><span>30</span></td>
                             </tr>
                             <tr>
-                                <td class="greyout">1</td>
-                                <td class="greyout">2</td>
-                                <td class="greyout">3</td>
-                                <td class="greyout">4</td>
-                                <td class="greyout">5</td>
-                                <td class="greyout">6</td>
-                                <td class="greyout">7</td>
+                                <td><span class="greyout">1</span></td>
+                                <td><span class="greyout">2</span></td>
+                                <td><span class="greyout">3</span></td>
+                                <td><span class="greyout">4</span></td>
+                                <td><span class="greyout">5</span></td>
+                                <td><span class="greyout">6</span></td>
+                                <td><span class="greyout">7</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -3758,58 +3768,58 @@ session_start();
                                 <th>Sat</th>
                             </tr>
                             <tr>
-                                <td class="greyout">24</td>
-                                <td class="greyout">25</td>
-                                <td class="greyout">26</td>
-                                <td class="greyout">27</td>
-                                <td class="greyout">28</td>
-                                <td class="greyout">29</td>
-                                <td class="greyout">30</td>
+                                <td><span class="greyout">24</span></td>
+                                <td><span class="greyout">25</span></td>
+                                <td><span class="greyout">26</span></td>
+                                <td><span class="greyout">27</span></td>
+                                <td><span class="greyout">28</span></td>
+                                <td><span class="greyout">29</span></td>
+                                <td><span class="greyout">30</span></td>
                             </tr>
                             <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
+                                <td><span>1</span></td>
+                                <td><span>2</span></td>
+                                <td><span>3</span></td>
+                                <td><span>4</span></td>
+                                <td><span>5</span></td>
+                                <td><span>6</span></td>
+                                <td><span>7</span></td>
                             </tr>
                             <tr>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>10</td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>14</td>
+                                <td><span>8</span></td>
+                                <td><span>9</span></td>
+                                <td><span>10</span></td>
+                                <td><span>11</span></td>
+                                <td><span>12</span></td>
+                                <td><span>13</span></td>
+                                <td><span>14</span></td>
                             </tr>
                             <tr>
-                                <td>15</td>
-                                <td>16</td>
-                                <td>17</td>
-                                <td>18</td>
-                                <td>19</td>
-                                <td>20</td>
-                                <td>21</td>
+                                <td><span>15</span></td>
+                                <td><span>16</span></td>
+                                <td><span>17</span></td>
+                                <td><span>18</span></td>
+                                <td><span>19</span></td>
+                                <td><span>20</span></td>
+                                <td><span>21</span></td>
                             </tr>
                             <tr>
-                                <td>22</td>
-                                <td>23</td>
-                                <td>24</td>
-                                <td>25</td>
-                                <td>26</td>
-                                <td>27</td>
-                                <td>28</td>
+                                <td><span>22</span></td>
+                                <td><span>23</span></td>
+                                <td><span>24</span></td>
+                                <td><span>25</span></td>
+                                <td><span>26</span></td>
+                                <td><span>27</span></td>
+                                <td><span>28</span></td>
                             </tr>
                             <tr>
-                                <td>29</td>
-                                <td>30</td>
-                                <td>31</td>
-                                <td class="greyout">1</td>
-                                <td class="greyout">2</td>
-                                <td class="greyout">3</td>
-                                <td class="greyout">4</td>
+                                <td><span>29</span></td>
+                                <td><span>30</span></td>
+                                <td><span>31</span></td>
+                                <td><span class="greyout">1</span></td>
+                                <td><span class="greyout">2</span></td>
+                                <td><span class="greyout">3</span></td>
+                                <td><span class="greyout">4</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -5195,6 +5205,7 @@ session_start();
                     calendarSubmenu.style.display = 'flex';
                 });
 
+
                 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3 OPTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ........... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 // ==================================================================== change 3 main tab category ==========================================================================
@@ -5319,6 +5330,89 @@ session_start();
                     });
                 });
             })
+
+            // ============================================================= DATE SUBMENU ==========================================================
+            document.addEventListener("DOMContentLoaded", function() {
+                // -------------------------------------------- Highlight current date ----------------------------------
+                const today = new Date();
+                const currentDay = today.getDate();
+                const currentMonth = today.getMonth();
+                const currentYear = today.getFullYear();
+
+                function highlightToday() {
+                    const monthTables = document.querySelectorAll(".nov-content, .dec-content");
+                    monthTables.forEach((table) => {
+                        const isCurrentMonth = table.classList.contains(
+                            today.toLocaleString('default', {
+                                month: 'short'
+                            }).toLowerCase() + "-content"
+                        );
+
+                        if (isCurrentMonth) {
+                            const days = table.querySelectorAll("td span:not(.greyout)");
+                            days.forEach((span) => {
+                                if (parseInt(span.textContent) === currentDay) {
+                                    span.classList.add("today");
+                                    console.log(span);
+                                }
+                            });
+                        }
+                    });
+                }
+                highlightToday();
+
+                // ----------------------------------------- Logic for start date and end date and in-range dates -----------------------------------
+                const tableCells = document.querySelectorAll(".date-right table td span:not(.greyout)");
+                let startDate = null;
+                let endDate = null;
+
+                // Clear all selections
+                function clearSelections() {
+                    tableCells.forEach((span) => {
+                        span.classList.remove("select-date", "range-date");
+                    });
+                }
+
+                // Apply the range styling
+                function applyRangeStyles() {
+                    if (startDate && endDate) {
+                        const startIndex = Array.from(tableCells).indexOf(startDate);
+                        const endIndex = Array.from(tableCells).indexOf(endDate);
+
+                        tableCells.forEach((span, index) => {
+                            if (index > startIndex && index < endIndex) {
+                                span.classList.add("range-date");
+                            }
+                        });
+                    }
+                }
+
+                // Event listener for each span inside the td
+                tableCells.forEach((span) => {
+                    span.addEventListener("click", function() {
+                        const selectedDay = parseInt(span.textContent);
+
+                        if (!startDate || (startDate && endDate)) {
+                            clearSelections();
+                            startDate = span;
+                            endDate = null;
+                            span.classList.add("select-date");
+                        } else if (!endDate) {
+                            endDate = span;
+                            // Ensure the end date is after the start date
+                            const startDay = parseInt(startDate.textContent);
+                            if (selectedDay < startDay) {
+                                [startDate, endDate] = [endDate, startDate];
+                            }
+                            startDate.classList.add("select-date");
+                            endDate.classList.add("select-date");
+                            applyRangeStyles();
+                        }
+                    });
+                });
+            });
+
+
 
             // =========================================================== change footer question mark hover ==============================================================
             // const questionMarkLabel = document.querySelector('.vi-icon-ex-circle-question');
