@@ -226,7 +226,7 @@
 }
 
 
-.vi-switch {
+/* .vi-switch {
     display: inline-flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -257,7 +257,7 @@
     -webkit-transition: border-color .3s, background-color .3s;
     transition: border-color .3s, background-color .3s;
     vertical-align: middle;
-}
+} */
 
 
 .index_title_gRuIn {
@@ -437,7 +437,7 @@
     display: flex;
     align-items: center;
 }
-
+/* 
 .vi-switch__core:after
 {
     position: absolute;
@@ -457,7 +457,7 @@
     -webkit-box-shadow: 0 2px 8px #00000014;
     box-shadow: 0 2px 8px #00000014;
     content: "";
-}
+} */
 
 .index_switchText_YhSUx {
     padding-left: 8px;
@@ -2336,4 +2336,17 @@ a {
     color: #FFFFFF;
     background-color: #009995;
     border-color: #009995;
+}
+
+.slide-out {
+    display: block; /* Ensure the container is visible */
+    opacity: 0;
+    transform: translateX(100%); /* Start off-screen to the right */
+    transform-origin: right;
+    transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 1.5s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth easing effect */
+}
+
+.slide-out-active {
+    opacity: 1;
+    transform: translateX(0); /* Slide into the original position */
 }

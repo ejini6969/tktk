@@ -812,10 +812,10 @@ th.draggable.dragging {
     background-color: #dfdfe0;
 }
 
-.table .table-head .stick {
+/* .table .table-head .stick {
     position: sticky;
     z-index: 2;
-}
+} */
 
 .table .table-head .col1 {
     min-width: 48px;
@@ -863,12 +863,10 @@ th.draggable.dragging {
 
 .table .table-head .col2 {
     width: 64px;
-    left: 48px;
 }
 
 .table .table-head .col3 {
     width: 380px;
-    left: 112px;
 }
 
 .table .table-head .shortcol {

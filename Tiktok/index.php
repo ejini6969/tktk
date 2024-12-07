@@ -1284,7 +1284,7 @@ session_start();
                             <table class="table table-bordered m-0 table-resizable table-draggable">
                                 <thead class="table-head">
                                     <tr>
-                                        <th class="columns col1 stick">
+                                        <th class="columns col1">
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <label class="containercheck">
                                                     <input type="checkbox" id="all-campaign-checkbox">
@@ -1293,19 +1293,19 @@ session_start();
                                             </div>
                                         </th>
 
-                                        <th class="columns col2 stick">
+                                        <th class="columns col2">
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <span>On/Off</span>
                                             </div>
                                         </th>
 
-                                        <th class="columns col3 stick pl-3 shortcol">
+                                        <th class="columns col3 pl-3 shortcol">
                                             <div class="d-flex justify-content-start align-items-center">
                                                 <span>Name</span>
                                             </div>
                                         </th>
 
-                                        <th class="columns col4 stick">
+                                        <th class="columns col4">
                                             <div class="d-flex justify-content-start align-items-center">
                                                 <span>Status</span>
                                             </div>
@@ -2899,7 +2899,7 @@ session_start();
                 <div class="d-flex">
                     <div class=" m-0 p-0 side-left">
                         <div class="tab-item-close">
-                            <div class="close-btn">
+                            <div class="close-btn" onclick="closeRealEditRowModal('real-edit-row-modal-ads-rw-1')">
                                 <svg data-v-0efd789f="" aria-hidden="true" class="close-button__icon svg-icon" elementtiming="element-timing">
                                     <use xlink:href="#campaign-list-icon-common-drawer-close" elementtiming="element-timing"></use>
                                 </svg>
@@ -3116,9 +3116,9 @@ session_start();
                                                                                                                     <div class="index_selectedMaterial_flUcr index_selectedMaterialFirst_bwOhS material-detail-wrapper">
                                                                                                                         <div class="index_materialInfoBox_DHQJy material-info-box">
                                                                                                                             <div class="index_videoCover_IE4o0 material-cover">
-                                                                                                                                
+
                                                                                                                                 <!--<img src="https://p16-ad-sg.tiktokcdn.com/origin/tos-alisg-p-0051c001-sg/ochweuG7QLAfgHFkUKIASPMgGgT6e2RRcFfiAF" class="index_image_HuhDS" >-->
-                                                                                                                                
+
                                                                                                                                 <video id="real-edit-vid-img" width="64" height="64">
                                                                                                                                     <source src="img/video.mp4" type="video/mp4">
                                                                                                                                     Your browser does not support the video tag.
@@ -3420,7 +3420,7 @@ session_start();
                                                                                                                                                         <x-ix-ad-pr-ix-video-h0ur8pn2 class="x-ix-ad-pr-ix-video">
                                                                                                                                                             <div class="x-ix-ad-pr-ix-video__play-wrap x-ix-ad-pr-ix-video__ix-player-starttime">
                                                                                                                                                                 <div class="x-ix-ad-pr-ix-video__ix-player xgplayer xgplayer-inactive xgplayer-pc no-controls xgplayer-nostart" style="width: 100%; height: 100%;">
-                                                                                                                                                                    
+
                                                                                                                                                                     <video id="real-edit-vid-player" playsinline="true" x5-playsinline="true" webkit-playsinline="true" mediatype="video" data-index="-1" crossorigin="anonymous">
                                                                                                                                                                         <source src="https://v16-tt4b.tiktokcdn.com/your-video-url.mp4" type="video/mp4">
                                                                                                                                                                         Your browser does not support the video tag.
@@ -4177,7 +4177,7 @@ session_start();
         <div class="compare-row">
             <span class="compare-text">Compare</span>
             <div role="switch" class="vi-switch vi-tooltip item"
-                aria-describedby="vi-tooltip-9378" tabindex="0">
+                tabindex="0">
                 <input type="checkbox" class="vi-switch__input">
                 <span class="vi-switch__core"></span>
             </div>
@@ -4354,1842 +4354,1872 @@ session_start();
 
     <!-------------------------------------------------------------------------------- TABLE HEADER REFRESH SUBMENU ----------------------------------------------------------------------------->
     <?php
-        $randomMinutes = rand(30, 240);
-        $lastUpdatedTime = date('Y-m-d H:i:s', strtotime("-$randomMinutes minutes"));
-        ?>
+    $randomMinutes = rand(30, 240);
+    $lastUpdatedTime = date('Y-m-d H:i:s', strtotime("-$randomMinutes minutes"));
+    ?>
 
-        <div class="table-header-refresh-submenu">
+    <div class="table-header-refresh-submenu">
         <span>Refresh<br>Last updated time: <?php echo $lastUpdatedTime ?></span>
         <div x-arrow="" class="arrow"></div>
-        </div>
+    </div>
 
-        <!-------------------------------------------------------------------------------- TABLE HEADER REPORT SUBMENU ----------------------------------------------------------------------------->
-        <div class="table-header-report-submenu">
-            <span>Export Report</span>
-            <div x-arrow="" class="arrow"></div>
-        </div>
+    <!-------------------------------------------------------------------------------- TABLE HEADER REPORT SUBMENU ----------------------------------------------------------------------------->
+    <div class="table-header-report-submenu">
+        <span>Export Report</span>
+        <div x-arrow="" class="arrow"></div>
+    </div>
 
-        <!---------------------------------------------------------------------------------- FOOTER QUESTION SUBMENU ----------------------------------------------------------------------------------->
-        <!-- <div class="footer-question-submenu">
+    <!---------------------------------------------------------------------------------- FOOTER QUESTION SUBMENU ----------------------------------------------------------------------------------->
+    <!-- <div class="footer-question-submenu">
         <span class="question-mark">Total data is displayed according to your filter settings. We won't display data for
             deleted ads unless you select this option in your filter.</span>
         <div x-arrow="" class="arrow"></div>
     </div> -->
 
-        <!----------------------------------------------------------------------- Bootstrap JS (popper.js and bootstrap.js) ---------------------------------------------------------------------->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-            integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-            crossorigin="anonymous"></script>
-        <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-        <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+    <!----------------------------------------------------------------------- Bootstrap JS (popper.js and bootstrap.js) ---------------------------------------------------------------------->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
 
-        <!---------------------------------------------------------------------------------------- PHP + JS -------------------------------------------------------------------------------------->
-        <script>
-            // ================================================================================== USER ====================================================================
-            function saveUser() {
-                let user = document.getElementById("user").textContent;
+    <!---------------------------------------------------------------------------------------- PHP + JS -------------------------------------------------------------------------------------->
+    <script>
+        // ================================================================================== USER ====================================================================
+        function saveUser() {
+            let user = document.getElementById("user").textContent;
 
-                $.ajax({
-                    url: 'controller/user/update_user.php',
-                    type: 'POST',
-                    data: {
-                        user: user
-                    },
-                    success: function(response) {
-                        try {
-                            let result = JSON.parse(response);
+            $.ajax({
+                url: 'controller/user/update_user.php',
+                type: 'POST',
+                data: {
+                    user: user
+                },
+                success: function(response) {
+                    try {
+                        let result = JSON.parse(response);
 
-                            if (result.userid) {
-                                console.log(`User ID: ${result.userid}`);
-                            }
-
-                            if (result.currency) {
-                                console.log(`Currency: ${result.currency}`);
-                                displayCurrency(result.currency);
-                            }
-
-                            if (result.message) {
-                                console.log(result.message);
-                            }
-
-                            if (result.error) {
-                                console.error(result.error);
-                            }
-                        } catch (e) {
-                            console.error("Error parsing JSON: ", response);
+                        if (result.userid) {
+                            console.log(`User ID: ${result.userid}`);
                         }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            }
 
-            // ================================================================================= CURRENCY ==================================================================================
-            // -------------------------- ADD currency to DB ------------------------
-            function addCurrency(currency) {
-                $.ajax({
-                    url: 'controller/currency/update_currency.php',
-                    type: 'POST',
-                    data: {
-                        currency: currency
-                    },
-                    success: function(response) {
-                        console.log(response);
-                        fetchStoredCurrency();
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(xhr.responseText);
-                    }
-                });
-            }
-            // ---------------------- FETCH currency from DB ----------------------
-            function fetchStoredCurrency() {
-                $.ajax({
-                    url: 'controller/currency/fetch_currency.php',
-                    type: 'GET',
-                    success: function(response) {
-                        const storedCurrency = response.currency;
-                        if (storedCurrency) {
-                            displayCurrency(storedCurrency);
+                        if (result.currency) {
+                            console.log(`Currency: ${result.currency}`);
+                            displayCurrency(result.currency);
                         }
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(xhr.responseText);
+
+                        if (result.message) {
+                            console.log(result.message);
+                        }
+
+                        if (result.error) {
+                            console.error(result.error);
+                        }
+                    } catch (e) {
+                        console.error("Error parsing JSON: ", response);
                     }
-                });
-            }
-            // -------------------- DISPLAY updated currency's UI ------------------------
-            function displayCurrency(currencyCode) {
-                const tableContent = Array.from(document.querySelectorAll('.table-content')); // Convert NodeList to an array
-                const tableFooter = Array.from(document.querySelectorAll('.table-footer')); // Convert NodeList to an array
-
-                const inputFields = tableContent.flatMap(x => Array.from(x.querySelectorAll('.cost-col input, .cpm-col input, .cpc-col input, .cpr-col input')));
-                const spanElements = tableFooter.flatMap(x => Array.from(x.querySelectorAll('.cost-col span, .cpm-col span, .cpc-col span, .cpr-col span')));
-
-                console.log(inputFields);
-
-                let newCurrencySymbol; // Declare variable properly
-                switch (currencyCode) {
-                    case 'MYR':
-                        newCurrencySymbol = 'MYR';
-                        break;
-                    case 'USD':
-                        newCurrencySymbol = 'USD';
-                        break;
-                    case 'TWD':
-                        newCurrencySymbol = 'TWD';
-                        break;
-                    case 'IDR':
-                        newCurrencySymbol = 'IDR';
-                        break;
-                    case 'VND':
-                        newCurrencySymbol = 'VND';
-                        break;
-                    case 'THB':
-                        newCurrencySymbol = 'THB';
-                        break;
-                    default:
-                        newCurrencySymbol = 'MYR';
-                        break;
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
                 }
+            });
+        }
 
-                inputFields.forEach((inputField) => {
-                    let currentValue = inputField.value;
-                    currentValue = currentValue.replace(/\s+[A-Z]{3}$/, ''); // Remove existing currency if present
-                    inputField.value = `${currentValue} ${newCurrencySymbol}`;
-                });
+        // ================================================================================= CURRENCY ==================================================================================
+        // -------------------------- ADD currency to DB ------------------------
+        function addCurrency(currency) {
+            $.ajax({
+                url: 'controller/currency/update_currency.php',
+                type: 'POST',
+                data: {
+                    currency: currency
+                },
+                success: function(response) {
+                    console.log(response);
+                    fetchStoredCurrency();
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+        // ---------------------- FETCH currency from DB ----------------------
+        function fetchStoredCurrency() {
+            $.ajax({
+                url: 'controller/currency/fetch_currency.php',
+                type: 'GET',
+                success: function(response) {
+                    const storedCurrency = response.currency;
+                    if (storedCurrency) {
+                        displayCurrency(storedCurrency);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+        // -------------------- DISPLAY updated currency's UI ------------------------
+        function displayCurrency(currencyCode) {
+            const tableContent = Array.from(document.querySelectorAll('.table-content')); // Convert NodeList to an array
+            const tableFooter = Array.from(document.querySelectorAll('.table-footer')); // Convert NodeList to an array
 
-                spanElements.forEach((spanField) => {
-                    let currentValue = spanField.textContent;
-                    currentValue = currentValue.replace(/\s+[A-Z]{3}$/, ''); // Remove existing currency if present
-                    spanField.textContent = `${currentValue} ${newCurrencySymbol}`;
-                });
+            const inputFields = tableContent.flatMap(x => Array.from(x.querySelectorAll('.cost-col input, .cpm-col input, .cpc-col input, .cpr-col input')));
+            const spanElements = tableFooter.flatMap(x => Array.from(x.querySelectorAll('.cost-col span, .cpm-col span, .cpc-col span, .cpr-col span')));
 
-                window.newCurrencySymbol = newCurrencySymbol; // Store the symbol globally if needed
+            console.log(inputFields);
+
+            let newCurrencySymbol; // Declare variable properly
+            switch (currencyCode) {
+                case 'MYR':
+                    newCurrencySymbol = 'MYR';
+                    break;
+                case 'USD':
+                    newCurrencySymbol = 'USD';
+                    break;
+                case 'TWD':
+                    newCurrencySymbol = 'TWD';
+                    break;
+                case 'IDR':
+                    newCurrencySymbol = 'IDR';
+                    break;
+                case 'VND':
+                    newCurrencySymbol = 'VND';
+                    break;
+                case 'THB':
+                    newCurrencySymbol = 'THB';
+                    break;
+                default:
+                    newCurrencySymbol = 'MYR';
+                    break;
             }
 
-
-            // ---------------- Call displayCurrency to display currency when loaded 1st time ----------------
-            displayCurrency('<?php echo $currency; ?>');
-
-            // ------------------------- Trigger button click to change currency --------------------------
-            document.addEventListener('DOMContentLoaded', function() {
-
-                const currencyButtons = [{
-                        id: 'cur-1',
-                        currency: 'MYR'
-                    },
-                    {
-                        id: 'cur-2',
-                        currency: 'USD'
-                    },
-                    {
-                        id: 'cur-3',
-                        currency: 'TWD'
-                    },
-                    {
-                        id: 'cur-4',
-                        currency: 'IDR'
-                    },
-                    {
-                        id: 'cur-5',
-                        currency: 'VND'
-                    },
-                    {
-                        id: 'cur-6',
-                        currency: 'THB'
-                    }
-                ];
-
-                currencyButtons.forEach(button => {
-                    document.getElementById(button.id).addEventListener('click', function() {
-                        addCurrency(button.currency);
-                    });
-                });
-
+            inputFields.forEach((inputField) => {
+                let currentValue = inputField.value;
+                currentValue = currentValue.replace(/\s+[A-Z]{3}$/, ''); // Remove existing currency if present
+                inputField.value = `${currentValue} ${newCurrencySymbol}`;
             });
 
-            // ================================================================================ DATE ========================================================================
-            // function saveDates(startDate, endDate) {
-            //     $.ajax({
-            //         url: 'controller/date/update_date.php',
-            //         type: 'POST',
-            //         data: {
-            //             start_date: startDate,
-            //             end_date: endDate
-            //         },
-            //         success: function(response) {
-            //             console.log(response);
-            //         },
-            //         error: function(xhr, status, error) {
-            //             console.log(xhr.responseText);
-            //         }
-            //     });
-            // }
-
-            // let start = moment('<?php echo $startdate; ?>');
-            // let end = moment('<?php echo $enddate; ?>');
-
-            // function setdaterange(start, end) {
-            //     let today = moment();
-            //     let displayText;
-            //     const yesterday = moment().subtract(1, 'day');
-
-            //     // Existing conditions for display text
-            //     if (start.isSame(today, 'day') && end.isSame(today, 'day')) {
-            //         displayText = ("Today: ") + start.format('D MMM YYYY');
-            //         $('.search-bar').css('width', 'calc(99.5% - 176.5px)');
-            //     } else if (start.isSame(yesterday, 'day') && end.isSame(yesterday, 'day')) {
-            //         displayText = ("Yesterday: ") + start.format('D MMM YYYY');
-            //         $('.search-bar').css('width', 'calc(99.5% - 200px)');
-            //     } else if (start.isSame(end, 'day')) {
-            //         displayText = start.format('D MMM YYYY');
-            //         $('.search-bar').css('width', 'calc(99.5% - 131px)');
-            //     } else if (start.isSame(moment().subtract(6, 'days'), 'day') && end.isSame(today, 'day')) {
-            //         displayText = "Last 7 days: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-            //         $('.search-bar').css('width', 'calc(99.5% - 297.5px)');
-            //     } else if (start.isSame(moment().startOf('week'), 'day') && end.isSame(today, 'day')) {
-            //         displayText = "This Week: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-            //         $('.search-bar').css('width', 'calc(99.5% - 291px)');
-            //     } else if (start.isSame(moment().subtract(1, 'week').startOf('week'), 'day') && end.isSame(moment().subtract(1, 'week').endOf('week'), 'day')) {
-            //         displayText = "Last Week: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-            //         $('.search-bar').css('width', 'calc(99.5% - 283px)');
-            //     } else if (start.isSame(moment().startOf('month'), 'day') && end.isSame(today, 'day')) {
-            //         displayText = "This Month: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-            //         $('.search-bar').css('width', 'calc(99.5% - 291px)');
-            //     } else if (start.isSame(moment().subtract(1, 'month').startOf('month'), 'day') && end.isSame(moment().subtract(1, 'month').endOf('month'), 'day')) {
-            //         displayText = "Last Month: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-            //         $('.search-bar').css('width', 'calc(99.5% - 291px)');
-            //     } else if (start.isSame(end, 'month')) {
-            //         displayText = start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-            //         $('.search-bar').css('width', 'calc(99.5% - 226.2px)');
-            //     } else {
-            //         displayText = start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-            //         $('.search-bar').css('width', 'calc(99.5% - 220px)');
-            //     }
-
-            //     // Set values in the inputs
-            //     $('#start-date').val(start.format('YYYY-MM-DD'));
-            //     $('#end-date').val(end.format('YYYY-MM-DD'));
-
-            //     // AJAX call to save the selected dates
-            //     saveDates(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
-            // }
-
-            // // Initialize the daterangepicker with ranges
-            // $('#reportrange').daterangepicker({
-            //     startDate: start,
-            //     endDate: end,
-            //     ranges: {
-            //         'Today': [moment(), moment()],
-            //         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            //         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            //         'This Week': [moment().startOf('week'), moment()],
-            //         'Last Week': [moment().subtract(1, 'week').startOf('week'), moment().subtract(1, 'week').endOf('week')],
-            //         'This Month': [moment().startOf('month'), moment()],
-            //         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            //     }
-            // }, setdaterange);
-
-            // ========================================================================================= TIMEZONE ===============================================================================
-            function saveTimezone(timezone) {
-                $.ajax({
-                    url: 'controller/timezone/update_timezone.php',
-                    type: 'POST',
-                    data: {
-                        timezone: timezone
-                    },
-                    success: function(response) {
-                        console.log(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(xhr.responseText);
-                    }
-                });
-            }
-
-            $('#timezone').on('change', function() {
-                const selectedTimezone = $(this).val();
-                saveTimezone(selectedTimezone);
+            spanElements.forEach((spanField) => {
+                let currentValue = spanField.textContent;
+                currentValue = currentValue.replace(/\s+[A-Z]{3}$/, ''); // Remove existing currency if present
+                spanField.textContent = `${currentValue} ${newCurrencySymbol}`;
             });
 
-            // ========================================================================================= CAMPAIGN DATA ===============================================================================
-            // ----------------------------Triggers / Actions to Swap the columns (UPDATE TABLE TOO) ----------------------
-            const campaignsTable = document.querySelector('.campaign-content .table-draggable');
-            let lastFixedIndexCampaigns = Array.from(campaignsTable.querySelectorAll('th')).findIndex(th => th.textContent.trim() === 'Status');
-            let draggingColumnIndexCampaigns = null;
+            window.newCurrencySymbol = newCurrencySymbol; // Store the symbol globally if needed
+        }
 
-            const setUpDragListenersCampaigns = () => {
-                const headers = campaignsTable.querySelectorAll('th.draggable');
-                headers.forEach((header) => {
-                    header.setAttribute('draggable', true);
 
-                    header.addEventListener('dragstart', (event) => {
-                        const allHeaders = Array.from(campaignsTable.querySelectorAll('th'));
-                        draggingColumnIndexCampaigns = allHeaders.indexOf(header);
-                        event.dataTransfer.setData('text/plain', draggingColumnIndexCampaigns);
-                    });
+        // ---------------- Call displayCurrency to display currency when loaded 1st time ----------------
+        displayCurrency('<?php echo $currency; ?>');
 
-                    header.addEventListener('dragover', (event) => {
-                        event.preventDefault();
-                    });
+        // ------------------------- Trigger button click to change currency --------------------------
+        document.addEventListener('DOMContentLoaded', function() {
 
-                    header.addEventListener('drop', (event) => {
-                        event.preventDefault();
-                        const allHeaders = Array.from(campaignsTable.querySelectorAll('th'));
-                        const targetIndex = allHeaders.indexOf(event.target.closest('th'));
-
-                        if (draggingColumnIndexCampaigns !== targetIndex && targetIndex > lastFixedIndexCampaigns) {
-                            swapColumnsAds(campaignsTable, draggingColumnIndexCampaigns, targetIndex);
-                            draggingColumnIndexCampaigns = null;
-                        }
-                    });
-                });
-            }
-
-            setUpDragListenersCampaigns();
-
-            // ----------------------------Function to swap the columns in the table---------------------------
-            function swapColumnsCampaigns(table, fromIndex, toIndex) {
-                const rows = table.querySelectorAll('.table-head tr, .table-content tr');
-
-                rows.forEach((row) => {
-                    const cells = row.querySelectorAll('th, td');
-                    if (cells[fromIndex] && cells[toIndex]) {
-                        if (fromIndex < toIndex) {
-                            row.insertBefore(cells[fromIndex], cells[toIndex].nextSibling);
-                        } else {
-                            row.insertBefore(cells[fromIndex], cells[toIndex]);
-                        }
-                    }
-                });
-
-                const footerRow = table.querySelector('.table-footer tr');
-                if (footerRow) {
-                    const footerCells = footerRow.querySelectorAll('td');
-                    const footerFromIndex = fromIndex - 2; // Adjust index to account for the first 3 fixed columns
-                    const footerToIndex = toIndex - 2; // Adjust index to account for the first 3 fixed columns
-
-                    if (footerFromIndex >= 0 && footerToIndex >= 0) {
-                        if (footerCells[footerFromIndex] && footerCells[footerToIndex]) {
-                            if (footerFromIndex < footerToIndex) {
-                                footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex].nextSibling);
-                            } else {
-                                footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex]);
-                            }
-                        }
-                    }
+            const currencyButtons = [{
+                    id: 'cur-1',
+                    currency: 'MYR'
+                },
+                {
+                    id: 'cur-2',
+                    currency: 'USD'
+                },
+                {
+                    id: 'cur-3',
+                    currency: 'TWD'
+                },
+                {
+                    id: 'cur-4',
+                    currency: 'IDR'
+                },
+                {
+                    id: 'cur-5',
+                    currency: 'VND'
+                },
+                {
+                    id: 'cur-6',
+                    currency: 'THB'
                 }
-                setUpDragListenersCampaigns();
-            }
+            ];
 
-            function selectCampaign(rowId) {
+            currencyButtons.forEach(button => {
+                document.getElementById(button.id).addEventListener('click', function() {
+                    addCurrency(button.currency);
+                });
+            });
 
-                const delay = Math.floor(Math.random() * 1500) + 500;
+        });
 
-                setTimeout(() => {
-                    const campaignTab = $(".options-box[data-selected='table-1']");
-                    const adsGroupTab = $(".options-box[data-selected='table-2']");
+        // ================================================================================ DATE ========================================================================
+        // function saveDates(startDate, endDate) {
+        //     $.ajax({
+        //         url: 'controller/date/update_date.php',
+        //         type: 'POST',
+        //         data: {
+        //             start_date: startDate,
+        //             end_date: endDate
+        //         },
+        //         success: function(response) {
+        //             console.log(response);
+        //         },
+        //         error: function(xhr, status, error) {
+        //             console.log(xhr.responseText);
+        //         }
+        //     });
+        // }
 
-                    $('.options-box').removeClass('active-tab');
-                    adsGroupTab.addClass('active-tab');
+        // let start = moment('<?php echo $startdate; ?>');
+        // let end = moment('<?php echo $enddate; ?>');
 
-                    $('.table-wrapper').addClass('d-none');
-                    $('.table-2-content').removeClass('d-none');
+        // function setdaterange(start, end) {
+        //     let today = moment();
+        //     let displayText;
+        //     const yesterday = moment().subtract(1, 'day');
 
-                    const selectedCampaigns = $("#select-campaigns-num");
-                    selectedCampaigns.css("display", "flex");
+        //     // Existing conditions for display text
+        //     if (start.isSame(today, 'day') && end.isSame(today, 'day')) {
+        //         displayText = ("Today: ") + start.format('D MMM YYYY');
+        //         $('.search-bar').css('width', 'calc(99.5% - 176.5px)');
+        //     } else if (start.isSame(yesterday, 'day') && end.isSame(yesterday, 'day')) {
+        //         displayText = ("Yesterday: ") + start.format('D MMM YYYY');
+        //         $('.search-bar').css('width', 'calc(99.5% - 200px)');
+        //     } else if (start.isSame(end, 'day')) {
+        //         displayText = start.format('D MMM YYYY');
+        //         $('.search-bar').css('width', 'calc(99.5% - 131px)');
+        //     } else if (start.isSame(moment().subtract(6, 'days'), 'day') && end.isSame(today, 'day')) {
+        //         displayText = "Last 7 days: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+        //         $('.search-bar').css('width', 'calc(99.5% - 297.5px)');
+        //     } else if (start.isSame(moment().startOf('week'), 'day') && end.isSame(today, 'day')) {
+        //         displayText = "This Week: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+        //         $('.search-bar').css('width', 'calc(99.5% - 291px)');
+        //     } else if (start.isSame(moment().subtract(1, 'week').startOf('week'), 'day') && end.isSame(moment().subtract(1, 'week').endOf('week'), 'day')) {
+        //         displayText = "Last Week: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+        //         $('.search-bar').css('width', 'calc(99.5% - 283px)');
+        //     } else if (start.isSame(moment().startOf('month'), 'day') && end.isSame(today, 'day')) {
+        //         displayText = "This Month: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+        //         $('.search-bar').css('width', 'calc(99.5% - 291px)');
+        //     } else if (start.isSame(moment().subtract(1, 'month').startOf('month'), 'day') && end.isSame(moment().subtract(1, 'month').endOf('month'), 'day')) {
+        //         displayText = "Last Month: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+        //         $('.search-bar').css('width', 'calc(99.5% - 291px)');
+        //     } else if (start.isSame(end, 'month')) {
+        //         displayText = start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+        //         $('.search-bar').css('width', 'calc(99.5% - 226.2px)');
+        //     } else {
+        //         displayText = start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+        //         $('.search-bar').css('width', 'calc(99.5% - 220px)');
+        //     }
 
-                    const adsGroupText = $(".opt2 .ads-group-text");
-                    adsGroupText.text("Ad groups in 1 campaign");
+        //     // Set values in the inputs
+        //     $('#start-date').val(start.format('YYYY-MM-DD'));
+        //     $('#end-date').val(end.format('YYYY-MM-DD'));
 
-                    const adsText = $(".opt3 .ads-text");
-                    adsText.text("Ads in 1 campaign");
+        //     // AJAX call to save the selected dates
+        //     saveDates(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
+        // }
 
-                }, delay);
+        // // Initialize the daterangepicker with ranges
+        // $('#reportrange').daterangepicker({
+        //     startDate: start,
+        //     endDate: end,
+        //     ranges: {
+        //         'Today': [moment(), moment()],
+        //         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        //         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        //         'This Week': [moment().startOf('week'), moment()],
+        //         'Last Week': [moment().subtract(1, 'week').startOf('week'), moment().subtract(1, 'week').endOf('week')],
+        //         'This Month': [moment().startOf('month'), moment()],
+        //         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        //     }
+        // }, setdaterange);
 
-            }
+        // ========================================================================================= TIMEZONE ===============================================================================
+        function saveTimezone(timezone) {
+            $.ajax({
+                url: 'controller/timezone/update_timezone.php',
+                type: 'POST',
+                data: {
+                    timezone: timezone
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
 
-            function cancelCampaign() {
-                const delay = Math.floor(Math.random() * 500) + 100;
+        $('#timezone').on('change', function() {
+            const selectedTimezone = $(this).val();
+            saveTimezone(selectedTimezone);
+        });
 
-                setTimeout(() => {
-                    const selectedCampaigns = $("#select-campaigns-num");
-                    selectedCampaigns.css("display", "none");
+        // ========================================================================================= CAMPAIGN DATA ===============================================================================
+        // ----------------------------Triggers / Actions to Swap the columns (UPDATE TABLE TOO) ----------------------
+        const campaignsTable = document.querySelector('.campaign-content .table-draggable');
+        let lastFixedIndexCampaigns = Array.from(campaignsTable.querySelectorAll('th')).findIndex(th => th.textContent.trim() === 'Status');
+        let draggingColumnIndexCampaigns = null;
 
-                    const adsGroupText = $(".opt2 .ads-group-text");
-                    adsGroupText.text("Ad group");
+        const setUpDragListenersCampaigns = () => {
+            const headers = campaignsTable.querySelectorAll('th.draggable');
+            headers.forEach((header) => {
+                header.setAttribute('draggable', true);
 
-                    const adsText = $(".opt3 .ads-text");
-                    adsText.text("Ad");
-                }, delay);
-            }
+                header.addEventListener('dragstart', (event) => {
+                    const allHeaders = Array.from(campaignsTable.querySelectorAll('th'));
+                    draggingColumnIndexCampaigns = allHeaders.indexOf(header);
+                    event.dataTransfer.setData('text/plain', draggingColumnIndexCampaigns);
+                });
 
+                header.addEventListener('dragover', (event) => {
+                    event.preventDefault();
+                });
 
-            // ======================================================================== CREATE ==========================================================
-            function addNewRowCampaigns() {
-                let formData = new FormData();
+                header.addEventListener('drop', (event) => {
+                    event.preventDefault();
+                    const allHeaders = Array.from(campaignsTable.querySelectorAll('th'));
+                    const targetIndex = allHeaders.indexOf(event.target.closest('th'));
 
-                formData.append('create', 1);
-                formData.append('onoff', 1);
-                formData.append('campaignname', 'Sample Campaign Name');
-                formData.append('delivery', 'Active');
-                formData.append('results', 100);
-                formData.append('imprs', 5000);
-                formData.append('reach', 3000);
-                formData.append('cost', 120.50);
-                formData.append('clicks', 150);
-
-                $.ajax({
-                    url: "controller/campaigns/add_campaigns_data.php",
-                    type: "POST",
-                    data: formData,
-                    processData: false, // Don't process the data (required for FormData)
-                    contentType: false, // Don't set content type, let the browser handle it
-                    success: function(response) {
-                        const res = JSON.parse(response);
-                        if (res.status === 'success') {
-                            // alert(res.message);
-                            window.location.reload();
-                        } else {
-                            console.error("Error: " + res.message)
-                            // alert('Error: ' + res.message);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                        // alert("Error: " + error);
+                    if (draggingColumnIndexCampaigns !== targetIndex && targetIndex > lastFixedIndexCampaigns) {
+                        swapColumnsAds(campaignsTable, draggingColumnIndexCampaigns, targetIndex);
+                        draggingColumnIndexCampaigns = null;
                     }
                 });
-            }
+            });
+        }
 
-            // ====================================================================== EACH ROW FUNCTION ==============================================================
+        setUpDragListenersCampaigns();
 
-            // ----------------------------- Tick Brand Row -> 1 selected (FOR EACH ROW ) ----------------------
-            function tickCampaignsBrandRow(rowId) {
-                const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
-                const allCheckbox = document.getElementById("all-campaigns-checkbox");
-                const selectNum = document.getElementById("select-campaigns-num");
+        // ----------------------------Function to swap the columns in the table---------------------------
+        function swapColumnsCampaigns(table, fromIndex, toIndex) {
+            const rows = table.querySelectorAll('.table-head tr, .table-content tr');
 
-                // Check if the checkbox is checked
-                if (checkbox.checked) {
-                    allCheckbox.checked = true;
-                    selectNum.style.display = "flex";
-                } else {
-                    allCheckbox.checked = false;
-                    selectNum.style.display = "none";
-                }
-            }
-
-            // --------------------------- Hover Brand Title (FOR EACH ROW) ------------------------------------
-            function showCampaignsTools(rowId) {
-                const brandRow = document.getElementById(rowId);
-                const pencil = brandRow.querySelector('.pencil');
-                const toolkit = brandRow.querySelector('.toolkit');
-                pencil.style.opacity = '1';
-                pencil.style.visibility = 'visible';
-                toolkit.style.opacity = '1';
-                toolkit.style.visibility = 'visible';
-                brandRow.style.backgroundColor = 'rgba(235, 235, 235, 1)';
-            }
-
-            function hideCampaignsTools(rowId) {
-                const brandRow = document.getElementById(rowId);
-                const pencil = brandRow.querySelector('.pencil');
-                const toolkit = brandRow.querySelector('.toolkit');
-                pencil.style.opacity = '0';
-                pencil.style.visibility = 'hidden';
-                toolkit.style.opacity = '0';
-                toolkit.style.visibility = 'hidden';
-                brandRow.style.backgroundColor = '';
-            }
-
-            // ------------------- Edit Campaign Row (Show Popup for corresponding MODAL) (FOR EACH ROW) ------------------------- 
-            function editCampaignsRow(rowId) {
-                let existingModal = document.getElementById(`add-row-modal-${rowId}`);
-
-                // -------------------- Create modal if does not exist -----------------------
-                if (!existingModal) {
-                    let originalModal = document.getElementById('add-row-modal-campaigns-rw-1');
-                    if (!originalModal) {
-                        console.error('Template modal (add-row-modal-campaigns-rw-1) not found!');
-                        return;
-                    }
-
-                    // Create new modal and copy from template modal content
-                    let newModal = document.createElement('div');
-                    newModal.className = 'modal fade add-row-modal';
-                    newModal.id = `add-row-modal-${rowId}`;
-                    newModal.tabIndex = -1;
-                    newModal.role = 'dialog';
-                    newModal.setAttribute('aria-labelledby', 'addCampaignRow');
-                    newModal.setAttribute('aria-hidden', 'true');
-                    // modify modal ID to match with each ROW
-                    let clonedModalContent = originalModal.innerHTML;
-                    clonedModalContent = clonedModalContent.replace(/add-row-modal-campaigns-rw-1/g, `add-row-modal-${rowId}`);
-                    newModal.innerHTML = clonedModalContent;
-
-                    // Modify input field with ID "modal-id" to dynamic rowId
-                    let hiddenInput = newModal.querySelector('#modal-form-id');
-                    if (hiddenInput) {
-                        hiddenInput.value = rowId;
+            rows.forEach((row) => {
+                const cells = row.querySelectorAll('th, td');
+                if (cells[fromIndex] && cells[toIndex]) {
+                    if (fromIndex < toIndex) {
+                        row.insertBefore(cells[fromIndex], cells[toIndex].nextSibling);
                     } else {
-                        console.error('Hidden input with ID "modal-id" not found in modal.');
+                        row.insertBefore(cells[fromIndex], cells[toIndex]);
                     }
-
-                    // Get the buttons and modify the onclick attribute with dynamic rowId
-                    let buttons = newModal.querySelectorAll('button[onclick]');
-                    for (let i = 0; i < buttons.length; i++) {
-                        let button = buttons[i];
-                        let onclickAttr = button.getAttribute('onclick');
-                        onclickAttr = onclickAttr.replace(/'campaigns-rw-1'/g, "'" + rowId + "'");
-                        button.setAttribute('onclick', onclickAttr);
-                    }
-
-                    document.body.appendChild(newModal);
                 }
+            });
 
-                // Preload data into modal
-                $.ajax({
-                    url: 'controller/campaigns/fetch_campaigns_data.php',
-                    type: 'POST',
-                    data: {
-                        rowId: rowId
-                    },
-                    success: function(response) {
-                        const data = JSON.parse(response);
+            const footerRow = table.querySelector('.table-footer tr');
+            if (footerRow) {
+                const footerCells = footerRow.querySelectorAll('td');
+                const footerFromIndex = fromIndex - 2; // Adjust index to account for the first 3 fixed columns
+                const footerToIndex = toIndex - 2; // Adjust index to account for the first 3 fixed columns
 
-                        if (data.status && data.status === "error") {
-                            // alert(data.message);
-                            console.error(data.message);
+                if (footerFromIndex >= 0 && footerToIndex >= 0) {
+                    if (footerCells[footerFromIndex] && footerCells[footerToIndex]) {
+                        if (footerFromIndex < footerToIndex) {
+                            footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex].nextSibling);
                         } else {
-                            $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
-                            $(`#add-row-modal-${rowId} #campaignname`).val(data.campaignname);
-                            $(`#add-row-modal-${rowId} #delivery`).val(data.status);
-                            $(`#add-row-modal-${rowId} #results`).val(data.result);
-                            $(`#add-row-modal-${rowId} #imprs`).val(data.imprs);
-                            $(`#add-row-modal-${rowId} #reach`).val(data.reach);
-                            $(`#add-row-modal-${rowId} #cost`).val(data.cost);
-                            $(`#add-row-modal-${rowId} #clicks`).val(data.click);
-                            $(`#add-row-modal-${rowId}`).modal('show');
+                            footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex]);
                         }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                        // alert("There was an error fetching the data. Please try again.");
                     }
-                });
+                }
             }
+            setUpDragListenersCampaigns();
+        }
 
-            // --------------------- Delete Ad Row (FOR EACH ROW) --------------------------
-            function deleteCampaignsRow(rowId) {
-                if (rowId === "ads-rw-1") {
-                    // alert("1st row cannot be deleted!");
+        function selectCampaign(rowId) {
+
+            const delay = Math.floor(Math.random() * 1500) + 500;
+
+            setTimeout(() => {
+                const campaignTab = $(".options-box[data-selected='table-1']");
+                const adsGroupTab = $(".options-box[data-selected='table-2']");
+
+                $('.options-box').removeClass('active-tab');
+                adsGroupTab.addClass('active-tab');
+
+                $('.table-wrapper').addClass('d-none');
+                $('.table-2-content').removeClass('d-none');
+
+                const selectedCampaigns = $("#select-campaigns-num");
+                selectedCampaigns.css("display", "flex");
+
+                const adsGroupText = $(".opt2 .ads-group-text");
+                adsGroupText.text("Ad groups in 1 campaign");
+
+                const adsText = $(".opt3 .ads-text");
+                adsText.text("Ads in 1 campaign");
+
+            }, delay);
+
+        }
+
+        function cancelCampaign() {
+            const delay = Math.floor(Math.random() * 500) + 100;
+
+            setTimeout(() => {
+                const selectedCampaigns = $("#select-campaigns-num");
+                selectedCampaigns.css("display", "none");
+
+                const adsGroupText = $(".opt2 .ads-group-text");
+                adsGroupText.text("Ad group");
+
+                const adsText = $(".opt3 .ads-text");
+                adsText.text("Ad");
+            }, delay);
+        }
+
+
+        // ======================================================================== CREATE ==========================================================
+        function addNewRowCampaigns() {
+            let formData = new FormData();
+
+            formData.append('create', 1);
+            formData.append('onoff', 1);
+            formData.append('campaignname', 'Sample Campaign Name');
+            formData.append('delivery', 'Active');
+            formData.append('results', 100);
+            formData.append('imprs', 5000);
+            formData.append('reach', 3000);
+            formData.append('cost', 120.50);
+            formData.append('clicks', 150);
+
+            $.ajax({
+                url: "controller/campaigns/add_campaigns_data.php",
+                type: "POST",
+                data: formData,
+                processData: false, // Don't process the data (required for FormData)
+                contentType: false, // Don't set content type, let the browser handle it
+                success: function(response) {
+                    const res = JSON.parse(response);
+                    if (res.status === 'success') {
+                        // alert(res.message);
+                        window.location.reload();
+                    } else {
+                        console.error("Error: " + res.message)
+                        // alert('Error: ' + res.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    // alert("Error: " + error);
+                }
+            });
+        }
+
+        // ====================================================================== EACH ROW FUNCTION ==============================================================
+
+        // ----------------------------- Tick Brand Row -> 1 selected (FOR EACH ROW ) ----------------------
+        function tickCampaignsBrandRow(rowId) {
+            const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
+            const allCheckbox = document.getElementById("all-campaigns-checkbox");
+            const selectNum = document.getElementById("select-campaigns-num");
+
+            // Check if the checkbox is checked
+            if (checkbox.checked) {
+                allCheckbox.checked = true;
+                selectNum.style.display = "flex";
+            } else {
+                allCheckbox.checked = false;
+                selectNum.style.display = "none";
+            }
+        }
+
+        // --------------------------- Hover Brand Title (FOR EACH ROW) ------------------------------------
+        function showCampaignsTools(rowId) {
+            const brandRow = document.getElementById(rowId);
+            const pencil = brandRow.querySelector('.pencil');
+            const toolkit = brandRow.querySelector('.toolkit');
+            pencil.style.opacity = '1';
+            pencil.style.visibility = 'visible';
+            toolkit.style.opacity = '1';
+            toolkit.style.visibility = 'visible';
+            brandRow.style.backgroundColor = 'rgba(235, 235, 235, 1)';
+        }
+
+        function hideCampaignsTools(rowId) {
+            const brandRow = document.getElementById(rowId);
+            const pencil = brandRow.querySelector('.pencil');
+            const toolkit = brandRow.querySelector('.toolkit');
+            pencil.style.opacity = '0';
+            pencil.style.visibility = 'hidden';
+            toolkit.style.opacity = '0';
+            toolkit.style.visibility = 'hidden';
+            brandRow.style.backgroundColor = '';
+        }
+
+        // ------------------- Edit Campaign Row (Show Popup for corresponding MODAL) (FOR EACH ROW) ------------------------- 
+        function editCampaignsRow(rowId) {
+            let existingModal = document.getElementById(`add-row-modal-${rowId}`);
+
+            // -------------------- Create modal if does not exist -----------------------
+            if (!existingModal) {
+                let originalModal = document.getElementById('add-row-modal-campaigns-rw-1');
+                if (!originalModal) {
+                    console.error('Template modal (add-row-modal-campaigns-rw-1) not found!');
                     return;
                 }
 
-                if (!confirm("Are you sure you want to delete this campaign? This action cannot be undone.")) {
-                    return;
+                // Create new modal and copy from template modal content
+                let newModal = document.createElement('div');
+                newModal.className = 'modal fade add-row-modal';
+                newModal.id = `add-row-modal-${rowId}`;
+                newModal.tabIndex = -1;
+                newModal.role = 'dialog';
+                newModal.setAttribute('aria-labelledby', 'addCampaignRow');
+                newModal.setAttribute('aria-hidden', 'true');
+                // modify modal ID to match with each ROW
+                let clonedModalContent = originalModal.innerHTML;
+                clonedModalContent = clonedModalContent.replace(/add-row-modal-campaigns-rw-1/g, `add-row-modal-${rowId}`);
+                newModal.innerHTML = clonedModalContent;
+
+                // Modify input field with ID "modal-id" to dynamic rowId
+                let hiddenInput = newModal.querySelector('#modal-form-id');
+                if (hiddenInput) {
+                    hiddenInput.value = rowId;
+                } else {
+                    console.error('Hidden input with ID "modal-id" not found in modal.');
                 }
 
-                $.ajax({
-                    url: 'controller/campaigns/delete_campaigns_data.php',
-                    type: 'POST',
-                    data: {
-                        rowId: rowId
-                    },
-                    success: function(response) {
-                        let res = JSON.parse(response);
-                        if (res.status === "success") {
-                            // alert(res.message);
-                            window.location.reload();
-                        } else {
-                            console.error("Error: " + res.message)
-                            // alert("Error: " + res.message);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                        // alert("There was an error deleting the row. Please try again.");
-                    }
-                });
+                // Get the buttons and modify the onclick attribute with dynamic rowId
+                let buttons = newModal.querySelectorAll('button[onclick]');
+                for (let i = 0; i < buttons.length; i++) {
+                    let button = buttons[i];
+                    let onclickAttr = button.getAttribute('onclick');
+                    onclickAttr = onclickAttr.replace(/'campaigns-rw-1'/g, "'" + rowId + "'");
+                    button.setAttribute('onclick', onclickAttr);
+                }
+
+                document.body.appendChild(newModal);
             }
 
-            // ========================================================================================= ADS GROUP DATA ===============================================================================
-            // ----------------------------Triggers / Actions to Swap the columns (UPDATE TABLE TOO) ----------------------
-            const adsGroupTable = document.querySelector('.ad-group-content .table-draggable');
-            let lastFixedIndexAdsGroup = Array.from(adsGroupTable.querySelectorAll('th')).findIndex(th => th.textContent.trim() === 'Ad group ID');
-            let draggingColumnIndexAdsGroup = null;
+            // Preload data into modal
+            $.ajax({
+                url: 'controller/campaigns/fetch_campaigns_data.php',
+                type: 'POST',
+                data: {
+                    rowId: rowId
+                },
+                success: function(response) {
+                    const data = JSON.parse(response);
 
-            const setUpDragListenersAdsGroup = () => {
-                const headers = adsGroupTable.querySelectorAll('th.draggable');
-                headers.forEach((header) => {
-                    header.setAttribute('draggable', true);
+                    if (data.status && data.status === "error") {
+                        // alert(data.message);
+                        console.error(data.message);
+                    } else {
+                        $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
+                        $(`#add-row-modal-${rowId} #campaignname`).val(data.campaignname);
+                        $(`#add-row-modal-${rowId} #delivery`).val(data.status);
+                        $(`#add-row-modal-${rowId} #results`).val(data.result);
+                        $(`#add-row-modal-${rowId} #imprs`).val(data.imprs);
+                        $(`#add-row-modal-${rowId} #reach`).val(data.reach);
+                        $(`#add-row-modal-${rowId} #cost`).val(data.cost);
+                        $(`#add-row-modal-${rowId} #clicks`).val(data.click);
+                        $(`#add-row-modal-${rowId}`).modal('show');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    // alert("There was an error fetching the data. Please try again.");
+                }
+            });
+        }
 
-                    header.addEventListener('dragstart', (event) => {
-                        const allHeaders = Array.from(adsGroupTable.querySelectorAll('th'));
-                        draggingColumnIndexAdsGroup = allHeaders.indexOf(header);
-                        event.dataTransfer.setData('text/plain', draggingColumnIndexAdsGroup);
-                    });
+        // --------------------- Delete Ad Row (FOR EACH ROW) --------------------------
+        function deleteCampaignsRow(rowId) {
+            if (rowId === "ads-rw-1") {
+                // alert("1st row cannot be deleted!");
+                return;
+            }
 
-                    header.addEventListener('dragover', (event) => {
-                        event.preventDefault();
-                    });
+            if (!confirm("Are you sure you want to delete this campaign? This action cannot be undone.")) {
+                return;
+            }
 
-                    header.addEventListener('drop', (event) => {
-                        event.preventDefault();
-                        const allHeaders = Array.from(adsGroupTable.querySelectorAll('th'));
-                        const targetIndex = allHeaders.indexOf(event.target.closest('th'));
+            $.ajax({
+                url: 'controller/campaigns/delete_campaigns_data.php',
+                type: 'POST',
+                data: {
+                    rowId: rowId
+                },
+                success: function(response) {
+                    let res = JSON.parse(response);
+                    if (res.status === "success") {
+                        // alert(res.message);
+                        window.location.reload();
+                    } else {
+                        console.error("Error: " + res.message)
+                        // alert("Error: " + res.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    // alert("There was an error deleting the row. Please try again.");
+                }
+            });
+        }
 
-                        if (draggingColumnIndexAdsGroup !== targetIndex && targetIndex > lastFixedIndexAdsGroup) {
-                            swapColumnsAdsGroup(adsGroupTable, draggingColumnIndexAdsGroup, targetIndex);
-                            draggingColumnIndexAdsGroup = null;
-                        }
-                    });
+        // ========================================================================================= ADS GROUP DATA ===============================================================================
+        // ----------------------------Triggers / Actions to Swap the columns (UPDATE TABLE TOO) ----------------------
+        const adsGroupTable = document.querySelector('.ad-group-content .table-draggable');
+        let lastFixedIndexAdsGroup = Array.from(adsGroupTable.querySelectorAll('th')).findIndex(th => th.textContent.trim() === 'Ad group ID');
+        let draggingColumnIndexAdsGroup = null;
+
+        const setUpDragListenersAdsGroup = () => {
+            const headers = adsGroupTable.querySelectorAll('th.draggable');
+            headers.forEach((header) => {
+                header.setAttribute('draggable', true);
+
+                header.addEventListener('dragstart', (event) => {
+                    const allHeaders = Array.from(adsGroupTable.querySelectorAll('th'));
+                    draggingColumnIndexAdsGroup = allHeaders.indexOf(header);
+                    event.dataTransfer.setData('text/plain', draggingColumnIndexAdsGroup);
                 });
+
+                header.addEventListener('dragover', (event) => {
+                    event.preventDefault();
+                });
+
+                header.addEventListener('drop', (event) => {
+                    event.preventDefault();
+                    const allHeaders = Array.from(adsGroupTable.querySelectorAll('th'));
+                    const targetIndex = allHeaders.indexOf(event.target.closest('th'));
+
+                    if (draggingColumnIndexAdsGroup !== targetIndex && targetIndex > lastFixedIndexAdsGroup) {
+                        swapColumnsAdsGroup(adsGroupTable, draggingColumnIndexAdsGroup, targetIndex);
+                        draggingColumnIndexAdsGroup = null;
+                    }
+                });
+            });
+        }
+
+        setUpDragListenersAdsGroup();
+
+        // ----------------------------Function to swap the columns in the table---------------------------
+        function swapColumnsAdsGroup(table, fromIndex, toIndex) {
+            const rows = table.querySelectorAll('.table-head tr, .table-content tr');
+
+            rows.forEach((row) => {
+                const cells = row.querySelectorAll('th, td');
+                if (cells[fromIndex] && cells[toIndex]) {
+                    if (fromIndex < toIndex) {
+                        row.insertBefore(cells[fromIndex], cells[toIndex].nextSibling);
+                    } else {
+                        row.insertBefore(cells[fromIndex], cells[toIndex]);
+                    }
+                }
+            });
+
+            const footerRow = table.querySelector('.table-footer tr');
+            if (footerRow) {
+                const footerCells = footerRow.querySelectorAll('td');
+                const footerFromIndex = fromIndex - 2; // Adjust index to account for the first 3 fixed columns
+                const footerToIndex = toIndex - 2; // Adjust index to account for the first 3 fixed columns
+
+                if (footerFromIndex >= 0 && footerToIndex >= 0) {
+                    if (footerCells[footerFromIndex] && footerCells[footerToIndex]) {
+                        if (footerFromIndex < footerToIndex) {
+                            footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex].nextSibling);
+                        } else {
+                            footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex]);
+                        }
+                    }
+                }
             }
 
             setUpDragListenersAdsGroup();
+        }
 
-            // ----------------------------Function to swap the columns in the table---------------------------
-            function swapColumnsAdsGroup(table, fromIndex, toIndex) {
-                const rows = table.querySelectorAll('.table-head tr, .table-content tr');
+        // ======================================================================== SELECT 1 AD GROUP ====================================================================
+        function selectAdGroup(rowId) {
 
-                rows.forEach((row) => {
-                    const cells = row.querySelectorAll('th, td');
-                    if (cells[fromIndex] && cells[toIndex]) {
-                        if (fromIndex < toIndex) {
-                            row.insertBefore(cells[fromIndex], cells[toIndex].nextSibling);
-                        } else {
-                            row.insertBefore(cells[fromIndex], cells[toIndex]);
-                        }
-                    }
-                });
+            const delay = Math.floor(Math.random() * 1500) + 500;
 
-                const footerRow = table.querySelector('.table-footer tr');
-                if (footerRow) {
-                    const footerCells = footerRow.querySelectorAll('td');
-                    const footerFromIndex = fromIndex - 2; // Adjust index to account for the first 3 fixed columns
-                    const footerToIndex = toIndex - 2; // Adjust index to account for the first 3 fixed columns
+            setTimeout(() => {
+                const adsGroupTab = $(".options-box[data-selected='table-2']");
+                const adTab = $(".options-box[data-selected='table-3']");
 
-                    if (footerFromIndex >= 0 && footerToIndex >= 0) {
-                        if (footerCells[footerFromIndex] && footerCells[footerToIndex]) {
-                            if (footerFromIndex < footerToIndex) {
-                                footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex].nextSibling);
-                            } else {
-                                footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex]);
-                            }
-                        }
-                    }
-                }
+                $('.options-box').removeClass('active-tab');
+                adTab.addClass('active-tab');
 
-                setUpDragListenersAdsGroup();
-            }
+                $('.table-wrapper').addClass('d-none');
+                $('.table-3-content').removeClass('d-none');
 
-            // ======================================================================== SELECT 1 AD GROUP ====================================================================
-            function selectAdGroup(rowId) {
+                const selectedAdGroup = $("#select-ads-group-num");
+                selectedAdGroup.css("display", "flex");
 
-                const delay = Math.floor(Math.random() * 1500) + 500;
+                const adsText = $(".opt3 .ads-text");
+                adsText.text("Ads in 1 ad group");
+            }, delay);
 
-                setTimeout(() => {
-                    const adsGroupTab = $(".options-box[data-selected='table-2']");
-                    const adTab = $(".options-box[data-selected='table-3']");
+        }
 
-                    $('.options-box').removeClass('active-tab');
-                    adTab.addClass('active-tab');
+        function cancelAdGroup() {
+            const delay = Math.floor(Math.random() * 500) + 100;
 
-                    $('.table-wrapper').addClass('d-none');
-                    $('.table-3-content').removeClass('d-none');
+            setTimeout(() => {
+                const selectedAdGroup = $("#select-ads-group-num");
+                selectedAdGroup.css("display", "none");
 
-                    const selectedAdGroup = $("#select-ads-group-num");
-                    selectedAdGroup.css("display", "flex");
+                const adsText = $(".opt3 .ads-text");
+                adsText.text("Ad");
+            }, delay);
+        }
 
-                    const adsText = $(".opt3 .ads-text");
-                    adsText.text("Ads in 1 ad group");
-                }, delay);
+        // ======================================================================== CANCEL 1 AD GROUP ====================================================================
 
-            }
+        // ======================================================================== CREATE ==========================================================
+        function addNewRowAdsGroup() {
+            let formData = new FormData();
 
-            function cancelAdGroup() {
-                const delay = Math.floor(Math.random() * 500) + 100;
+            formData.append('create', 1);
+            formData.append('onoff', 1);
+            formData.append('adsgroupname', 'Ad Group Name 1');
+            formData.append('delivery', 'Active');
+            formData.append('adsgroupid', '16534534645751');
+            formData.append('results', 100);
+            formData.append('imprs', 5000);
+            formData.append('reach', 3000);
+            formData.append('cost', 120.50);
+            formData.append('clicks', 150);
 
-                setTimeout(() => {
-                    const selectedAdGroup = $("#select-ads-group-num");
-                    selectedAdGroup.css("display", "none");
-
-                    const adsText = $(".opt3 .ads-text");
-                    adsText.text("Ad");
-                }, delay);
-            }
-
-            // ======================================================================== CANCEL 1 AD GROUP ====================================================================
-
-            // ======================================================================== CREATE ==========================================================
-            function addNewRowAdsGroup() {
-                let formData = new FormData();
-
-                formData.append('create', 1);
-                formData.append('onoff', 1);
-                formData.append('adsgroupname', 'Ad Group Name 1');
-                formData.append('delivery', 'Active');
-                formData.append('adsgroupid', '16534534645751');
-                formData.append('results', 100);
-                formData.append('imprs', 5000);
-                formData.append('reach', 3000);
-                formData.append('cost', 120.50);
-                formData.append('clicks', 150);
-
-                $.ajax({
-                    url: "controller/ads_group/add_ads_group_data.php",
-                    type: "POST",
-                    data: formData,
-                    processData: false, // Don't process the data (required for FormData)
-                    contentType: false, // Don't set content type, let the browser handle it
-                    success: function(response) {
-                        const res = JSON.parse(response);
-                        if (res.status === 'success') {
-                            // alert(res.message);
-                            window.location.reload();
-                        } else {
-                            console.error("Error: " + res.message)
-                            // alert('Error: ' + res.message);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                        // alert("Error: " + error);
-                    }
-                });
-            }
-
-            // ====================================================================== EACH ROW FUNCTION ==============================================================
-
-            // ----------------------------- Tick Brand Row -> 1 selected (FOR EACH ROW ) ----------------------
-            function tickAdsGroupBrandRow(rowId) {
-                const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
-                const allCheckbox = document.getElementById("all-ads-group-checkbox");
-                const selectNum = document.getElementById("select-ads-group-num");
-
-                // Check if the checkbox is checked
-                if (checkbox.checked) {
-                    allCheckbox.checked = true;
-                    selectNum.style.display = "flex";
-                } else {
-                    allCheckbox.checked = false;
-                    selectNum.style.display = "none";
-                }
-            }
-
-            // --------------------------- Hover Brand Title (FOR EACH ROW) ------------------------------------
-            function showAdsGroupTools(rowId) {
-                const brandRow = document.getElementById(rowId);
-                const pencil = brandRow.querySelector('.pencil');
-                const toolkit = brandRow.querySelector('.toolkit');
-                pencil.style.opacity = '1';
-                pencil.style.visibility = 'visible';
-                toolkit.style.opacity = '1';
-                toolkit.style.visibility = 'visible';
-                brandRow.style.backgroundColor = 'rgba(235, 235, 235, 1)';
-            }
-
-            function hideAdsGroupTools(rowId) {
-                const brandRow = document.getElementById(rowId);
-                const pencil = brandRow.querySelector('.pencil');
-                const toolkit = brandRow.querySelector('.toolkit');
-                pencil.style.opacity = '0';
-                pencil.style.visibility = 'hidden';
-                toolkit.style.opacity = '0';
-                toolkit.style.visibility = 'hidden';
-                brandRow.style.backgroundColor = '';
-            }
-
-            // ------------------- Edit Ad Group Row (Show Popup for corresponding MODAL) (FOR EACH ROW) ------------------------- 
-            function editAdsGroupRow(rowId) {
-                let existingModal = document.getElementById(`add-row-modal-${rowId}`);
-
-                // -------------------- Create modal if does not exist -----------------------
-                if (!existingModal) {
-                    let originalModal = document.getElementById('add-row-modal-ads-group-rw-1');
-                    if (!originalModal) {
-                        console.error('Template modal (add-row-modal-ads-group-rw-1) not found!');
-                        return;
-                    }
-
-                    // Create new modal and copy from template modal content
-                    let newModal = document.createElement('div');
-                    newModal.className = 'modal fade add-row-modal';
-                    newModal.id = `add-row-modal-${rowId}`;
-                    newModal.tabIndex = -1;
-                    newModal.role = 'dialog';
-                    newModal.setAttribute('aria-labelledby', 'addAdsGroupRow');
-                    newModal.setAttribute('aria-hidden', 'true');
-                    // modify modal ID to match with each ROW
-                    let clonedModalContent = originalModal.innerHTML;
-                    clonedModalContent = clonedModalContent.replace(/add-row-modal-ads-group-rw-1/g, `add-row-modal-${rowId}`);
-                    newModal.innerHTML = clonedModalContent;
-
-                    // Modify input field with ID "modal-id" to dynamic rowId
-                    let hiddenInput = newModal.querySelector('#modal-form-id');
-                    if (hiddenInput) {
-                        hiddenInput.value = rowId;
+            $.ajax({
+                url: "controller/ads_group/add_ads_group_data.php",
+                type: "POST",
+                data: formData,
+                processData: false, // Don't process the data (required for FormData)
+                contentType: false, // Don't set content type, let the browser handle it
+                success: function(response) {
+                    const res = JSON.parse(response);
+                    if (res.status === 'success') {
+                        // alert(res.message);
+                        window.location.reload();
                     } else {
-                        console.error('Hidden input with ID "modal-id" not found in modal.');
+                        console.error("Error: " + res.message)
+                        // alert('Error: ' + res.message);
                     }
-
-                    // Get the buttons and modify the onclick attribute with dynamic rowId
-                    let buttons = newModal.querySelectorAll('button[onclick]');
-                    for (let i = 0; i < buttons.length; i++) {
-                        let button = buttons[i];
-                        let onclickAttr = button.getAttribute('onclick');
-                        onclickAttr = onclickAttr.replace(/'ads-group-rw-1'/g, "'" + rowId + "'");
-                        button.setAttribute('onclick', onclickAttr);
-                    }
-
-                    document.body.appendChild(newModal);
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    // alert("Error: " + error);
                 }
+            });
+        }
 
-                // Preload data into modal
-                $.ajax({
-                    url: 'controller/ads_group/fetch_ads_group_data.php',
-                    type: 'POST',
-                    data: {
-                        rowId: rowId
-                    },
-                    success: function(response) {
-                        const data = JSON.parse(response);
+        // ====================================================================== EACH ROW FUNCTION ==============================================================
 
-                        if (data.status && data.status === "error") {
-                            console.error("Error: " + data.message)
-                            // alert(data.message);
-                        } else {
-                            $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
-                            $(`#add-row-modal-${rowId} #adsgroupname`).val(data.adsgroupname);
-                            $(`#add-row-modal-${rowId} #delivery`).val(data.status);
-                            $(`#add-row-modal-${rowId} #adsgroupid`).val(data.adsgroupid);
-                            $(`#add-row-modal-${rowId} #results`).val(data.result);
-                            $(`#add-row-modal-${rowId} #imprs`).val(data.imprs);
-                            $(`#add-row-modal-${rowId} #reach`).val(data.reach);
-                            $(`#add-row-modal-${rowId} #cost`).val(data.cost);
-                            $(`#add-row-modal-${rowId} #clicks`).val(data.click);
-                            $(`#add-row-modal-${rowId}`).modal('show');
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                        // alert("There was an error fetching the data. Please try again.");
-                    }
-                });
+        // ----------------------------- Tick Brand Row -> 1 selected (FOR EACH ROW ) ----------------------
+        function tickAdsGroupBrandRow(rowId) {
+            const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
+            const allCheckbox = document.getElementById("all-ads-group-checkbox");
+            const selectNum = document.getElementById("select-ads-group-num");
+
+            // Check if the checkbox is checked
+            if (checkbox.checked) {
+                allCheckbox.checked = true;
+                selectNum.style.display = "flex";
+            } else {
+                allCheckbox.checked = false;
+                selectNum.style.display = "none";
             }
+        }
 
-            // --------------------- Delete Ad Group Row (FOR EACH ROW) --------------------------
-            function deleteAdsGroupRow(rowId) {
-                if (rowId === "ads-group-rw-1") {
-                    // alert("1st row cannot be deleted!");
+        // --------------------------- Hover Brand Title (FOR EACH ROW) ------------------------------------
+        function showAdsGroupTools(rowId) {
+            const brandRow = document.getElementById(rowId);
+            const pencil = brandRow.querySelector('.pencil');
+            const toolkit = brandRow.querySelector('.toolkit');
+            pencil.style.opacity = '1';
+            pencil.style.visibility = 'visible';
+            toolkit.style.opacity = '1';
+            toolkit.style.visibility = 'visible';
+            brandRow.style.backgroundColor = 'rgba(235, 235, 235, 1)';
+        }
+
+        function hideAdsGroupTools(rowId) {
+            const brandRow = document.getElementById(rowId);
+            const pencil = brandRow.querySelector('.pencil');
+            const toolkit = brandRow.querySelector('.toolkit');
+            pencil.style.opacity = '0';
+            pencil.style.visibility = 'hidden';
+            toolkit.style.opacity = '0';
+            toolkit.style.visibility = 'hidden';
+            brandRow.style.backgroundColor = '';
+        }
+
+        // ------------------- Edit Ad Group Row (Show Popup for corresponding MODAL) (FOR EACH ROW) ------------------------- 
+        function editAdsGroupRow(rowId) {
+            let existingModal = document.getElementById(`add-row-modal-${rowId}`);
+
+            // -------------------- Create modal if does not exist -----------------------
+            if (!existingModal) {
+                let originalModal = document.getElementById('add-row-modal-ads-group-rw-1');
+                if (!originalModal) {
+                    console.error('Template modal (add-row-modal-ads-group-rw-1) not found!');
                     return;
                 }
 
-                if (!confirm("Are you sure you want to delete this ad group? This action cannot be undone.")) {
-                    return;
+                // Create new modal and copy from template modal content
+                let newModal = document.createElement('div');
+                newModal.className = 'modal fade add-row-modal';
+                newModal.id = `add-row-modal-${rowId}`;
+                newModal.tabIndex = -1;
+                newModal.role = 'dialog';
+                newModal.setAttribute('aria-labelledby', 'addAdsGroupRow');
+                newModal.setAttribute('aria-hidden', 'true');
+                // modify modal ID to match with each ROW
+                let clonedModalContent = originalModal.innerHTML;
+                clonedModalContent = clonedModalContent.replace(/add-row-modal-ads-group-rw-1/g, `add-row-modal-${rowId}`);
+                newModal.innerHTML = clonedModalContent;
+
+                // Modify input field with ID "modal-id" to dynamic rowId
+                let hiddenInput = newModal.querySelector('#modal-form-id');
+                if (hiddenInput) {
+                    hiddenInput.value = rowId;
+                } else {
+                    console.error('Hidden input with ID "modal-id" not found in modal.');
                 }
 
-                $.ajax({
-                    url: 'controller/ads_group/delete_ads_group_data.php',
-                    type: 'POST',
-                    data: {
-                        rowId: rowId
-                    },
-                    success: function(response) {
-                        let res = JSON.parse(response);
-                        if (res.status === "success") {
-                            // alert(res.message);
-                            window.location.reload();
-                        } else {
-                            console.error("Error: " + res.message)
-                            // alert("Error: " + res.message);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                        // alert("There was an error deleting the row. Please try again.");
+                // Get the buttons and modify the onclick attribute with dynamic rowId
+                let buttons = newModal.querySelectorAll('button[onclick]');
+                for (let i = 0; i < buttons.length; i++) {
+                    let button = buttons[i];
+                    let onclickAttr = button.getAttribute('onclick');
+                    onclickAttr = onclickAttr.replace(/'ads-group-rw-1'/g, "'" + rowId + "'");
+                    button.setAttribute('onclick', onclickAttr);
+                }
+
+                document.body.appendChild(newModal);
+            }
+
+            // Preload data into modal
+            $.ajax({
+                url: 'controller/ads_group/fetch_ads_group_data.php',
+                type: 'POST',
+                data: {
+                    rowId: rowId
+                },
+                success: function(response) {
+                    const data = JSON.parse(response);
+
+                    if (data.status && data.status === "error") {
+                        console.error("Error: " + data.message)
+                        // alert(data.message);
+                    } else {
+                        $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
+                        $(`#add-row-modal-${rowId} #adsgroupname`).val(data.adsgroupname);
+                        $(`#add-row-modal-${rowId} #delivery`).val(data.status);
+                        $(`#add-row-modal-${rowId} #adsgroupid`).val(data.adsgroupid);
+                        $(`#add-row-modal-${rowId} #results`).val(data.result);
+                        $(`#add-row-modal-${rowId} #imprs`).val(data.imprs);
+                        $(`#add-row-modal-${rowId} #reach`).val(data.reach);
+                        $(`#add-row-modal-${rowId} #cost`).val(data.cost);
+                        $(`#add-row-modal-${rowId} #clicks`).val(data.click);
+                        $(`#add-row-modal-${rowId}`).modal('show');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    // alert("There was an error fetching the data. Please try again.");
+                }
+            });
+        }
+
+        // --------------------- Delete Ad Group Row (FOR EACH ROW) --------------------------
+        function deleteAdsGroupRow(rowId) {
+            if (rowId === "ads-group-rw-1") {
+                // alert("1st row cannot be deleted!");
+                return;
+            }
+
+            if (!confirm("Are you sure you want to delete this ad group? This action cannot be undone.")) {
+                return;
+            }
+
+            $.ajax({
+                url: 'controller/ads_group/delete_ads_group_data.php',
+                type: 'POST',
+                data: {
+                    rowId: rowId
+                },
+                success: function(response) {
+                    let res = JSON.parse(response);
+                    if (res.status === "success") {
+                        // alert(res.message);
+                        window.location.reload();
+                    } else {
+                        console.error("Error: " + res.message)
+                        // alert("Error: " + res.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    // alert("There was an error deleting the row. Please try again.");
+                }
+            });
+        }
+
+        // ========================================================================================= ADS DATA ===============================================================================
+        // ----------------------------Triggers / Actions to Swap the columns (UPDATE TABLE TOO) ----------------------
+        const adsTable = document.querySelector('.ad-content .table-draggable');
+        let lastFixedIndexAds = Array.from(adsTable.querySelectorAll('th')).findIndex(th => th.textContent.trim() === 'Ad group name');
+        let draggingColumnIndexAds = null;
+
+        const setUpDragListenersAds = () => {
+            const headers = adsTable.querySelectorAll('th.draggable');
+            headers.forEach((header) => {
+                header.setAttribute('draggable', true);
+
+                header.addEventListener('dragstart', (event) => {
+                    const allHeaders = Array.from(adsTable.querySelectorAll('th'));
+                    draggingColumnIndexAds = allHeaders.indexOf(header);
+                    event.dataTransfer.setData('text/plain', draggingColumnIndexAds);
+                });
+
+                header.addEventListener('dragover', (event) => {
+                    event.preventDefault();
+                });
+
+                header.addEventListener('drop', (event) => {
+                    event.preventDefault();
+                    const allHeaders = Array.from(adsTable.querySelectorAll('th'));
+                    const targetIndex = allHeaders.indexOf(event.target.closest('th'));
+
+                    if (draggingColumnIndexAds !== targetIndex && targetIndex > lastFixedIndexAds) {
+                        swapColumnsAds(adsTable, draggingColumnIndexAds, targetIndex);
+                        draggingColumnIndexAds = null;
                     }
                 });
-            }
+            });
+        }
 
-            // ========================================================================================= ADS DATA ===============================================================================
-            // ----------------------------Triggers / Actions to Swap the columns (UPDATE TABLE TOO) ----------------------
-            const adsTable = document.querySelector('.ad-content .table-draggable');
-            let lastFixedIndexAds = Array.from(adsTable.querySelectorAll('th')).findIndex(th => th.textContent.trim() === 'Ad group name');
-            let draggingColumnIndexAds = null;
+        setUpDragListenersAds();
 
-            const setUpDragListenersAds = () => {
-                const headers = adsTable.querySelectorAll('th.draggable');
-                headers.forEach((header) => {
-                    header.setAttribute('draggable', true);
+        // ----------------------------Function to swap the columns in the table---------------------------
+        function swapColumnsAds(table, fromIndex, toIndex) {
+            const rows = table.querySelectorAll('.table-head tr, .table-content tr');
 
-                    header.addEventListener('dragstart', (event) => {
-                        const allHeaders = Array.from(adsTable.querySelectorAll('th'));
-                        draggingColumnIndexAds = allHeaders.indexOf(header);
-                        event.dataTransfer.setData('text/plain', draggingColumnIndexAds);
-                    });
+            rows.forEach((row) => {
+                const cells = row.querySelectorAll('th, td');
+                if (cells[fromIndex] && cells[toIndex]) {
+                    if (fromIndex < toIndex) {
+                        row.insertBefore(cells[fromIndex], cells[toIndex].nextSibling);
+                    } else {
+                        row.insertBefore(cells[fromIndex], cells[toIndex]);
+                    }
+                }
+            });
 
-                    header.addEventListener('dragover', (event) => {
-                        event.preventDefault();
-                    });
+            const footerRow = table.querySelector('.table-footer tr');
+            if (footerRow) {
+                const footerCells = footerRow.querySelectorAll('td');
+                const footerFromIndex = fromIndex - 2; // Adjust index to account for the first 3 fixed columns
+                const footerToIndex = toIndex - 2; // Adjust index to account for the first 3 fixed columns
 
-                    header.addEventListener('drop', (event) => {
-                        event.preventDefault();
-                        const allHeaders = Array.from(adsTable.querySelectorAll('th'));
-                        const targetIndex = allHeaders.indexOf(event.target.closest('th'));
-
-                        if (draggingColumnIndexAds !== targetIndex && targetIndex > lastFixedIndexAds) {
-                            swapColumnsAds(adsTable, draggingColumnIndexAds, targetIndex);
-                            draggingColumnIndexAds = null;
+                if (footerFromIndex >= 0 && footerToIndex >= 0) {
+                    if (footerCells[footerFromIndex] && footerCells[footerToIndex]) {
+                        if (footerFromIndex < footerToIndex) {
+                            footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex].nextSibling);
+                        } else {
+                            footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex]);
                         }
-                    });
-                });
+                    }
+                }
             }
-
             setUpDragListenersAds();
+        }
 
-            // ----------------------------Function to swap the columns in the table---------------------------
-            function swapColumnsAds(table, fromIndex, toIndex) {
-                const rows = table.querySelectorAll('.table-head tr, .table-content tr');
+        // ======================================================================== CREATE ==========================================================
+        function addNewRowAds() {
+            let formData = new FormData();
 
-                rows.forEach((row) => {
-                    const cells = row.querySelectorAll('th, td');
-                    if (cells[fromIndex] && cells[toIndex]) {
-                        if (fromIndex < toIndex) {
-                            row.insertBefore(cells[fromIndex], cells[toIndex].nextSibling);
-                        } else {
-                            row.insertBefore(cells[fromIndex], cells[toIndex]);
-                        }
-                    }
-                });
+            formData.append('create', 1);
+            formData.append('onoff', 1);
+            formData.append('adsname', 'Sample Ad Name');
+            formData.append('delivery', 'Active');
+            formData.append('adsgroupname', 'Sample Group');
+            formData.append('results', 100);
+            formData.append('imprs', 5000);
+            formData.append('reach', 3000);
+            formData.append('cost', 120.50);
+            formData.append('clicks', 150);
+            formData.append('videoname', 'dummy_video.mp4');
 
-                const footerRow = table.querySelector('.table-footer tr');
-                if (footerRow) {
-                    const footerCells = footerRow.querySelectorAll('td');
-                    const footerFromIndex = fromIndex - 2; // Adjust index to account for the first 3 fixed columns
-                    const footerToIndex = toIndex - 2; // Adjust index to account for the first 3 fixed columns
-
-                    if (footerFromIndex >= 0 && footerToIndex >= 0) {
-                        if (footerCells[footerFromIndex] && footerCells[footerToIndex]) {
-                            if (footerFromIndex < footerToIndex) {
-                                footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex].nextSibling);
-                            } else {
-                                footerRow.insertBefore(footerCells[footerFromIndex], footerCells[footerToIndex]);
-                            }
-                        }
-                    }
-                }
-                setUpDragListenersAds();
-            }
-
-            // ======================================================================== CREATE ==========================================================
-            function addNewRowAds() {
-                let formData = new FormData();
-
-                formData.append('create', 1);
-                formData.append('onoff', 1);
-                formData.append('adsname', 'Sample Ad Name');
-                formData.append('delivery', 'Active');
-                formData.append('adsgroupname', 'Sample Group');
-                formData.append('results', 100);
-                formData.append('imprs', 5000);
-                formData.append('reach', 3000);
-                formData.append('cost', 120.50);
-                formData.append('clicks', 150);
-                formData.append('videoname', 'dummy_video.mp4');
-
-                $.ajax({
-                    url: "controller/ads/add_ads_data.php",
-                    type: "POST",
-                    data: formData,
-                    processData: false, // Don't process the data (required for FormData)
-                    contentType: false, // Don't set content type, let the browser handle it
-                    success: function(response) {
-                        const res = JSON.parse(response);
-                        if (res.status === 'success') {
-                            // alert(res.message);
-                            window.location.reload();
-                        } else {
-                            console.error("Error: " + res.message)
-                            // alert('Error: ' + res.message);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                        // alert("Error: " + error);
-                    }
-                });
-            }
-
-            // ====================================================================== EACH ROW FUNCTION ==============================================================
-
-            // ----------------------------- Tick Brand Row -> 1 selected (FOR EACH ROW ) ----------------------
-            function tickAdsBrandRow(rowId) {
-                const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
-                const allCheckbox = document.getElementById("all-ads-checkbox");
-                const selectNum = document.getElementById("select-ads-num");
-
-                // Check if the checkbox is checked
-                if (checkbox.checked) {
-                    // allCheckbox.checked = true;
-                    selectNum.style.display = "flex";
-                } else {
-                    // allCheckbox.checked = false;
-                    selectNum.style.display = "none";
-                }
-            }
-
-            // --------------------------- Hover Brand Title (FOR EACH ROW) ------------------------------------
-            function showAdsTools(rowId) {
-                const brandRow = document.getElementById(rowId);
-                const pencil = brandRow.querySelector('.pencil');
-                const toolkit = brandRow.querySelector('.toolkit');
-                pencil.style.opacity = '1';
-                pencil.style.visibility = 'visible';
-                toolkit.style.opacity = '1';
-                toolkit.style.visibility = 'visible';
-                brandRow.style.backgroundColor = 'rgba(235, 235, 235, 1)';
-            }
-
-            function hideAdsTools(rowId) {
-                const brandRow = document.getElementById(rowId);
-                const pencil = brandRow.querySelector('.pencil');
-                const toolkit = brandRow.querySelector('.toolkit');
-                pencil.style.opacity = '0';
-                pencil.style.visibility = 'hidden';
-                toolkit.style.opacity = '0';
-                toolkit.style.visibility = 'hidden';
-                brandRow.style.backgroundColor = '';
-            }
-
-            // -------------------------- Display Brand Video (FOR EACH ROW) --------------------------------
-            function displayBrandVideo(videoFile) {
-                const modalVideo = document.getElementById('modalVideo');
-                const modalVideoSource = modalVideo.querySelector("source");
-
-                modalVideoSource.setAttribute('src', 'img/' + videoFile);
-                modalVideo.load();
-                $('#videoModal').modal('show');
-                modalVideo.play();
-
-                $('#videoModal').on('hidden.bs.modal', function() {
-                    modalVideo.pause();
-                    modalVideo.currentTime = 0;
-                });
-            }
-
-            // ------------------- Edit Ad Row (Show Popup for corresponding MODAL) (FOR EACH ROW) ------------------------- 
-            function editAdsRow(rowId) {
-                let existingModal = document.getElementById(`add-row-modal-${rowId}`);
-
-                // -------------------- Create modal if does not exist -----------------------
-                if (!existingModal) {
-                    let originalModal = document.getElementById('add-row-modal-ads-rw-1');
-                    if (!originalModal) {
-                        console.error('Template modal (add-row-modal-ads-rw-1) not found!');
-                        return;
-                    }
-
-                    // Create new modal and copy from template modal content
-                    let newModal = document.createElement('div');
-                    newModal.className = 'modal fade add-row-modal';
-                    newModal.id = `add-row-modal-${rowId}`;
-                    newModal.tabIndex = -1;
-                    newModal.role = 'dialog';
-                    newModal.setAttribute('aria-labelledby', 'addAdRow');
-                    newModal.setAttribute('aria-hidden', 'true');
-                    // modify modal ID to match with each ROW
-                    let clonedModalContent = originalModal.innerHTML;
-                    clonedModalContent = clonedModalContent.replace(/add-row-modal-ads-rw-1/g, `add-row-modal-${rowId}`);
-                    newModal.innerHTML = clonedModalContent;
-
-                    // Modify input field with ID "modal-id" to dynamic rowId
-                    let hiddenInput = newModal.querySelector('#modal-form-id');
-                    if (hiddenInput) {
-                        hiddenInput.value = rowId;
+            $.ajax({
+                url: "controller/ads/add_ads_data.php",
+                type: "POST",
+                data: formData,
+                processData: false, // Don't process the data (required for FormData)
+                contentType: false, // Don't set content type, let the browser handle it
+                success: function(response) {
+                    const res = JSON.parse(response);
+                    if (res.status === 'success') {
+                        // alert(res.message);
+                        window.location.reload();
                     } else {
-                        console.error('Hidden input with ID "modal-id" not found in modal.');
+                        console.error("Error: " + res.message)
+                        // alert('Error: ' + res.message);
                     }
-
-                    // Get the buttons and modify the onclick attribute with dynamic rowId
-                    let buttons = newModal.querySelectorAll('button[onclick]');
-                    for (let i = 0; i < buttons.length; i++) {
-                        let button = buttons[i];
-                        let onclickAttr = button.getAttribute('onclick');
-                        onclickAttr = onclickAttr.replace(/'ads-rw-1'/g, "'" + rowId + "'");
-                        button.setAttribute('onclick', onclickAttr);
-                    }
-
-                    document.body.appendChild(newModal);
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    // alert("Error: " + error);
                 }
+            });
+        }
 
-                // Preload data into modal
-                $.ajax({
-                    url: 'controller/ads/fetch_ads_data.php',
-                    type: 'POST',
-                    data: {
-                        rowId: rowId
-                    },
-                    success: function(response) {
-                        const data = JSON.parse(response);
+        // ====================================================================== EACH ROW FUNCTION ==============================================================
 
-                        if (data.status && data.status === "error") {
-                            console.error(data.message);
-                            // alert(data.message);
-                        } else {
-                            $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
-                            $(`#add-row-modal-${rowId} #adsname`).val(data.adsname);
-                            $(`#add-row-modal-${rowId} #delivery`).val(data.status);
-                            $(`#add-row-modal-${rowId} #adsgroupname`).val(data.adgroupname);
-                            $(`#add-row-modal-${rowId} #results`).val(data.result);
-                            $(`#add-row-modal-${rowId} #imprs`).val(data.imprs);
-                            $(`#add-row-modal-${rowId} #reach`).val(data.reach);
-                            $(`#add-row-modal-${rowId} #cost`).val(data.cost);
-                            $(`#add-row-modal-${rowId} #clicks`).val(data.click);
-                            $(`#add-row-modal-${rowId}`).modal('show');
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                        // alert("There was an error fetching the data. Please try again.");
-                    }
-                });
+        // ----------------------------- Tick Brand Row -> 1 selected (FOR EACH ROW ) ----------------------
+        function tickAdsBrandRow(rowId) {
+            const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
+            const allCheckbox = document.getElementById("all-ads-checkbox");
+            const selectNum = document.getElementById("select-ads-num");
+
+            // Check if the checkbox is checked
+            if (checkbox.checked) {
+                // allCheckbox.checked = true;
+                selectNum.style.display = "flex";
+            } else {
+                // allCheckbox.checked = false;
+                selectNum.style.display = "none";
             }
+        }
 
-            // --------------------- Delete Ad Row (FOR EACH ROW) --------------------------
-            function deleteAdsRow(rowId) {
-                if (rowId === "ads-rw-1") {
-                    // alert("1st row cannot be deleted!");
+        // --------------------------- Hover Brand Title (FOR EACH ROW) ------------------------------------
+        function showAdsTools(rowId) {
+            const brandRow = document.getElementById(rowId);
+            const pencil = brandRow.querySelector('.pencil');
+            const toolkit = brandRow.querySelector('.toolkit');
+            pencil.style.opacity = '1';
+            pencil.style.visibility = 'visible';
+            toolkit.style.opacity = '1';
+            toolkit.style.visibility = 'visible';
+            brandRow.style.backgroundColor = 'rgba(235, 235, 235, 1)';
+        }
+
+        function hideAdsTools(rowId) {
+            const brandRow = document.getElementById(rowId);
+            const pencil = brandRow.querySelector('.pencil');
+            const toolkit = brandRow.querySelector('.toolkit');
+            pencil.style.opacity = '0';
+            pencil.style.visibility = 'hidden';
+            toolkit.style.opacity = '0';
+            toolkit.style.visibility = 'hidden';
+            brandRow.style.backgroundColor = '';
+        }
+
+        // -------------------------- Display Brand Video (FOR EACH ROW) --------------------------------
+        function displayBrandVideo(videoFile) {
+            const modalVideo = document.getElementById('modalVideo');
+            const modalVideoSource = modalVideo.querySelector("source");
+
+            modalVideoSource.setAttribute('src', 'img/' + videoFile);
+            modalVideo.load();
+            $('#videoModal').modal('show');
+            modalVideo.play();
+
+            $('#videoModal').on('hidden.bs.modal', function() {
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+            });
+        }
+
+        // ------------------- Edit Ad Row (Show Popup for corresponding MODAL) (FOR EACH ROW) ------------------------- 
+        function editAdsRow(rowId) {
+            let existingModal = document.getElementById(`add-row-modal-${rowId}`);
+
+            // -------------------- Create modal if does not exist -----------------------
+            if (!existingModal) {
+                let originalModal = document.getElementById('add-row-modal-ads-rw-1');
+                if (!originalModal) {
+                    console.error('Template modal (add-row-modal-ads-rw-1) not found!');
                     return;
                 }
 
-                if (!confirm("Are you sure you want to delete this ad? This action cannot be undone.")) {
+                // Create new modal and copy from template modal content
+                let newModal = document.createElement('div');
+                newModal.className = 'modal fade add-row-modal';
+                newModal.id = `add-row-modal-${rowId}`;
+                newModal.tabIndex = -1;
+                newModal.role = 'dialog';
+                newModal.setAttribute('aria-labelledby', 'addAdRow');
+                newModal.setAttribute('aria-hidden', 'true');
+                // modify modal ID to match with each ROW
+                let clonedModalContent = originalModal.innerHTML;
+                clonedModalContent = clonedModalContent.replace(/add-row-modal-ads-rw-1/g, `add-row-modal-${rowId}`);
+                newModal.innerHTML = clonedModalContent;
+
+                // Modify input field with ID "modal-id" to dynamic rowId
+                let hiddenInput = newModal.querySelector('#modal-form-id');
+                if (hiddenInput) {
+                    hiddenInput.value = rowId;
+                } else {
+                    console.error('Hidden input with ID "modal-id" not found in modal.');
+                }
+
+                // Get the buttons and modify the onclick attribute with dynamic rowId
+                let buttons = newModal.querySelectorAll('button[onclick]');
+                for (let i = 0; i < buttons.length; i++) {
+                    let button = buttons[i];
+                    let onclickAttr = button.getAttribute('onclick');
+                    onclickAttr = onclickAttr.replace(/'ads-rw-1'/g, "'" + rowId + "'");
+                    button.setAttribute('onclick', onclickAttr);
+                }
+
+                document.body.appendChild(newModal);
+            }
+
+            // Preload data into modal
+            $.ajax({
+                url: 'controller/ads/fetch_ads_data.php',
+                type: 'POST',
+                data: {
+                    rowId: rowId
+                },
+                success: function(response) {
+                    const data = JSON.parse(response);
+
+                    if (data.status && data.status === "error") {
+                        console.error(data.message);
+                        // alert(data.message);
+                    } else {
+                        $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
+                        $(`#add-row-modal-${rowId} #adsname`).val(data.adsname);
+                        $(`#add-row-modal-${rowId} #delivery`).val(data.status);
+                        $(`#add-row-modal-${rowId} #adsgroupname`).val(data.adgroupname);
+                        $(`#add-row-modal-${rowId} #results`).val(data.result);
+                        $(`#add-row-modal-${rowId} #imprs`).val(data.imprs);
+                        $(`#add-row-modal-${rowId} #reach`).val(data.reach);
+                        $(`#add-row-modal-${rowId} #cost`).val(data.cost);
+                        $(`#add-row-modal-${rowId} #clicks`).val(data.click);
+                        $(`#add-row-modal-${rowId}`).modal('show');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    // alert("There was an error fetching the data. Please try again.");
+                }
+            });
+        }
+
+        // --------------------- Delete Ad Row (FOR EACH ROW) --------------------------
+        function deleteAdsRow(rowId) {
+            if (rowId === "ads-rw-1") {
+                // alert("1st row cannot be deleted!");
+                return;
+            }
+
+            if (!confirm("Are you sure you want to delete this ad? This action cannot be undone.")) {
+                return;
+            }
+
+            $.ajax({
+                url: 'controller/ads/delete_ads_data.php',
+                type: 'POST',
+                data: {
+                    rowId: rowId
+                },
+                success: function(response) {
+                    let res = JSON.parse(response);
+                    if (res.status === "success") {
+                        // alert(res.message);
+                        window.location.reload();
+                    } else {
+                        console.error("Error: " + res.message)
+                        // alert("Error: " + res.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    // alert("There was an error deleting the row. Please try again.");
+                }
+            });
+        }
+
+        // ----------- Back && Next page (FOR EACH ROW) -----------------
+        function showStep(rowId, step) {
+
+            document.querySelector(`#add-row-modal-${rowId} #step-1`).style.display = (step === 1) ? 'block' : 'none';
+            document.querySelector(`#add-row-modal-${rowId} #step-2`).style.display = (step === 2) ? 'block' : 'none';
+
+            $('.edit-1').css('display', (step === 1) ? 'block' : 'none');
+            $('.edit-2').css('display', (step === 2) ? 'block' : 'none');
+        }
+
+        // ----------------------------------------------------------- REAL EDIT AD ROW ----------------------------------------------------------------------
+        function realEditAdRow(rowId) {
+            // Check if the modal already exists
+            let existingModal = document.getElementById(rowId);
+
+            if (!existingModal) {
+                let originalModal = document.getElementById('real-edit-row-modal-ads-rw-1');
+                if (!originalModal) {
+                    console.error('Template modal (real-edit-row-modal-ads-rw-1) not found!');
                     return;
                 }
 
-                $.ajax({
-                    url: 'controller/ads/delete_ads_data.php',
-                    type: 'POST',
-                    data: {
-                        rowId: rowId
-                    },
-                    success: function(response) {
-                        let res = JSON.parse(response);
-                        if (res.status === "success") {
-                            // alert(res.message);
-                            window.location.reload();
-                        } else {
-                            console.error("Error: " + res.message)
-                            // alert("Error: " + res.message);
+                // Create new modal and copy the template content
+                let newModal = document.createElement('div');
+                newModal.className = 'edit-tag sideslip d-none';
+                newModal.id = rowId;
+
+                // Clone the inner HTML of the template modal
+                let clonedModalContent = originalModal.innerHTML;
+
+                // Replace placeholder IDs or classes in the content with the current `rowId`
+                clonedModalContent = clonedModalContent.replace(
+                    /real-edit-row-modal-ads-rw-1/g,
+                    rowId
+                );
+
+                newModal.innerHTML = clonedModalContent;
+
+                // Append the new modal to the body (or a container element)
+                document.body.appendChild(newModal);
+                console.log(`Modal for row ID ${rowId} created successfully.`);
+            } else {
+                console.log(`Modal for row ID ${rowId} already exists.`);
+            }
+
+            // Display the modal
+            const container = document.getElementById(rowId);
+            if (container) {
+                setTimeout(function() {
+                    container.classList.remove('d-none');
+                }, Math.floor(Math.random() * 1000) + 100);
+            } else {
+                console.error(`Modal container for row ID ${rowId} not found.`);
+            }
+
+            // fetch data
+            $.ajax({
+                url: 'controller/ads/fetch_real_edit_ads_data.php',
+                type: 'POST',
+                data: {
+                    rowId: rowId
+                },
+                success: function(response) {
+                    const data = JSON.parse(response);
+                    if (data.status && data.status === "error") {
+                        console.error(data.message);
+                        // alert(data.message);
+                    } else {
+                        $(`#${rowId} #ad-base-name`).val(data.adsname || '');
+
+                        // Update video source and set fallback if video name is missing
+                        const videoSource = $(`#${rowId} #real-edit-vid-img source`);
+                        const videoPath = `img/${data.videoname}`;
+                        videoSource.attr('src', videoPath);
+
+                        // Update the <video> tag to load the new source
+                        const videoElement = document.querySelector(`#${rowId} #real-edit-vid-img`);
+                        if (videoElement) {
+                            videoElement.load();
                         }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                        // alert("There was an error deleting the row. Please try again.");
+
+                        // Update the span with the video name or a fallback message
+                        const videoNameSpan = $(`#${rowId} #real-edit-vid-name`);
+                        if (data.videoname) {
+                            videoNameSpan.text(data.videoname);
+                        } else {
+                            videoNameSpan.text('No video available');
+                        }
+
+                        // Update video player source dynamically
+                        const videoPlayer = document.querySelector(`#${rowId} #real-edit-vid-player`);
+                        const videoSource2 = videoPlayer.querySelector('source');
+                        if (videoSource2) {
+                            const videoPath = data.videoname ?
+                                `img/${data.videoname}` :
+                                'https://v16-tt4b.tiktokcdn.com/default-placeholder-video.mp4';
+                            videoSource2.setAttribute('src', videoPath);
+                            videoPlayer.load();
+                        } else {
+                            console.error("Source tag not found inside the video player.");
+                        }
+
+                        // Update xg-poster background image dynamically
+                        const posterElement = document.querySelector(`#${rowId} #real-edit-poster`);
+                        if (posterElement) {
+                            const posterPath = data.poster ?
+                                `img/${data.poster}` :
+                                'https://p16-ad-sg.tiktokcdn.com/origin/tos-alisg-p-0051c001-sg/default-placeholder-poster.jpg';
+
+                            posterElement.style.backgroundImage = `url(${posterPath})`;
+                        } else {
+                            console.error(`Poster element with ID 'real-edit-poster' not found.`);
+                        }
+
                     }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    // alert("There was an error fetching the data. Please try again.");
+                }
+            });
+        }
+
+        function closeRealEditRowModal(rowId) {
+            const container = document.getElementById(rowId);
+            setTimeout(function() {
+                container.classList.add("d-none");
+            }, Math.floor(Math.random() * 400) + 100);
+        }
+    </script>
+
+    <!----------------------------------------------------------------------------------- Original Script --------------------------------------------------------------------------------------->
+    <script>
+        let newCurrencySymbol = '';
+
+        $(document).ready(function() {
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> HEADER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ........... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // ====================================================================== change image icon ==================================================================================== 
+            $(document).on("click", ".switch-img", function() {
+                let imgId = $(this).attr("id");
+                let imgSrc = "./img/" + imgId + ".jpg";
+                $("#profile-img").attr("src", imgSrc);
+            });
+
+            // ===================================================================== change tools hover ===================================================================================
+            const toolsItem = document.querySelector('.tools-item');
+            const headerToolSubmenu = document.querySelector('.header-tools-submenu');
+
+            toolsItem.addEventListener('mouseenter', () => {
+                setTimeout(() => {
+                    headerToolSubmenu.style.display = 'flex';
+                }, 200);
+            });
+
+            toolsItem.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    if (!headerToolSubmenu.matches(':hover')) {
+                        headerToolSubmenu.style.display = 'none';
+                    }
+                }, 200);
+            });
+
+            headerToolSubmenu.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    headerToolSubmenu.style.display = 'none';
+                }, 200);
+            });
+
+            headerToolSubmenu.addEventListener('mouseenter', () => {
+                headerToolSubmenu.style.display = 'flex';
+            });
+
+            // ===================================================================== change analytics hover ===================================================================================
+            const analyticItem = document.querySelector('.analytic-item');
+            const headerAnalyticSubmenu = document.querySelector('.header-analytic-submenu');
+
+            analyticItem.addEventListener('mouseenter', () => {
+                setTimeout(() => {
+                    headerAnalyticSubmenu.style.display = 'flex';
+                }, 200);
+            });
+
+            analyticItem.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    if (!headerAnalyticSubmenu.matches(':hover')) {
+                        headerAnalyticSubmenu.style.display = 'none';
+                    }
+                }, 200);
+            });
+
+            headerAnalyticSubmenu.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    headerAnalyticSubmenu.style.display = 'none';
+                }, 200);
+            });
+
+            headerAnalyticSubmenu.addEventListener('mouseenter', () => {
+                headerAnalyticSubmenu.style.display = 'flex';
+            });
+
+            // // ===================================================================== change business center hover ==============================================================================
+            // const bc = document.querySelector('.business-center');
+            // const headerBcSubmenu = document.querySelector('.header-bc-submenu');
+
+            // bc.addEventListener('mouseenter', () => {
+            //     setTimeout(() => {
+            //         headerBcSubmenu.style.display = 'flex';
+            //     }, 200);
+            // });
+
+            // bc.addEventListener('mouseleave', () => {
+            //     setTimeout(() => {
+            //         if (!headerBcSubmenu.matches(':hover')) {
+            //             headerBcSubmenu.style.display = 'none';
+            //         }
+            //     }, 200);
+            // });
+
+            // headerBcSubmenu.addEventListener('mouseleave', () => {
+            //     setTimeout(() => {
+            //         headerBcSubmenu.style.display = 'none';
+            //     }, 200);
+            // });
+
+            // headerBcSubmenu.addEventListener('mouseenter', () => {
+            //     headerBcSubmenu.style.display = 'flex';
+            // });
+
+            // ===================================================================== change notifications hover ================================================================================
+            const noti = document.querySelector('.notifications');
+            const headerNotiSubmenu = document.querySelector('.header-noti-submenu');
+
+            noti.addEventListener('mouseenter', () => {
+                setTimeout(() => {
+                    headerNotiSubmenu.style.display = 'flex';
+                }, 200);
+            });
+
+            noti.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    if (!headerNotiSubmenu.matches(':hover')) {
+                        headerNotiSubmenu.style.display = 'none';
+                    }
+                }, 200);
+            });
+
+            headerNotiSubmenu.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    headerNotiSubmenu.style.display = 'none';
+                }, 200);
+            });
+
+            headerNotiSubmenu.addEventListener('mouseenter', () => {
+                headerNotiSubmenu.style.display = 'flex';
+            });
+
+            // ===================================================================== change help hover ==================================================================================
+            const help = document.querySelector('.question');
+            const headerHelpSubmenu = document.querySelector('.header-help-submenu');
+
+            help.addEventListener('mouseenter', () => {
+                setTimeout(() => {
+                    headerHelpSubmenu.style.display = 'flex';
+                }, 200);
+            });
+
+            help.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    if (!headerHelpSubmenu.matches(':hover')) {
+                        headerHelpSubmenu.style.display = 'none';
+                    }
+                }, 200);
+            });
+
+            headerHelpSubmenu.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    headerHelpSubmenu.style.display = 'none';
+                }, 200);
+            });
+
+            headerHelpSubmenu.addEventListener('mouseenter', () => {
+                headerHelpSubmenu.style.display = 'flex';
+            });
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TOP CONTENT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ................ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // =================================================== Calendar Question ===============================================
+            const calendarSubmenu = document.querySelector(".calendar-submenu");
+            const calendarQuestion = document.querySelector('.calendar-question');
+
+            calendarQuestion.addEventListener('mouseenter', () => {
+                setTimeout(() => {
+                    calendarSubmenu.style.display = 'flex';
+                }, 200);
+            });
+
+            calendarQuestion.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    if (!calendarSubmenu.matches(':hover')) {
+                        calendarSubmenu.style.display = 'none';
+                    }
+                }, 200);
+            });
+
+            calendarSubmenu.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    calendarSubmenu.style.display = 'none';
+                }, 200);
+            });
+            calendarSubmenu.addEventListener('mouseenter', () => {
+                calendarSubmenu.style.display = 'flex';
+            });
+
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3 OPTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ........... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // ==================================================================== change 3 main tab category ==========================================================================
+            $(".options-box").click(function() {
+                let dataselected = $(this).data('selected');
+                $('.options-box').removeClass('active-tab');
+                $(this).addClass('active-tab');
+                $('.table-wrapper').addClass('d-none');
+                $('.' + dataselected + '-content').removeClass('d-none');
+            })
+
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TABLE HEADER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ........... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // ==================================================================== Refresh Submenu ==========================================================================
+            const refreshSubmenu = document.querySelector(".table-header-refresh-submenu");
+            const refresh = document.querySelectorAll(".refresh");
+
+            refresh.forEach((refreshElement) => {
+                refreshElement.addEventListener('mouseenter', () => {
+                    setTimeout(() => {
+                        refreshSubmenu.style.display = 'flex';
+                    }, 200);
                 });
-            }
+                refreshElement.addEventListener('mouseleave', () => {
+                    setTimeout(() => {
+                        if (!refreshSubmenu.matches(':hover')) {
+                            refreshSubmenu.style.display = 'none';
+                        }
+                    }, 200);
+                });
+            });
 
-            // ----------- Back && Next page (FOR EACH ROW) -----------------
-            function showStep(rowId, step) {
+            refreshSubmenu.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    refreshSubmenu.style.display = 'none';
+                }, 200);
+            });
+            refreshSubmenu.addEventListener('mouseenter', () => {
+                refreshSubmenu.style.display = 'flex';
+            });
 
-                document.querySelector(`#add-row-modal-${rowId} #step-1`).style.display = (step === 1) ? 'block' : 'none';
-                document.querySelector(`#add-row-modal-${rowId} #step-2`).style.display = (step === 2) ? 'block' : 'none';
+            // ==================================================================== Report Submenu ==========================================================================
+            const reportSubmenu = document.querySelector(".table-header-report-submenu");
+            const report = document.querySelectorAll(".report");
 
-                $('.edit-1').css('display', (step === 1) ? 'block' : 'none');
-                $('.edit-2').css('display', (step === 2) ? 'block' : 'none');
-            }
+            report.forEach(reportElement => {
+                reportElement.addEventListener('mouseenter', () => {
+                    setTimeout(() => {
+                        reportSubmenu.style.display = 'flex';
+                    }, 200);
+                });
+                reportElement.addEventListener('mouseleave', () => {
+                    setTimeout(() => {
+                        if (!reportSubmenu.matches(':hover')) {
+                            reportSubmenu.style.display = 'none';
+                        }
+                    }, 200);
+                });
+            });
 
-            // ----------------------------------------------------------- REAL EDIT AD ROW ----------------------------------------------------------------------
-            function realEditAdRow(rowId) {
-                // Check if the modal already exists
-                let existingModal = document.getElementById(rowId);
+            reportSubmenu.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    reportSubmenu.style.display = 'none';
+                }, 200);
+            });
+            reportSubmenu.addEventListener('mouseenter', () => {
+                reportSubmenu.style.display = 'flex';
+            });
 
-                if (!existingModal) {
-                    let originalModal = document.getElementById('real-edit-row-modal-ads-rw-1');
-                    if (!originalModal) {
-                        console.error('Template modal (real-edit-row-modal-ads-rw-1) not found!');
-                        return;
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TABLE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ........... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // ============================================================================ COLUMN RESIZE =====================================================================================
+
+            // ----------------------------------------------Apply on ALL TABLE'S Headers' Columns------------------------------------------
+            const tables = document.querySelectorAll('.table-resizable');
+            tables.forEach(table => {
+                const headers = table.querySelectorAll('th');
+                let startX, startWidth, currentResizer;
+
+                // ----------------------------------------------------Resize the column---------------------------------------------
+                function resizeColumn(e) {
+                    if (currentResizer) {
+                        const header = currentResizer.parentElement;
+                        const newWidth = startWidth + (e.pageX - startX);
+                        header.style.width = `${newWidth}px`;
                     }
+                }
 
-                    // Create new modal and copy the template content
-                    let newModal = document.createElement('div');
-                    newModal.className = 'edit-tag sideslip d-none';
-                    newModal.id = rowId;
+                // ----------------------------------------------------Stop resizing----------------------------------------------
+                function stopResize() {
+                    document.removeEventListener('mousemove', resizeColumn);
+                    document.removeEventListener('mouseup', stopResize);
+                    currentResizer = null;
+                }
 
-                    // Clone the inner HTML of the template modal
-                    let clonedModalContent = originalModal.innerHTML;
+                // ----------------------------------------------------- Perform resize -------------------------------------------
+                headers.forEach(header => {
+                    const resizer = document.createElement('div');
+                    resizer.classList.add('resizer');
+                    header.appendChild(resizer);
 
-                    // Replace placeholder IDs or classes in the content with the current `rowId`
-                    clonedModalContent = clonedModalContent.replace(
-                        /real-edit-row-modal-ads-rw-1/g,
-                        rowId
+                    resizer.addEventListener('mousedown', (e) => {
+                        currentResizer = e.target;
+                        startX = e.pageX;
+                        startWidth = header.offsetWidth;
+
+                        document.addEventListener('mousemove', resizeColumn);
+                        document.addEventListener('mouseup', stopResize);
+                    });
+                });
+            })
+
+            // =========================================================================== Tick All Checkboxes ============================================================================
+            const allCheckbox = document.getElementById('all-ads-checkbox');
+
+            allCheckbox.addEventListener('click', function() {
+                const rows = document.querySelectorAll('tbody tr');
+
+                rows.forEach(function(row) {
+                    const checkbox = row.querySelector('input[type="checkbox"]');
+                    checkbox.checked = allCheckbox.checked;
+                });
+            });
+        })
+
+        // ============================================================= DATE SUBMENU ==========================================================
+        // ------------------------------------------------- Click Date Element -----------------------------------------------
+        document.querySelector(".date-element").addEventListener('click', function() {
+            const dateElement = document.querySelector('.date-element');
+            const dateSubmenu = document.querySelector('.date-submenu');
+            dateElement.classList.add('is-active');
+            dateSubmenu.classList.remove('d-none');
+
+            dateSubmenu.classList.add('vi-zoom-in-top-enter');
+            setTimeout(() => {
+                dateSubmenu.classList.remove('vi-zoom-in-top-enter');
+                dateSubmenu.classList.add('vi-zoom-in-top-enter-active');
+            }, 0);
+        })
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // -------------------------------------------- Highlight current date ----------------------------------
+            const today = new Date();
+            const currentDay = today.getDate();
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
+
+            function highlightToday() {
+                const monthTables = document.querySelectorAll(".nov-content, .dec-content");
+                monthTables.forEach((table) => {
+                    const isCurrentMonth = table.classList.contains(
+                        today.toLocaleString('default', {
+                            month: 'short'
+                        }).toLowerCase() + "-content"
                     );
 
-                    newModal.innerHTML = clonedModalContent;
-
-                    // Append the new modal to the body (or a container element)
-                    document.body.appendChild(newModal);
-                    console.log(`Modal for row ID ${rowId} created successfully.`);
-                } else {
-                    console.log(`Modal for row ID ${rowId} already exists.`);
-                }
-
-                // Display the modal
-                const container = document.getElementById(rowId);
-                if (container) {
-                    container.classList.remove('d-none');
-                } else {
-                    console.error(`Modal container for row ID ${rowId} not found.`);
-                }
-
-                // fetch data
-                $.ajax({
-                    url: 'controller/ads/fetch_real_edit_ads_data.php',
-                    type: 'POST',
-                    data: {
-                        rowId: rowId
-                    },
-                    success: function(response) {
-                        const data = JSON.parse(response);
-                        if (data.status && data.status === "error") {
-                            console.error(data.message);
-                            // alert(data.message);
-                        } else {
-                            $(`#${rowId} #ad-base-name`).val(data.adsname || '');
-                            
-                            // Update video source and set fallback if video name is missing
-                            const videoSource = $(`#${rowId} #real-edit-vid-img source`);
-                            const videoPath = `img/${data.videoname}`;
-                            videoSource.attr('src', videoPath);
-
-                            // Update the <video> tag to load the new source
-                            const videoElement = document.querySelector(`#${rowId} #real-edit-vid-img`);
-                            if (videoElement) {
-                                videoElement.load();
+                    if (isCurrentMonth) {
+                        const days = table.querySelectorAll("td span:not(.greyout)");
+                        days.forEach((span) => {
+                            if (parseInt(span.textContent) === currentDay) {
+                                span.classList.add("today");
+                                console.log(span);
                             }
-
-                            // Update the span with the video name or a fallback message
-                            const videoNameSpan = $(`#${rowId} #real-edit-vid-name`);
-                            if (data.videoname) {
-                                videoNameSpan.text(data.videoname);
-                            } else {
-                                videoNameSpan.text('No video available');
-                            }
-
-                            // Update video player source dynamically
-                            const videoPlayer = document.querySelector(`#${rowId} #real-edit-vid-player`);
-                            const videoSource2 = videoPlayer.querySelector('source');
-                            if (videoSource2) {
-                                const videoPath = data.videoname
-                                    ? `img/${data.videoname}`
-                                    : 'https://v16-tt4b.tiktokcdn.com/default-placeholder-video.mp4';
-                                videoSource2.setAttribute('src', videoPath);
-                                videoPlayer.load();
-                            } else {
-                                console.error("Source tag not found inside the video player.");
-                            }
-
-                            // Update xg-poster background image dynamically
-                            const posterElement = document.querySelector(`#${rowId} #real-edit-poster`);
-                            if (posterElement) {
-                                const posterPath = data.poster
-                                    ? `img/${data.poster}`
-                                    : 'https://p16-ad-sg.tiktokcdn.com/origin/tos-alisg-p-0051c001-sg/default-placeholder-poster.jpg';
-
-                                posterElement.style.backgroundImage = `url(${posterPath})`;
-                            } else {
-                                console.error(`Poster element with ID 'real-edit-poster' not found.`);
-                            }
-
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                        // alert("There was an error fetching the data. Please try again.");
+                        });
                     }
                 });
             }
-        </script>
+            highlightToday();
 
-        <!----------------------------------------------------------------------------------- Original Script --------------------------------------------------------------------------------------->
-        <script>
-            let newCurrencySymbol = '';
+            // ----------------------------------------- Logic for start date and end date and in-range dates -----------------------------------
+            const tableCells = document.querySelectorAll(".date-right table td span:not(.greyout)");
+            let startDate = null;
+            let endDate = null;
 
-            $(document).ready(function() {
-
-                // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> HEADER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ........... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                // ====================================================================== change image icon ==================================================================================== 
-                $(document).on("click", ".switch-img", function() {
-                    let imgId = $(this).attr("id");
-                    let imgSrc = "./img/" + imgId + ".jpg";
-                    $("#profile-img").attr("src", imgSrc);
+            // Clear all selections
+            function clearSelections() {
+                tableCells.forEach((span) => {
+                    span.classList.remove("select-date", "range-date");
                 });
+            }
 
-                // ===================================================================== change tools hover ===================================================================================
-                const toolsItem = document.querySelector('.tools-item');
-                const headerToolSubmenu = document.querySelector('.header-tools-submenu');
+            // Apply the range styling
+            function applyRangeStyles() {
+                if (startDate && endDate) {
+                    let startIndex = -1;
+                    let endIndex = -1;
 
-                toolsItem.addEventListener('mouseenter', () => {
-                    setTimeout(() => {
-                        headerToolSubmenu.style.display = 'flex';
-                    }, 200);
-                });
-
-                toolsItem.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        if (!headerToolSubmenu.matches(':hover')) {
-                            headerToolSubmenu.style.display = 'none';
+                    tableCells.forEach((span, index) => {
+                        // Find the index of startDate and endDate
+                        if (span === startDate) {
+                            startIndex = index;
                         }
-                    }, 200);
-                });
-
-                headerToolSubmenu.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        headerToolSubmenu.style.display = 'none';
-                    }, 200);
-                });
-
-                headerToolSubmenu.addEventListener('mouseenter', () => {
-                    headerToolSubmenu.style.display = 'flex';
-                });
-
-                // ===================================================================== change analytics hover ===================================================================================
-                const analyticItem = document.querySelector('.analytic-item');
-                const headerAnalyticSubmenu = document.querySelector('.header-analytic-submenu');
-
-                analyticItem.addEventListener('mouseenter', () => {
-                    setTimeout(() => {
-                        headerAnalyticSubmenu.style.display = 'flex';
-                    }, 200);
-                });
-
-                analyticItem.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        if (!headerAnalyticSubmenu.matches(':hover')) {
-                            headerAnalyticSubmenu.style.display = 'none';
-                        }
-                    }, 200);
-                });
-
-                headerAnalyticSubmenu.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        headerAnalyticSubmenu.style.display = 'none';
-                    }, 200);
-                });
-
-                headerAnalyticSubmenu.addEventListener('mouseenter', () => {
-                    headerAnalyticSubmenu.style.display = 'flex';
-                });
-
-                // // ===================================================================== change business center hover ==============================================================================
-                // const bc = document.querySelector('.business-center');
-                // const headerBcSubmenu = document.querySelector('.header-bc-submenu');
-
-                // bc.addEventListener('mouseenter', () => {
-                //     setTimeout(() => {
-                //         headerBcSubmenu.style.display = 'flex';
-                //     }, 200);
-                // });
-
-                // bc.addEventListener('mouseleave', () => {
-                //     setTimeout(() => {
-                //         if (!headerBcSubmenu.matches(':hover')) {
-                //             headerBcSubmenu.style.display = 'none';
-                //         }
-                //     }, 200);
-                // });
-
-                // headerBcSubmenu.addEventListener('mouseleave', () => {
-                //     setTimeout(() => {
-                //         headerBcSubmenu.style.display = 'none';
-                //     }, 200);
-                // });
-
-                // headerBcSubmenu.addEventListener('mouseenter', () => {
-                //     headerBcSubmenu.style.display = 'flex';
-                // });
-
-                // ===================================================================== change notifications hover ================================================================================
-                const noti = document.querySelector('.notifications');
-                const headerNotiSubmenu = document.querySelector('.header-noti-submenu');
-
-                noti.addEventListener('mouseenter', () => {
-                    setTimeout(() => {
-                        headerNotiSubmenu.style.display = 'flex';
-                    }, 200);
-                });
-
-                noti.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        if (!headerNotiSubmenu.matches(':hover')) {
-                            headerNotiSubmenu.style.display = 'none';
-                        }
-                    }, 200);
-                });
-
-                headerNotiSubmenu.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        headerNotiSubmenu.style.display = 'none';
-                    }, 200);
-                });
-
-                headerNotiSubmenu.addEventListener('mouseenter', () => {
-                    headerNotiSubmenu.style.display = 'flex';
-                });
-
-                // ===================================================================== change help hover ==================================================================================
-                const help = document.querySelector('.question');
-                const headerHelpSubmenu = document.querySelector('.header-help-submenu');
-
-                help.addEventListener('mouseenter', () => {
-                    setTimeout(() => {
-                        headerHelpSubmenu.style.display = 'flex';
-                    }, 200);
-                });
-
-                help.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        if (!headerHelpSubmenu.matches(':hover')) {
-                            headerHelpSubmenu.style.display = 'none';
-                        }
-                    }, 200);
-                });
-
-                headerHelpSubmenu.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        headerHelpSubmenu.style.display = 'none';
-                    }, 200);
-                });
-
-                headerHelpSubmenu.addEventListener('mouseenter', () => {
-                    headerHelpSubmenu.style.display = 'flex';
-                });
-
-                // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TOP CONTENT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ................ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                // =================================================== Calendar Question ===============================================
-                const calendarSubmenu = document.querySelector(".calendar-submenu");
-                const calendarQuestion = document.querySelector('.calendar-question');
-
-                calendarQuestion.addEventListener('mouseenter', () => {
-                    setTimeout(() => {
-                        calendarSubmenu.style.display = 'flex';
-                    }, 200);
-                });
-
-                calendarQuestion.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        if (!calendarSubmenu.matches(':hover')) {
-                            calendarSubmenu.style.display = 'none';
-                        }
-                    }, 200);
-                });
-
-                calendarSubmenu.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        calendarSubmenu.style.display = 'none';
-                    }, 200);
-                });
-                calendarSubmenu.addEventListener('mouseenter', () => {
-                    calendarSubmenu.style.display = 'flex';
-                });
-
-
-                // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 3 OPTIONS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ........... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                // ==================================================================== change 3 main tab category ==========================================================================
-                $(".options-box").click(function() {
-                    let dataselected = $(this).data('selected');
-                    $('.options-box').removeClass('active-tab');
-                    $(this).addClass('active-tab');
-                    $('.table-wrapper').addClass('d-none');
-                    $('.' + dataselected + '-content').removeClass('d-none');
-                })
-
-                // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TABLE HEADER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ........... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                // ==================================================================== Refresh Submenu ==========================================================================
-                const refreshSubmenu = document.querySelector(".table-header-refresh-submenu");
-                const refresh = document.querySelectorAll(".refresh");
-
-                refresh.forEach((refreshElement) => {
-                    refreshElement.addEventListener('mouseenter', () => {
-                        setTimeout(() => {
-                            refreshSubmenu.style.display = 'flex';
-                        }, 200);
-                    });
-                    refreshElement.addEventListener('mouseleave', () => {
-                        setTimeout(() => {
-                            if (!refreshSubmenu.matches(':hover')) {
-                                refreshSubmenu.style.display = 'none';
-                            }
-                        }, 200);
-                    });
-                });
-
-                refreshSubmenu.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        refreshSubmenu.style.display = 'none';
-                    }, 200);
-                });
-                refreshSubmenu.addEventListener('mouseenter', () => {
-                    refreshSubmenu.style.display = 'flex';
-                });
-
-                // ==================================================================== Report Submenu ==========================================================================
-                const reportSubmenu = document.querySelector(".table-header-report-submenu");
-                const report = document.querySelectorAll(".report");
-
-                report.forEach(reportElement => {
-                    reportElement.addEventListener('mouseenter', () => {
-                        setTimeout(() => {
-                            reportSubmenu.style.display = 'flex';
-                        }, 200);
-                    });
-                    reportElement.addEventListener('mouseleave', () => {
-                        setTimeout(() => {
-                            if (!reportSubmenu.matches(':hover')) {
-                                reportSubmenu.style.display = 'none';
-                            }
-                        }, 200);
-                    });
-                });
-
-                reportSubmenu.addEventListener('mouseleave', () => {
-                    setTimeout(() => {
-                        reportSubmenu.style.display = 'none';
-                    }, 200);
-                });
-                reportSubmenu.addEventListener('mouseenter', () => {
-                    reportSubmenu.style.display = 'flex';
-                });
-
-                // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TABLE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ........... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                // ============================================================================ COLUMN RESIZE =====================================================================================
-
-                // ----------------------------------------------Apply on ALL TABLE'S Headers' Columns------------------------------------------
-                const tables = document.querySelectorAll('.table-resizable');
-                tables.forEach(table => {
-                    const headers = table.querySelectorAll('th');
-                    let startX, startWidth, currentResizer;
-
-                    // ----------------------------------------------------Resize the column---------------------------------------------
-                    function resizeColumn(e) {
-                        if (currentResizer) {
-                            const header = currentResizer.parentElement;
-                            const newWidth = startWidth + (e.pageX - startX);
-                            header.style.width = `${newWidth}px`;
-                        }
-                    }
-
-                    // ----------------------------------------------------Stop resizing----------------------------------------------
-                    function stopResize() {
-                        document.removeEventListener('mousemove', resizeColumn);
-                        document.removeEventListener('mouseup', stopResize);
-                        currentResizer = null;
-                    }
-
-                    // ----------------------------------------------------- Perform resize -------------------------------------------
-                    headers.forEach(header => {
-                        const resizer = document.createElement('div');
-                        resizer.classList.add('resizer');
-                        header.appendChild(resizer);
-
-                        resizer.addEventListener('mousedown', (e) => {
-                            currentResizer = e.target;
-                            startX = e.pageX;
-                            startWidth = header.offsetWidth;
-
-                            document.addEventListener('mousemove', resizeColumn);
-                            document.addEventListener('mouseup', stopResize);
-                        });
-                    });
-                })
-
-                // =========================================================================== Tick All Checkboxes ============================================================================
-                const allCheckbox = document.getElementById('all-ads-checkbox');
-
-                allCheckbox.addEventListener('click', function() {
-                    const rows = document.querySelectorAll('tbody tr');
-
-                    rows.forEach(function(row) {
-                        const checkbox = row.querySelector('input[type="checkbox"]');
-                        checkbox.checked = allCheckbox.checked;
-                    });
-                });
-            })
-
-            // ============================================================= DATE SUBMENU ==========================================================
-            // ------------------------------------------------- Click Date Element -----------------------------------------------
-            document.querySelector(".date-element").addEventListener('click', function() {
-                const dateElement = document.querySelector('.date-element');
-                const dateSubmenu = document.querySelector('.date-submenu');
-                dateElement.classList.add('is-active');
-                dateSubmenu.classList.remove('d-none');
-
-                dateSubmenu.classList.add('vi-zoom-in-top-enter');
-                setTimeout(() => {
-                    dateSubmenu.classList.remove('vi-zoom-in-top-enter');
-                    dateSubmenu.classList.add('vi-zoom-in-top-enter-active');
-                }, 0);
-            })
-
-            document.addEventListener("DOMContentLoaded", function() {
-                // -------------------------------------------- Highlight current date ----------------------------------
-                const today = new Date();
-                const currentDay = today.getDate();
-                const currentMonth = today.getMonth();
-                const currentYear = today.getFullYear();
-
-                function highlightToday() {
-                    const monthTables = document.querySelectorAll(".nov-content, .dec-content");
-                    monthTables.forEach((table) => {
-                        const isCurrentMonth = table.classList.contains(
-                            today.toLocaleString('default', {
-                                month: 'short'
-                            }).toLowerCase() + "-content"
-                        );
-
-                        if (isCurrentMonth) {
-                            const days = table.querySelectorAll("td span:not(.greyout)");
-                            days.forEach((span) => {
-                                if (parseInt(span.textContent) === currentDay) {
-                                    span.classList.add("today");
-                                    console.log(span);
-                                }
-                            });
+                        if (span === endDate) {
+                            endIndex = index;
                         }
                     });
-                }
-                highlightToday();
 
-                // ----------------------------------------- Logic for start date and end date and in-range dates -----------------------------------
-                const tableCells = document.querySelectorAll(".date-right table td span:not(.greyout)");
-                let startDate = null;
-                let endDate = null;
+                    // Ensure indices are valid
+                    if (startIndex !== -1 && endIndex !== -1) {
+                        // Swap startIndex and endIndex if startDate is after endDate
+                        if (startIndex > endIndex) {
+                            [startIndex, endIndex] = [endIndex, startIndex];
+                        }
 
-                // Clear all selections
-                function clearSelections() {
-                    tableCells.forEach((span) => {
-                        span.classList.remove("select-date", "range-date");
-                    });
-                }
-
-                // Apply the range styling
-                function applyRangeStyles() {
-                    if (startDate && endDate) {
-                        const startIndex = Array.from(tableCells).indexOf(startDate);
-                        const endIndex = Array.from(tableCells).indexOf(endDate);
-
+                        // Apply the range-date class for all cells in the range
                         tableCells.forEach((span, index) => {
                             if (index > startIndex && index < endIndex) {
                                 span.classList.add("range-date");
+                            } else {
+                                span.classList.remove("range-date");
                             }
                         });
                     }
                 }
+            }
 
-                // ---------------------------------------------- Click Event listener for each span inside the td -----------------------------------------
-                tableCells.forEach((span) => {
-                    span.addEventListener("click", function() {
-                        const selectedDay = parseInt(span.textContent);
-                        const dateApply = document.querySelector(".date-apply");
+            // ---------------------------------------------- Click Event listener for each span inside the td -----------------------------------------
+            tableCells.forEach((span) => {
+                span.addEventListener("click", function() {
+                    const selectedDay = parseInt(span.textContent);
+                    const dateApply = document.querySelector(".date-apply");
 
-                        if (!startDate || (startDate && endDate)) {
-                            clearSelections();
-                            startDate = span;
-                            endDate = null;
-                            span.classList.add("select-date");
-                            dateApply.classList.add("is-disabled");
-                        } else if (!endDate) {
-                            endDate = span;
-                            // Ensure the end date is after the start date
-                            const startDay = parseInt(startDate.textContent);
-                            if (selectedDay < startDay) {
-                                [startDate, endDate] = [endDate, startDate];
-                            }
-                            startDate.classList.add("select-date");
-                            endDate.classList.add("select-date");
-                            dateApply.classList.remove("is-disabled");
-                            applyRangeStyles();
+                    if (!startDate || (startDate && endDate)) {
+                        clearSelections();
+                        startDate = span;
+                        endDate = null;
+                        span.classList.add("select-date");
+                        dateApply.classList.add("is-disabled");
+                    } else if (!endDate) {
+                        endDate = span;
+                        // Ensure the end date is after the start date
+                        const startDay = parseInt(startDate.textContent);
+                        if (selectedDay < startDay) {
+                            [startDate, endDate] = [endDate, startDate];
                         }
-                    });
+                        startDate.classList.add("select-date");
+                        endDate.classList.add("select-date");
+                        dateApply.classList.remove("is-disabled");
+                        applyRangeStyles();
+                    }
                 });
             });
+        });
 
-            // ------------------------------------------------- Cancel button -----------------------------------------------
-            document.querySelector('.date-cancel').addEventListener('click', function() {
-                const dateElement = document.querySelector('.date-element');
-                const dateSubmenu = document.querySelector('.date-submenu');
-                dateElement.classList.remove('is-active');
+        // ------------------------------------------------- Cancel button -----------------------------------------------
+        document.querySelector('.date-cancel').addEventListener('click', function() {
+            const dateElement = document.querySelector('.date-element');
+            const dateSubmenu = document.querySelector('.date-submenu');
+            dateElement.classList.remove('is-active');
 
-                dateSubmenu.classList.add('vi-zoom-in-top-leave-active');
-                setTimeout(() => {
-                    dateSubmenu.classList.add('d-none');
-                    dateSubmenu.classList.remove('vi-zoom-in-top-leave-active');
-                }, 300);
-            });
+            dateSubmenu.classList.add('vi-zoom-in-top-leave-active');
+            setTimeout(() => {
+                dateSubmenu.classList.add('d-none');
+                dateSubmenu.classList.remove('vi-zoom-in-top-leave-active');
+            }, 300);
+        });
 
-            // ----------------------------------------------- Apply button to save date to Database -----------------------------------
-            document.querySelector('.date-apply').addEventListener('click', function() {
-                const dateElement = document.querySelector('.date-element');
-                const dateSubmenu = document.querySelector('.date-submenu');
-                const selectedDates = document.querySelectorAll('.select-date');
+        // ----------------------------------------------- Apply button to save date to Database -----------------------------------
+        document.querySelector('.date-apply').addEventListener('click', function() {
+            const dateElement = document.querySelector('.date-element');
+            const dateSubmenu = document.querySelector('.date-submenu');
+            const selectedDates = document.querySelectorAll('.select-date');
 
-                if (selectedDates.length >= 2) {
-                    const startDateSpan = selectedDates[0];
-                    const endDateSpan = selectedDates[selectedDates.length - 1];
+            if (selectedDates.length >= 2) {
+                const startDateSpan = selectedDates[0];
+                const endDateSpan = selectedDates[selectedDates.length - 1];
 
-                    const startDay = parseInt(startDateSpan.textContent.trim());
-                    const endDay = parseInt(endDateSpan.textContent.trim());
+                const startDay = parseInt(startDateSpan.textContent.trim());
+                const endDay = parseInt(endDateSpan.textContent.trim());
 
-                    const startMonthElement = startDateSpan.closest('.nov, .dec');
-                    const endMonthElement = endDateSpan.closest('.nov, .dec');
+                const startMonthElement = startDateSpan.closest('.nov, .dec');
+                const endMonthElement = endDateSpan.closest('.nov, .dec');
 
-                    const startMonthText = startMonthElement.querySelector('.nov-txt, .dec-txt').textContent.trim();
-                    const endMonthText = endMonthElement.querySelector('.nov-txt, .dec-txt').textContent.trim();
+                const startMonthText = startMonthElement.querySelector('.nov-txt, .dec-txt').textContent.trim();
+                const endMonthText = endMonthElement.querySelector('.nov-txt, .dec-txt').textContent.trim();
 
-                    const monthMapping = {
-                        January: '01',
-                        February: '02',
-                        March: '03',
-                        April: '04',
-                        May: '05',
-                        June: '06',
-                        July: '07',
-                        August: '08',
-                        September: '09',
-                        October: '10',
-                        November: '11',
-                        December: '12',
-                    };
+                const monthMapping = {
+                    January: '01',
+                    February: '02',
+                    March: '03',
+                    April: '04',
+                    May: '05',
+                    June: '06',
+                    July: '07',
+                    August: '08',
+                    September: '09',
+                    October: '10',
+                    November: '11',
+                    December: '12',
+                };
 
-                    const startMonth = monthMapping[startMonthText.split(' ')[0]];
-                    const endMonth = monthMapping[endMonthText.split(' ')[0]];
+                const startMonth = monthMapping[startMonthText.split(' ')[0]];
+                const endMonth = monthMapping[endMonthText.split(' ')[0]];
 
-                    const startYear = startMonthText.split(' ')[1];
-                    const endYear = endMonthText.split(' ')[1];
+                const startYear = startMonthText.split(' ')[1];
+                const endYear = endMonthText.split(' ')[1];
 
-                    // Format dates as YYYY-MM-DD
-                    const startDate = `${startYear}-${startMonth}-${String(startDay).padStart(2, '0')}`;
-                    const endDate = `${endYear}-${endMonth}-${String(endDay).padStart(2, '0')}`;
+                // Format dates as YYYY-MM-DD
+                const startDate = `${startYear}-${startMonth}-${String(startDay).padStart(2, '0')}`;
+                const endDate = `${endYear}-${endMonth}-${String(endDay).padStart(2, '0')}`;
 
-                    // Send the new dates to the server via AJAX
-                    $.ajax({
-                        url: 'controller/date/update_date.php',
-                        type: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify({
-                            startdate: startDate,
-                            enddate: endDate,
-                        }),
-                        success: function(response) {
-                            try {
-                                const data = JSON.parse(response);
-                                if (data.success) {
-                                    // alert('Dates updated successfully!');
-                                    location.reload();
-                                } else {
-                                    console.error('Failed to update dates: ' + data.message);
-                                    // alert('Failed to update dates: ' + data.message);
-                                }
-                            } catch (e) {
-                                console.error('Failed to parse response:', response);
-                                // alert('An unexpected error occurred.');
+                // Send the new dates to the server via AJAX
+                $.ajax({
+                    url: 'controller/date/update_date.php',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        startdate: startDate,
+                        enddate: endDate,
+                    }),
+                    success: function(response) {
+                        try {
+                            const data = JSON.parse(response);
+                            if (data.success) {
+                                // alert('Dates updated successfully!');
+                                location.reload();
+                            } else {
+                                console.error('Failed to update dates: ' + data.message);
+                                // alert('Failed to update dates: ' + data.message);
                             }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('AJAX Error:', xhr.responseText);
-                            // alert('An error occurred while updating dates.');
-                        },
-                    });
-                } else {
-                    // alert('Please select both start and end dates before applying.');
-                    console.error('Please select both start and end dates before applying.');
-                }
+                        } catch (e) {
+                            console.error('Failed to parse response:', response);
+                            // alert('An unexpected error occurred.');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', xhr.responseText);
+                        // alert('An error occurred while updating dates.');
+                    },
+                });
+            } else {
+                // alert('Please select both start and end dates before applying.');
+                console.error('Please select both start and end dates before applying.');
+            }
 
-                dateElement.classList.remove('is-active');
+            dateElement.classList.remove('is-active');
 
-                dateSubmenu.classList.add('vi-zoom-in-top-leave-active');
-                setTimeout(() => {
-                    dateSubmenu.classList.add('d-none');
-                    dateSubmenu.classList.remove('vi-zoom-in-top-leave-active');
-                }, 300);
-            });
+            dateSubmenu.classList.add('vi-zoom-in-top-leave-active');
+            setTimeout(() => {
+                dateSubmenu.classList.add('d-none');
+                dateSubmenu.classList.remove('vi-zoom-in-top-leave-active');
+            }, 300);
+        });
 
 
-            // =========================================================== change footer question mark hover ==============================================================
-            // const questionMarkLabel = document.querySelector('.vi-icon-ex-circle-question');
-            // const footerQuestionASubmenu = document.querySelector('.footer-question-submenu');
+        // =========================================================== change footer question mark hover ==============================================================
+        // const questionMarkLabel = document.querySelector('.vi-icon-ex-circle-question');
+        // const footerQuestionASubmenu = document.querySelector('.footer-question-submenu');
 
-            // // Get the position of the question mark label
-            // const labelRect = questionMarkLabel.getBoundingClientRect();
+        // // Get the position of the question mark label
+        // const labelRect = questionMarkLabel.getBoundingClientRect();
 
-            // // Update the top property of the submenu
-            // footerQuestionASubmenu.style.top = `${labelRect.top - 80}px`;
+        // // Update the top property of the submenu
+        // footerQuestionASubmenu.style.top = `${labelRect.top - 80}px`;
 
-            // window.addEventListener('scroll', () => {
-            //     const labelRect = questionMarkLabel.getBoundingClientRect();
-            //     footerQuestionASubmenu.style.top = `${labelRect.top - 80}px`;
-            // });
-        </script>
+        // window.addEventListener('scroll', () => {
+        //     const labelRect = questionMarkLabel.getBoundingClientRect();
+        //     footerQuestionASubmenu.style.top = `${labelRect.top - 80}px`;
+        // });
+    </script>
 
-        <script src="https://cdn.jsdelivr.net/npm/xgplayer/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xgplayer/dist/index.min.js"></script>
 </body>
 
 </html>
