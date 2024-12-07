@@ -2346,7 +2346,31 @@ a {
     transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 1.5s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth easing effect */
 }
 
-.slide-out-active {
+.slide-in-active {
     opacity: 1;
     transform: translateX(0); /* Slide into the original position */
+    animation: bounce-in-v2 .5s ease;
+}
+
+.slide-out-active {
+    animation: bounce-out-v2 .5s ease;
+}
+
+@keyframes bounce-in-v2 {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes bounce-out-v2 {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
