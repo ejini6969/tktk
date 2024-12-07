@@ -1158,7 +1158,7 @@ session_start();
                             </span>
                         </div>
 
-                        <div class="calendar ms-auto d-flex align-items-center">
+                        <div class="date-element ms-auto d-flex align-items-center">
                             <div id="reportrange">
                                 <input value=<?php echo $startdate ?> placeholder="start date" class="start-date" id="start-date" readonly>
                                 <span class="separator">~</span>
@@ -4039,86 +4039,86 @@ session_start();
             });
 
             // ================================================================================ DATE ========================================================================
-            function saveDates(startDate, endDate) {
-                $.ajax({
-                    url: 'controller/date/update_date.php',
-                    type: 'POST',
-                    data: {
-                        start_date: startDate,
-                        end_date: endDate
-                    },
-                    success: function(response) {
-                        console.log(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(xhr.responseText);
-                    }
-                });
-            }
+            // function saveDates(startDate, endDate) {
+            //     $.ajax({
+            //         url: 'controller/date/update_date.php',
+            //         type: 'POST',
+            //         data: {
+            //             start_date: startDate,
+            //             end_date: endDate
+            //         },
+            //         success: function(response) {
+            //             console.log(response);
+            //         },
+            //         error: function(xhr, status, error) {
+            //             console.log(xhr.responseText);
+            //         }
+            //     });
+            // }
 
-            let start = moment('<?php echo $startdate; ?>');
-            let end = moment('<?php echo $enddate; ?>');
+            // let start = moment('<?php echo $startdate; ?>');
+            // let end = moment('<?php echo $enddate; ?>');
 
-            function setdaterange(start, end) {
-                let today = moment();
-                let displayText;
-                const yesterday = moment().subtract(1, 'day');
+            // function setdaterange(start, end) {
+            //     let today = moment();
+            //     let displayText;
+            //     const yesterday = moment().subtract(1, 'day');
 
-                // Existing conditions for display text
-                if (start.isSame(today, 'day') && end.isSame(today, 'day')) {
-                    displayText = ("Today: ") + start.format('D MMM YYYY');
-                    $('.search-bar').css('width', 'calc(99.5% - 176.5px)');
-                } else if (start.isSame(yesterday, 'day') && end.isSame(yesterday, 'day')) {
-                    displayText = ("Yesterday: ") + start.format('D MMM YYYY');
-                    $('.search-bar').css('width', 'calc(99.5% - 200px)');
-                } else if (start.isSame(end, 'day')) {
-                    displayText = start.format('D MMM YYYY');
-                    $('.search-bar').css('width', 'calc(99.5% - 131px)');
-                } else if (start.isSame(moment().subtract(6, 'days'), 'day') && end.isSame(today, 'day')) {
-                    displayText = "Last 7 days: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-                    $('.search-bar').css('width', 'calc(99.5% - 297.5px)');
-                } else if (start.isSame(moment().startOf('week'), 'day') && end.isSame(today, 'day')) {
-                    displayText = "This Week: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-                    $('.search-bar').css('width', 'calc(99.5% - 291px)');
-                } else if (start.isSame(moment().subtract(1, 'week').startOf('week'), 'day') && end.isSame(moment().subtract(1, 'week').endOf('week'), 'day')) {
-                    displayText = "Last Week: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-                    $('.search-bar').css('width', 'calc(99.5% - 283px)');
-                } else if (start.isSame(moment().startOf('month'), 'day') && end.isSame(today, 'day')) {
-                    displayText = "This Month: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-                    $('.search-bar').css('width', 'calc(99.5% - 291px)');
-                } else if (start.isSame(moment().subtract(1, 'month').startOf('month'), 'day') && end.isSame(moment().subtract(1, 'month').endOf('month'), 'day')) {
-                    displayText = "Last Month: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-                    $('.search-bar').css('width', 'calc(99.5% - 291px)');
-                } else if (start.isSame(end, 'month')) {
-                    displayText = start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-                    $('.search-bar').css('width', 'calc(99.5% - 226.2px)');
-                } else {
-                    displayText = start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
-                    $('.search-bar').css('width', 'calc(99.5% - 220px)');
-                }
+            //     // Existing conditions for display text
+            //     if (start.isSame(today, 'day') && end.isSame(today, 'day')) {
+            //         displayText = ("Today: ") + start.format('D MMM YYYY');
+            //         $('.search-bar').css('width', 'calc(99.5% - 176.5px)');
+            //     } else if (start.isSame(yesterday, 'day') && end.isSame(yesterday, 'day')) {
+            //         displayText = ("Yesterday: ") + start.format('D MMM YYYY');
+            //         $('.search-bar').css('width', 'calc(99.5% - 200px)');
+            //     } else if (start.isSame(end, 'day')) {
+            //         displayText = start.format('D MMM YYYY');
+            //         $('.search-bar').css('width', 'calc(99.5% - 131px)');
+            //     } else if (start.isSame(moment().subtract(6, 'days'), 'day') && end.isSame(today, 'day')) {
+            //         displayText = "Last 7 days: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+            //         $('.search-bar').css('width', 'calc(99.5% - 297.5px)');
+            //     } else if (start.isSame(moment().startOf('week'), 'day') && end.isSame(today, 'day')) {
+            //         displayText = "This Week: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+            //         $('.search-bar').css('width', 'calc(99.5% - 291px)');
+            //     } else if (start.isSame(moment().subtract(1, 'week').startOf('week'), 'day') && end.isSame(moment().subtract(1, 'week').endOf('week'), 'day')) {
+            //         displayText = "Last Week: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+            //         $('.search-bar').css('width', 'calc(99.5% - 283px)');
+            //     } else if (start.isSame(moment().startOf('month'), 'day') && end.isSame(today, 'day')) {
+            //         displayText = "This Month: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+            //         $('.search-bar').css('width', 'calc(99.5% - 291px)');
+            //     } else if (start.isSame(moment().subtract(1, 'month').startOf('month'), 'day') && end.isSame(moment().subtract(1, 'month').endOf('month'), 'day')) {
+            //         displayText = "Last Month: " + start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+            //         $('.search-bar').css('width', 'calc(99.5% - 291px)');
+            //     } else if (start.isSame(end, 'month')) {
+            //         displayText = start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+            //         $('.search-bar').css('width', 'calc(99.5% - 226.2px)');
+            //     } else {
+            //         displayText = start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY');
+            //         $('.search-bar').css('width', 'calc(99.5% - 220px)');
+            //     }
 
-                // Set values in the inputs
-                $('#start-date').val(start.format('YYYY-MM-DD'));
-                $('#end-date').val(end.format('YYYY-MM-DD'));
+            //     // Set values in the inputs
+            //     $('#start-date').val(start.format('YYYY-MM-DD'));
+            //     $('#end-date').val(end.format('YYYY-MM-DD'));
 
-                // AJAX call to save the selected dates
-                saveDates(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
-            }
+            //     // AJAX call to save the selected dates
+            //     saveDates(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
+            // }
 
-            // Initialize the daterangepicker with ranges
-            $('#reportrange').daterangepicker({
-                startDate: start,
-                endDate: end,
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'This Week': [moment().startOf('week'), moment()],
-                    'Last Week': [moment().subtract(1, 'week').startOf('week'), moment().subtract(1, 'week').endOf('week')],
-                    'This Month': [moment().startOf('month'), moment()],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            }, setdaterange);
+            // // Initialize the daterangepicker with ranges
+            // $('#reportrange').daterangepicker({
+            //     startDate: start,
+            //     endDate: end,
+            //     ranges: {
+            //         'Today': [moment(), moment()],
+            //         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            //         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            //         'This Week': [moment().startOf('week'), moment()],
+            //         'Last Week': [moment().subtract(1, 'week').startOf('week'), moment().subtract(1, 'week').endOf('week')],
+            //         'This Month': [moment().startOf('month'), moment()],
+            //         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            //     }
+            // }, setdaterange);
 
             // ========================================================================================= TIMEZONE ===============================================================================
             function saveTimezone(timezone) {
@@ -5387,7 +5387,7 @@ session_start();
                     }
                 }
 
-                // Event listener for each span inside the td
+                // Click Event listener for each span inside the td
                 tableCells.forEach((span) => {
                     span.addEventListener("click", function() {
                         const selectedDay = parseInt(span.textContent);
@@ -5412,6 +5412,89 @@ session_start();
                 });
             });
 
+            // ------------------------------------------------- Cancel button -----------------------------------------------
+            document.querySelector('.date-cancel').addEventListener('click', function() {
+                const dateDropdown  = document.querySelector('.date-submenu');
+                dateDropdown.classList.add('d-none');
+            });
+
+            // ----------------------------------------------- Apply button to save date to Database -----------------------------------
+            document.querySelector('.date-apply').addEventListener('click', function() {
+                const dateDropdown  = document.querySelector('.date-submenu');
+                const selectedDates = document.querySelectorAll('.select-date');
+
+                if (selectedDates.length >= 2) {
+                    const startDateSpan = selectedDates[0];
+                    const endDateSpan = selectedDates[selectedDates.length - 1];
+
+                    const startDay = parseInt(startDateSpan.textContent.trim());
+                    const endDay = parseInt(endDateSpan.textContent.trim());
+
+                    const startMonthElement = startDateSpan.closest('.nov, .dec');
+                    const endMonthElement = endDateSpan.closest('.nov, .dec');
+
+                    const startMonthText = startMonthElement.querySelector('.nov-txt, .dec-txt').textContent.trim();
+                    const endMonthText = endMonthElement.querySelector('.nov-txt, .dec-txt').textContent.trim();
+
+                    const monthMapping = {
+                        January: '01',
+                        February: '02',
+                        March: '03',
+                        April: '04',
+                        May: '05',
+                        June: '06',
+                        July: '07',
+                        August: '08',
+                        September: '09',
+                        October: '10',
+                        November: '11',
+                        December: '12',
+                    };
+
+                    const startMonth = monthMapping[startMonthText.split(' ')[0]];
+                    const endMonth = monthMapping[endMonthText.split(' ')[0]];
+
+                    const startYear = startMonthText.split(' ')[1];
+                    const endYear = endMonthText.split(' ')[1];
+
+                    // Format dates as YYYY-MM-DD
+                    const startDate = `${startYear}-${startMonth}-${String(startDay).padStart(2, '0')}`;
+                    const endDate = `${endYear}-${endMonth}-${String(endDay).padStart(2, '0')}`;
+
+                    // Send the new dates to the server via AJAX
+                    $.ajax({
+                        url: 'controller/date/update_date.php',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            startdate: startDate,
+                            enddate: endDate,
+                        }),
+                        success: function(response) {
+                            try {
+                                const data = JSON.parse(response);
+                                if (data.success) {
+                                    alert('Dates updated successfully!');
+                                    location.reload();
+                                } else {
+                                    alert('Failed to update dates: ' + data.message);
+                                }
+                            } catch (e) {
+                                console.error('Failed to parse response:', response);
+                                alert('An unexpected error occurred.');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('AJAX Error:', xhr.responseText);
+                            alert('An error occurred while updating dates.');
+                        },
+                    });
+                } else {
+                    alert('Please select both start and end dates before applying.');
+                }
+                
+                dateDropdown.classList.add('d-none');
+            });
 
 
             // =========================================================== change footer question mark hover ==============================================================

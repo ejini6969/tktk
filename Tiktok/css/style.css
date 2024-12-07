@@ -1807,6 +1807,10 @@ th.draggable.dragging {
     position: absolute;
     margin: 5px 0;
     z-index: 2;
+    opacity: 1;
+    transform: scaleY(1);
+    transition: transform .3s cubic-bezier(.23,1, .32,1), opacity .3s cubic-bezier(.23,1,.32,1);
+    transform-origin: center top;
 }
 
 .date-submenu .compare-row{
@@ -1949,7 +1953,7 @@ th.draggable.dragging {
     display: flex;
 }
 
-.date-content .date-right .nov .nov-header button:hover{
+.date-content .date-right .nov .nov-header button:hover, .date-content .date-right .dec .dec-header button:hover{
     color: #017976;
 }
 
@@ -2055,6 +2059,9 @@ th.draggable.dragging {
     height: 35px;
     padding: 0 6px;
     position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center; 
     text-align: right;
 }
 
@@ -2064,15 +2071,23 @@ th.draggable.dragging {
     background: #f2f3f3;
     border: 0 #d3d4d5;
     border-radius: 4px;
+    box-sizing: border-box;
     line-height: 1;
     height: 26px;
-    display: inline-block;
     margin: 4px 0;
     padding: 7px 8px;
+    display: inline-block;
     text-align: center;
+    align-items: center;
     justify-content: center;
     white-space: nowrap;
     cursor: pointer;
+    -webkit-transition: .1s;
+}
+
+.date-submenu .date-footer .date-cancel:hover{
+    background-color: #e5e5e6;
+    border-color: #009995;
 }
 
 .date-submenu .date-footer .date-apply{
@@ -2081,6 +2096,12 @@ th.draggable.dragging {
     color: #fff;
     margin-left: 10px;
 }
+
+.date-submenu .date-footer .date-apply:hover{
+    background: #008581;
+    border-color: #008581;
+}
+
 /* =========================================================================== TABLE HEADER REFRESH SUBMENU ================================================================== */
 .table-header-refresh-submenu{
     font-size: 12px;
