@@ -1165,11 +1165,12 @@ session_start();
                                 <input value=<?php echo $enddate ?> placeholder="end date" class="end-date" id="end-date" readonly>
                             </div>
                             <span class="utc">
-                                <select class="timezone" id="timezone" name="timezone">
+                                <span class="timezone" id="timezone">(UTC+08:00) Kuala Lumpur Time</span>
+                                <!-- <select class="timezone" id="timezone" name="timezone">
                                     <option value="kuala_lumpur" <?php echo $timezone == "kuala_lumpur" ? 'selected' : ''; ?>>(UTC+08:00) Kuala Lumpur Time</option>
                                     <option value="singapore" <?php echo $timezone == "singapore" ? 'selected' : ''; ?>>(UTC+08:00) Singapore Time</option>
                                     <option value="jakarta" <?php echo $timezone == "jakarta" ? 'selected' : ''; ?>>(UTC+07:00) Jakarta Time</option>
-                                </select>
+                                </select> -->
                                 <i class="vi-icon-question calendar-question"></i>
                             </span>
                             <i class="vi-input__icon vi-icon-date"></i>
@@ -2786,7 +2787,7 @@ session_start();
             </div>
 
             <!-- edit tab -->
-            <div class="edit-tag sideslip">
+            <div class="edit-tag sideslip d-none">
                 <div class="d-flex">
                     <div class=" m-0 p-0 side-left">
                         <div class="tab-item-close">
@@ -4011,7 +4012,7 @@ session_start();
     </div>
 
     <!--------------------------------------------------------------------------------- DATE SUBMENU -------------------------------------------------------------------------------------------->$_COOKIE
-    <div class="date-submenu">
+    <div class="date-submenu d-none">
         <div class="compare-row">
             <span class="compare-text">Compare</span>
             <div role="switch" class="vi-switch vi-tooltip item"
@@ -4636,14 +4637,16 @@ session_start();
                     success: function(response) {
                         const res = JSON.parse(response);
                         if (res.status === 'success') {
-                            alert(res.message);
+                            // alert(res.message);
                             window.location.reload();
                         } else {
-                            alert('Error: ' + res.message);
+                            console.error("Error: " + res.message)
+                            // alert('Error: ' + res.message);
                         }
                     },
                     error: function(xhr, status, error) {
-                        alert("Error: " + error);
+                        console.error("AJAX Error:", status, error);
+                        // alert("Error: " + error);
                     }
                 });
             }
@@ -4745,7 +4748,8 @@ session_start();
                         const data = JSON.parse(response);
 
                         if (data.status && data.status === "error") {
-                            alert(data.message);
+                            // alert(data.message);
+                            console.error(data.message);
                         } else {
                             $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
                             $(`#add-row-modal-${rowId} #campaignname`).val(data.campaignname);
@@ -4760,7 +4764,7 @@ session_start();
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error:", status, error);
-                        alert("There was an error fetching the data. Please try again.");
+                        // alert("There was an error fetching the data. Please try again.");
                     }
                 });
             }
@@ -4768,7 +4772,7 @@ session_start();
             // --------------------- Delete Ad Row (FOR EACH ROW) --------------------------
             function deleteCampaignsRow(rowId) {
                 if (rowId === "ads-rw-1") {
-                    alert("1st row cannot be deleted!");
+                    // alert("1st row cannot be deleted!");
                     return;
                 }
 
@@ -4785,15 +4789,16 @@ session_start();
                     success: function(response) {
                         let res = JSON.parse(response);
                         if (res.status === "success") {
-                            alert(res.message);
+                            // alert(res.message);
                             window.location.reload();
                         } else {
-                            alert("Error: " + res.message);
+                            console.error("Error: " + res.message)
+                            // alert("Error: " + res.message);
                         }
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error:", status, error);
-                        alert("There was an error deleting the row. Please try again.");
+                        // alert("There was an error deleting the row. Please try again.");
                     }
                 });
             }
@@ -4931,14 +4936,16 @@ session_start();
                     success: function(response) {
                         const res = JSON.parse(response);
                         if (res.status === 'success') {
-                            alert(res.message);
+                            // alert(res.message);
                             window.location.reload();
                         } else {
-                            alert('Error: ' + res.message);
+                            console.error("Error: " + res.message)
+                            // alert('Error: ' + res.message);
                         }
                     },
                     error: function(xhr, status, error) {
-                        alert("Error: " + error);
+                        console.error("AJAX Error:", status, error);
+                        // alert("Error: " + error);
                     }
                 });
             }
@@ -5040,7 +5047,8 @@ session_start();
                         const data = JSON.parse(response);
 
                         if (data.status && data.status === "error") {
-                            alert(data.message);
+                            console.error("Error: " + data.message)
+                            // alert(data.message);
                         } else {
                             $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
                             $(`#add-row-modal-${rowId} #adsgroupname`).val(data.adsgroupname);
@@ -5056,7 +5064,7 @@ session_start();
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error:", status, error);
-                        alert("There was an error fetching the data. Please try again.");
+                        // alert("There was an error fetching the data. Please try again.");
                     }
                 });
             }
@@ -5064,7 +5072,7 @@ session_start();
             // --------------------- Delete Ad Group Row (FOR EACH ROW) --------------------------
             function deleteAdsGroupRow(rowId) {
                 if (rowId === "ads-group-rw-1") {
-                    alert("1st row cannot be deleted!");
+                    // alert("1st row cannot be deleted!");
                     return;
                 }
 
@@ -5081,15 +5089,16 @@ session_start();
                     success: function(response) {
                         let res = JSON.parse(response);
                         if (res.status === "success") {
-                            alert(res.message);
+                            // alert(res.message);
                             window.location.reload();
                         } else {
-                            alert("Error: " + res.message);
+                            console.error("Error: " + res.message)
+                            // alert("Error: " + res.message);
                         }
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error:", status, error);
-                        alert("There was an error deleting the row. Please try again.");
+                        // alert("There was an error deleting the row. Please try again.");
                     }
                 });
             }
@@ -5189,14 +5198,16 @@ session_start();
                     success: function(response) {
                         const res = JSON.parse(response);
                         if (res.status === 'success') {
-                            alert(res.message);
+                            // alert(res.message);
                             window.location.reload();
                         } else {
-                            alert('Error: ' + res.message);
+                            console.error("Error: " + res.message)
+                            // alert('Error: ' + res.message);
                         }
                     },
                     error: function(xhr, status, error) {
-                        alert("Error: " + error);
+                        console.error("AJAX Error:", status, error);
+                        // alert("Error: " + error);
                     }
                 });
             }
@@ -5314,7 +5325,8 @@ session_start();
                         const data = JSON.parse(response);
 
                         if (data.status && data.status === "error") {
-                            alert(data.message);
+                            console.error(data.message);
+                            // alert(data.message);
                         } else {
                             $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
                             $(`#add-row-modal-${rowId} #adsname`).val(data.adsname);
@@ -5330,7 +5342,7 @@ session_start();
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error:", status, error);
-                        alert("There was an error fetching the data. Please try again.");
+                        // alert("There was an error fetching the data. Please try again.");
                     }
                 });
             }
@@ -5338,7 +5350,7 @@ session_start();
             // --------------------- Delete Ad Row (FOR EACH ROW) --------------------------
             function deleteAdsRow(rowId) {
                 if (rowId === "ads-rw-1") {
-                    alert("1st row cannot be deleted!");
+                    // alert("1st row cannot be deleted!");
                     return;
                 }
 
@@ -5355,15 +5367,16 @@ session_start();
                     success: function(response) {
                         let res = JSON.parse(response);
                         if (res.status === "success") {
-                            alert(res.message);
+                            // alert(res.message);
                             window.location.reload();
                         } else {
-                            alert("Error: " + res.message);
+                            console.error("Error: " + res.message)
+                            // alert("Error: " + res.message);
                         }
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error:", status, error);
-                        alert("There was an error deleting the row. Please try again.");
+                        // alert("There was an error deleting the row. Please try again.");
                     }
                 });
             }
@@ -5690,6 +5703,20 @@ session_start();
             })
 
             // ============================================================= DATE SUBMENU ==========================================================
+            // ------------------------------------------------- Click Date Element -----------------------------------------------
+            document.querySelector(".date-element").addEventListener('click', function(){
+                const dateElement  = document.querySelector('.date-element');
+                const dateSubmenu  = document.querySelector('.date-submenu');
+                dateElement.classList.add('is-active');
+                dateSubmenu.classList.remove('d-none');
+
+                dateSubmenu.classList.add('vi-zoom-in-top-enter');
+                setTimeout(() => {
+                    dateSubmenu.classList.remove('vi-zoom-in-top-enter');
+                    dateSubmenu.classList.add('vi-zoom-in-top-enter-active');
+                }, 0);
+            })
+
             document.addEventListener("DOMContentLoaded", function() {
                 // -------------------------------------------- Highlight current date ----------------------------------
                 const today = new Date();
@@ -5745,16 +5772,18 @@ session_start();
                     }
                 }
 
-                // Click Event listener for each span inside the td
+                // ---------------------------------------------- Click Event listener for each span inside the td -----------------------------------------
                 tableCells.forEach((span) => {
                     span.addEventListener("click", function() {
                         const selectedDay = parseInt(span.textContent);
+                        const dateApply = document.querySelector(".date-apply");
 
                         if (!startDate || (startDate && endDate)) {
                             clearSelections();
                             startDate = span;
                             endDate = null;
                             span.classList.add("select-date");
+                            dateApply.classList.add("is-disabled");
                         } else if (!endDate) {
                             endDate = span;
                             // Ensure the end date is after the start date
@@ -5764,6 +5793,7 @@ session_start();
                             }
                             startDate.classList.add("select-date");
                             endDate.classList.add("select-date");
+                            dateApply.classList.remove("is-disabled");
                             applyRangeStyles();
                         }
                     });
@@ -5772,13 +5802,21 @@ session_start();
 
             // ------------------------------------------------- Cancel button -----------------------------------------------
             document.querySelector('.date-cancel').addEventListener('click', function() {
-                const dateDropdown  = document.querySelector('.date-submenu');
-                dateDropdown.classList.add('d-none');
+                const dateElement   = document.querySelector('.date-element');
+                const dateSubmenu  = document.querySelector('.date-submenu');
+                dateElement.classList.remove('is-active');
+
+                dateSubmenu.classList.add('vi-zoom-in-top-leave-active');
+                setTimeout(() => {
+                    dateSubmenu.classList.add('d-none');
+                    dateSubmenu.classList.remove('vi-zoom-in-top-leave-active');
+                }, 300); 
             });
 
             // ----------------------------------------------- Apply button to save date to Database -----------------------------------
             document.querySelector('.date-apply').addEventListener('click', function() {
-                const dateDropdown  = document.querySelector('.date-submenu');
+                const dateElement   = document.querySelector('.date-element');
+                const dateSubmenu = document.querySelector('.date-submenu');
                 const selectedDates = document.querySelectorAll('.select-date');
 
                 if (selectedDates.length >= 2) {
@@ -5832,26 +5870,34 @@ session_start();
                             try {
                                 const data = JSON.parse(response);
                                 if (data.success) {
-                                    alert('Dates updated successfully!');
+                                    // alert('Dates updated successfully!');
                                     location.reload();
                                 } else {
-                                    alert('Failed to update dates: ' + data.message);
+                                    console.error('Failed to update dates: ' + data.message);
+                                   // alert('Failed to update dates: ' + data.message);
                                 }
                             } catch (e) {
                                 console.error('Failed to parse response:', response);
-                                alert('An unexpected error occurred.');
+                               // alert('An unexpected error occurred.');
                             }
                         },
                         error: function(xhr, status, error) {
                             console.error('AJAX Error:', xhr.responseText);
-                            alert('An error occurred while updating dates.');
+                            // alert('An error occurred while updating dates.');
                         },
                     });
                 } else {
-                    alert('Please select both start and end dates before applying.');
+                    // alert('Please select both start and end dates before applying.');
+                    console.error('Please select both start and end dates before applying.');
                 }
                 
-                dateDropdown.classList.add('d-none');
+                dateElement.classList.remove('is-active');
+                
+                dateSubmenu.classList.add('vi-zoom-in-top-leave-active');
+                setTimeout(() => {
+                    dateSubmenu.classList.add('d-none');
+                    dateSubmenu.classList.remove('vi-zoom-in-top-leave-active');
+                }, 300); 
             });
 
 
