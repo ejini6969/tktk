@@ -40,6 +40,8 @@ session_start();
     <!-- Date Range Picker CSS -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xgplayer/dist/index.min.css">
+
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -58,7 +60,6 @@ session_start();
 
     <!-- Date Picker JS -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-
 </head>
 
 <body>
@@ -1400,7 +1401,7 @@ session_start();
                                     }
 
                                     // ~~~~~~~~~~~~~~ PHP get Row Id and insert data (FOR EACH ROW) ~~~~~~~~~~~~~~~~
-                                    $sqlSelectCampaignsData = "SELECT * FROM campaigndata";
+                                    $sqlSelectCampaignsData = "SELECT * FROM campaigndata WHERE date BETWEEN '$startdate' AND '$enddate'";
                                     $campaignsDataResult = $conn->query($sqlSelectCampaignsData);
                                     while ($campaignsDataRow = $campaignsDataResult->fetch_assoc()) {
                                         $isOnOff = $campaignsDataRow['onoff'] == 1 ? 'checked' : '';
@@ -1442,7 +1443,7 @@ session_start();
                                                                     <use xlink:href="#campaign-list-icon-view-data-bar">
                                                                     </use>
                                                                 </svg>
-                                                                View data
+                                                                <span class="pl-3">View data</span>
                                                             </div>
                                                             <div class="edit-data" id="editCampaignsRowBtn" onclick="editCampaignsRow('campaigns-rw-<?php echo $rowId; ?>')">
                                                                 <i class="vi-icon2-edit"></i>
@@ -1584,11 +1585,47 @@ session_start();
                                 <tfoot class="table-footer">
 
                                     <?php
-                                    $sqlSelectFooter = "SELECT * FROM totalcampaigndata";
-                                    $campaignsFooterResult = $conn->query($sqlSelectFooter);
-                                    $campaignsFooterRow = $campaignsFooterResult->fetch_assoc();
+                                    $startDate = $startdate;
+                                    $endDate = $enddate;
 
-                                    $sqlCountCampaigns = "SELECT COUNT(*) AS totalcount FROM campaigndata";
+                                    $sqlSelectFooter = "
+                                        SELECT 
+                                            SUM(cost) AS totalcost, 
+                                            SUM(reach) AS totalreach, 
+                                            SUM(imprs) AS totalimprs, 
+                                            SUM(result) AS totalresult, 
+                                            SUM(click) AS totalclick,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(imprs), 0) * 1000, 0) AS totalcpm,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(click), 0), 0) AS totalcpc,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(result), 0), 0) AS totalcpr,
+                                            IFNULL(SUM(click) / NULLIF(SUM(imprs), 0) * 100, 0) AS totalctr
+                                        FROM campaigndata
+                                        WHERE date BETWEEN '$startDate' AND '$endDate'
+                                    ";
+
+                                    $campaignsFooterResult = $conn->query($sqlSelectFooter);
+                                    if ($campaignsFooterResult && $campaignsFooterResult->num_rows > 0) {
+                                        $campaignsFooterRow = $campaignsFooterResult->fetch_assoc();
+                                    } else {
+                                        $campaignsFooterRow = [
+                                            "totalcost" => 0,
+                                            "totalreach" => 0,
+                                            "totalimprs" => 0,
+                                            "totalresult" => 0,
+                                            "totalclick" => 0,
+                                            "totalcpm" => 0,
+                                            "totalcpc" => 0,
+                                            "totalcpr" => 0,
+                                            "totalctr" => 0
+                                        ];
+                                    }
+
+                                    // Count total campaigns within the date range
+                                    $sqlCountCampaigns = "
+                                        SELECT COUNT(*) AS totalcount 
+                                        FROM campaigndata
+                                        WHERE date BETWEEN '$startDate' AND '$endDate'
+                                    ";
                                     $countCampaignsResult = $conn->query($sqlCountCampaigns);
                                     if ($countCampaignsResult && $countCampaignsResult->num_rows > 0) {
                                         $row = $countCampaignsResult->fetch_assoc();
@@ -1906,7 +1943,7 @@ session_start();
                                     }
 
                                     // ~~~~~~~~~~~~~~ PHP get Row Id and insert data (FOR EACH ROW) ~~~~~~~~~~~~~~~~
-                                    $sqlSelectAdsGroupData = "SELECT * FROM adsgroupdata";
+                                    $sqlSelectAdsGroupData = "SELECT * FROM adsgroupdata WHERE date BETWEEN '$startdate' AND '$enddate'";
                                     $adsGroupDataResult = $conn->query($sqlSelectAdsGroupData);
                                     while ($adsGroupDataRow = $adsGroupDataResult->fetch_assoc()) {
                                         $isOnOff = $adsGroupDataRow['onoff'] == 1 ? 'checked' : '';
@@ -1949,7 +1986,7 @@ session_start();
                                                                     <use xlink:href="#campaign-list-icon-view-data-bar">
                                                                     </use>
                                                                 </svg>
-                                                                View data
+                                                                <span class="pl-3">View data</span>
                                                             </div>
                                                             <div class="edit-data" id="editAdsGroupRowBtn" onclick="editAdsGroupRow('ads-group-rw-<?php echo $rowId; ?>')">
                                                                 <i class="vi-icon2-edit"></i>
@@ -2092,25 +2129,60 @@ session_start();
                                 <tfoot class="table-footer">
 
                                     <?php
-                                    $sqlSelectFooter = "SELECT * FROM totaladsgroupdata";
-                                    $adsGroupFooterResult = $conn->query($sqlSelectFooter);
-                                    $adsGroupFooterRow = $adsGroupFooterResult->fetch_assoc();
+                                    $startDate = $startdate;
+                                    $endDate = $enddate;
 
-                                    $sqlCountAdsGroup = "SELECT COUNT(*) AS totalcount FROM adsgroupdata";
+                                    $sqlSelectFooter = "
+                                        SELECT 
+                                            SUM(cost) AS totalcost, 
+                                            SUM(reach) AS totalreach, 
+                                            SUM(imprs) AS totalimprs, 
+                                            SUM(result) AS totalresult, 
+                                            SUM(click) AS totalclick,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(imprs), 0) * 1000, 0) AS totalcpm,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(click), 0), 0) AS totalcpc,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(result), 0), 0) AS totalcpr,
+                                            IFNULL(SUM(click) / NULLIF(SUM(imprs), 0) * 100, 0) AS totalctr
+                                        FROM adsgroupdata
+                                        WHERE date BETWEEN '$startDate' AND '$endDate'
+                                    ";
+
+                                    $adsGroupFooterResult = $conn->query($sqlSelectFooter);
+                                    if ($adsGroupFooterResult && $adsGroupFooterResult->num_rows > 0) {
+                                        $adsGroupFooterRow = $adsGroupFooterResult->fetch_assoc();
+                                    } else {
+                                        $adsGroupFooterRow = [
+                                            "totalcost" => 0,
+                                            "totalreach" => 0,
+                                            "totalimprs" => 0,
+                                            "totalresult" => 0,
+                                            "totalclick" => 0,
+                                            "totalcpm" => 0,
+                                            "totalcpc" => 0,
+                                            "totalcpr" => 0,
+                                            "totalctr" => 0
+                                        ];
+                                    }
+
+                                    // Count total ads within the date range
+                                    $sqlCountAdsGroup = "
+                                        SELECT COUNT(*) AS totalcount 
+                                        FROM adsgroupdata
+                                        WHERE date BETWEEN '$startDate' AND '$endDate'
+                                    ";
                                     $countAdsGroupResult = $conn->query($sqlCountAdsGroup);
                                     if ($countAdsGroupResult && $countAdsGroupResult->num_rows > 0) {
                                         $row = $countAdsGroupResult->fetch_assoc();
-                                        $totalAds = $row['totalcount'];
+                                        $totalAdsGroup = $row['totalcount'];
                                     } else {
-                                        $totalAds = 0;
+                                        $totalAdsGroup = 0;
                                     }
                                     ?>
-
                                     <tr>
                                         <td colspan="3" class="footer-col total-ads">
                                             <div class="d-flex justify-content-start align-items-center">
                                                 <span class="total-ads-txt">
-                                                    <?php echo "Total of $totalAds " . ($totalAds == 1 ? 'ad group' : 'ad groups'); ?>
+                                                    <?php echo "Total of $totalAdsGroup " . ($totalAdsGroup == 1 ? 'ad group' : 'ad groups'); ?>
                                                 </span>
                                                 <i class="vi-tooltip vi-icon-ex-circle-question item"
                                                     aria-describedby="vi-tooltip-1404" tabindex="0"></i>
@@ -2476,9 +2548,9 @@ session_start();
                                                                     <use xlink:href="#campaign-list-icon-view-data-bar">
                                                                     </use>
                                                                 </svg>
-                                                                View data
+                                                                <span class="pl-3">View data</span>
                                                             </div>
-                                                            <div class="edit-data">
+                                                            <div class="edit-data" onclick="realEditAdRow('real-edit-row-modal-ads-rw-<?php echo $rowId; ?>')">
                                                                 <i class="vi-icon2-edit"></i>
                                                                 Edit
                                                             </div>
@@ -2627,11 +2699,47 @@ session_start();
                                 <tfoot class="table-footer">
 
                                     <?php
-                                    $sqlSelectFooter = "SELECT * FROM totaladsdata";
-                                    $adsFooterResult = $conn->query($sqlSelectFooter);
-                                    $adsFooterRow = $adsFooterResult->fetch_assoc();
+                                    $startDate = $startdate;
+                                    $endDate = $enddate;
 
-                                    $sqlCountAds = "SELECT COUNT(*) AS totalcount FROM adsdata";
+                                    $sqlSelectFooter = "
+                                        SELECT 
+                                            SUM(cost) AS totalcost, 
+                                            SUM(reach) AS totalreach, 
+                                            SUM(imprs) AS totalimprs, 
+                                            SUM(result) AS totalresult, 
+                                            SUM(click) AS totalclick,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(imprs), 0) * 1000, 0) AS totalcpm,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(click), 0), 0) AS totalcpc,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(result), 0), 0) AS totalcpr,
+                                            IFNULL(SUM(click) / NULLIF(SUM(imprs), 0) * 100, 0) AS totalctr
+                                        FROM adsdata
+                                        WHERE date BETWEEN '$startDate' AND '$endDate'
+                                    ";
+
+                                    $adsFooterResult = $conn->query($sqlSelectFooter);
+                                    if ($adsFooterResult && $adsFooterResult->num_rows > 0) {
+                                        $adsFooterRow = $adsFooterResult->fetch_assoc();
+                                    } else {
+                                        $adsFooterRow = [
+                                            "totalcost" => 0,
+                                            "totalreach" => 0,
+                                            "totalimprs" => 0,
+                                            "totalresult" => 0,
+                                            "totalclick" => 0,
+                                            "totalcpm" => 0,
+                                            "totalcpc" => 0,
+                                            "totalcpr" => 0,
+                                            "totalctr" => 0
+                                        ];
+                                    }
+
+                                    // Count total ads within the date range
+                                    $sqlCountAds = "
+                                        SELECT COUNT(*) AS totalcount 
+                                        FROM adsdata
+                                        WHERE date BETWEEN '$startDate' AND '$endDate'
+                                    ";
                                     $countAdsResult = $conn->query($sqlCountAds);
                                     if ($countAdsResult && $countAdsResult->num_rows > 0) {
                                         $row = $countAdsResult->fetch_assoc();
@@ -2786,16 +2894,16 @@ session_start();
                 </div>
             </div>
 
-            <!-- edit tab -->
-            <div class="edit-tag sideslip d-none">
+            <!---------------------------------------------------------------------------------- Edit Ad Popup --------------------------------------------------------------------------->
+            <div class="edit-tag sideslip d-none real-edit-row-modal-ads-rw-1" id="real-edit-row-modal-ads-rw-1">
                 <div class="d-flex">
                     <div class=" m-0 p-0 side-left">
                         <div class="tab-item-close">
-                           <div class="close-btn">
-                            <svg data-v-0efd789f="" aria-hidden="true" class="close-button__icon svg-icon" elementtiming="element-timing">
+                            <div class="close-btn">
+                                <svg data-v-0efd789f="" aria-hidden="true" class="close-button__icon svg-icon" elementtiming="element-timing">
                                     <use xlink:href="#campaign-list-icon-common-drawer-close" elementtiming="element-timing"></use>
                                 </svg>
-                           </div>
+                            </div>
                         </div>
                         <div class="tab-item-others">
                             <div class="common-drawer-tab vi-tooltip tab-item tab-item--active">
@@ -2840,7 +2948,7 @@ session_start();
                                             </div>
 
                                             <!-- contnet -->
-                                             <div class="index_creativeGateway_QieEM">
+                                            <div class="index_creativeGateway_QieEM">
                                                 <div class="index_container_QB1YE">
                                                     <div class="index_wrapper_MbXmy">
                                                         <div class="index_content_KjME1 index_infraPreviewContent_oXXGi">
@@ -2852,14 +2960,14 @@ session_start();
                                                                                 <div class="switch-container" style="font-size: 18px;">
                                                                                     <div class="index_switchContent_BQSqd">
                                                                                         <div class="vi-tooltip index_switchWrapper_lVIeH">
-                                                                                        <span content="" placement="bottom" effect="light" class="index_switch_fSi_w"><!---->
-                                                                                            <div data-testid="switch-container-index-jW96vy" role="switch" aria-disabled="true" class="vi-switch is-disabled">
-                                                                                                <input data-testid="switch-component-rZhLsB" type="checkbox" name="" true-value="true" disabled="disabled" class="vi-switch__input"><!---->
-                                                                                                <span class="vi-switch__core" style="width: 40px;">
+                                                                                            <span content="" placement="bottom" effect="light" class="index_switch_fSi_w"><!---->
+                                                                                                <div data-testid="switch-container-index-jW96vy" role="switch" aria-disabled="true" class="vi-switch is-disabled">
+                                                                                                    <input data-testid="switch-component-rZhLsB" type="checkbox" name="" true-value="true" disabled="disabled" class="vi-switch__input"><!---->
+                                                                                                    <span class="vi-switch__core" style="width: 40px;">
 
-                                                                                                </span><!---->
-                                                                                            </div>
-                                                                                        </span>
+                                                                                                    </span><!---->
+                                                                                                </div>
+                                                                                            </span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -2873,20 +2981,20 @@ session_start();
                                                                             <div class="">
                                                                                 <div class="card-cont index_bodyWrapper_qF6uZ card-container__body-wrapper--min">
                                                                                     <div class="" style="margin-top: 24px;">
-                                                                                       <div class="vi-form-item">
+                                                                                        <div class="vi-form-item">
                                                                                             <div class="vi-form-item__content">
                                                                                                 <div class="vi-tag-input">
                                                                                                     <div class="vi-input">
-                                                                                                    <input type="text" autocomplete="off" id="ad-base-name" data-testid="creative-name-content-48DpDT" placeholder="Enter ad name" data-tea-expose="new_create_ad_creative_name_expose,creation_component_show,topview_module_show" data-tea-click="new_create_ad_creative_name,creation_component_click,click_topview_module" data-tea-std_component_name="creative_name" data-tea-location="creative_name" class="vi-input__inner">
+                                                                                                        <input type="text" autocomplete="off" id="ad-base-name" placeholder="Enter ad name" class="vi-input__inner">
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="">
-                                                                                                <button data-testid="creative-name-content-mFsCQi" type="button" class="vi-button vi-byted-button vi-tooltip vi-button--text content_generateBtn_nhoCv" aria-describedby="vi-tooltip-7066" tabindex="0"><!----><!----><span>
-                                                                                                    <i class="vi-icon-plus"></i> Add creative name </span>
-                                                                                                </button>
+                                                                                                    <button type="button" class="vi-button vi-byted-button vi-tooltip vi-button--text content_generateBtn_nhoCv" aria-describedby="vi-tooltip-7066" tabindex="0"><!----><!----><span>
+                                                                                                            <i class="vi-icon-plus"></i> Add creative name </span>
+                                                                                                    </button>
                                                                                                 </div>
                                                                                             </div>
-                                                                                       </div> 
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -2900,7 +3008,7 @@ session_start();
                                                                                             <div class="index_title_EZZfA">
                                                                                                 <span class="index_titleContent_THeOd">Identity</span>
                                                                                                 <i class="vi-icon-question vi-tooltip" aria-describedby="vi-tooltip-8652" tabindex="0"></i>
-                                                                                                
+
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -2919,7 +3027,7 @@ session_start();
                                                                                         <div class="vi-form-item">
                                                                                             <div class="vi-form-item__content">
                                                                                                 <div class="index_customIdentityTitle_MRQNI">
-                                                                                                    Set custom identity 
+                                                                                                    Set custom identity
                                                                                                     <i class="vi-icon-question vi-tooltip" aria-describedby="vi-tooltip-2330" tabindex="0"></i>
                                                                                                 </div>
                                                                                                 <!--  -->
@@ -2960,18 +3068,24 @@ session_start();
                                                                                                         <div class="vi-form-item__content">
                                                                                                             <ul class="index_list_c7P98">
                                                                                                                 <span class="index_item_Bv1GU">
-                                                                                                                <li data-tea-creative-type="2" data-tea="create_ad_creative_type,creation_component_click" data-tea-expose="create_ad_creative_type_expose,creation_component_show" data-tea-std_component_name="creative_ad_type_2" data-tea-is_aia="0" class="vi-popover__reference" aria-describedby="vi-popover-1459" tabindex="0">
-                                                                                                                    <div data-testid="creative_adType_item2" class="creative-type-selector-tab_typeSelectorWrap_i1TQl creative-type-selector-tab_active_QijEm creative-type-selector-tab_disabled_jFYDk">
-                                                                                                                        <div class="creative-type-selector-tab_contentWrap_itt4r">
-                                                                                                                            <div class="index_typeContent_d8hkl">
-                                                                                                                                <svg aria-hidden="true" class="svg-icon index_icon_KaveR">
-                                                                                                                                    <use xlink:href="#icon-single-video-ads-icon"></use>
-                                                                                                                                </svg>
-                                                                                                                        <div class="index_titleWrap_sw9ty"><span class="index_title_HvT8l"> Single video <!----></span><span class="index_subTitle_HlO8W"> Create an ad with one video or multiple images. <span><div data-testid="popover-main-5Uvc3C" role="tooltip" id="vi-popover-6847" aria-hidden="true" class="vi-popover vi-popper" style="width: 150px; max-width: none; display: none;"><!----><!----><div class="index_musicCarouselIntroduceWrap_E7CKV"><img src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/lm_zkh_rvarpa/ljhwZthlaukjlkulzlp/ads_manager_creation/music-carousel-introduce-hq.gif" class="index_musicCarouselIntroduceImage_DnO83"></div></div></span></span></div></div></div>
-                                                                                                                    </div>
-                                                                                                                </li>
+                                                                                                                    <li data-tea-creative-type="2" data-tea="create_ad_creative_type,creation_component_click" data-tea-expose="create_ad_creative_type_expose,creation_component_show" data-tea-std_component_name="creative_ad_type_2" data-tea-is_aia="0" class="vi-popover__reference" aria-describedby="vi-popover-1459" tabindex="0">
+                                                                                                                        <div data-testid="creative_adType_item2" class="creative-type-selector-tab_typeSelectorWrap_i1TQl creative-type-selector-tab_active_QijEm creative-type-selector-tab_disabled_jFYDk">
+                                                                                                                            <div class="creative-type-selector-tab_contentWrap_itt4r">
+                                                                                                                                <div class="index_typeContent_d8hkl">
+                                                                                                                                    <svg aria-hidden="true" class="svg-icon index_icon_KaveR">
+                                                                                                                                        <use xlink:href="#icon-single-video-ads-icon"></use>
+                                                                                                                                    </svg>
+                                                                                                                                    <div class="index_titleWrap_sw9ty"><span class="index_title_HvT8l"> Single video <!----></span><span class="index_subTitle_HlO8W"> Create an ad with one video or multiple images. <span>
+                                                                                                                                                <div data-testid="popover-main-5Uvc3C" role="tooltip" id="vi-popover-6847" aria-hidden="true" class="vi-popover vi-popper" style="width: 150px; max-width: none; display: none;"><!----><!---->
+                                                                                                                                                    <div class="index_musicCarouselIntroduceWrap_E7CKV"><img src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/lm_zkh_rvarpa/ljhwZthlaukjlkulzlp/ads_manager_creation/music-carousel-introduce-hq.gif" class="index_musicCarouselIntroduceImage_DnO83"></div>
+                                                                                                                                                </div>
+                                                                                                                                            </span></span></div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </li>
 
-                                                                                                                        
+
                                                                                                                 </span>
                                                                                                             </ul>
                                                                                                         </div>
@@ -2995,19 +3109,27 @@ session_start();
                                                                                                                 <sup class="vi-badge__content is-fixed">New</sup>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        
+
                                                                                                         <div class="vi-form-item" style="margin-bottom: 0px;">
                                                                                                             <div class="index_materialButtons_MHlWC">
                                                                                                                 <div class="selected-video_videoMaterialDetail_Hwpva">
                                                                                                                     <div class="index_selectedMaterial_flUcr index_selectedMaterialFirst_bwOhS material-detail-wrapper">
                                                                                                                         <div class="index_materialInfoBox_DHQJy material-info-box">
                                                                                                                             <div class="index_videoCover_IE4o0 material-cover">
-                                                                                                                                <img src="https://p16-ad-sg.tiktokcdn.com/origin/tos-alisg-p-0051c001-sg/ochweuG7QLAfgHFkUKIASPMgGgT6e2RRcFfiAF" class="index_image_HuhDS">
+                                                                                                                                
+                                                                                                                                <!--<img src="https://p16-ad-sg.tiktokcdn.com/origin/tos-alisg-p-0051c001-sg/ochweuG7QLAfgHFkUKIASPMgGgT6e2RRcFfiAF" class="index_image_HuhDS" >-->
+                                                                                                                                
+                                                                                                                                <video id="real-edit-vid-img" width="64" height="64">
+                                                                                                                                    <source src="img/video.mp4" type="video/mp4">
+                                                                                                                                    Your browser does not support the video tag.
+                                                                                                                                </video>
+
                                                                                                                             </div>
+
                                                                                                                             <div class="index_materialDescBox_SFJ1s material-desc-wrapper">
                                                                                                                                 <div class="index_leftCol_hTivQ left-col">
                                                                                                                                     <div class="index_info_oKP9I material-info">
-                                                                                                                                        <span class="vi-tooltip index_fileNameBox_Y5gc3 file-name" aria-describedby="vi-tooltip-6066" tabindex="0">KWAI VISUAL (5).mp4</span>
+                                                                                                                                        <span class="vi-tooltip index_fileNameBox_Y5gc3 file-name" id="real-edit-vid-name">KWAI VISUAL (5).mp4</span>
                                                                                                                                         <span class="index_videoInfo_RPWNi material-detail-wrapper"><span class="index_label_psoD1 video-duration">00:05 &nbsp;|</span><span class="index_label_psoD1 material-resolution">1080x1920</span></span>
                                                                                                                                     </div>
 
@@ -3015,10 +3137,10 @@ session_start();
                                                                                                                                         <div>
                                                                                                                                             <div style="display: inline-block;">
                                                                                                                                                 <div class="vi-dropdown">
-                                                                                                                                                <span class="vi-tooltip vi-dropdown-selfdefine" aria-describedby="vi-tooltip-8070" tabindex="0" aria-haspopup="list" aria-controls="dropdown-menu-9420" role="button"><button data-testid="creative_material_selectedUpdate" type="button" class="vi-button vi-byted-button vi-button--text vi-button--small material-update-dropdown-new_editBtn_bWPbG"><!----><i class="vi-icon2-edit"></i><span> Update </span></button></span>
+                                                                                                                                                    <span class="vi-tooltip vi-dropdown-selfdefine" aria-describedby="vi-tooltip-8070" tabindex="0" aria-haspopup="list" aria-controls="dropdown-menu-9420" role="button"><button data-testid="creative_material_selectedUpdate" type="button" class="vi-button vi-byted-button vi-button--text vi-button--small material-update-dropdown-new_editBtn_bWPbG"><!----><i class="vi-icon2-edit"></i><span> Update </span></button></span>
                                                                                                                                                 </div>
                                                                                                                                             </div>
-                                                                                                                                            <button data-testid="creative_detail_materialSelectedChangeCover" type="button" class="vi-button vi-byted-button vi-button--text vi-button--small selected-video_coverButton_KCOw0" style="margin-left: 10px;"><!----><!----><span><i class="vi-icon2-picture selected-video_pictureIcon_RQdqZ"></i><span>Thumbnail</span><!----></span></button> 
+                                                                                                                                            <button data-testid="creative_detail_materialSelectedChangeCover" type="button" class="vi-button vi-byted-button vi-button--text vi-button--small selected-video_coverButton_KCOw0" style="margin-left: 10px;"><!----><!----><span><i class="vi-icon2-picture selected-video_pictureIcon_RQdqZ"></i><span>Thumbnail</span><!----></span></button>
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                 </div>
@@ -3028,8 +3150,8 @@ session_start();
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        
-                                                                                                        
+
+
                                                                                                     </div>
                                                                                                 </div>
 
@@ -3048,7 +3170,7 @@ session_start();
                                                                                                                         <div class="vi-tooltip index_textareaCounter_scUDE index_inputBox_kL_B8">
                                                                                                                             <div class="index_content_zzTib">
                                                                                                                                 <div class="vi-textarea index_inputClass_GE6yT">
-                                                                                                                                <textarea id="ad-detail-display-text" data-testid="textarea-counter-index-sVMqWU" placeholder="Enter ad text" rows="3" spellcheck="false" class="vi-textarea__inner" style="resize: none; min-height: 31px; height: 31px;"></textarea>
+                                                                                                                                    <textarea id="ad-detail-display-text" data-testid="textarea-counter-index-sVMqWU" placeholder="Enter ad text" rows="3" spellcheck="false" class="vi-textarea__inner" style="resize: none; min-height: 31px; height: 31px;"></textarea>
                                                                                                                                 </div>
                                                                                                                             </div>
                                                                                                                             <div class="comp-textarea-counter-btns index_btnsWrap_FzwEz">
@@ -3081,7 +3203,9 @@ session_start();
                                                                                                                         <input data-testid="switch-component-rZhLsB" type="checkbox" name="" true-value="true" disabled="disabled" class="vi-switch__input"><!---->
                                                                                                                         <span class="vi-switch__core" style="width: 40px;"></span><!---->
                                                                                                                     </div>
-                                                                                                                    <div class="index_titleForm_DV6gU index_switchTitle_iphwb"><div>Call to action</div></div>
+                                                                                                                    <div class="index_titleForm_DV6gU index_switchTitle_iphwb">
+                                                                                                                        <div>Call to action</div>
+                                                                                                                    </div>
                                                                                                                     <i class="vi-icon-question vi-tooltip index-new_titleTooltip_fgyup" aria-describedby="vi-tooltip-7862" tabindex="0"></i>
                                                                                                                 </div>
                                                                                                             </div>
@@ -3106,7 +3230,9 @@ session_start();
                                                                                                                     <div class="index_addOnContainer_AwPLJ">
                                                                                                                         <div>
                                                                                                                             <div class="index_addOnSelector_EnaR4">
-                                                                                                                                <button data-testid="creative_attachment_toolOpen" type="button" class="vi-button vi-byted-button vi-button--default" data-tea-click="creation_component_click" data-tea-expose="create_ad_attached_creative_editor_expose_new,creation_component_show" data-tea-std_component_name="creative_attached_creative_editor" data-tea-scene="2"><!----><!----><span><div class="index_btnWrapper_hZtAf"><i class="index_btnIcon_ALiez vi-icon2-add-small"></i><span class="btn-text">Create</span></div></span></button>
+                                                                                                                                <button data-testid="creative_attachment_toolOpen" type="button" class="vi-button vi-byted-button vi-button--default" data-tea-click="creation_component_click" data-tea-expose="create_ad_attached_creative_editor_expose_new,creation_component_show" data-tea-std_component_name="creative_attached_creative_editor" data-tea-scene="2"><!----><!----><span>
+                                                                                                                                        <div class="index_btnWrapper_hZtAf"><i class="index_btnIcon_ALiez vi-icon2-add-small"></i><span class="btn-text">Create</span></div>
+                                                                                                                                    </span></button>
                                                                                                                                 <button data-testid="creative_attachment_openTool" type="button" class="vi-button vi-byted-button vi-button--default" data-tea-click="assets_creative_from_library,creation_component_click" data-tea-scene="2" data-tea-expose="create_ad_attached_creative_editor_expose_library,creation_component_show" data-tea-objective_type="5" data-tea-std_component_name="creative_attached_creative_library"><!----><!----><span><span class="index_btnWrapper_hZtAf"><i class="index_btnIcon_ALiez vi-icon2-add-small"></i><span class="btn-text">Choose from library</span></span></span></button>
                                                                                                                             </div>
                                                                                                                         </div>
@@ -3117,7 +3243,7 @@ session_start();
                                                                                                                                 <div class="recommend-add-ons_recommendAddOnsTitle_kJWrL">
                                                                                                                                     <span class="recommend-add-ons_recommendAddOnsTitleLeft_Pkhdl">
                                                                                                                                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJQSURBVHgB1ZdNbtNAFMf/45A4EUVKbmBYITbl4wAkJ2gX7NveoNk5q4x3gQ2+QX0AJOgBkJwFEiugJ8A3sCVa4qTEj+dKASf+GhdbqL9FIr95nvm/+XjzDPxnRBVneer3qdc+FpH2kt98+qeBEPCvBxGdA9eunA081T6VBMQDo9u2Ae0ISpADrCwVIaUCrMniiBDZINFHNTwgYhF7TpGTVtRomYspEUdTffAYg7s/s8yraZFT7gxMJ5engrS3qAGKorH1Zs+GqgBp+gZE5+stI89QQAHE6lnWnshZgrasbfAYEfeln2U27Rpuoof+HY2wHsnZAzdpyZgBjr4pSBzumtIChLaPphDaAUoFUCLD1Y+xa9jaA9JcsAPlrv/Bqw6MR4WpA4Ef4fzdNf9Tjod4KGc9b/N0D4r0B5z8X7QU/FrYfx5h/vEXVNgW0A0DhHqmYxzR509rPH5SNgOEiy/rfIcwDJKP6WM4ufJrzQFJOCHJ1/cHSVPWJpyjOVJ9ZxxDOGgKQR9QKkBfuewYoH68rKs5JUDKQcBrNUbtRFaWNfc6lpOf73k/HKIWhMNn/ySrJf9M6csTlvcN/wpxH2E3d0ZzBdwshb4csXoXt2eOZW8kbZG7p9SKUvPymF0NVIK8snpQWcBfIT+GPGlD1DBwZQFScmke6r6Kb1ENuIuGangqTkKDch6p+GVE/IESltULXvK6rVXAhrjWJ4jhtpU8hKuxtAeVsqhyPbCBi5YhgWS6hWPptuPLxkEFKgvgJeDE0rngemfryhYkfIiWi7vGbxuvzdGrz059AAAAAElFTkSuQmCC">
-                                                                                                                                        <span>Recommended add-ons: 
+                                                                                                                                        <span>Recommended add-ons:
                                                                                                                                             <span place="recommend_mode" class="recommend-add-ons_recommendAddOnsTitleDynamic_P_JBk">Based on ads performance</span>
                                                                                                                                         </span>
                                                                                                                                     </span>
@@ -3149,7 +3275,7 @@ session_start();
                                                                                                             </div>
 
                                                                                                         </div>
-                                                                                                        
+
 
                                                                                                         <!--  -->
 
@@ -3159,7 +3285,7 @@ session_start();
                                                                                                                     <i class="index_arrowIcon_LXP5m vi-icon2-tri-arrowdown"></i>
                                                                                                                     <div class="index_label_xmyC6 index_titleLabel_u6Ksf">
                                                                                                                         <span>Destination</span>
-                                                                                                                    <!---->
+                                                                                                                        <!---->
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -3182,7 +3308,7 @@ session_start();
                                                                                                                             </div>
                                                                                                                         </div>
                                                                                                                         <div class="vi-tooltip aigc-disclosure__desc" aria-describedby="vi-tooltip-7901" tabindex="0">
-                                                                                                                            <span>Our advertising policies require the labeling of AI-generated content. By clicking this checkbox you confirm that your content conforms to our guidelines for AI-generated content. This can't be changed once you submit the ad. 
+                                                                                                                            <span>Our advertising policies require the labeling of AI-generated content. By clicking this checkbox you confirm that your content conforms to our guidelines for AI-generated content. This can't be changed once you submit the ad.
                                                                                                                                 <x-bo-wc-co-learn-more-link-zf4j78m6 class="aigc-disclosure__link" place="learn_more"> Learn more </x-bo-wc-co-learn-more-link-zf4j78m6>
                                                                                                                             </span>
                                                                                                                         </div>
@@ -3199,8 +3325,8 @@ session_start();
                                                                                                                     </span>
                                                                                                                     <span class="vi-checkbox__label">
                                                                                                                         <div class="withdraw-label">
-                                                                                                                            <span>Creative is authorized for 
-                                                                                                                                <a place="x" href="https://ads.tiktok.com/business/creativecenter" target="_blank">TikTok For Business Creative Center</a>. To change, 
+                                                                                                                            <span>Creative is authorized for
+                                                                                                                                <a place="x" href="https://ads.tiktok.com/business/creativecenter" target="_blank">TikTok For Business Creative Center</a>. To change,
                                                                                                                                 <a place="y" href="https://ads.tiktok.com/help/article?aid=200851762113375780" target="_blank">withdraw the authorization</a>.
                                                                                                                             </span>
                                                                                                                         </div><!---->
@@ -3209,7 +3335,7 @@ session_start();
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                
+
                                                                                                 </div>
                                                                                             </div>
 
@@ -3222,237 +3348,272 @@ session_start();
                                                                                 <div class="index_preview_ojtvd">
                                                                                     <div class="index_previewInner_AnXJE">
                                                                                         <div class="">
-                                                                                        <x-ads-preview-h0ur8pn2 class="" id="infra-preview-container-common-preview">
-                                                                                            <div class="x-ads-preview x-ads-preview--ltr x-ad-preview-scrollbar">
-                                                                                                <x-adview-app-icon-h0ur8pn2 class="x-ads-preview__appicon x-preview-app-icon"><!----><slot name="popover9000" slot="popover9000"></slot><div class="x-adview-app-icon"><div class="x-adview-app-icon__main"><div class="x-adview-app-icon-item x-adview-app-icon-item-active x-adview-app-icon-item-slot-none"><div class="x-adview-app-icon__icon-wrap"><x-ix-ad-icon-h0ur8pn2 class="x-adview-app-icon__icon x-ix-ad-icon--tiktok" x-name="x-ix-ad-icon"><span><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                                                                    <rect width="32" height="32" rx="8" fill="url(#patterntiktok)"></rect>
-                                                                                                    <defs>
-                                                                                                        <pattern id="patterntiktok" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                                                                                        <use xlink:href="#image0_3457_99140" transform="scale(0.015625)"></use>
-                                                                                                        </pattern>
-                                                                                                        <image id="image0_3457_99140" width="64" height="64" xlink:href="data:image/png;base64,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"></image>
-                                                                                                    </defs>
-                                                                                                    </svg></span></x-ix-ad-icon-h0ur8pn2></div><x-popover-oai4mudz dir="ltr" x-name="x-popover" style="display: none;"></x-popover-oai4mudz></div></div><div class="x-adview-app-icon__option"><div class="x-adview-app-icon__full_screen" data-tea-module-click="ix_preview_fullscreen_click"><x-ix-ad-icon-h0ur8pn2 x-name="x-ix-ad-icon" class="x-ix-ad-icon--full-screen"><span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                                    <path d="M10.7746 1.8125C10.4348 1.8125 10.1593 2.08802 10.1593 2.42788C10.1593 2.76775 10.4348 3.04327 10.7746 3.04327H12.9285V5.19712C12.9285 5.53698 13.204 5.8125 13.5439 5.8125C13.8837 5.8125 14.1593 5.53698 14.1593 5.19712V2.42788C14.1593 2.08802 13.8837 1.8125 13.5439 1.8125H10.7746Z" fill="#121212"></path>
-                                                                                                    <path d="M14.1593 10.7356C14.1593 10.3957 13.8837 10.1202 13.5439 10.1202C13.204 10.1202 12.9285 10.3957 12.9285 10.7356V12.8894H10.7746C10.4348 12.8894 10.1593 13.1649 10.1593 13.5048C10.1593 13.8447 10.4348 14.1202 10.7746 14.1202H13.5439C13.8837 14.1202 14.1593 13.8447 14.1593 13.5048V10.7356Z" fill="#121212"></path>
-                                                                                                    <path d="M2.46695 10.1202C2.80681 10.1202 3.08233 10.3957 3.08233 10.7356V12.8894H5.23618C5.57605 12.8894 5.85156 13.1649 5.85156 13.5048C5.85156 13.8447 5.57605 14.1202 5.23618 14.1202H2.46695C2.12708 14.1202 1.85156 13.8447 1.85156 13.5048V10.7356C1.85156 10.3957 2.12708 10.1202 2.46695 10.1202Z" fill="#121212"></path>
-                                                                                                    <path d="M2.46695 1.8125C2.12708 1.8125 1.85156 2.08802 1.85156 2.42788V5.19712C1.85156 5.53698 2.12708 5.8125 2.46695 5.8125C2.80681 5.8125 3.08233 5.53698 3.08233 5.19712V3.04327H5.23618C5.57605 3.04327 5.85156 2.76775 5.85156 2.42788C5.85156 2.08802 5.57605 1.8125 5.23618 1.8125H2.46695Z" fill="#121212"></path>
-                                                                                                    </svg>
-                                                                                                    </span></x-ix-ad-icon-h0ur8pn2></div></div></div>
-                                                                                                </x-adview-app-icon-h0ur8pn2>
-                                                                                                <x-ix-full-screen-h0ur8pn2 class="">
-                                                                                                    <div class="x-ix-full-screen__mobile-wrap">
-                                                                                                        <div class="x-ix-full-screen__full-screen-area">
-                                                                                                            <div class="x-ix-full-screen__full_screen_box x-ix-full-screen__no_full_screen_box">
-                                                                                                                <div>
-                                                                                                                    <slot name="middle">
-                                                                                                                        <div class="x-ads-preview__options x-ads-preview__optionsx">
-                                                                                                                            <x-ix-select-placement-h0ur8pn2 class="x-ads-preview__options__item x-ix-select-placement">
-                                                                                                                                <div class="x-ix-select-placement__option">
-                                                                                                                                    <div class="x-ads-preview__options">
-                                                                                                                                        <div class="x-ads-preview__options__item x-ix-select-placement py-2">
-                                                                                                                                            <div class="x-ix-select-placement__option">
-                                                                                                                                                <div class="fields-presenter fields-presenter--xs fields-presenter--filled">
-                                                                                                                                                    <div class="fields-presenter__content justify-content-between" style="max-height: 20px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                                                                                                                                        <slot name="selected"><div class="select__selected-label" style="white-space: nowrap;">In feed</div></slot>
-                                                                                                                                                        <x-icon-4hhm7kjf slot="show-icon" class="select__suffix-routine-icon fold" dir="ltr" x-name="x-icon">
-                                                                                                                                                             <span dir="ltr" part="self" class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48"><path data-follow-stroke="currentcolor" stroke-linejoin="round" stroke-linecap="round" stroke-width="4" stroke="currentcolor" d="M36 18 24 30 12 18"></path></svg></span>
-                                                                                                                                                        </x-icon-4hhm7kjf>
+                                                                                            <x-ads-preview-h0ur8pn2 class="" id="infra-preview-container-common-preview">
+                                                                                                <div class="x-ads-preview x-ads-preview--ltr x-ad-preview-scrollbar">
+                                                                                                    <x-adview-app-icon-h0ur8pn2 class="x-ads-preview__appicon x-preview-app-icon"><!---->
+                                                                                                        <slot name="popover9000" slot="popover9000"></slot>
+                                                                                                        <div class="x-adview-app-icon">
+                                                                                                            <div class="x-adview-app-icon__main">
+                                                                                                                <div class="x-adview-app-icon-item x-adview-app-icon-item-active x-adview-app-icon-item-slot-none">
+                                                                                                                    <div class="x-adview-app-icon__icon-wrap"><x-ix-ad-icon-h0ur8pn2 class="x-adview-app-icon__icon x-ix-ad-icon--tiktok" x-name="x-ix-ad-icon"><span><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                                                                                                    <rect width="32" height="32" rx="8" fill="url(#patterntiktok)"></rect>
+                                                                                                                                    <defs>
+                                                                                                                                        <pattern id="patterntiktok" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                                                                                                                            <use xlink:href="#image0_3457_99140" transform="scale(0.015625)"></use>
+                                                                                                                                        </pattern>
+                                                                                                                                        <image id="image0_3457_99140" width="64" height="64" xlink:href="data:image/png;base64,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"></image>
+                                                                                                                                    </defs>
+                                                                                                                                </svg></span></x-ix-ad-icon-h0ur8pn2></div><x-popover-oai4mudz dir="ltr" x-name="x-popover" style="display: none;"></x-popover-oai4mudz>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div class="x-adview-app-icon__option">
+                                                                                                                <div class="x-adview-app-icon__full_screen" data-tea-module-click="ix_preview_fullscreen_click"><x-ix-ad-icon-h0ur8pn2 x-name="x-ix-ad-icon" class="x-ix-ad-icon--full-screen"><span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                                <path d="M10.7746 1.8125C10.4348 1.8125 10.1593 2.08802 10.1593 2.42788C10.1593 2.76775 10.4348 3.04327 10.7746 3.04327H12.9285V5.19712C12.9285 5.53698 13.204 5.8125 13.5439 5.8125C13.8837 5.8125 14.1593 5.53698 14.1593 5.19712V2.42788C14.1593 2.08802 13.8837 1.8125 13.5439 1.8125H10.7746Z" fill="#121212"></path>
+                                                                                                                                <path d="M14.1593 10.7356C14.1593 10.3957 13.8837 10.1202 13.5439 10.1202C13.204 10.1202 12.9285 10.3957 12.9285 10.7356V12.8894H10.7746C10.4348 12.8894 10.1593 13.1649 10.1593 13.5048C10.1593 13.8447 10.4348 14.1202 10.7746 14.1202H13.5439C13.8837 14.1202 14.1593 13.8447 14.1593 13.5048V10.7356Z" fill="#121212"></path>
+                                                                                                                                <path d="M2.46695 10.1202C2.80681 10.1202 3.08233 10.3957 3.08233 10.7356V12.8894H5.23618C5.57605 12.8894 5.85156 13.1649 5.85156 13.5048C5.85156 13.8447 5.57605 14.1202 5.23618 14.1202H2.46695C2.12708 14.1202 1.85156 13.8447 1.85156 13.5048V10.7356C1.85156 10.3957 2.12708 10.1202 2.46695 10.1202Z" fill="#121212"></path>
+                                                                                                                                <path d="M2.46695 1.8125C2.12708 1.8125 1.85156 2.08802 1.85156 2.42788V5.19712C1.85156 5.53698 2.12708 5.8125 2.46695 5.8125C2.80681 5.8125 3.08233 5.53698 3.08233 5.19712V3.04327H5.23618C5.57605 3.04327 5.85156 2.76775 5.85156 2.42788C5.85156 2.08802 5.57605 1.8125 5.23618 1.8125H2.46695Z" fill="#121212"></path>
+                                                                                                                            </svg>
+                                                                                                                        </span></x-ix-ad-icon-h0ur8pn2></div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </x-adview-app-icon-h0ur8pn2>
+                                                                                                    <x-ix-full-screen-h0ur8pn2 class="">
+                                                                                                        <div class="x-ix-full-screen__mobile-wrap">
+                                                                                                            <div class="x-ix-full-screen__full-screen-area">
+                                                                                                                <div class="x-ix-full-screen__full_screen_box x-ix-full-screen__no_full_screen_box">
+                                                                                                                    <div>
+                                                                                                                        <slot name="middle">
+                                                                                                                            <div class="x-ads-preview__options x-ads-preview__optionsx">
+                                                                                                                                <x-ix-select-placement-h0ur8pn2 class="x-ads-preview__options__item x-ix-select-placement">
+                                                                                                                                    <div class="x-ix-select-placement__option">
+                                                                                                                                        <div class="x-ads-preview__options">
+                                                                                                                                            <div class="x-ads-preview__options__item x-ix-select-placement py-2">
+                                                                                                                                                <div class="x-ix-select-placement__option">
+                                                                                                                                                    <div class="fields-presenter fields-presenter--xs fields-presenter--filled">
+                                                                                                                                                        <div class="fields-presenter__content justify-content-between" style="max-height: 20px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                                                                                                                                                            <slot name="selected">
+                                                                                                                                                                <div class="select__selected-label" style="white-space: nowrap;">In feed</div>
+                                                                                                                                                            </slot>
+                                                                                                                                                            <x-icon-4hhm7kjf slot="show-icon" class="select__suffix-routine-icon fold" dir="ltr" x-name="x-icon">
+                                                                                                                                                                <span dir="ltr" part="self" class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48">
+                                                                                                                                                                        <path data-follow-stroke="currentcolor" stroke-linejoin="round" stroke-linecap="round" stroke-width="4" stroke="currentcolor" d="M36 18 24 30 12 18"></path>
+                                                                                                                                                                    </svg></span>
+                                                                                                                                                            </x-icon-4hhm7kjf>
+                                                                                                                                                        </div>
                                                                                                                                                     </div>
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                         </div>
                                                                                                                                     </div>
-                                                                                                                                </div>
-                                                                                                                            </x-ix-select-placement-h0ur8pn2>
-                                                                                                                        </div>
-                                                                                                                    </slot>
+                                                                                                                                </x-ix-select-placement-h0ur8pn2>
+                                                                                                                            </div>
+                                                                                                                        </slot>
 
-                                                                                                                    <div class="x-ads-preview__main">
-                                                                                                                        <div class="x-ix-mobile__mobile x-ix-mobile__mobile-3000">
-                                                                                                                            <div class="x-ix-mobile__app x-ix-mobile__app-3000" style="display: block;">
-                                                                                                                                <div class="x-ix-mobile__placement x-ix-mobile__placement-tiktok_infeed x-ix-mobile__placement--active" style="opacity: 1;pointer-events: auto;">
-                                                                                                                                    <x-ix-ad-pr-placement-infeed-h0ur8pn2 class="">
-                                                                                                                                        <div class="x-ix-ad-pr-placement-infeed">
-                                                                                                                                            <div class="x-ix-ad-pr-placement-infeed__player tiktok__player">
-                                                                                                                                                <slot>
-                                                                                                                                                <x-ix-ad-pr-ix-video-h0ur8pn2 class="x-ix-ad-pr-ix-video">
-                                                                                                                                                    <div class="x-ix-ad-pr-ix-video__play-wrap x-ix-ad-pr-ix-video__ix-player-starttime">
-                                                                                                                                                        <div class="x-ix-ad-pr-ix-video__ix-player xgplayer xgplayer-inactive xgplayer-pc no-controls xgplayer-nostart" style="width: 100%; height: 100%;">
-                                                                                                                                                            <video class="" playsinline="true" x5-playsinline="true" webkit-playsinline="true" mediatype="video" data-index="-1" crossorigin="anonymous" data-xgplayerid="9f2107f3-af2f-47e2-88ce-992fd3ff1265" src="https://v16-tt4b.tiktokcdn.com/7aa33b624c029465999528d5e08c2885/67539e80/video/tos/alisg/tos-alisg-ve-0051c001-sg/oAQBTEEAyXSDDkoSgOkNrsfqDHBFaeEngQAIu5/?a=1233&amp;bti=Ojk7ZjYwOg%3D%3D&amp;ch=0&amp;cr=0&amp;dr=0&amp;er=0&amp;lr=default&amp;cd=0%7C0%7C0%7C0&amp;cv=1&amp;br=7958&amp;bt=3979&amp;cs=0&amp;ds=4&amp;ft=.bvrXInz7Th-brIOXq8Zmo&amp;mime_type=video_mp4&amp;qs=0&amp;rc=M2k3PDM8PDg8N2c4OTppO0BpMzY4M245cmVxdzMzODYzNEA0Mi1fMF5jNS0xLjMuNjAxYSNkYmU2MmQ0aTNgLS1kMC1zcw%3D%3D&amp;vvpl=1&amp;l=20241206190136B52F54F90F05DA6B8B67&amp;btag=e000b8000"></video>
-                                                                                                                                                            <xg-poster class="xgplayer-poster " style="background-image:url(https://p16-ad-sg.tiktokcdn.com/origin/tos-alisg-p-0051c001-sg/oYkSeXEkDQKrAaoqAuFBQpNsHBfCnhBIEwgEDT);" data-index="0">
-                                                                                                                                                            </xg-poster>
-                                                                                                                                                            <xg-loading class="xgplayer-loading" data-index="0">
-                                                                                                                                                                <xg-loading-inner><svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                                                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M25.6693 4.66146C25.6693 3.37279 26.7139 2.32812 28.0026 2.32812C42.1779 2.32812 53.6693 13.8195 53.6693 27.9948C53.6693 42.1701 42.1779 53.6615 28.0026 53.6615C13.8273 53.6615 2.33594 42.1701 2.33594 27.9948C2.33594 26.7061 3.38061 25.6615 4.66927 25.6615C5.95794 25.6615 7.0026 26.7061 7.0026 27.9948C7.0026 39.5928 16.4046 48.9948 28.0026 48.9948C39.6006 48.9948 49.0026 39.5928 49.0026 27.9948C49.0026 16.3968 39.6006 6.99479 28.0026 6.99479C26.7139 6.99479 25.6693 5.95012 25.6693 4.66146Z" fill="#F60457"></path>
-                                                                                                                                                                    </svg>
-                                                                                                                                                                </xg-loading-inner>
-                                                                                                                                                            </xg-loading>
+                                                                                                                        <div class="x-ads-preview__main">
+                                                                                                                            <div class="x-ix-mobile__mobile x-ix-mobile__mobile-3000">
+                                                                                                                                <div class="x-ix-mobile__app x-ix-mobile__app-3000" style="display: block;">
+                                                                                                                                    <div class="x-ix-mobile__placement x-ix-mobile__placement-tiktok_infeed x-ix-mobile__placement--active" style="opacity: 1;pointer-events: auto;">
+                                                                                                                                        <x-ix-ad-pr-placement-infeed-h0ur8pn2 class="">
+                                                                                                                                            <div class="x-ix-ad-pr-placement-infeed">
+                                                                                                                                                <div class="x-ix-ad-pr-placement-infeed__player tiktok__player">
+                                                                                                                                                    <slot>
+                                                                                                                                                        <x-ix-ad-pr-ix-video-h0ur8pn2 class="x-ix-ad-pr-ix-video">
+                                                                                                                                                            <div class="x-ix-ad-pr-ix-video__play-wrap x-ix-ad-pr-ix-video__ix-player-starttime">
+                                                                                                                                                                <div class="x-ix-ad-pr-ix-video__ix-player xgplayer xgplayer-inactive xgplayer-pc no-controls xgplayer-nostart" style="width: 100%; height: 100%;">
+                                                                                                                                                                    
+                                                                                                                                                                    <video id="real-edit-vid-player" playsinline="true" x5-playsinline="true" webkit-playsinline="true" mediatype="video" data-index="-1" crossorigin="anonymous">
+                                                                                                                                                                        <source src="https://v16-tt4b.tiktokcdn.com/your-video-url.mp4" type="video/mp4">
+                                                                                                                                                                        Your browser does not support the video tag.
+                                                                                                                                                                    </video>
+
+                                                                                                                                                                    <xg-poster class="xgplayer-poster" id="real-edit-poster" style="background-image:url(https://p16-ad-sg.tiktokcdn.com/origin/tos-alisg-p-0051c001-sg/oYkSeXEkDQKrAaoqAuFBQpNsHBfCnhBIEwgEDT);" data-index="0">
+                                                                                                                                                                    </xg-poster>
+
+                                                                                                                                                                    <xg-loading class="xgplayer-loading" data-index="0">
+                                                                                                                                                                        <xg-loading-inner><svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M25.6693 4.66146C25.6693 3.37279 26.7139 2.32812 28.0026 2.32812C42.1779 2.32812 53.6693 13.8195 53.6693 27.9948C53.6693 42.1701 42.1779 53.6615 28.0026 53.6615C13.8273 53.6615 2.33594 42.1701 2.33594 27.9948C2.33594 26.7061 3.38061 25.6615 4.66927 25.6615C5.95794 25.6615 7.0026 26.7061 7.0026 27.9948C7.0026 39.5928 16.4046 48.9948 28.0026 48.9948C39.6006 48.9948 49.0026 39.5928 49.0026 27.9948C49.0026 16.3968 39.6006 6.99479 28.0026 6.99479C26.7139 6.99479 25.6693 5.95012 25.6693 4.66146Z" fill="#F60457"></path>
+                                                                                                                                                                            </svg>
+                                                                                                                                                                        </xg-loading-inner>
+                                                                                                                                                                    </xg-loading>
+                                                                                                                                                                </div>
+                                                                                                                                                            </div>
+                                                                                                                                                        </x-ix-ad-pr-ix-video-h0ur8pn2>
+                                                                                                                                                    </slot>
+                                                                                                                                                </div>
+                                                                                                                                                <!--  -->
+                                                                                                                                                <div class="x-ix-ad-pr-placement-infeed__top-bar tiktok-infeed-control tiktok-infeed-header-com-bg">
+                                                                                                                                                    <x-ix-ad-pr-tiktok-status-bar-h0ur8pn2 class="x-ix-ad-pr-tiktok-status-bar"></x-ix-ad-pr-tiktok-status-bar-h0ur8pn2>
+                                                                                                                                                    <div class="x-ix-ad-pr-placement-infeed__nav-bar"></div>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="tiktok__texts-cta tiktok-infeed-control">
+                                                                                                                                                    <div class="x-ix-ad-pr-control-texts">
+                                                                                                                                                        <div class="x-ix-ad-pr-control-texts__identity">
+                                                                                                                                                            <div class="x-ix-ad-pr-control-texts__identity-name">asiagamecenter</div>
                                                                                                                                                         </div>
-                                                                                                                                                    </div>
-                                                                                                                                                </x-ix-ad-pr-ix-video-h0ur8pn2>
-                                                                                                                                                </slot>
-                                                                                                                                            </div>
-                                                                                                                                            <!--  -->
-                                                                                                                                            <div class="x-ix-ad-pr-placement-infeed__top-bar tiktok-infeed-control tiktok-infeed-header-com-bg">
-                                                                                                                                                <x-ix-ad-pr-tiktok-status-bar-h0ur8pn2 class="x-ix-ad-pr-tiktok-status-bar"></x-ix-ad-pr-tiktok-status-bar-h0ur8pn2>
-                                                                                                                                                <div class="x-ix-ad-pr-placement-infeed__nav-bar"></div>
-                                                                                                                                            </div>
-                                                                                                                                            <div class="tiktok__texts-cta tiktok-infeed-control">
-                                                                                                                                                <div class="x-ix-ad-pr-control-texts">
-                                                                                                                                                <div class="x-ix-ad-pr-control-texts__identity">
-                                                                                                                                                    <div class="x-ix-ad-pr-control-texts__identity-name">asiagamecenter</div>
-                                                                                                                                                </div>
-                                                                                                                                                <div class="x-ix-ad-pr-control-texts__text x-ix-ad-pr-control-texts__un-expand">
-                                                                                                                                                    <div class="x-ix-ad-pr-control-texts__text_container x-ad-preview-scrollbar-hide">
-                                                                                                                                                        <div class="x-ix-ad-pr-control-texts__text-ellipsis-content x-ix-ad-pr-control-texts__text-ellipsis-content_hide"
-                                                                                                                                                            style="max-height: 48px;"><span class="x-ix-ad-pr-control-texts__text-ellipsis-placeholder"
-                                                                                                                                                                style="height: 0px;"></span>Ambil FREE Bonus Gacor dengan Download APK Sekarang! </div>
+                                                                                                                                                        <div class="x-ix-ad-pr-control-texts__text x-ix-ad-pr-control-texts__un-expand">
+                                                                                                                                                            <div class="x-ix-ad-pr-control-texts__text_container x-ad-preview-scrollbar-hide">
+                                                                                                                                                                <div class="x-ix-ad-pr-control-texts__text-ellipsis-content x-ix-ad-pr-control-texts__text-ellipsis-content_hide"
+                                                                                                                                                                    style="max-height: 48px;"><span class="x-ix-ad-pr-control-texts__text-ellipsis-placeholder"
+                                                                                                                                                                        style="height: 0px;"></span>Ambil FREE Bonus Gacor dengan Download APK Sekarang! </div>
+                                                                                                                                                            </div>
+                                                                                                                                                        </div>
+                                                                                                                                                        <div class="x-ix-ad-pr-control-texts__sponsored"><x-ix-sponsored-h0ur8pn2
+                                                                                                                                                                class="x-ix-sponsored"><span>Sponsored</span></x-ix-sponsored-h0ur8pn2></div>
                                                                                                                                                     </div>
                                                                                                                                                 </div>
-                                                                                                                                                <div class="x-ix-ad-pr-control-texts__sponsored"><x-ix-sponsored-h0ur8pn2
-                                                                                                                                                        class="x-ix-sponsored"><span>Sponsored</span></x-ix-sponsored-h0ur8pn2></div>
+
+                                                                                                                                                <div class="tiktok__like-music tiktok-infeed-control">
+                                                                                                                                                    <x-ix-ad-pr-control-identity-h0ur8pn2 class="x-ix-ad-pr-control-identity">
+                                                                                                                                                        <x-ix-ad-image-h0ur8pn2 class="x-ix-ad-pr-control-identity__avatar x-ix-preview-identity-avatar x-ix-ad-image">
+                                                                                                                                                            <img class="x-ix-ad-image_img x-ix-preview-image" src="https://lf16-ttmp.byteintlstatic.com/obj/goofy-sg/biz_manager_creation/statics/images/default-avatar98ff980b.png">
+                                                                                                                                                        </x-ix-ad-image-h0ur8pn2>
+                                                                                                                                                    </x-ix-ad-pr-control-identity-h0ur8pn2>
+
+                                                                                                                                                    <x-ix-ad-pr-control-like-share-h0ur8pn2 class="x-ix-ad-pr-control-like-share">
+                                                                                                                                                        <div><x-ix-ad-icon-h0ur8pn2 class="x-ix-ad-icon--like" x-name="x-ix-ad-icon"><span><svg viewBox="0 0 32 32"
+                                                                                                                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                                                                        <g clip-path="url(#a)" filter="url(#b)">
+                                                                                                                                                                            <path data-follow-fill="#fff" fill-rule="evenodd" clip-rule="evenodd"
+                                                                                                                                                                                d="M10 3c4 0 6 2.667 6 2.667S18 3 22 3c4.667 0 8 3.667 8 8.333 0 5.334-4.358 10.088-8.333 13.667-2.454 2.21-4.334 3.667-5.667 3.667-1.333 0-3.266-1.469-5.667-3.667C6.426 21.422 2 16.667 2 11.333 2 6.667 5.333 3 10 3Z"
+                                                                                                                                                                                fill="#fff" fill-opacity=".9" shape-rendering="crispEdges"></path>
+                                                                                                                                                                        </g>
+                                                                                                                                                                        <defs>
+                                                                                                                                                                            <clipPath id="a">
+                                                                                                                                                                                <path data-follow-fill="#fff" d="M0 0h32v32H0z" fill="#fff"></path>
+                                                                                                                                                                            </clipPath>
+                                                                                                                                                                            <filter id="b" x="-1" y="1" width="34" height="31.664" filterUnits="userSpaceOnUse"
+                                                                                                                                                                                color-interpolation-filters="sRGB">
+                                                                                                                                                                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                                                                                                                                                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                                                                                                                                                    result="hardAlpha"></feColorMatrix>
+                                                                                                                                                                                <feOffset dy="1"></feOffset>
+                                                                                                                                                                                <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
+                                                                                                                                                                                <feComposite in2="hardAlpha" operator="out"></feComposite>
+                                                                                                                                                                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+                                                                                                                                                                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_3349_63799"></feBlend>
+                                                                                                                                                                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                                                                                                                                                    result="hardAlpha"></feColorMatrix>
+                                                                                                                                                                                <feOffset dy="1"></feOffset>
+                                                                                                                                                                                <feGaussianBlur stdDeviation=".5"></feGaussianBlur>
+                                                                                                                                                                                <feComposite in2="hardAlpha" operator="out"></feComposite>
+                                                                                                                                                                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"></feColorMatrix>
+                                                                                                                                                                                <feBlend in2="effect1_dropShadow_3349_63799" result="effect2_dropShadow_3349_63799">
+                                                                                                                                                                                </feBlend>
+                                                                                                                                                                                <feBlend in="SourceGraphic" in2="effect2_dropShadow_3349_63799" result="shape"></feBlend>
+                                                                                                                                                                            </filter>
+                                                                                                                                                                        </defs>
+                                                                                                                                                                    </svg></span></x-ix-ad-icon-h0ur8pn2>
+                                                                                                                                                            <div>991K</div>
+                                                                                                                                                        </div>
+                                                                                                                                                        <div><x-ix-ad-icon-h0ur8pn2 x-name="x-ix-ad-icon" class="x-ix-ad-icon--comment"><span><svg
+                                                                                                                                                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32">
+                                                                                                                                                                        <g filter="url(#b)" clip-path="url(#a)">
+                                                                                                                                                                            <path shape-rendering="crispEdges" fill-opacity=".9" fill="#fff"
+                                                                                                                                                                                d="M25.87 24c2.848-2.853 4.513-5.825 4.513-9.285C30.383 7.693 23.953 2 16.023 2 8.09 2 1.661 7.693 1.661 14.715c0 7.023 6.637 11.843 14.569 11.843v2.647c0 .591.612.973 1.133.694 1.943-1.037 5.946-3.334 8.505-5.899ZM9.045 13c1.134 0 2.053.912 2.053 2.036a2.045 2.045 0 0 1-2.053 2.038 2.045 2.045 0 0 1-2.05-2.038c0-1.123.919-2.036 2.05-2.036Zm9.028 2.036A2.044 2.044 0 0 0 16.022 13a2.044 2.044 0 0 0-2.051 2.036c0 1.126.918 2.038 2.051 2.038a2.045 2.045 0 0 0 2.052-2.038ZM22.998 13c1.133 0 2.05.912 2.05 2.036a2.044 2.044 0 0 1-2.05 2.038 2.045 2.045 0 0 1-2.052-2.038c0-1.123.918-2.036 2.052-2.036Z"
+                                                                                                                                                                                clip-rule="evenodd" fill-rule="evenodd" data-follow-fill="#fff"></path>
+                                                                                                                                                                        </g>
+                                                                                                                                                                        <defs>
+                                                                                                                                                                            <clipPath id="a">
+                                                                                                                                                                                <path fill="#fff" d="M0 0h32v32H0z" data-follow-fill="#fff"></path>
+                                                                                                                                                                            </clipPath>
+                                                                                                                                                                            <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="33.992"
+                                                                                                                                                                                width="34.719" y="0" x="-1.336" id="b">
+                                                                                                                                                                                <feFlood result="BackgroundImageFix" flood-opacity="0"></feFlood>
+                                                                                                                                                                                <feColorMatrix result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                                                                                                                                                    in="SourceAlpha"></feColorMatrix>
+                                                                                                                                                                                <feOffset dy="1"></feOffset>
+                                                                                                                                                                                <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
+                                                                                                                                                                                <feComposite operator="out" in2="hardAlpha"></feComposite>
+                                                                                                                                                                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+                                                                                                                                                                                <feBlend result="effect1_dropShadow_3349_63805" in2="BackgroundImageFix"></feBlend>
+                                                                                                                                                                                <feColorMatrix result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                                                                                                                                                    in="SourceAlpha"></feColorMatrix>
+                                                                                                                                                                                <feOffset dy="1"></feOffset>
+                                                                                                                                                                                <feGaussianBlur stdDeviation=".5"></feGaussianBlur>
+                                                                                                                                                                                <feComposite operator="out" in2="hardAlpha"></feComposite>
+                                                                                                                                                                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"></feColorMatrix>
+                                                                                                                                                                                <feBlend result="effect2_dropShadow_3349_63805" in2="effect1_dropShadow_3349_63805">
+                                                                                                                                                                                </feBlend>
+                                                                                                                                                                                <feBlend result="shape" in2="effect2_dropShadow_3349_63805" in="SourceGraphic"></feBlend>
+                                                                                                                                                                            </filter>
+                                                                                                                                                                        </defs>
+                                                                                                                                                                    </svg></span></x-ix-ad-icon-h0ur8pn2>
+                                                                                                                                                            <div>3456</div>
+                                                                                                                                                        </div>
+                                                                                                                                                        <div><x-ix-ad-icon-h0ur8pn2 x-name="x-ix-ad-icon" class="x-ix-ad-icon--share"><span><svg viewBox="0 0 35 34"
+                                                                                                                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                                                                        <g filter="url(#a)">
+                                                                                                                                                                            <path data-follow-fill="#fff" fill-rule="evenodd" clip-rule="evenodd"
+                                                                                                                                                                                d="M16.997 3.49c0-1.02 1.246-1.518 1.95-.78L30.464 14.8c.85.893.829 2.304-.05 3.17L18.922 29.3c-.714.704-1.925.198-1.925-.806v-6.163s-7.133-1.134-11.466 3.2c-.459.458-1.867.466-1.867-1.784 0-7.541 5.667-14.416 13.333-14.238V3.491Z"
+                                                                                                                                                                                fill="#fff" fill-opacity=".9" shape-rendering="crispEdges"></path>
+                                                                                                                                                                        </g>
+                                                                                                                                                                        <defs>
+                                                                                                                                                                            <filter id="a" x=".664" y=".359" width="33.422" height="33.266" filterUnits="userSpaceOnUse"
+                                                                                                                                                                                color-interpolation-filters="sRGB">
+                                                                                                                                                                                <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                                                                                                                                                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                                                                                                                                                    result="hardAlpha"></feColorMatrix>
+                                                                                                                                                                                <feOffset dy="1"></feOffset>
+                                                                                                                                                                                <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
+                                                                                                                                                                                <feComposite in2="hardAlpha" operator="out"></feComposite>
+                                                                                                                                                                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+                                                                                                                                                                                <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_3349_63821"></feBlend>
+                                                                                                                                                                                <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                                                                                                                                                    result="hardAlpha"></feColorMatrix>
+                                                                                                                                                                                <feOffset dy="1"></feOffset>
+                                                                                                                                                                                <feGaussianBlur stdDeviation=".5"></feGaussianBlur>
+                                                                                                                                                                                <feComposite in2="hardAlpha" operator="out"></feComposite>
+                                                                                                                                                                                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"></feColorMatrix>
+                                                                                                                                                                                <feBlend in2="effect1_dropShadow_3349_63821" result="effect2_dropShadow_3349_63821">
+                                                                                                                                                                                </feBlend>
+                                                                                                                                                                                <feBlend in="SourceGraphic" in2="effect2_dropShadow_3349_63821" result="shape"></feBlend>
+                                                                                                                                                                            </filter>
+                                                                                                                                                                        </defs>
+                                                                                                                                                                    </svg></span></x-ix-ad-icon-h0ur8pn2>
+                                                                                                                                                            <div>1256</div>
+                                                                                                                                                        </div>
+                                                                                                                                                    </x-ix-ad-pr-control-like-share-h0ur8pn2>
+
+                                                                                                                                                    <x-adview-control-music-h0ur8pn2 class="x-adview-control-music"></x-adview-control-music-h0ur8pn2>
                                                                                                                                                 </div>
+                                                                                                                                                <x-preview-tiktok-menu-h0ur8pn2 class="tiktok-infeed-control x-preview-tiktok-menu"></x-preview-tiktok-menu-h0ur8pn2>
+
+
+
+
                                                                                                                                             </div>
-                                                                                                                                            
-                                                                                                                                            <div class="tiktok__like-music tiktok-infeed-control">
-                                                                                                                                                <x-ix-ad-pr-control-identity-h0ur8pn2 class="x-ix-ad-pr-control-identity">
-                                                                                                                                                    <x-ix-ad-image-h0ur8pn2 class="x-ix-ad-pr-control-identity__avatar x-ix-preview-identity-avatar x-ix-ad-image">
-                                                                                                                                                    <img class="x-ix-ad-image_img x-ix-preview-image" src="https://lf16-ttmp.byteintlstatic.com/obj/goofy-sg/biz_manager_creation/statics/images/default-avatar98ff980b.png">
-                                                                                                                                                    </x-ix-ad-image-h0ur8pn2>                                               
-                                                                                                                                                </x-ix-ad-pr-control-identity-h0ur8pn2>
-
-                                                                                                                                                <x-ix-ad-pr-control-like-share-h0ur8pn2 class="x-ix-ad-pr-control-like-share">
-                                                                                                                                                    <div><x-ix-ad-icon-h0ur8pn2 class="x-ix-ad-icon--like" x-name="x-ix-ad-icon"><span><svg viewBox="0 0 32 32"
-                                                                                                                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                                                                                                    <g clip-path="url(#a)" filter="url(#b)">
-                                                                                                                                                                        <path data-follow-fill="#fff" fill-rule="evenodd" clip-rule="evenodd"
-                                                                                                                                                                            d="M10 3c4 0 6 2.667 6 2.667S18 3 22 3c4.667 0 8 3.667 8 8.333 0 5.334-4.358 10.088-8.333 13.667-2.454 2.21-4.334 3.667-5.667 3.667-1.333 0-3.266-1.469-5.667-3.667C6.426 21.422 2 16.667 2 11.333 2 6.667 5.333 3 10 3Z"
-                                                                                                                                                                            fill="#fff" fill-opacity=".9" shape-rendering="crispEdges"></path>
-                                                                                                                                                                    </g>
-                                                                                                                                                                    <defs>
-                                                                                                                                                                        <clipPath id="a">
-                                                                                                                                                                            <path data-follow-fill="#fff" d="M0 0h32v32H0z" fill="#fff"></path>
-                                                                                                                                                                        </clipPath>
-                                                                                                                                                                        <filter id="b" x="-1" y="1" width="34" height="31.664" filterUnits="userSpaceOnUse"
-                                                                                                                                                                            color-interpolation-filters="sRGB">
-                                                                                                                                                                            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-                                                                                                                                                                            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                                                                                                                                                result="hardAlpha"></feColorMatrix>
-                                                                                                                                                                            <feOffset dy="1"></feOffset>
-                                                                                                                                                                            <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
-                                                                                                                                                                            <feComposite in2="hardAlpha" operator="out"></feComposite>
-                                                                                                                                                                            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
-                                                                                                                                                                            <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_3349_63799"></feBlend>
-                                                                                                                                                                            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                                                                                                                                                result="hardAlpha"></feColorMatrix>
-                                                                                                                                                                            <feOffset dy="1"></feOffset>
-                                                                                                                                                                            <feGaussianBlur stdDeviation=".5"></feGaussianBlur>
-                                                                                                                                                                            <feComposite in2="hardAlpha" operator="out"></feComposite>
-                                                                                                                                                                            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"></feColorMatrix>
-                                                                                                                                                                            <feBlend in2="effect1_dropShadow_3349_63799" result="effect2_dropShadow_3349_63799">
-                                                                                                                                                                            </feBlend>
-                                                                                                                                                                            <feBlend in="SourceGraphic" in2="effect2_dropShadow_3349_63799" result="shape"></feBlend>
-                                                                                                                                                                        </filter>
-                                                                                                                                                                    </defs>
-                                                                                                                                                                </svg></span></x-ix-ad-icon-h0ur8pn2>
-                                                                                                                                                        <div>991K</div>
-                                                                                                                                                    </div>
-                                                                                                                                                    <div><x-ix-ad-icon-h0ur8pn2 x-name="x-ix-ad-icon" class="x-ix-ad-icon--comment"><span><svg
-                                                                                                                                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32">
-                                                                                                                                                                    <g filter="url(#b)" clip-path="url(#a)">
-                                                                                                                                                                        <path shape-rendering="crispEdges" fill-opacity=".9" fill="#fff"
-                                                                                                                                                                            d="M25.87 24c2.848-2.853 4.513-5.825 4.513-9.285C30.383 7.693 23.953 2 16.023 2 8.09 2 1.661 7.693 1.661 14.715c0 7.023 6.637 11.843 14.569 11.843v2.647c0 .591.612.973 1.133.694 1.943-1.037 5.946-3.334 8.505-5.899ZM9.045 13c1.134 0 2.053.912 2.053 2.036a2.045 2.045 0 0 1-2.053 2.038 2.045 2.045 0 0 1-2.05-2.038c0-1.123.919-2.036 2.05-2.036Zm9.028 2.036A2.044 2.044 0 0 0 16.022 13a2.044 2.044 0 0 0-2.051 2.036c0 1.126.918 2.038 2.051 2.038a2.045 2.045 0 0 0 2.052-2.038ZM22.998 13c1.133 0 2.05.912 2.05 2.036a2.044 2.044 0 0 1-2.05 2.038 2.045 2.045 0 0 1-2.052-2.038c0-1.123.918-2.036 2.052-2.036Z"
-                                                                                                                                                                            clip-rule="evenodd" fill-rule="evenodd" data-follow-fill="#fff"></path>
-                                                                                                                                                                    </g>
-                                                                                                                                                                    <defs>
-                                                                                                                                                                        <clipPath id="a">
-                                                                                                                                                                            <path fill="#fff" d="M0 0h32v32H0z" data-follow-fill="#fff"></path>
-                                                                                                                                                                        </clipPath>
-                                                                                                                                                                        <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="33.992"
-                                                                                                                                                                            width="34.719" y="0" x="-1.336" id="b">
-                                                                                                                                                                            <feFlood result="BackgroundImageFix" flood-opacity="0"></feFlood>
-                                                                                                                                                                            <feColorMatrix result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                                                                                                                                                in="SourceAlpha"></feColorMatrix>
-                                                                                                                                                                            <feOffset dy="1"></feOffset>
-                                                                                                                                                                            <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
-                                                                                                                                                                            <feComposite operator="out" in2="hardAlpha"></feComposite>
-                                                                                                                                                                            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
-                                                                                                                                                                            <feBlend result="effect1_dropShadow_3349_63805" in2="BackgroundImageFix"></feBlend>
-                                                                                                                                                                            <feColorMatrix result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                                                                                                                                                in="SourceAlpha"></feColorMatrix>
-                                                                                                                                                                            <feOffset dy="1"></feOffset>
-                                                                                                                                                                            <feGaussianBlur stdDeviation=".5"></feGaussianBlur>
-                                                                                                                                                                            <feComposite operator="out" in2="hardAlpha"></feComposite>
-                                                                                                                                                                            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"></feColorMatrix>
-                                                                                                                                                                            <feBlend result="effect2_dropShadow_3349_63805" in2="effect1_dropShadow_3349_63805">
-                                                                                                                                                                            </feBlend>
-                                                                                                                                                                            <feBlend result="shape" in2="effect2_dropShadow_3349_63805" in="SourceGraphic"></feBlend>
-                                                                                                                                                                        </filter>
-                                                                                                                                                                    </defs>
-                                                                                                                                                                </svg></span></x-ix-ad-icon-h0ur8pn2>
-                                                                                                                                                        <div>3456</div>
-                                                                                                                                                    </div>
-                                                                                                                                                    <div><x-ix-ad-icon-h0ur8pn2 x-name="x-ix-ad-icon" class="x-ix-ad-icon--share"><span><svg viewBox="0 0 35 34"
-                                                                                                                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                                                                                                    <g filter="url(#a)">
-                                                                                                                                                                        <path data-follow-fill="#fff" fill-rule="evenodd" clip-rule="evenodd"
-                                                                                                                                                                            d="M16.997 3.49c0-1.02 1.246-1.518 1.95-.78L30.464 14.8c.85.893.829 2.304-.05 3.17L18.922 29.3c-.714.704-1.925.198-1.925-.806v-6.163s-7.133-1.134-11.466 3.2c-.459.458-1.867.466-1.867-1.784 0-7.541 5.667-14.416 13.333-14.238V3.491Z"
-                                                                                                                                                                            fill="#fff" fill-opacity=".9" shape-rendering="crispEdges"></path>
-                                                                                                                                                                    </g>
-                                                                                                                                                                    <defs>
-                                                                                                                                                                        <filter id="a" x=".664" y=".359" width="33.422" height="33.266" filterUnits="userSpaceOnUse"
-                                                                                                                                                                            color-interpolation-filters="sRGB">
-                                                                                                                                                                            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-                                                                                                                                                                            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                                                                                                                                                result="hardAlpha"></feColorMatrix>
-                                                                                                                                                                            <feOffset dy="1"></feOffset>
-                                                                                                                                                                            <feGaussianBlur stdDeviation="1.5"></feGaussianBlur>
-                                                                                                                                                                            <feComposite in2="hardAlpha" operator="out"></feComposite>
-                                                                                                                                                                            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
-                                                                                                                                                                            <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_3349_63821"></feBlend>
-                                                                                                                                                                            <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                                                                                                                                                result="hardAlpha"></feColorMatrix>
-                                                                                                                                                                            <feOffset dy="1"></feOffset>
-                                                                                                                                                                            <feGaussianBlur stdDeviation=".5"></feGaussianBlur>
-                                                                                                                                                                            <feComposite in2="hardAlpha" operator="out"></feComposite>
-                                                                                                                                                                            <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"></feColorMatrix>
-                                                                                                                                                                            <feBlend in2="effect1_dropShadow_3349_63821" result="effect2_dropShadow_3349_63821">
-                                                                                                                                                                            </feBlend>
-                                                                                                                                                                            <feBlend in="SourceGraphic" in2="effect2_dropShadow_3349_63821" result="shape"></feBlend>
-                                                                                                                                                                        </filter>
-                                                                                                                                                                    </defs>
-                                                                                                                                                                </svg></span></x-ix-ad-icon-h0ur8pn2>
-                                                                                                                                                        <div>1256</div>
-                                                                                                                                                    </div>
-                                                                                                                                                </x-ix-ad-pr-control-like-share-h0ur8pn2>
-
-                                                                                                                                                <x-adview-control-music-h0ur8pn2 class="x-adview-control-music"></x-adview-control-music-h0ur8pn2>
-                                                                                                                                            </div>
-                                                                                                                                            <x-preview-tiktok-menu-h0ur8pn2 class="tiktok-infeed-control x-preview-tiktok-menu"></x-preview-tiktok-menu-h0ur8pn2>
-
-
-                                                                                                                                            
-
-                                                                                                                                        </div>
-                                                                                                                                    </x-ix-ad-pr-placement-infeed-h0ur8pn2>
+                                                                                                                                        </x-ix-ad-pr-placement-infeed-h0ur8pn2>
+                                                                                                                                    </div>
                                                                                                                                 </div>
                                                                                                                             </div>
+                                                                                                                            <x-ix-ad-pr-player-controls-h0ur8pn2>
+                                                                                                                                <div class="x-ix-ad-pr-player-controls"></div>
+                                                                                                                            </x-ix-ad-pr-player-controls-h0ur8pn2>
                                                                                                                         </div>
-                                                                                                                        <x-ix-ad-pr-player-controls-h0ur8pn2><div class="x-ix-ad-pr-player-controls"></div></x-ix-ad-pr-player-controls-h0ur8pn2>
-                                                                                                                    </div>
 
-                                                                                                                    <!--  -->
-                                                                                                                    <div class="x-ads-preview__progress-bar">
-                                                                                                                        <x-ix-ad-pr-video-progress-bar-h0ur8pn2><div class="x-ix-ad-pr-video-progress-bar__section"><div class="x-ix-ad-pr-video-progress-bar__progress-bar-wrap x-ix-ad-pr-video-progress-bar__section-bar-play" data-tea-module-click="ix_preview_progress_click"><div class="x-ix-ad-pr-video-progress-bar__progress-bar" style="height: 6px;"><div class="x-ix-ad-pr-video-progress-bar__progress" style="width: 0%;"></div><div class="x-ix-ad-pr-video-progress-bar__thumb" style="left: 0%;"><div class="x-ix-ad-pr-video-progress-bar__thumb_hover_area"></div></div></div></div><div class="x-ix-ad-pr-video-progress-bar__time"><span class="x-ix-ad-pr-video-progress-bar__current-time">00:00</span><span>&nbsp;/&nbsp;</span><span class="x-ix-ad-pr-video-progress-bar__total-time">00:15</span></div></div></x-ix-ad-pr-video-progress-bar-h0ur8pn2>
+                                                                                                                        <!--  -->
+                                                                                                                        <div class="x-ads-preview__progress-bar">
+                                                                                                                            <x-ix-ad-pr-video-progress-bar-h0ur8pn2>
+                                                                                                                                <div class="x-ix-ad-pr-video-progress-bar__section">
+                                                                                                                                    <div class="x-ix-ad-pr-video-progress-bar__progress-bar-wrap x-ix-ad-pr-video-progress-bar__section-bar-play" data-tea-module-click="ix_preview_progress_click">
+                                                                                                                                        <div class="x-ix-ad-pr-video-progress-bar__progress-bar" style="height: 6px;">
+                                                                                                                                            <div class="x-ix-ad-pr-video-progress-bar__progress" style="width: 0%;"></div>
+                                                                                                                                            <div class="x-ix-ad-pr-video-progress-bar__thumb" style="left: 0%;">
+                                                                                                                                                <div class="x-ix-ad-pr-video-progress-bar__thumb_hover_area"></div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="x-ix-ad-pr-video-progress-bar__time"><span class="x-ix-ad-pr-video-progress-bar__current-time">00:00</span><span>&nbsp;/&nbsp;</span><span class="x-ix-ad-pr-video-progress-bar__total-time">00:15</span></div>
+                                                                                                                                </div>
+                                                                                                                            </x-ix-ad-pr-video-progress-bar-h0ur8pn2>
+                                                                                                                        </div>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                    </div>
-                                                                                                </x-ix-full-screen-h0ur8pn2>
-                                                                                            </div>
-                                                                                        </x-ads-preview-h0ur8pn2>
+                                                                                                    </x-ix-full-screen-h0ur8pn2>
+                                                                                                </div>
+                                                                                            </x-ads-preview-h0ur8pn2>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -3590,12 +3751,12 @@ session_start();
                                                         </div>
                                                     </div>
                                                 </div>
-                                             </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                    
+
                         </div>
                     </div>
                 </div>
@@ -4011,7 +4172,7 @@ session_start();
         <div x-arrow="" class="arrow"></div>
     </div>
 
-    <!--------------------------------------------------------------------------------- DATE SUBMENU -------------------------------------------------------------------------------------------->$_COOKIE
+    <!--------------------------------------------------------------------------------- DATE SUBMENU -------------------------------------------------------------------------------------------->
     <div class="date-submenu d-none">
         <div class="compare-row">
             <span class="compare-text">Compare</span>
@@ -4192,7 +4353,7 @@ session_start();
     </div>
 
     <!-------------------------------------------------------------------------------- TABLE HEADER REFRESH SUBMENU ----------------------------------------------------------------------------->
-    <<?php
+    <?php
         $randomMinutes = rand(30, 240);
         $lastUpdatedTime = date('Y-m-d H:i:s', strtotime("-$randomMinutes minutes"));
         ?>
@@ -5390,6 +5551,117 @@ session_start();
                 $('.edit-1').css('display', (step === 1) ? 'block' : 'none');
                 $('.edit-2').css('display', (step === 2) ? 'block' : 'none');
             }
+
+            // ----------------------------------------------------------- REAL EDIT AD ROW ----------------------------------------------------------------------
+            function realEditAdRow(rowId) {
+                // Check if the modal already exists
+                let existingModal = document.getElementById(rowId);
+
+                if (!existingModal) {
+                    let originalModal = document.getElementById('real-edit-row-modal-ads-rw-1');
+                    if (!originalModal) {
+                        console.error('Template modal (real-edit-row-modal-ads-rw-1) not found!');
+                        return;
+                    }
+
+                    // Create new modal and copy the template content
+                    let newModal = document.createElement('div');
+                    newModal.className = 'edit-tag sideslip d-none';
+                    newModal.id = rowId;
+
+                    // Clone the inner HTML of the template modal
+                    let clonedModalContent = originalModal.innerHTML;
+
+                    // Replace placeholder IDs or classes in the content with the current `rowId`
+                    clonedModalContent = clonedModalContent.replace(
+                        /real-edit-row-modal-ads-rw-1/g,
+                        rowId
+                    );
+
+                    newModal.innerHTML = clonedModalContent;
+
+                    // Append the new modal to the body (or a container element)
+                    document.body.appendChild(newModal);
+                    console.log(`Modal for row ID ${rowId} created successfully.`);
+                } else {
+                    console.log(`Modal for row ID ${rowId} already exists.`);
+                }
+
+                // Display the modal
+                const container = document.getElementById(rowId);
+                if (container) {
+                    container.classList.remove('d-none');
+                } else {
+                    console.error(`Modal container for row ID ${rowId} not found.`);
+                }
+
+                // fetch data
+                $.ajax({
+                    url: 'controller/ads/fetch_real_edit_ads_data.php',
+                    type: 'POST',
+                    data: {
+                        rowId: rowId
+                    },
+                    success: function(response) {
+                        const data = JSON.parse(response);
+                        if (data.status && data.status === "error") {
+                            console.error(data.message);
+                            // alert(data.message);
+                        } else {
+                            $(`#${rowId} #ad-base-name`).val(data.adsname || '');
+                            
+                            // Update video source and set fallback if video name is missing
+                            const videoSource = $(`#${rowId} #real-edit-vid-img source`);
+                            const videoPath = `img/${data.videoname}`;
+                            videoSource.attr('src', videoPath);
+
+                            // Update the <video> tag to load the new source
+                            const videoElement = document.querySelector(`#${rowId} #real-edit-vid-img`);
+                            if (videoElement) {
+                                videoElement.load();
+                            }
+
+                            // Update the span with the video name or a fallback message
+                            const videoNameSpan = $(`#${rowId} #real-edit-vid-name`);
+                            if (data.videoname) {
+                                videoNameSpan.text(data.videoname);
+                            } else {
+                                videoNameSpan.text('No video available');
+                            }
+
+                            // Update video player source dynamically
+                            const videoPlayer = document.querySelector(`#${rowId} #real-edit-vid-player`);
+                            const videoSource2 = videoPlayer.querySelector('source');
+                            if (videoSource2) {
+                                const videoPath = data.videoname
+                                    ? `img/${data.videoname}`
+                                    : 'https://v16-tt4b.tiktokcdn.com/default-placeholder-video.mp4';
+                                videoSource2.setAttribute('src', videoPath);
+                                videoPlayer.load();
+                            } else {
+                                console.error("Source tag not found inside the video player.");
+                            }
+
+                            // Update xg-poster background image dynamically
+                            const posterElement = document.querySelector(`#${rowId} #real-edit-poster`);
+                            if (posterElement) {
+                                const posterPath = data.poster
+                                    ? `img/${data.poster}`
+                                    : 'https://p16-ad-sg.tiktokcdn.com/origin/tos-alisg-p-0051c001-sg/default-placeholder-poster.jpg';
+
+                                posterElement.style.backgroundImage = `url(${posterPath})`;
+                            } else {
+                                console.error(`Poster element with ID 'real-edit-poster' not found.`);
+                            }
+
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("AJAX Error:", status, error);
+                        // alert("There was an error fetching the data. Please try again.");
+                    }
+                });
+            }
         </script>
 
         <!----------------------------------------------------------------------------------- Original Script --------------------------------------------------------------------------------------->
@@ -5704,9 +5976,9 @@ session_start();
 
             // ============================================================= DATE SUBMENU ==========================================================
             // ------------------------------------------------- Click Date Element -----------------------------------------------
-            document.querySelector(".date-element").addEventListener('click', function(){
-                const dateElement  = document.querySelector('.date-element');
-                const dateSubmenu  = document.querySelector('.date-submenu');
+            document.querySelector(".date-element").addEventListener('click', function() {
+                const dateElement = document.querySelector('.date-element');
+                const dateSubmenu = document.querySelector('.date-submenu');
                 dateElement.classList.add('is-active');
                 dateSubmenu.classList.remove('d-none');
 
@@ -5802,20 +6074,20 @@ session_start();
 
             // ------------------------------------------------- Cancel button -----------------------------------------------
             document.querySelector('.date-cancel').addEventListener('click', function() {
-                const dateElement   = document.querySelector('.date-element');
-                const dateSubmenu  = document.querySelector('.date-submenu');
+                const dateElement = document.querySelector('.date-element');
+                const dateSubmenu = document.querySelector('.date-submenu');
                 dateElement.classList.remove('is-active');
 
                 dateSubmenu.classList.add('vi-zoom-in-top-leave-active');
                 setTimeout(() => {
                     dateSubmenu.classList.add('d-none');
                     dateSubmenu.classList.remove('vi-zoom-in-top-leave-active');
-                }, 300); 
+                }, 300);
             });
 
             // ----------------------------------------------- Apply button to save date to Database -----------------------------------
             document.querySelector('.date-apply').addEventListener('click', function() {
-                const dateElement   = document.querySelector('.date-element');
+                const dateElement = document.querySelector('.date-element');
                 const dateSubmenu = document.querySelector('.date-submenu');
                 const selectedDates = document.querySelectorAll('.select-date');
 
@@ -5874,11 +6146,11 @@ session_start();
                                     location.reload();
                                 } else {
                                     console.error('Failed to update dates: ' + data.message);
-                                   // alert('Failed to update dates: ' + data.message);
+                                    // alert('Failed to update dates: ' + data.message);
                                 }
                             } catch (e) {
                                 console.error('Failed to parse response:', response);
-                               // alert('An unexpected error occurred.');
+                                // alert('An unexpected error occurred.');
                             }
                         },
                         error: function(xhr, status, error) {
@@ -5890,14 +6162,14 @@ session_start();
                     // alert('Please select both start and end dates before applying.');
                     console.error('Please select both start and end dates before applying.');
                 }
-                
+
                 dateElement.classList.remove('is-active');
-                
+
                 dateSubmenu.classList.add('vi-zoom-in-top-leave-active');
                 setTimeout(() => {
                     dateSubmenu.classList.add('d-none');
                     dateSubmenu.classList.remove('vi-zoom-in-top-leave-active');
-                }, 300); 
+                }, 300);
             });
 
 
@@ -5916,6 +6188,8 @@ session_start();
             //     footerQuestionASubmenu.style.top = `${labelRect.top - 80}px`;
             // });
         </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/xgplayer/dist/index.min.js"></script>
 </body>
 
 </html>

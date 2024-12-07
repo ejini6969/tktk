@@ -1179,6 +1179,7 @@ th.draggable.dragging {
 .table .table-content .name-col .non-video .toolkit .view-data svg {
     height: 14px;
     width: 14px;
+    margin-top: 2px;
 }
 
 .table .table-content .name-col .non-video .toolkit .edit-data {
@@ -1195,6 +1196,7 @@ th.draggable.dragging {
 .table .table-content .name-col .non-video .toolkit .edit-data i {
     height: 14px;
     width: 14px;
+    margin-top: 2px;
 }
 
 .table .table-content .name-col .non-video .toolkit .copy-data {
@@ -1211,6 +1213,7 @@ th.draggable.dragging {
 .table .table-content .name-col .non-video .toolkit .copy-data i {
     height: 14px;
     width: 14px;
+    margin-top: 2px;
 }
 
 .table .table-content .name-col .non-video .toolkit .dot-data {
