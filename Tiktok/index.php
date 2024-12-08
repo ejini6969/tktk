@@ -1671,6 +1671,45 @@ session_start();
                                     } else {
                                         $totalCampaigns = 0;
                                     }
+
+                                    // --------------------------------- Update campaigndata with aggregated metrics from adsdata ----------------------
+                                    $sqlUpdateCampaignData = "
+                                    UPDATE campaigndata
+                                    LEFT JOIN (
+                                        SELECT 
+                                            adsgroupdata.campaignid,
+                                            SUM(IFNULL(adsdata.cost, 0)) AS total_cost,
+                                            SUM(IFNULL(adsdata.reach, 0)) AS total_reach,
+                                            SUM(IFNULL(adsdata.imprs, 0)) AS total_imprs,
+                                            SUM(IFNULL(adsdata.result, 0)) AS total_result,
+                                            SUM(IFNULL(adsdata.click, 0)) AS total_click,
+                                            IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.imprs), 0) * 1000, 0) AS total_cpm,
+                                            IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.click), 0), 0) AS total_cpc,
+                                            IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.result), 0), 0) AS total_cpr,
+                                            IFNULL(SUM(adsdata.click) / NULLIF(SUM(adsdata.imprs), 0) * 100, 0) AS total_ctr
+                                        FROM adsdata
+                                        LEFT JOIN adsgroupdata ON adsdata.adsgroupid = adsgroupdata.adsgroupid
+                                        WHERE adsdata.date BETWEEN '$startDate' AND '$endDate'
+                                        GROUP BY adsgroupdata.campaignid
+                                    ) AS aggregated
+                                    ON campaigndata.campaignid = aggregated.campaignid
+                                    SET 
+                                        campaigndata.cost = aggregated.total_cost,
+                                        campaigndata.reach = aggregated.total_reach,
+                                        campaigndata.imprs = aggregated.total_imprs,
+                                        campaigndata.result = aggregated.total_result,
+                                        campaigndata.click = aggregated.total_click,
+                                        campaigndata.cpm = aggregated.total_cpm,
+                                        campaigndata.cpc = aggregated.total_cpc,
+                                        campaigndata.cpr = aggregated.total_cpr,
+                                        campaigndata.ctr = aggregated.total_ctr
+                                    ";
+
+                                    // Execute the update query
+                                    if (!$conn->query($sqlUpdateCampaignData)) {
+                                    die("Error updating campaign data: " . $conn->error);
+                                    }
+
                                     ?>
 
                                     <tr>
@@ -3133,7 +3172,7 @@ session_start();
                                                 <div class="index_editTitleText_fDLPl">
                                                     <span>Edit ad</span>
                                                 </div>
-                                                <span class="index_editTitleId_w0jhq">Ad ID: 1817573122007073</span>
+                                                <span class="index_editTitleId_w0jhq" id="real-edit-ad-id">Ad ID: 1817573122007073</span>
                                             </div>
 
                                             <!-- contnet -->
@@ -3581,7 +3620,8 @@ session_start();
                                                                                                                                     tabindex="0">
                                                                                                                                     <div data-v-69042a2b="" aria-haspopup="listbox" role="combobox" aria-owns="vi-autocomplete-6260"
                                                                                                                                         class="vi-autocomplete index_input_mFgXD suffix-fix">
-                                                                                                                                        <div data-testid="input-input-qJLqaS" class="vi-input vi-input--suffix"><!----><input
+                                                                                                                                        <div data-testid="input-input-qJLqaS" class="vi-input vi-input--suffix"><!---->
+                                                                                                                                            <input
                                                                                                                                                 type="text" autocomplete="off" valuekey="value"
                                                                                                                                                 placeholder="Enter URL starting with http:// or https://"
                                                                                                                                                 fetchsuggestions="function () { [native code] }" triggeronfocus="true"
@@ -3628,10 +3668,14 @@ session_start();
                                                                                                                                             </div>
                                                                                                                                         </div>
                                                                                                                                     </div>
-                                                                                                                                </div><button data-v-69042a2b="" data-testid="creative-external-url-index-w9m94W" type="button"
+                                                                                                                                </div>
+                                                                                                                                <button id="real-preview-btn"
+                                                                                                                                    data-testid="creative-external-url-index-w9m94W" type="button"
                                                                                                                                     class="vi-button vi-byted-button vi-button--default index_previewBtn_JC_yS"
                                                                                                                                     data-tea-click="create_ad_creative_preview_external_url"><!----><i
-                                                                                                                                        class="vi-icon2-share"></i><span> Preview </span></button>
+                                                                                                                                    class="vi-icon2-share"
+                                                                                                                                    data-domain=""></i><span> Preview </span>
+                                                                                                                                </button>
                                                                                                                             </div><!----><!---->
                                                                                                                         </div>
                                                                                                                     </div>
@@ -4262,47 +4306,11 @@ session_start();
                                             <option value="Not delivering" class="rejected" id="rejected">Not delivering</option>
                                         </select>
                                     </div>
-                                    <div class="form-group mb">
-                                        <label for="app-name" class="col-form-label">Results:</label>
-                                        <input type="text" class="form-control" name="results" id="results" autocomplete="off"
-                                            placeholder="results...">
-                                    </div>
+                                    
                                     <div class="modal-footer pt-4">
                                         <div class="col-12 d-flex justify-content-center">
                                             <button type="button" class="mx-3 btn px-5 btn-secondary"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="button" class="mx-3 btn px-5 btn-primary"
-                                                onclick="showStep('campaigns-rw-1', 2)">Next</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!----------------------------------------------------------- Step 2 -------------------------------------------------------------->
-                                <div id="step-2">
-                                    <div class="form-group">
-                                        <label for="campaign" class="col-form-label">Imprs:</label>
-                                        <input type="text" class="form-control" name="imprs" id="imprs" autocomplete="off"
-                                            placeholder="imprs...">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ad-group" class="col-form-label">Reach:</label>
-                                        <input type="text" class="form-control" name="reach" id="reach" autocomplete="off"
-                                            placeholder="reach...">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ad-group" class="col-form-label">Cost:</label>
-                                        <input type="text" class="form-control" name="cost" id="cost" autocomplete="off"
-                                            placeholder="cost...">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label">Clicks:</label>
-                                        <input type="text" class="form-control" name="clicks" id="clicks" autocomplete="off"
-                                            placeholder="clicks...">
-                                    </div>
-                                    <div class="modal-footer pt-4">
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <button type="button" class="mx-3 btn px-5 btn-secondary"
-                                                onclick="showStep('campaigns-rw-1', 1)">Back</button>
                                             <input type="submit" name="edit" value="Edit" class="mx-3 btn px-5 btn-primary">
                                         </div>
                                     </div>
@@ -4367,47 +4375,10 @@ session_start();
                                         <input type="text" class="form-control" name="campaignid" id="campaignid"
                                             autocomplete="off" placeholder="Campaign ID">
                                     </div>
-                                    <div class="form-group mb">
-                                        <label for="app-name" class="col-form-label">Results:</label>
-                                        <input type="text" class="form-control" name="results" id="results" autocomplete="off"
-                                            placeholder="results...">
-                                    </div>
                                     <div class="modal-footer pt-4">
                                         <div class="col-12 d-flex justify-content-center">
                                             <button type="button" class="mx-3 btn px-5 btn-secondary"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="button" class="mx-3 btn px-5 btn-primary"
-                                                onclick="showStep('ads-group-rw-1', 2)">Next</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!----------------------------------------------------------- Step 2 -------------------------------------------------------------->
-                                <div id="step-2">
-                                    <div class="form-group">
-                                        <label for="campaign" class="col-form-label">Imprs:</label>
-                                        <input type="text" class="form-control" name="imprs" id="imprs" autocomplete="off"
-                                            placeholder="imprs...">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ad-group" class="col-form-label">Reach:</label>
-                                        <input type="text" class="form-control" name="reach" id="reach" autocomplete="off"
-                                            placeholder="reach...">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ad-group" class="col-form-label">Cost:</label>
-                                        <input type="text" class="form-control" name="cost" id="cost" autocomplete="off"
-                                            placeholder="cost...">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label">Clicks:</label>
-                                        <input type="text" class="form-control" name="clicks" id="clicks" autocomplete="off"
-                                            placeholder="clicks...">
-                                    </div>
-                                    <div class="modal-footer pt-4">
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <button type="button" class="mx-3 btn px-5 btn-secondary"
-                                                onclick="showStep('ads-group-rw-1', 1)">Back</button>
                                             <input type="submit" name="edit" value="Edit" class="mx-3 btn px-5 btn-primary">
                                         </div>
                                     </div>
@@ -4453,17 +4424,22 @@ session_start();
                                         <input type="file" class="form-control" name="videoname" id="videoname">
                                     </div>
                                     <div class="form-group">
-                                        <label for="app-id" class="col-form-label">Ads ID:</label>
+                                        <label for="adsid" class="col-form-label">Ads ID:</label>
                                         <input type="text" class="form-control" name="adsid" id="adsid"
                                             autocomplete="off" placeholder="Ads ID">
                                     </div>
                                     <div class="form-group">
-                                        <label for="app-name" class="col-form-label">AdsName:</label>
+                                        <label for="adsname" class="col-form-label">AdsName:</label>
                                         <input type="text" class="form-control" name="adsname" id="adsname" autocomplete="off"
-                                            placeholder="Ads Name (2nd Col)">
+                                            placeholder="Ads Name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="remark" class="col-form-label">Status:</label>
+                                        <label for="domainname" class="col-form-label">Domain Name:</label>
+                                        <input type="text" class="form-control" name="domainname" id="domainname" autocomplete="off"
+                                            placeholder="Domain Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="delivery" class="col-form-label">Status:</label>
                                         <select class="form-control" name="delivery" id="delivery">
                                             <option value="Active" class="is-active" id="is-active">Active</option>
                                             <option value="Inactive" class="is-not-active" id="is-not-actice">Inactive</option>
@@ -4471,19 +4447,14 @@ session_start();
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="app-grp-id" class="col-form-label">Ads Group ID:</label>
+                                        <label for="adsgroupid" class="col-form-label">Ads Group ID:</label>
                                         <input type="text" class="form-control" name="adsgroupid" id="adsgroupid"
                                             autocomplete="off" placeholder="Ads Group ID">
                                     </div>
                                     <div class="form-group">
-                                        <label for="app-grp-name" class="col-form-label">Ads Group Name:</label>
+                                        <label for="adsgroupname" class="col-form-label">Ads Group Name:</label>
                                         <input type="text" class="form-control" name="adsgroupname" id="adsgroupname"
                                             autocomplete="off" placeholder="Ads Group Name (4th Col)">
-                                    </div>
-                                    <div class="form-group mb">
-                                        <label for="app-name" class="col-form-label">Results:</label>
-                                        <input type="text" class="form-control" name="results" id="results" autocomplete="off"
-                                            placeholder="results...">
                                     </div>
                                     <div class="modal-footer pt-4">
                                         <div class="col-12 d-flex justify-content-center">
@@ -4497,23 +4468,28 @@ session_start();
 
                                 <!----------------------------------------------------------- Step 2 -------------------------------------------------------------->
                                 <div id="step-2">
+                                    <div class="form-group mb">
+                                        <label for="results" class="col-form-label">Results:</label>
+                                        <input type="text" class="form-control" name="results" id="results" autocomplete="off"
+                                            placeholder="results...">
+                                    </div>
                                     <div class="form-group">
-                                        <label for="campaign" class="col-form-label">Imprs:</label>
+                                        <label for="imprs" class="col-form-label">Imprs:</label>
                                         <input type="text" class="form-control" name="imprs" id="imprs" autocomplete="off"
                                             placeholder="imprs...">
                                     </div>
                                     <div class="form-group">
-                                        <label for="ad-group" class="col-form-label">Reach:</label>
+                                        <label for="reach" class="col-form-label">Reach:</label>
                                         <input type="text" class="form-control" name="reach" id="reach" autocomplete="off"
                                             placeholder="reach...">
                                     </div>
                                     <div class="form-group">
-                                        <label for="ad-group" class="col-form-label">Cost:</label>
+                                        <label for="cost" class="col-form-label">Cost:</label>
                                         <input type="text" class="form-control" name="cost" id="cost" autocomplete="off"
                                             placeholder="cost...">
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-form-label">Clicks:</label>
+                                        <label for="clicks" class="col-form-label">Clicks:</label>
                                         <input type="text" class="form-control" name="clicks" id="clicks" autocomplete="off"
                                             placeholder="clicks...">
                                     </div>
@@ -5853,6 +5829,7 @@ session_start();
             formData.append('adsid', Math.floor(1000000000 + Math.random() * 9000000000).toString());
             formData.append('onoff', 1);
             formData.append('adsname', 'Sample Ad Name');
+            formData.append('domainname', 'https://example.com');
             formData.append('delivery', 'Active');
             formData.append('adsgroupid', '987651234568');
             formData.append('adsgroupname', 'Sample Group');
@@ -6005,6 +5982,7 @@ session_start();
                         $(`#add-row-modal-${rowId} #adsid`).val(data.adsid);
                         $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
                         $(`#add-row-modal-${rowId} #adsname`).val(data.adsname);
+                        $(`#add-row-modal-${rowId} #domainname`).val(data.domainname);
                         $(`#add-row-modal-${rowId} #delivery`).val(data.status);
                         $(`#add-row-modal-${rowId} #adsgroupid`).val(data.adsgroupid);
                         $(`#add-row-modal-${rowId} #adsgroupname`).val(data.adsgroupname);
@@ -6142,7 +6120,27 @@ session_start();
                         console.error(data.message);
                         // alert(data.message);
                     } else {
-                        $(`#${rowId} #ad-base-name`).val(data.adsname || '');
+                        // update Ads Name
+                        $(`#${rowId} #ad-base-name`).val(data.adsname || "");
+
+                        // update Ad Id
+                        $(`#${rowId} #real-edit-ad-id`).text(`Ad ID: ${data.adsid || ""}`);
+
+                        // update domain name
+                        $(`#${rowId} #creative_aco_url`).val(data.domainname || "");
+
+                        // Assuming rowId identifies the specific row
+                        $(`#${rowId} #real-preview-btn`).attr("data-domain", data.domainname || "");
+
+                        // Attach a click event to navigate to the domain
+                        $(`#${rowId} #real-preview-btn`).off("click").on("click", function () {
+                            const domain = $(this).attr("data-domain");
+                            if (domain) {
+                                window.open(domain, "_blank"); // Open the domain in a new tab
+                            } else {
+                                alert("Domain name is not set for this ad.");
+                            }
+                        });
 
                         // Update video source and set fallback if video name is missing
                         const videoSource = $(`#${rowId} #real-edit-vid-img source`);
@@ -6164,7 +6162,7 @@ session_start();
                         }
 
                         // Update video player source dynamically
-                        const videoPlayer = document.querySelector(`#${rowId} #real-edit-vid-player`);
+                        const videoPlayer = document.querySelector(`#${rowId} #real-edit-vid-playerx`);
                         const videoSource2 = videoPlayer.querySelector('source');
                         if (videoSource2) {
                             const videoPath = data.videoname ?

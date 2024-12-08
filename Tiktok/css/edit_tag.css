@@ -2620,7 +2620,7 @@ a {
 .ttam-creative-auto-attach-switch__switch {
     margin-right: 8px;
 }
-
+/* 
 .vi-switch__input {
     position: absolute;
     width: 0;
@@ -2663,7 +2663,7 @@ a {
     -webkit-box-shadow: 0 2px 8px #00000014;
     box-shadow: 0 2px 8px #00000014;
     content: "";
-} 
+}  */
 
 .ttam-creative-auto-attach-switch__switch_text {
     font-weight: 500;
