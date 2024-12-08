@@ -1585,6 +1585,7 @@ session_start();
                                 <tfoot class="table-footer">
 
                                     <?php
+                                    // ------------------------ Compute sum of ads for each ad group -----------------------
                                     $startDate = $startdate;
                                     $endDate = $enddate;
 
@@ -1620,7 +1621,7 @@ session_start();
                                         ];
                                     }
 
-                                    // Count total campaigns within the date range
+                                    // --------------------- Count total campaigns within the date range ---------------------
                                     $sqlCountCampaigns = "
                                         SELECT COUNT(*) AS totalcount 
                                         FROM campaigndata
@@ -1633,6 +1634,44 @@ session_start();
                                     } else {
                                         $totalCampaigns = 0;
                                     }
+
+                                    // Update adsgroupdata with aggregated metrics from adsdata
+                                    $sqlUpdateAdGroupData = "
+                                    UPDATE adsgroupdata
+                                    LEFT JOIN (
+                                        SELECT 
+                                            adsgroupid,
+                                            SUM(IFNULL(cost, 0)) AS total_cost,
+                                            SUM(IFNULL(reach, 0)) AS total_reach,
+                                            SUM(IFNULL(imprs, 0)) AS total_imprs,
+                                            SUM(IFNULL(result, 0)) AS total_result,
+                                            SUM(IFNULL(click, 0)) AS total_click,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(imprs), 0) * 1000, 0) AS total_cpm,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(click), 0), 0) AS total_cpc,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(result), 0), 0) AS total_cpr,
+                                            IFNULL(SUM(click) / NULLIF(SUM(imprs), 0) * 100, 0) AS total_ctr
+                                        FROM adsdata
+                                        WHERE date BETWEEN '$startDate' AND '$endDate'
+                                        GROUP BY adsgroupid
+                                    ) AS aggregated
+                                    ON adsgroupdata.adsgroupid = aggregated.adsgroupid
+                                    SET 
+                                        adsgroupdata.cost = aggregated.total_cost,
+                                        adsgroupdata.reach = aggregated.total_reach,
+                                        adsgroupdata.imprs = aggregated.total_imprs,
+                                        adsgroupdata.result = aggregated.total_result,
+                                        adsgroupdata.click = aggregated.total_click,
+                                        adsgroupdata.cpm = aggregated.total_cpm,
+                                        adsgroupdata.cpc = aggregated.total_cpc,
+                                        adsgroupdata.cpr = aggregated.total_cpr,
+                                        adsgroupdata.ctr = aggregated.total_ctr
+                                    ";
+
+                                    // Execute the update query
+                                    if (!$conn->query($sqlUpdateAdGroupData)) {
+                                        die("Error updating ad group data: " . $conn->error);
+                                    }
+
                                     ?>
 
                                     <tr>
@@ -1943,15 +1982,41 @@ session_start();
                                     }
 
                                     // ~~~~~~~~~~~~~~ PHP get Row Id and insert data (FOR EACH ROW) ~~~~~~~~~~~~~~~~
+                                    ini_set('display_errors', 1);
+                                    ini_set('display_startup_errors', 1);
+                                    error_reporting(E_ALL);
+
                                     $campaignId = isset($_GET['selectedcampaigns']) ? $_GET['selectedcampaigns'] : "";
 
                                     // Filter ad group data by campaign ID
-                                    $sqlSelectAdsGroupData = "SELECT * FROM adsgroupdata WHERE date BETWEEN '$startdate' AND '$enddate'";
+                                    $sqlSelectAdsGroupData = "
+                                                    SELECT 
+                                                        adsgroupdata.adsgroupid,
+                                                        adsgroupdata.adsgroupname,
+                                                        adsgroupdata.onoff,
+                                                        adsgroupdata.status,
+                                                        adsgroupdata.campaignid,
+                                                        IFNULL(SUM(adsdata.cost), 0) AS cost,
+                                                        IFNULL(SUM(adsdata.click), 0) AS click,
+                                                        IFNULL(SUM(adsdata.imprs), 0) AS imprs,
+                                                        IFNULL(SUM(adsdata.reach), 0) AS reach,
+                                                        IFNULL(SUM(adsdata.result), 0) AS result,
+                                                        IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.imprs), 0) * 1000, 0) AS cpm,
+                                                        IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.click), 0), 0) AS cpc,
+                                                        IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.result), 0), 0) AS cpr,
+                                                        IFNULL(SUM(adsdata.click) / NULLIF(SUM(adsdata.imprs), 0) * 100, 0) AS ctr
+                                                    FROM adsgroupdata
+                                                    LEFT JOIN adsdata ON adsgroupdata.adsgroupid = adsdata.adsgroupid
+                                                    WHERE (adsdata.date BETWEEN '$startDate' AND '$endDate' OR adsdata.date IS NULL)
+                                                ";
+
                                     if ($campaignId != "") {
                                         preg_match('/\d+$/', $campaignId, $matches);
                                         $campaignId = isset($matches[0]) ? $matches[0] : "";
                                         $sqlSelectAdsGroupData .= " AND campaignid = '$campaignId'";
                                     }
+
+                                    $sqlSelectAdsGroupData .= " GROUP BY adsgroupdata.adsgroupid;";
 
                                     $adsGroupDataResult = $conn->query($sqlSelectAdsGroupData);
                                     while ($adsGroupDataRow = $adsGroupDataResult->fetch_assoc()) {
@@ -2144,19 +2209,20 @@ session_start();
                                     $campaignId = isset($_GET['selectedcampaigns']) ? $_GET['selectedcampaigns'] : "";
                                     
                                     $sqlSelectFooter = "
-                                        SELECT 
-                                            SUM(cost) AS totalcost, 
-                                            SUM(reach) AS totalreach, 
-                                            SUM(imprs) AS totalimprs, 
-                                            SUM(result) AS totalresult, 
-                                            SUM(click) AS totalclick,
-                                            IFNULL(SUM(cost) / NULLIF(SUM(imprs), 0) * 1000, 0) AS totalcpm,
-                                            IFNULL(SUM(cost) / NULLIF(SUM(click), 0), 0) AS totalcpc,
-                                            IFNULL(SUM(cost) / NULLIF(SUM(result), 0), 0) AS totalcpr,
-                                            IFNULL(SUM(click) / NULLIF(SUM(imprs), 0) * 100, 0) AS totalctr
-                                        FROM adsgroupdata
-                                        WHERE date BETWEEN '$startDate' AND '$endDate'
-                                    ";
+                                                        SELECT 
+                                                            SUM(IFNULL(adsdata.cost, 0)) AS totalcost,
+                                                            SUM(IFNULL(adsdata.reach, 0)) AS totalreach,
+                                                            SUM(IFNULL(adsdata.imprs, 0)) AS totalimprs,
+                                                            SUM(IFNULL(adsdata.result, 0)) AS totalresult,
+                                                            SUM(IFNULL(adsdata.click, 0)) AS totalclick,
+                                                            IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.imprs), 0) * 1000, 0) AS totalcpm,
+                                                            IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.click), 0), 0) AS totalcpc,
+                                                            IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.result), 0), 0) AS totalcpr,
+                                                            IFNULL(SUM(adsdata.click) / NULLIF(SUM(adsdata.imprs), 0) * 100, 0) AS totalctr
+                                                        FROM adsgroupdata
+                                                        LEFT JOIN adsdata ON adsgroupdata.adsgroupid = adsdata.adsgroupid
+                                                        WHERE (adsdata.date BETWEEN '$startDate' AND '$endDate' OR adsdata.date IS NULL)
+                                                    ";
 
                                     if ($campaignId != "") {
                                         preg_match('/\d+$/', $campaignId, $matches);
@@ -2183,10 +2249,15 @@ session_start();
 
                                     // Count total ads within the date range
                                     $sqlCountAdsGroup = "
-                                        SELECT COUNT(*) AS totalcount 
+                                        SELECT COUNT(DISTINCT adsgroupdata.adsgroupid) AS totalcount
                                         FROM adsgroupdata
-                                        WHERE date BETWEEN '$startDate' AND '$endDate'
+                                        LEFT JOIN adsdata ON adsgroupdata.adsgroupid = adsdata.adsgroupid
+                                        WHERE (adsdata.date BETWEEN '$startDate' AND '$endDate' OR adsdata.date IS NULL)
                                     ";
+                                    if ($campaignId != "") {
+                                        $sqlCountAdsGroup .= " AND campaignid = '$campaignId'";
+                                    }
+
                                     $countAdsGroupResult = $conn->query($sqlCountAdsGroup);
                                     if ($countAdsGroupResult && $countAdsGroupResult->num_rows > 0) {
                                         $row = $countAdsGroupResult->fetch_assoc();
@@ -2807,6 +2878,19 @@ session_start();
                                         FROM adsdata
                                         WHERE date BETWEEN '$startDate' AND '$endDate'
                                     ";
+                                    if ($campaignId != "") {
+                                        $sqlCountAds = "
+                                            SELECT COUNT(*) AS totalcount 
+                                            FROM adsdata
+                                            INNER JOIN adsgroupdata ON adsdata.adsgroupid = adsgroupdata.adsgroupid
+                                            LEFT JOIN campaigndata ON adsgroupdata.campaignid = campaigndata.campaignid
+                                            WHERE adsdata.date BETWEEN '$startDate' AND '$endDate'
+                                            AND campaigndata.campaignid = '$campaignId'
+                                        ";
+                                    } else if ($adGroupId != "") {
+                                        $sqlCountAds .= " AND adsgroupid = '$adGroupId'";
+                                    }
+
                                     $countAdsResult = $conn->query($sqlCountAds);
                                     if ($countAdsResult && $countAdsResult->num_rows > 0) {
                                         $row = $countAdsResult->fetch_assoc();

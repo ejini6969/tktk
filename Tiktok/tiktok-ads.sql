@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2024 at 03:03 PM
+-- Generation Time: Dec 08, 2024 at 01:57 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -27,152 +27,69 @@ SET time_zone = "+00:00";
 -- Table structure for table `adsdata`
 --
 
-CREATE TABLE adsdata (
-  adsid VARCHAR(255) PRIMARY KEY, 
-  onoff TINYINT(1) DEFAULT NULL,
-  adsname VARCHAR(255) DEFAULT NULL,
-  status VARCHAR(255) DEFAULT NULL,
-  adsgroupid VARCHAR(255) NOT NULL, 
-  adgroupname VARCHAR(255) DEFAULT NULL,
-  imprs INT(11) DEFAULT NULL,
-  cost DECIMAL(10,2) DEFAULT NULL,
-  reach INT(11) DEFAULT NULL,
-  result INT(11) DEFAULT NULL,
-  cpm DECIMAL(10,2) GENERATED ALWAYS AS (cost / imprs * 1000) STORED,
-  cpc DECIMAL(10,2) GENERATED ALWAYS AS (cost / click) STORED,
-  cpr DECIMAL(10,2) GENERATED ALWAYS AS (cost / result) STORED,
-  click INT(11) DEFAULT NULL,
-  ctr DECIMAL(10,2) GENERATED ALWAYS AS (click / imprs * 100) STORED,
-  videoname VARCHAR(255) NOT NULL,
-  date DATE DEFAULT NULL,
-  FOREIGN KEY (adsgroupid) REFERENCES adsgroupdata(adsgroupid) ON DELETE CASCADE
-);
-
-
-
+CREATE TABLE `adsdata` (
+  `adsid` varchar(255) NOT NULL,
+  `onoff` tinyint(1) DEFAULT NULL,
+  `adsname` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `adsgroupid` varchar(255) NOT NULL,
+  `adsgroupname` varchar(255) DEFAULT NULL,
+  `imprs` int(11) DEFAULT NULL,
+  `cost` decimal(10,2) DEFAULT NULL,
+  `reach` int(11) DEFAULT NULL,
+  `result` int(11) DEFAULT NULL,
+  `cpm` decimal(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED,
+  `cpc` decimal(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED,
+  `cpr` decimal(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED,
+  `click` int(11) DEFAULT NULL,
+  `ctr` decimal(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED,
+  `videoname` varchar(255) NOT NULL,
+  `date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `adsdata`
 --
 
-INSERT INTO `adsdata` 
-(`adsid`, `onoff`, `adsname`, `status`, `adsgroupid`, `adgroupname`, `imprs`, `cost`, `reach`, `result`, `click`, `videoname`, `date`) 
-VALUES
+INSERT INTO `adsdata` (`adsid`, `onoff`, `adsname`, `status`, `adsgroupid`, `adsgroupname`, `imprs`, `cost`, `reach`, `result`, `click`, `videoname`, `date`) VALUES
 ('123451234567', 1, '1203-1203', 'Not delivering', '987651234567', 'GROUP of Conda', 12, 23.50, 11, 19, 33, 'video2.mp4', '2024-12-03'),
-('123451234568', 0, '1204-1204', 'Active', '987651234568', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video3.mp4', '2024-12-04'),
-('123451234569', 1, '1205-1205', 'Active', '987651234569', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video.mp4', '2024-12-05')
-
-
---
--- Triggers `adsdata`
---
-DELIMITER $$
-CREATE TRIGGER `update_totaladsdata_after_delete` AFTER DELETE ON `adsdata` FOR EACH ROW BEGIN
-    UPDATE totaladsdata
-    SET
-        totalcost = (SELECT IFNULL(SUM(cost), 0) FROM adsdata),
-        totalreach = (SELECT IFNULL(SUM(reach), 0) FROM adsdata),
-        totalimprs = (SELECT IFNULL(SUM(imprs), 0) FROM adsdata),
-        totalresult = (SELECT IFNULL(SUM(result), 0) FROM adsdata),
-        totalclick = (SELECT IFNULL(SUM(click), 0) FROM adsdata);
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `update_totaladsdata_after_insert` AFTER INSERT ON `adsdata` FOR EACH ROW BEGIN
-    UPDATE totaladsdata
-    SET
-        totalcost = (SELECT IFNULL(SUM(cost), 0) FROM adsdata),
-        totalreach = (SELECT IFNULL(SUM(reach), 0) FROM adsdata),
-        totalimprs = (SELECT IFNULL(SUM(imprs), 0) FROM adsdata),
-        totalresult = (SELECT IFNULL(SUM(result), 0) FROM adsdata),
-        totalclick = (SELECT IFNULL(SUM(click), 0) FROM adsdata);
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `update_totaladsdata_after_update` AFTER UPDATE ON `adsdata` FOR EACH ROW BEGIN
-    UPDATE totaladsdata
-    SET
-        totalcost = (SELECT IFNULL(SUM(cost), 0) FROM adsdata),
-        totalreach = (SELECT IFNULL(SUM(reach), 0) FROM adsdata),
-        totalimprs = (SELECT IFNULL(SUM(imprs), 0) FROM adsdata),
-        totalresult = (SELECT IFNULL(SUM(result), 0) FROM adsdata),
-        totalclick = (SELECT IFNULL(SUM(click), 0) FROM adsdata);
-END
-$$
-DELIMITER ;
+('123451234568', 1, '1204-1204', 'Active', '987651234568', 'Sample Group', 5000, 120.50, 3000, 22, 150, 'video3.mp4', '2024-12-04'),
+('123458766123', 1, 'ADS 22', 'Active', '987651234568', 'GGG', 651, 111.85, 3000, 23, 150, 'video.mp4', '2024-12-07'),
+('3699884872', 1, 'AAA', 'Active', '987651234568', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video2.mp4', '2024-12-07');
 
 -- --------------------------------------------------------
 
+--
+-- Table structure for table `adsgroupdata`
+--
+
 CREATE TABLE `adsgroupdata` (
-  `adsgroupid` VARCHAR(255) PRIMARY KEY, 
-  `onoff` TINYINT(1) DEFAULT 0, 
-  `adsgroupname` VARCHAR(255) NOT NULL, 
-  `status` VARCHAR(255) NOT NULL, 
-  `campaignid` VARCHAR(255) NOT NULL, 
-  `cost` DECIMAL(10,2) NOT NULL, 
-  `reach` INT(11) NOT NULL, 
-  `imprs` INT(11) NOT NULL, 
-  `result` INT(11) NOT NULL, 
-  `click` INT(11) NOT NULL, 
-  `cpm` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED, 
-  `cpc` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED, 
-  `cpr` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED, 
-  `ctr` DECIMAL(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED, 
-  `date` DATE DEFAULT NULL, 
-  FOREIGN KEY (`campaignid`) REFERENCES `campaigndata`(`campaignid`) ON DELETE CASCADE
-);
+  `adsgroupid` varchar(255) NOT NULL,
+  `onoff` tinyint(1) DEFAULT 0,
+  `adsgroupname` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `campaignid` varchar(255) NOT NULL,
+  `cost` decimal(10,2) NOT NULL,
+  `reach` int(11) NOT NULL,
+  `imprs` int(11) NOT NULL,
+  `result` int(11) NOT NULL,
+  `click` int(11) NOT NULL,
+  `cpm` decimal(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED,
+  `cpc` decimal(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED,
+  `cpr` decimal(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED,
+  `ctr` decimal(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED,
+  `date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `adsgroupdata`
 --
-INSERT INTO `adsgroupdata` 
-(`adsgroupid`, `onoff`, `adsgroupname`, `status`, `campaignid`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) 
-VALUES
-('23435345344', 1, 'dgdfgdgdf', 'Inactive', '102951234567', 37.00, 8, 3, 2, 11, '2024-12-03'),
-('16534534645751', 1, 'Ad Group Name 1', 'Not delivering', '102951234568', 120.50, 3000, 5000, 100, 150, NULL),
-('16534534645752', 1, 'Ad Group Name 1', 'Active', '102951234569', 120.50, 3000, 5000, 100, 150, NULL);
 
---
--- Triggers `adsgroupdata`
---
-DELIMITER $$
-CREATE TRIGGER `update_totaladsgroupdata_after_delete` AFTER DELETE ON `adsgroupdata` FOR EACH ROW BEGIN
-    UPDATE totaladsgroupdata
-    SET
-        totalcost = (SELECT IFNULL(SUM(cost), 0) FROM adsgroupdata),
-        totalreach = (SELECT IFNULL(SUM(reach), 0) FROM adsgroupdata),
-        totalimprs = (SELECT IFNULL(SUM(imprs), 0) FROM adsgroupdata),
-        totalresult = (SELECT IFNULL(SUM(result), 0) FROM adsgroupdata),
-        totalclick = (SELECT IFNULL(SUM(click), 0) FROM adsgroupdata);
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `update_totaladsgroupdata_after_insert` AFTER INSERT ON `adsgroupdata` FOR EACH ROW BEGIN
-    UPDATE totaladsgroupdata
-    SET
-        totalcost = (SELECT IFNULL(SUM(cost), 0) FROM adsgroupdata),
-        totalreach = (SELECT IFNULL(SUM(reach), 0) FROM adsgroupdata),
-        totalimprs = (SELECT IFNULL(SUM(imprs), 0) FROM adsgroupdata),
-        totalresult = (SELECT IFNULL(SUM(result), 0) FROM adsgroupdata),
-        totalclick = (SELECT IFNULL(SUM(click), 0) FROM adsgroupdata);
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `update_totaladsgroupdata_after_update` AFTER UPDATE ON `adsgroupdata` FOR EACH ROW BEGIN
-    UPDATE totaladsgroupdata
-    SET
-        totalcost = (SELECT IFNULL(SUM(cost), 0) FROM adsgroupdata),
-        totalreach = (SELECT IFNULL(SUM(reach), 0) FROM adsgroupdata),
-        totalimprs = (SELECT IFNULL(SUM(imprs), 0) FROM adsgroupdata),
-        totalresult = (SELECT IFNULL(SUM(result), 0) FROM adsgroupdata),
-        totalclick = (SELECT IFNULL(SUM(click), 0) FROM adsgroupdata);
-END
-$$
-DELIMITER ;
+INSERT INTO `adsgroupdata` (`adsgroupid`, `onoff`, `adsgroupname`, `status`, `campaignid`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) VALUES
+('105302509326', 1, 'AD GRP 568', 'Active', '102951234568', 0.00, 0, 0, 0, 0, '2024-12-07'),
+('987651234567', 1, 'AD GRP 569', 'Active', '102951234569', 23.50, 11, 12, 19, 33, '2024-12-04'),
+('987651234568', 1, 'dgdfgdgdf', 'Inactive', '102951234567', 0.00, 0, 0, 0, 0, '2024-12-03'),
+('987651234569', 1, 'ADG', 'Not delivering', '102951234568', 0.00, 0, 0, 0, 0, '2024-12-05');
 
 -- --------------------------------------------------------
 
@@ -199,74 +116,31 @@ INSERT INTO `ad_user` (`id`, `username`) VALUES
 --
 
 CREATE TABLE `campaigndata` (
-  `campaignid` VARCHAR(255) PRIMARY KEY NOT NULL,
-  `onoff` TINYINT(1) DEFAULT 0, 
-  `campaignname` VARCHAR(255) NOT NULL, 
-  `status` VARCHAR(255) NOT NULL, 
-  `cost` DECIMAL(10,2) NOT NULL, 
-  `reach` INT(11) NOT NULL, 
-  `imprs` INT(11) NOT NULL, 
-  `result` INT(11) NOT NULL, 
-  `click` INT(11) NOT NULL, 
-  `cpm` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED, 
-  `cpc` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED, 
-  `cpr` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED, 
-  `ctr` DECIMAL(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED, 
-  `date` DATE DEFAULT NULL
-)
-
+  `campaignid` varchar(255) NOT NULL,
+  `onoff` tinyint(1) DEFAULT 0,
+  `campaignname` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `cost` decimal(10,2) NOT NULL,
+  `reach` int(11) NOT NULL,
+  `imprs` int(11) NOT NULL,
+  `result` int(11) NOT NULL,
+  `click` int(11) NOT NULL,
+  `cpm` decimal(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED,
+  `cpc` decimal(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED,
+  `cpr` decimal(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED,
+  `ctr` decimal(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `campaigndata`
 --
 
-INSERT INTO `campaigndata` 
-(`campaignid`, `onoff`, `campaignname`, `status`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) 
-VALUES
-('102951234567', 0, 'DOUBLE CAMPAIGN', 'Inactive', 37.00, 8, 3, 2, 11, NULL),
-('102951234568', 1, 'Campaign 2', 'Active', 120.50, 3000, 5000, 11, 150, NULL),
-('102951234569', 1, 'Campaign 3', 'Active', 150.00, 4000, 7000, 15, 200, NULL);
-
-
---
--- Triggers `campaigndata`
---
-DELIMITER $$
-CREATE TRIGGER `update_totalcampaigndata_after_delete` AFTER DELETE ON `campaigndata` FOR EACH ROW BEGIN
-    UPDATE totalcampaigndata
-    SET
-        totalcost = (SELECT IFNULL(SUM(cost), 0) FROM campaigndata),
-        totalreach = (SELECT IFNULL(SUM(reach), 0) FROM campaigndata),
-        totalimprs = (SELECT IFNULL(SUM(imprs), 0) FROM campaigndata),
-        totalresult = (SELECT IFNULL(SUM(result), 0) FROM campaigndata),
-        totalclick = (SELECT IFNULL(SUM(click), 0) FROM campaigndata);
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `update_totalcampaigndata_after_insert` AFTER INSERT ON `campaigndata` FOR EACH ROW BEGIN
-    UPDATE totalcampaigndata
-    SET
-        totalcost = (SELECT IFNULL(SUM(cost), 0) FROM campaigndata),
-        totalreach = (SELECT IFNULL(SUM(reach), 0) FROM campaigndata),
-        totalimprs = (SELECT IFNULL(SUM(imprs), 0) FROM campaigndata),
-        totalresult = (SELECT IFNULL(SUM(result), 0) FROM campaigndata),
-        totalclick = (SELECT IFNULL(SUM(click), 0) FROM campaigndata);
-END
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `update_totalcampaigndata_after_update` AFTER UPDATE ON `campaigndata` FOR EACH ROW BEGIN
-    UPDATE totalcampaigndata
-    SET
-        totalcost = (SELECT IFNULL(SUM(cost), 0) FROM campaigndata),
-        totalreach = (SELECT IFNULL(SUM(reach), 0) FROM campaigndata),
-        totalimprs = (SELECT IFNULL(SUM(imprs), 0) FROM campaigndata),
-        totalresult = (SELECT IFNULL(SUM(result), 0) FROM campaigndata),
-        totalclick = (SELECT IFNULL(SUM(click), 0) FROM campaigndata);
-END
-$$
-DELIMITER ;
+INSERT INTO `campaigndata` (`campaignid`, `onoff`, `campaignname`, `status`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) VALUES
+('102951234567', 0, 'DOUBLE CAMPAIGN', 'Inactive', 37.00, 8, 3, 2, 11, '2024-12-03'),
+('102951234568', 1, 'Campaign 2', 'Active', 120.50, 3000, 5000, 11, 150, '2024-12-04'),
+('102951234569', 1, 'Campaign 3', 'Active', 150.00, 4000, 7000, 15, 200, '2024-12-05'),
+('106500340620', 1, 'CPP 555', 'Active', 120.50, 3000, 5000, 100, 150, '2024-12-07');
 
 -- --------------------------------------------------------
 
@@ -303,7 +177,7 @@ CREATE TABLE `daterange` (
 --
 
 INSERT INTO `daterange` (`userid`, `startdate`, `enddate`) VALUES
-(1, '2024-12-04', '2024-12-06');
+(1, '2024-11-14', '2024-12-03');
 
 -- --------------------------------------------------------
 
@@ -347,7 +221,7 @@ CREATE TABLE `totaladsdata` (
 --
 
 INSERT INTO `totaladsdata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`, `date`) VALUES
-(385.00, 9011, 15012, 319, 483, NULL);
+(439.85, 9134, 15277, 345, 633, NULL);
 
 -- --------------------------------------------------------
 
@@ -373,7 +247,7 @@ CREATE TABLE `totaladsgroupdata` (
 --
 
 INSERT INTO `totaladsgroupdata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`, `date`) VALUES
-(278.00, 6008, 10003, 202, 311, NULL);
+(398.50, 9008, 15003, 302, 461, NULL);
 
 -- --------------------------------------------------------
 
@@ -399,7 +273,7 @@ CREATE TABLE `totalcampaigndata` (
 --
 
 INSERT INTO `totalcampaigndata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`, `date`) VALUES
-(278.00, 6008, 10003, 113, 311, NULL);
+(639.50, 15008, 25003, 413, 761, NULL);
 
 --
 -- Indexes for dumped tables
@@ -409,13 +283,15 @@ INSERT INTO `totalcampaigndata` (`totalcost`, `totalreach`, `totalimprs`, `total
 -- Indexes for table `adsdata`
 --
 ALTER TABLE `adsdata`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`adsid`),
+  ADD KEY `adsgroupid` (`adsgroupid`);
 
 --
 -- Indexes for table `adsgroupdata`
 --
 ALTER TABLE `adsgroupdata`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`adsgroupid`),
+  ADD KEY `campaignid` (`campaignid`);
 
 --
 -- Indexes for table `ad_user`
@@ -427,7 +303,7 @@ ALTER TABLE `ad_user`
 -- Indexes for table `campaigndata`
 --
 ALTER TABLE `campaigndata`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`campaignid`);
 
 --
 -- Indexes for table `currency`
@@ -452,28 +328,10 @@ ALTER TABLE `timezone`
 --
 
 --
--- AUTO_INCREMENT for table `adsdata`
---
-ALTER TABLE `adsdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
---
--- AUTO_INCREMENT for table `adsgroupdata`
---
-ALTER TABLE `adsgroupdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT for table `ad_user`
 --
 ALTER TABLE `ad_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `campaigndata`
---
-ALTER TABLE `campaigndata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `currency`
@@ -492,6 +350,22 @@ ALTER TABLE `daterange`
 --
 ALTER TABLE `timezone`
   MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `adsdata`
+--
+ALTER TABLE `adsdata`
+  ADD CONSTRAINT `adsdata_ibfk_1` FOREIGN KEY (`adsgroupid`) REFERENCES `adsgroupdata` (`adsgroupid`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `adsgroupdata`
+--
+ALTER TABLE `adsgroupdata`
+  ADD CONSTRAINT `adsgroupdata_ibfk_1` FOREIGN KEY (`campaignid`) REFERENCES `campaigndata` (`campaignid`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
