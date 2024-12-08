@@ -4737,6 +4737,11 @@ session_start();
             const delay = Math.floor(Math.random() * 1500) + 500;
 
             setTimeout(() => {
+                const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
+                const allCheckbox = document.getElementById("all-campaign-checkbox");
+                checkbox.checked = true;
+                allCheckbox.checked = true;
+
                 const campaignTab = $(".options-box[data-selected='table-1']");
                 const adsGroupTab = $(".options-box[data-selected='table-2']");
 
@@ -4763,6 +4768,15 @@ session_start();
             const delay = Math.floor(Math.random() * 500) + 100;
 
             setTimeout(() => {
+                for(let i = 1; i <= 100; i++){
+                    let rowId = `campaigns-rw-${i}`
+                    const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
+                    if(checkbox) checkbox.checked = false;
+                }
+               
+                const allCheckbox = document.getElementById("all-campaign-checkbox");
+                allCheckbox.checked = false;
+
                 const selectedCampaigns = $("#select-campaigns-num");
                 selectedCampaigns.css("display", "none");
 
@@ -5041,6 +5055,11 @@ session_start();
             const delay = Math.floor(Math.random() * 1500) + 500;
 
             setTimeout(() => {
+                const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
+                const allCheckbox = document.getElementById("all-ads-group-checkbox");
+                checkbox.checked = true;
+                allCheckbox.checked = true;
+
                 const adsGroupTab = $(".options-box[data-selected='table-2']");
                 const adTab = $(".options-box[data-selected='table-3']");
 
@@ -5063,6 +5082,16 @@ session_start();
             const delay = Math.floor(Math.random() * 500) + 100;
 
             setTimeout(() => {
+
+                for(let i = 1; i <= 100; i++){
+                    let rowId = `ads-group-rw-${i}`
+                    const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
+                    if(checkbox) checkbox.checked = false;
+                }
+               
+                const allCheckbox = document.getElementById("all-ads-group-checkbox");
+                allCheckbox.checked = false;
+
                 const selectedAdGroup = $("#select-ads-group-num");
                 selectedAdGroup.css("display", "none");
 
