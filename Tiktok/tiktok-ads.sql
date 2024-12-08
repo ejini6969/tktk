@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2024 at 01:57 PM
+-- Generation Time: Dec 08, 2024 at 04:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,6 +31,7 @@ CREATE TABLE `adsdata` (
   `adsid` varchar(255) NOT NULL,
   `onoff` tinyint(1) DEFAULT NULL,
   `adsname` varchar(255) DEFAULT NULL,
+  `domainname` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   `adsgroupid` varchar(255) NOT NULL,
   `adsgroupname` varchar(255) DEFAULT NULL,
@@ -51,11 +52,12 @@ CREATE TABLE `adsdata` (
 -- Dumping data for table `adsdata`
 --
 
-INSERT INTO `adsdata` (`adsid`, `onoff`, `adsname`, `status`, `adsgroupid`, `adsgroupname`, `imprs`, `cost`, `reach`, `result`, `click`, `videoname`, `date`) VALUES
-('123451234567', 1, '1203-1203', 'Not delivering', '987651234567', 'GROUP of Conda', 12, 23.50, 11, 19, 33, 'video2.mp4', '2024-12-03'),
-('123451234568', 1, '1204-1204', 'Active', '987651234568', 'Sample Group', 5000, 120.50, 3000, 22, 150, 'video3.mp4', '2024-12-04'),
-('123458766123', 1, 'ADS 22', 'Active', '987651234568', 'GGG', 651, 111.85, 3000, 23, 150, 'video.mp4', '2024-12-07'),
-('3699884872', 1, 'AAA', 'Active', '987651234568', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video2.mp4', '2024-12-07');
+INSERT INTO `adsdata` (`adsid`, `onoff`, `adsname`, `domainname`, `status`, `adsgroupid`, `adsgroupname`, `imprs`, `cost`, `reach`, `result`, `click`, `videoname`, `date`) VALUES
+('123451234567', 1, '1203-1203', 'https://example.com', 'Not delivering', '987651234567', 'GROUP of Conda', 12, 23.50, 11, 19, 33, 'video2.mp4', '2024-12-03'),
+('123451234568', 1, '1204-1204', 'https://google.com', 'Active', '987651234568', 'Sample Group', 5000, 120.50, 3000, 22, 150, 'video3.mp4', '2024-12-04'),
+('123458766123', 1, 'ADS 22', 'https://abc.com', 'Active', '987651234568', 'GGG', 651, 111.85, 3000, 23, 150, 'video.mp4', '2024-12-07'),
+('3699884872', 1, 'AAA', 'https://guthib.com/', 'Active', '987651234568', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video2.mp4', '2024-12-07'),
+('6640374618', 1, 'Sample Ad Name', 'https://amazon.com', 'Active', '987651234568', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video.mp4', '2024-12-05');
 
 -- --------------------------------------------------------
 
@@ -86,9 +88,10 @@ CREATE TABLE `adsgroupdata` (
 --
 
 INSERT INTO `adsgroupdata` (`adsgroupid`, `onoff`, `adsgroupname`, `status`, `campaignid`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) VALUES
+('103372239368', 1, 'TESTING FINAL ADGRPSSSS', 'Active', '102951234568', 0.00, 0, 0, 0, 0, '2024-12-07'),
 ('105302509326', 1, 'AD GRP 568', 'Active', '102951234568', 0.00, 0, 0, 0, 0, '2024-12-07'),
 ('987651234567', 1, 'AD GRP 569', 'Active', '102951234569', 23.50, 11, 12, 19, 33, '2024-12-04'),
-('987651234568', 1, 'dgdfgdgdf', 'Inactive', '102951234567', 0.00, 0, 0, 0, 0, '2024-12-03'),
+('987651234568', 1, 'dgdfgdgdf', 'Inactive', '102951234567', 473.35, 12000, 15651, 245, 600, '2024-12-03'),
 ('987651234569', 1, 'ADG', 'Not delivering', '102951234568', 0.00, 0, 0, 0, 0, '2024-12-05');
 
 -- --------------------------------------------------------
@@ -137,10 +140,12 @@ CREATE TABLE `campaigndata` (
 --
 
 INSERT INTO `campaigndata` (`campaignid`, `onoff`, `campaignname`, `status`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) VALUES
-('102951234567', 0, 'DOUBLE CAMPAIGN', 'Inactive', 37.00, 8, 3, 2, 11, '2024-12-03'),
-('102951234568', 1, 'Campaign 2', 'Active', 120.50, 3000, 5000, 11, 150, '2024-12-04'),
-('102951234569', 1, 'Campaign 3', 'Active', 150.00, 4000, 7000, 15, 200, '2024-12-05'),
-('106500340620', 1, 'CPP 555', 'Active', 120.50, 3000, 5000, 100, 150, '2024-12-07');
+('102951234567', 0, 'DOUBLE CAMPAIGN', 'Inactive', 473.35, 12000, 15651, 245, 600, '2024-12-03'),
+('102951234568', 1, 'Campaign 2', 'Active', 0.00, 0, 0, 0, 0, '2024-12-04'),
+('102951234569', 1, 'Campaign 3', 'Active', 23.50, 11, 12, 19, 33, '2024-12-05'),
+('104635814326', 1, 'THIS FOR TEST', 'Not delivering', 0.00, 0, 0, 0, 0, '2024-12-05'),
+('106500340620', 1, 'CPP 555', 'Active', 0.00, 0, 0, 0, 0, '2024-12-07'),
+('108659361799', 1, 'test new cmp', 'Inactive', 0.00, 0, 0, 0, 0, '2024-12-07');
 
 -- --------------------------------------------------------
 
@@ -177,7 +182,7 @@ CREATE TABLE `daterange` (
 --
 
 INSERT INTO `daterange` (`userid`, `startdate`, `enddate`) VALUES
-(1, '2024-11-14', '2024-12-03');
+(1, '2024-12-02', '2024-12-08');
 
 -- --------------------------------------------------------
 
@@ -196,84 +201,6 @@ CREATE TABLE `timezone` (
 
 INSERT INTO `timezone` (`userid`, `timezone`) VALUES
 (1, 'kuala_lumpur');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `totaladsdata`
---
-
-CREATE TABLE `totaladsdata` (
-  `totalcost` decimal(10,2) NOT NULL,
-  `totalreach` int(11) NOT NULL,
-  `totalimprs` int(11) NOT NULL,
-  `totalresult` int(11) NOT NULL,
-  `totalclick` int(11) NOT NULL,
-  `totalcpm` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalcost` / `totalimprs` * 1000 end) STORED,
-  `totalcpc` decimal(10,2) GENERATED ALWAYS AS (case when `totalclick` = 0 then 0 else `totalcost` / `totalclick` end) STORED,
-  `totalcpr` decimal(10,2) GENERATED ALWAYS AS (case when `totalresult` = 0 then 0 else `totalcost` / `totalresult` end) STORED,
-  `totalctr` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalclick` / `totalimprs` * 100 end) STORED,
-  `date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `totaladsdata`
---
-
-INSERT INTO `totaladsdata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`, `date`) VALUES
-(439.85, 9134, 15277, 345, 633, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `totaladsgroupdata`
---
-
-CREATE TABLE `totaladsgroupdata` (
-  `totalcost` decimal(10,2) NOT NULL,
-  `totalreach` int(11) NOT NULL,
-  `totalimprs` int(11) NOT NULL,
-  `totalresult` int(11) NOT NULL,
-  `totalclick` int(11) NOT NULL,
-  `totalcpm` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalcost` / `totalimprs` * 1000 end) STORED,
-  `totalcpc` decimal(10,2) GENERATED ALWAYS AS (case when `totalclick` = 0 then 0 else `totalcost` / `totalclick` end) STORED,
-  `totalcpr` decimal(10,2) GENERATED ALWAYS AS (case when `totalresult` = 0 then 0 else `totalcost` / `totalresult` end) STORED,
-  `totalctr` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalclick` / `totalimprs` * 100 end) STORED,
-  `date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `totaladsgroupdata`
---
-
-INSERT INTO `totaladsgroupdata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`, `date`) VALUES
-(398.50, 9008, 15003, 302, 461, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `totalcampaigndata`
---
-
-CREATE TABLE `totalcampaigndata` (
-  `totalcost` decimal(10,2) NOT NULL,
-  `totalreach` int(11) NOT NULL,
-  `totalimprs` int(11) NOT NULL,
-  `totalresult` int(11) NOT NULL,
-  `totalclick` int(11) NOT NULL,
-  `totalcpm` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalcost` / `totalimprs` * 1000 end) STORED,
-  `totalcpc` decimal(10,2) GENERATED ALWAYS AS (case when `totalclick` = 0 then 0 else `totalcost` / `totalclick` end) STORED,
-  `totalcpr` decimal(10,2) GENERATED ALWAYS AS (case when `totalresult` = 0 then 0 else `totalcost` / `totalresult` end) STORED,
-  `totalctr` decimal(10,2) GENERATED ALWAYS AS (case when `totalimprs` = 0 then 0 else `totalclick` / `totalimprs` * 100 end) STORED,
-  `date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `totalcampaigndata`
---
-
-INSERT INTO `totalcampaigndata` (`totalcost`, `totalreach`, `totalimprs`, `totalresult`, `totalclick`, `date`) VALUES
-(639.50, 15008, 25003, 413, 761, NULL);
 
 --
 -- Indexes for dumped tables

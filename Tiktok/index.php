@@ -5181,12 +5181,11 @@ session_start();
             const delay = Math.floor(Math.random() * 500) + 100;
 
             setTimeout(() => {
-                for(let i = 1; i <= 100; i++){
-                    let rowId = `campaigns-rw-${i}`
-                    const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
-                    if(checkbox) checkbox.checked = false;
-                }
-               
+                const checkboxes = document.querySelectorAll('tr[id^="campaigns-rw"] #cbx-checkbox');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                            
                 const allCheckbox = document.getElementById("all-campaign-checkbox");
                 allCheckbox.checked = false;
 
@@ -5517,12 +5516,11 @@ session_start();
             const delay = Math.floor(Math.random() * 500) + 100;
 
             setTimeout(() => {
-
-                for(let i = 1; i <= 100; i++){
-                    let rowId = `ads-group-rw-${i}`
-                    const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
-                    if(checkbox) checkbox.checked = false;
-                }
+                const checkboxes = document.querySelectorAll('tr[id^="ads-group-rw"] #cbx-checkbox');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                     
                
                 const allCheckbox = document.getElementById("all-ads-group-checkbox");
                 allCheckbox.checked = false;
