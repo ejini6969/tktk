@@ -2950,7 +2950,7 @@ session_start();
                                             <!-- contnet -->
                                             <div class="index_creativeGateway_QieEM">
                                                 <div class="index_container_QB1YE">
-                                                    <div class="index_wrapper_MbXmy">
+                                                    <div class="index_wrapper_MbXmy" style="display: none;">
                                                         <div class="index_content_KjME1 index_infraPreviewContent_oXXGi">
                                                             <div class="index_normalCreative_tS2ek">
                                                                 <div class="infra-preview-form-wrapper">
@@ -4843,7 +4843,6 @@ session_start();
                 selectNum.style.display = "none";
             }
         }
-
         // --------------------------- Hover Brand Title (FOR EACH ROW) ------------------------------------
         function showCampaignsTools(rowId) {
             const brandRow = document.getElementById(rowId);
@@ -5580,6 +5579,20 @@ session_start();
             $('.edit-1').css('display', (step === 1) ? 'block' : 'none');
             $('.edit-2').css('display', (step === 2) ? 'block' : 'none');
         }
+        $('.close-btn').click(function() {
+            $('.edit-tag').removeClass("slide-in-active");
+            $('.edit-tag').addClass("slide-out-active");
+        });
+
+        $('.edit-data').click(function() {
+            $('.edit-tag').removeClass("slide-out-active");
+            $('.edit-tag').addClass("slide-in-active");
+
+            setTimeout(function() {
+                $('.index_wrapper_MbXmy').fadeIn(); // Use fadeIn for a smooth effect
+            }, 1000); // Delay of 3 seconds
+
+        });
 
         // ----------------------------------------------------------- REAL EDIT AD ROW ----------------------------------------------------------------------
         function realEditAdRow(rowId) {
