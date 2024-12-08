@@ -3280,14 +3280,241 @@ session_start();
                                                                                                         <!--  -->
 
                                                                                                         <div class="index_subFormGroupWrap_d7xIX index_destinationContentWrap_YFzRX index_subFormGroupWrapWithLine_PCC0m">
-                                                                                                            <div class="expansion-panel index_expansionPanelTitle_o158M">
-                                                                                                                <div data-testid="expansion-panel-index-dgK4Lq" class="panel-head index_panelHead_vfl3R index_titleHead_T_IKq">
-                                                                                                                    <i class="index_arrowIcon_LXP5m vi-icon2-tri-arrowdown"></i>
-                                                                                                                    <div class="index_label_xmyC6 index_titleLabel_u6Ksf">
-                                                                                                                        <span>Destination</span>
-                                                                                                                        <!---->
+                                                                                                            <div class="index_destinationTitle_flpeo index_subFormTitle_dl79s">
+                                                                                                                <div>Destination</div>
+                                                                                                            </div>
+
+                                                                                                            <div>
+                                                                                                                <div>
+                                                                                                                    <div class="ttam-creative-destination-type-compose__wrap"
+                                                                                                                        data-testid="creative-destination-url-type-index-new-3Bpysu"><!---->
+                                                                                                                        <div class="selectorWrap">
+                                                                                                                            <div data-testid="creative_destinationUrlType_OptionWEB_SITE"
+                                                                                                                                class="vi-tooltip selectorItem index_typeSelectorWrap_bMlRQ index_active_rdcw3 index_disabled_AqffH"
+                                                                                                                                data-tea-type="WEB_SITE" data-tea-optimization-location="" data-tea-pixel-type="0"
+                                                                                                                                data-tea="ad_destination_url_type_selector_click"
+                                                                                                                                data-tea-expose="ad_destination_url_type_selector_expose" aria-describedby="vi-tooltip-8231"
+                                                                                                                                tabindex="0">
+                                                                                                                                <div class="index_contentWrap_rmETf">
+                                                                                                                                    <div class="typeContent typeContentDisabled typeContentActive">
+                                                                                                                                        <div class="selectorTitleWrap"><span class="selectorTitle">Website</span><span
+                                                                                                                                                data-testid="creative-destination-type-creative-destination-type-compose-prrxMt"
+                                                                                                                                                class="introducePopover">
+                                                                                                                                                <div data-testid="popover-main-5Uvc3C" role="tooltip" id="vi-popover-9355"
+                                                                                                                                                    aria-hidden="true" class="vi-popover vi-popper"
+                                                                                                                                                    style="width: 320px; max-width: none; display: none;"><!---->
+                                                                                                                                                    <div data-tea-expose="tip_hover"
+                                                                                                                                                        class="ttam-creative-destination-type-compose_introduceWrap"><img
+                                                                                                                                                            src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/lm_zkh_rvarpa/ljhwZthlaukjlkulzlp/ads_manager_creation/custom-instant-page-hover-demo.gif"
+                                                                                                                                                            class="introduceImage"><span class="introduceText"> Create a
+                                                                                                                                                            fast-loading in-app page on TikTok to give users a seamless and
+                                                                                                                                                            immersive way to learn more about your business.
+                                                                                                                                                            <x-bo-wc-co-learn-more-link-3j6mc8l5 class=""
+                                                                                                                                                                data-testid="creative-destination-type-creative-destination-type-compose-7z7tmW">
+                                                                                                                                                                Learn more </x-bo-wc-co-learn-more-link-3j6mc8l5></span></div>
+                                                                                                                                                    <!---->
+                                                                                                                                                </div>
+                                                                                                                                            </span></div>
+                                                                                                                                        <div class="selectorSubtitleWrap">
+                                                                                                                                            <div class="selectorSubtitle">URL</div><span
+                                                                                                                                                data-testid="creative-destination-type-creative-destination-type-compose-k8Ud7J">
+                                                                                                                                                <div data-testid="popover-main-5Uvc3C" role="tooltip" id="vi-popover-449"
+                                                                                                                                                    aria-hidden="true" class="vi-popover vi-popper"
+                                                                                                                                                    style="width: 320px; max-width: none; display: none;"><!---->
+                                                                                                                                                    <div data-tea-expose="tip_hover"
+                                                                                                                                                        class="ttam-creative-destination-type-compose_introduceWrap"><span
+                                                                                                                                                            class="introduceText"><span>Create a fast-loading in-app page on TikTok
+                                                                                                                                                                to give users a seamless and immersive way to learn more about your
+                                                                                                                                                                business.</span><!----><a data-v-f7029676=""
+                                                                                                                                                                data-testid="creative-destination-type-creative-destination-type-compose-5AYSy5"
+                                                                                                                                                                target="_blank"
+                                                                                                                                                                class="learn-more ttam-a-link__link ttam-a-link__link--mini"
+                                                                                                                                                                href="/help/article?aid=10007478"> Learn more </a></span></div>
+                                                                                                                                                    <!---->
+                                                                                                                                                </div>
+                                                                                                                                            </span>
+                                                                                                                                        </div><!---->
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div data-testid="creative_destinationUrlType_OptionINSTANT_PAGE"
+                                                                                                                                class="vi-tooltip selectorItem index_typeSelectorWrap_bMlRQ index_disabled_AqffH"
+                                                                                                                                data-tea-type="INSTANT_PAGE" data-tea-optimization-location="" data-tea-pixel-type="0"
+                                                                                                                                data-tea="ad_destination_url_type_selector_click"
+                                                                                                                                data-tea-expose="ad_destination_url_type_selector_expose" aria-describedby="vi-tooltip-5128"
+                                                                                                                                tabindex="0">
+                                                                                                                                <div class="index_contentWrap_rmETf">
+                                                                                                                                    <div class="typeContent typeContentDisabled">
+                                                                                                                                        <div class="selectorTitleWrap"><span class="selectorTitle">TikTok Instant Page</span><span
+                                                                                                                                                data-testid="creative-destination-type-creative-destination-type-compose-prrxMt"
+                                                                                                                                                class="introducePopover"><i
+                                                                                                                                                    class="vi-icon-question instantPageIcon vi-popover__reference"
+                                                                                                                                                    aria-describedby="vi-popover-5023" tabindex="0"></i></span></div>
+                                                                                                                                        <div class="selectorSubtitleWrap">
+                                                                                                                                            <div class="selectorSubtitle">Custom page</div><span
+                                                                                                                                                data-testid="creative-destination-type-creative-destination-type-compose-k8Ud7J">
+                                                                                                                                                <div data-testid="popover-main-5Uvc3C" role="tooltip" id="vi-popover-4060"
+                                                                                                                                                    aria-hidden="true" class="vi-popover vi-popper"
+                                                                                                                                                    style="width: 320px; max-width: none; display: none;"><!---->
+                                                                                                                                                    <div data-tea-expose="tip_hover"
+                                                                                                                                                        class="ttam-creative-destination-type-compose_introduceWrap"><span
+                                                                                                                                                            class="introduceText"><span>Create a fast-loading in-app page on TikTok
+                                                                                                                                                                to give users a seamless and immersive way to learn more about your
+                                                                                                                                                                business.</span><!----><a data-v-f7029676=""
+                                                                                                                                                                data-testid="creative-destination-type-creative-destination-type-compose-5AYSy5"
+                                                                                                                                                                target="_blank"
+                                                                                                                                                                class="learn-more ttam-a-link__link ttam-a-link__link--mini"
+                                                                                                                                                                href="/help/article?aid=10007478"> Learn more </a></span></div>
+                                                                                                                                                    <!---->
+                                                                                                                                                </div>
+                                                                                                                                            </span>
+                                                                                                                                        </div><!---->
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
                                                                                                                     </div>
                                                                                                                 </div>
+                                                                                                                <div data-v-69042a2b="" class="index_externalUrl_C9Mx9 external-url">
+                                                                                                                    <div data-v-69042a2b="" class="vi-form-item" id="material_external_url" style="margin-bottom: 0px;"><!---->
+                                                                                                                        <div class="vi-form-item__content">
+                                                                                                                            <div data-v-69042a2b="" class="index_label_e6vx9">
+                                                                                                                                <div><span data-v-69042a2b="" id="material_external_url_label"
+                                                                                                                                        class="index_urlLabel__LDMC">Destination URL</span><i data-v-69042a2b=""
+                                                                                                                                        class="vi-icon-question vi-tooltip" aria-describedby="vi-tooltip-1894" tabindex="0"
+                                                                                                                                        style="margin-left: 4px;"></i></div>
+                                                                                                                            </div><!---->
+                                                                                                                            <div data-v-69042a2b="" class="index_urlDisclaimer_SOx07"> By entering a URL, you grant TikTok
+                                                                                                                                permission to scan, download and modify the assets from this web page to generate suggestions.
+                                                                                                                            </div><!----><!----><!---->
+                                                                                                                            <div data-v-69042a2b="" class="index_urlContent_o6TAV">
+                                                                                                                                <div data-v-69042a2b="" class="vi-tooltip index_urlInput_kUZ1J" aria-describedby="vi-tooltip-8871"
+                                                                                                                                    tabindex="0">
+                                                                                                                                    <div data-v-69042a2b="" aria-haspopup="listbox" role="combobox" aria-owns="vi-autocomplete-6260"
+                                                                                                                                        class="vi-autocomplete index_input_mFgXD suffix-fix">
+                                                                                                                                        <div data-testid="input-input-qJLqaS" class="vi-input vi-input--suffix"><!----><input
+                                                                                                                                                type="text" autocomplete="off" valuekey="value"
+                                                                                                                                                placeholder="Enter URL starting with http:// or https://"
+                                                                                                                                                fetchsuggestions="function () { [native code] }" triggeronfocus="true"
+                                                                                                                                                debounce="300" placement="bottom-start" id="creative_aco_url"
+                                                                                                                                                suffixisnottransparent="true" data-testid="creative_externalUrl_input"
+                                                                                                                                                data-tea-click="create_ad_creative_external_url,creation_component_click"
+                                                                                                                                                data-tea-expose="create_ad_creative_external_url_expose,creation_component_show"
+                                                                                                                                                data-tea-std_component_name="creative_external_url" class="vi-input__inner"
+                                                                                                                                                role="textbox" aria-autocomplete="list" aria-controls="id"
+                                                                                                                                                aria-activedescendant="vi-autocomplete-6260-item--1"><!----><span
+                                                                                                                                                class="vi-input__suffix"><span class="vi-input__suffix-inner"><span
+                                                                                                                                                        data-v-69042a2b="" data-testid="creative-external-url-index-avZGAx">
+                                                                                                                                                        <div data-testid="popover-main-5Uvc3C" role="tooltip" id="vi-popover-7355"
+                                                                                                                                                            aria-hidden="true" class="vi-popover vi-popper url-precheck-popover"
+                                                                                                                                                            tabindex="0" style="width: 400px; max-width: none; display: none;">
+                                                                                                                                                            <!---->
+                                                                                                                                                            <div>
+                                                                                                                                                                <div class="url-precheck-popover_title_SzTjK"><i
+                                                                                                                                                                        class="vi-icon2-circle-warning url-precheck-popover_warningIcon_mdjSm"></i><span>
+                                                                                                                                                                        0 issues could get your ads disapproved </span></div>
+                                                                                                                                                                <div data-v-0f944957=""
+                                                                                                                                                                    class="adaptive-list-container url-precheck-popover_suggestionListContainer_mGTw4 url-precheck-popover_one_U8c5U">
+                                                                                                                                                                    <ul data-v-0f944957="" class="no-list"></ul>
+                                                                                                                                                                </div><!---->
+                                                                                                                                                            </div>
+                                                                                                                                                        </div>
+                                                                                                                                                        <div class="url-precheck-popover_iconBox_b_h11 vi-popover__reference"
+                                                                                                                                                            aria-describedby="vi-popover-7355" tabindex="0"><!----></div>
+                                                                                                                                                    </span><!----></span><!----></span><!----></div>
+                                                                                                                                        <div role="region" class="vi-autocomplete-suggestion vi-popper"
+                                                                                                                                            data-testid="autocomplete-autocomplete-819tLZ" style="display: none;">
+                                                                                                                                            <div class="vi-scrollbar" data-testid="autocomplete-autocomplete-suggestions-jUSSs7">
+                                                                                                                                                <div class="vi-autocomplete-suggestion__wrap vi-scrollbar__wrap"
+                                                                                                                                                    style="margin-bottom: -17px; margin-right: -17px;">
+                                                                                                                                                    <ul class="vi-scrollbar__view vi-autocomplete-suggestion__list" role="listbox"
+                                                                                                                                                        id="vi-autocomplete-6260"></ul>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="vi-scrollbar__bar is-horizontal">
+                                                                                                                                                    <div class="vi-scrollbar__thumb" style="transform: translateX(0%);"></div>
+                                                                                                                                                </div>
+                                                                                                                                                <div class="vi-scrollbar__bar is-vertical">
+                                                                                                                                                    <div class="vi-scrollbar__thumb" style="transform: translateY(0%);"></div>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </div><button data-v-69042a2b="" data-testid="creative-external-url-index-w9m94W" type="button"
+                                                                                                                                    class="vi-button vi-byted-button vi-button--default index_previewBtn_JC_yS"
+                                                                                                                                    data-tea-click="create_ad_creative_preview_external_url"><!----><i
+                                                                                                                                        class="vi-icon2-share"></i><span> Preview </span></button>
+                                                                                                                            </div><!----><!---->
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div data-v-69042a2b="" class="vi-form-item" data-testid="create-ad-creative-compose-index-bksS2"
+                                                                                                                        style="margin-bottom: 0px;"><!---->
+                                                                                                                        <div class="vi-form-item__content">
+                                                                                                                            <div data-v-69042a2b="">
+                                                                                                                                <div class="ttam-creative-auto-attach-switch">
+                                                                                                                                    <div data-testid="creative_utm_auto_attach_switch" role="switch"
+                                                                                                                                        class="vi-switch ttam-creative-auto-attach-switch__switch"><input
+                                                                                                                                            data-testid="switch-component-rZhLsB" type="checkbox" name="" true-value="true"
+                                                                                                                                            class="vi-switch__input"><!----><span class="vi-switch__core"
+                                                                                                                                            style="width: 40px;"></span><!----></div><span
+                                                                                                                                        class="ttam-creative-auto-attach-switch__switch_text">Automatically add URL
+                                                                                                                                        parameters</span>
+                                                                                                                                </div>
+                                                                                                                                <div class="ttam-creative-auto-attach-switch__utm_switch_info_container"><!---->
+                                                                                                                                    <div class="ttam-creative-auto-attach-switch__switch__desc"> Adding campaign parameters to
+                                                                                                                                        destination URLs will help you gauge the performance of your campaigns on third-party
+                                                                                                                                        platforms. </div>
+                                                                                                                                </div>
+                                                                                                                            </div><!---->
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div data-v-69042a2b="">
+                                                                                                                        <div data-v-69042a2b="" data-testid="create-ad-creative-compose-index-iuwks">
+                                                                                                                            <div class="ttam-creative-utm-entry">
+                                                                                                                                <div class="ttam-creative-utm-entry__button_container"><button data-testid="utm-entry-index-pvwR8b"
+                                                                                                                                        type="button"
+                                                                                                                                        class="vi-button vi-byted-button vi-button--text ttam-creative-utm-entry__build"
+                                                                                                                                        data-tea-expose="module_ad_build_url_para_impression"
+                                                                                                                                        data-tea-click="module_ad_build_url_para_click"
+                                                                                                                                        data-tea-destination_type="website link"><!----><!----><span>Build URL
+                                                                                                                                            parameters</span></button></div>
+                                                                                                                            </div><!---->
+                                                                                                                        </div>
+                                                                                                                    </div><!----><!----><!---->
+                                                                                                                </div><!----><!----><!----><!---->
+                                                                                                                <div data-v-a07b4588="">
+                                                                                                                    <div data-v-a07b4588="" class="vi-form-item index_labelOnly_sJZNV" id="material_open_url"><!---->
+                                                                                                                        <div class="vi-form-item__content">
+                                                                                                                            <div data-v-a07b4588="" class="index_label_e6vx9">
+                                                                                                                                <div>
+                                                                                                                                    <div data-v-a07b4588="" class="index_layoutWrap_OF4vT">
+                                                                                                                                        <div data-v-a07b4588="" data-testid="creative_deepLink_switch" role="switch"
+                                                                                                                                            class="vi-switch index_deepLinkSwitch_emYar" data-tea-click="creation_component_click"
+                                                                                                                                            data-tea-expose="creation_component_show"
+                                                                                                                                            data-tea-std_component_name="creative_deeplink_switch"><input
+                                                                                                                                                data-testid="switch-component-rZhLsB" type="checkbox" name="" true-value="true"
+                                                                                                                                                class="vi-switch__input"><!----><span class="vi-switch__core"
+                                                                                                                                                style="width: 40px;"></span><!----></div><span data-v-a07b4588="">Direct users to
+                                                                                                                                            deeplink first</span><i data-v-a07b4588="" class="vi-icon-question vi-tooltip"
+                                                                                                                                            aria-describedby="vi-tooltip-5782" tabindex="0" style="margin-left: 4px;"></i>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div><!----><!---->
+                                                                                                                        </div>
+                                                                                                                    </div><!---->
+                                                                                                                    <div data-v-a07b4588="" id="deep_link_preview_dialog" class="index_deepLinkPreviewDialog_KzI0x"
+                                                                                                                        data-testid="creative-deeplink-index-mfBETE">
+                                                                                                                        <div data-testid="creative-deeplink-preview-dialog-index-5MBHQa" class="vi-dialog__wrapper"
+                                                                                                                            style="display: none;">
+                                                                                                                            <div role="dialog" class="vi-dialog" style="width: 640px; margin-top: 15vh;">
+                                                                                                                                <div role="dialog_header" class="vi-dialog__header"><span role="dialog_title"
+                                                                                                                                        class="vi-dialog__title">Preview deeplink
+                                                                                                                                    </span><button data-testid="dialog-component-fsmrd8" type="button" aria-label="Close"
+                                                                                                                                        class="vi-dialog__headerbtn"><i class="vi-dialog__close vi-icon vi-icon-close"></i></button>
+                                                                                                                                </div><!----><!---->
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div><!---->
+                                                                                                                </div><!----><!---->
                                                                                                             </div>
                                                                                                         </div>
 
