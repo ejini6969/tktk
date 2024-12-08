@@ -3811,7 +3811,7 @@ session_start();
                                                                                                                         </slot>
 
                                                                                                                         <div class="x-ads-preview__main">
-                                                                                                                            <div class="x-ix-mobile__mobile x-ix-mobile__mobile-3000">
+                                                                                                                            <div class="x-ix-mobile__mobile x-ix-mobile__mobile-3000" >
                                                                                                                                 <div class="x-ix-mobile__app x-ix-mobile__app-3000" style="display: block;">
                                                                                                                                     <div class="x-ix-mobile__placement x-ix-mobile__placement-tiktok_infeed x-ix-mobile__placement--active" style="opacity: 1;pointer-events: auto;">
                                                                                                                                         <x-ix-ad-pr-placement-infeed-h0ur8pn2 class="">
@@ -3822,12 +3822,14 @@ session_start();
                                                                                                                                                             <div class="x-ix-ad-pr-ix-video__play-wrap x-ix-ad-pr-ix-video__ix-player-starttime">
                                                                                                                                                                 <div class="x-ix-ad-pr-ix-video__ix-player xgplayer xgplayer-inactive xgplayer-pc no-controls xgplayer-nostart" style="width: 100%; height: 100%;">
 
-                                                                                                                                                                    <video id="real-edit-vid-player" playsinline="true" x5-playsinline="true" webkit-playsinline="true" mediatype="video" data-index="-1" crossorigin="anonymous">
-                                                                                                                                                                        <source src="https://v16-tt4b.tiktokcdn.com/your-video-url.mp4" type="video/mp4">
-                                                                                                                                                                        Your browser does not support the video tag.
-                                                                                                                                                                    </video>
+                                                                                                                                                                <video loop autoplay id="real-edit-vid-playerx"  style="cursor:pointer;" muted playsinline >
+                                                                                                                                                                    <source src="./img/video3.mp4" type="video/mp4">
+                                                                                                                                                                    Your browser does not support the video tag.
+                                                                                                                                                                </video>
 
-                                                                                                                                                                    <xg-poster class="xgplayer-poster" id="real-edit-poster" style="background-image:url(https://p16-ad-sg.tiktokcdn.com/origin/tos-alisg-p-0051c001-sg/oYkSeXEkDQKrAaoqAuFBQpNsHBfCnhBIEwgEDT);" data-index="0">
+                                                                                                                                                                    <!-- <div class="play-overlay" id="play-overlay">▶</div> -->
+
+                                                                                                                                                                    <xg-poster class="xgplayer-poster" id="real-edit-poster"  data-index="0">
                                                                                                                                                                     </xg-poster>
 
                                                                                                                                                                     <xg-loading class="xgplayer-loading" data-index="0">
@@ -3993,7 +3995,7 @@ session_start();
                                                                                                                         </div>
 
                                                                                                                         <!--  -->
-                                                                                                                        <div class="x-ads-preview__progress-bar">
+                                                                                                                        <div class="x-ads-preview__progress-bar d-none">
                                                                                                                             <x-ix-ad-pr-video-progress-bar-h0ur8pn2>
                                                                                                                                 <div class="x-ix-ad-pr-video-progress-bar__section">
                                                                                                                                     <div class="x-ix-ad-pr-video-progress-bar__progress-bar-wrap x-ix-ad-pr-video-progress-bar__section-bar-play" data-tea-module-click="ix_preview_progress_click">
@@ -4814,6 +4816,9 @@ session_start();
 
     <!---------------------------------------------------------------------------------------- PHP + JS -------------------------------------------------------------------------------------->
     <script>
+
+
+
         // ================================================================================== USER ====================================================================
         function saveUser() {
             let user = document.getElementById("user").textContent;
@@ -5447,6 +5452,7 @@ session_start();
 
         setUpDragListenersAdsGroup();
 
+
         // ----------------------------Function to swap the columns in the table---------------------------
         function swapColumnsAdsGroup(table, fromIndex, toIndex) {
             const rows = table.querySelectorAll('.table-head tr, .table-content tr');
@@ -5679,6 +5685,8 @@ session_start();
                 document.body.appendChild(newModal);
             }
 
+            
+
             // Preload data into modal
             $.ajax({
                 url: 'controller/ads_group/fetch_ads_group_data.php',
@@ -5746,6 +5754,11 @@ session_start();
                 }
             });
         }
+
+
+
+
+        
 
         // ========================================================================================= ADS DATA ===============================================================================
         // ----------------------------Triggers / Actions to Swap the columns (UPDATE TABLE TOO) ----------------------
@@ -6052,6 +6065,9 @@ session_start();
             }, 1000); // Delay of 3 seconds
 
         });
+
+
+
 
         // ----------------------------------------------------------- REAL EDIT AD ROW ----------------------------------------------------------------------
         function realEditAdRow(rowId) {

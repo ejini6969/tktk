@@ -1438,11 +1438,11 @@ li {
 }
 
 .x-ix-ad-pr-ix-video .xgplayer {
-    cursor: default;
+    cursor: pointer;
 }
 
 .x-ix-ad-pr-ix-video .xgplayer.xgplayer-inactive {
-    cursor: default;
+    cursor: pointer;
 }
 
 a {
@@ -2373,6 +2373,31 @@ a {
     100% {
         transform: translateX(100%);
     }
+}
+
+#play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px; /* Circle size */
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    border-radius: 50%; /* Makes the overlay circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10; /* Ensures it appears above the video */
+    font-size: 36px;
+}
+
+/* Play icon inside the overlay */
+#play-overlay::before {
+    content: "▶";
+    font-size: 6px;
+    color: transparent;
+    font-weight: bold;
 }
 
 
