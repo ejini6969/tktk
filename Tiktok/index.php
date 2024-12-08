@@ -1405,27 +1405,27 @@ session_start();
 
                                     // ~~~~~~~~~~~~~~ PHP get Row Id and insert data (FOR EACH ROW) ~~~~~~~~~~~~~~~~
                                     $sqlSelectCampaignsData = "
-                                    SELECT 
-                                        campaigndata.campaignid,
-                                        campaigndata.campaignname,
-                                        campaigndata.onoff,
-                                        campaigndata.status,
-                                        SUM(IFNULL(adsdata.cost, 0)) AS cost,
-                                        SUM(IFNULL(adsdata.reach, 0)) AS reach,
-                                        SUM(IFNULL(adsdata.imprs, 0)) AS imprs,
-                                        SUM(IFNULL(adsdata.result, 0)) AS result,
-                                        SUM(IFNULL(adsdata.click, 0)) AS click,
-                                        IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.imprs), 0) * 1000, 0) AS cpm,
-                                        IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.click), 0), 0) AS cpc,
-                                        IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.result), 0), 0) AS cpr,
-                                        IFNULL(SUM(adsdata.click) / NULLIF(SUM(adsdata.imprs), 0) * 100, 0) AS ctr
-                                    FROM campaigndata
-                                    LEFT JOIN adsgroupdata ON campaigndata.campaignid = adsgroupdata.campaignid
-                                    LEFT JOIN adsdata ON adsgroupdata.adsgroupid = adsdata.adsgroupid
-                                    WHERE adsdata.date BETWEEN '$startdate' AND '$enddate' OR adsdata.date IS NULL
-                                    GROUP BY campaigndata.campaignid
-                                ";
-                                $campaignsDataResult = $conn->query($sqlSelectCampaignsData);
+                                        SELECT 
+                                            campaigndata.campaignid,
+                                            campaigndata.campaignname,
+                                            campaigndata.onoff,
+                                            campaigndata.status,
+                                            SUM(IFNULL(adsdata.cost, 0)) AS cost,
+                                            SUM(IFNULL(adsdata.reach, 0)) AS reach,
+                                            SUM(IFNULL(adsdata.imprs, 0)) AS imprs,
+                                            SUM(IFNULL(adsdata.result, 0)) AS result,
+                                            SUM(IFNULL(adsdata.click, 0)) AS click,
+                                            IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.imprs), 0) * 1000, 0) AS cpm,
+                                            IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.click), 0), 0) AS cpc,
+                                            IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.result), 0), 0) AS cpr,
+                                            IFNULL(SUM(adsdata.click) / NULLIF(SUM(adsdata.imprs), 0) * 100, 0) AS ctr
+                                        FROM campaigndata
+                                        LEFT JOIN adsgroupdata ON campaigndata.campaignid = adsgroupdata.campaignid
+                                        LEFT JOIN adsdata ON adsgroupdata.adsgroupid = adsdata.adsgroupid
+                                        WHERE adsdata.date BETWEEN '$startdate' AND '$enddate' OR adsdata.date IS NULL
+                                        GROUP BY campaigndata.campaignid
+                                    ";
+                                    $campaignsDataResult = $conn->query($sqlSelectCampaignsData);
                                     while ($campaignsDataRow = $campaignsDataResult->fetch_assoc()) {
                                         $isOnOff = $campaignsDataRow['onoff'] == 1 ? 'checked' : '';
                                         $bgClass = $campaignsDataRow['onoff'] == 1 ? 'on-off-dark-bg' : '';
@@ -1608,24 +1608,36 @@ session_start();
                                 <tfoot class="table-footer">
 
                                     <?php
-                                    // ------------------------ Compute sum of ads for each ad group -----------------------
+                                    // ------------------------ Compute sum of each individual campaign ------------------------
                                     $startDate = $startdate;
                                     $endDate = $enddate;
 
                                     $sqlSelectFooter = "
                                         SELECT 
-                                            SUM(cost) AS totalcost, 
-                                            SUM(reach) AS totalreach, 
-                                            SUM(imprs) AS totalimprs, 
-                                            SUM(result) AS totalresult, 
-                                            SUM(click) AS totalclick,
-                                            IFNULL(SUM(cost) / NULLIF(SUM(imprs), 0) * 1000, 0) AS totalcpm,
-                                            IFNULL(SUM(cost) / NULLIF(SUM(click), 0), 0) AS totalcpc,
-                                            IFNULL(SUM(cost) / NULLIF(SUM(result), 0), 0) AS totalcpr,
-                                            IFNULL(SUM(click) / NULLIF(SUM(imprs), 0) * 100, 0) AS totalctr
-                                        FROM campaigndata
-                                        WHERE date BETWEEN '$startDate' AND '$endDate'
-                                    ";
+                                            SUM(campaign_metrics.totalcost) AS totalcost,
+                                            SUM(campaign_metrics.totalreach) AS totalreach,
+                                            SUM(campaign_metrics.totalimprs) AS totalimprs,
+                                            SUM(campaign_metrics.totalresult) AS totalresult,
+                                            SUM(campaign_metrics.totalclick) AS totalclick,
+                                            IFNULL(SUM(campaign_metrics.totalcost) / NULLIF(SUM(campaign_metrics.totalimprs), 0) * 1000, 0) AS totalcpm,
+                                            IFNULL(SUM(campaign_metrics.totalcost) / NULLIF(SUM(campaign_metrics.totalclick), 0), 0) AS totalcpc,
+                                            IFNULL(SUM(campaign_metrics.totalcost) / NULLIF(SUM(campaign_metrics.totalresult), 0), 0) AS totalcpr,
+                                            IFNULL(SUM(campaign_metrics.totalclick) / NULLIF(SUM(campaign_metrics.totalimprs), 0) * 100, 0) AS totalctr
+                                        FROM (
+                                            SELECT 
+                                                campaigndata.campaignid,
+                                                SUM(IFNULL(adsdata.cost, 0)) AS totalcost,
+                                                SUM(IFNULL(adsdata.reach, 0)) AS totalreach,
+                                                SUM(IFNULL(adsdata.imprs, 0)) AS totalimprs,
+                                                SUM(IFNULL(adsdata.result, 0)) AS totalresult,
+                                                SUM(IFNULL(adsdata.click, 0)) AS totalclick
+                                            FROM campaigndata
+                                            LEFT JOIN adsgroupdata ON campaigndata.campaignid = adsgroupdata.campaignid
+                                            LEFT JOIN adsdata ON adsgroupdata.adsgroupid = adsdata.adsgroupid
+                                            WHERE (adsdata.date BETWEEN '$startDate' AND '$endDate' OR adsdata.date IS NULL)
+                                            GROUP BY campaigndata.campaignid
+                                        ) AS campaign_metrics
+                                    ";                                
 
                                     $campaignsFooterResult = $conn->query($sqlSelectFooter);
                                     if ($campaignsFooterResult && $campaignsFooterResult->num_rows > 0) {
@@ -1646,9 +1658,11 @@ session_start();
 
                                     // --------------------- Count total campaigns within the date range ---------------------
                                     $sqlCountCampaigns = "
-                                        SELECT COUNT(*) AS totalcount 
+                                        SELECT COUNT(DISTINCT campaigndata.campaignid) AS totalcount 
                                         FROM campaigndata
-                                        WHERE date BETWEEN '$startDate' AND '$endDate'
+                                        LEFT JOIN adsgroupdata ON campaigndata.campaignid = adsgroupdata.campaignid
+                                        LEFT JOIN adsdata ON adsgroupdata.adsgroupid = adsdata.adsgroupid
+                                        WHERE (adsdata.date BETWEEN '$startDate' AND '$endDate' OR adsdata.date IS NULL)
                                     ";
                                     $countCampaignsResult = $conn->query($sqlCountCampaigns);
                                     if ($countCampaignsResult && $countCampaignsResult->num_rows > 0) {
@@ -1657,44 +1671,6 @@ session_start();
                                     } else {
                                         $totalCampaigns = 0;
                                     }
-
-                                    // Update adsgroupdata with aggregated metrics from adsdata
-                                    $sqlUpdateAdGroupData = "
-                                    UPDATE adsgroupdata
-                                    LEFT JOIN (
-                                        SELECT 
-                                            adsgroupid,
-                                            SUM(IFNULL(cost, 0)) AS total_cost,
-                                            SUM(IFNULL(reach, 0)) AS total_reach,
-                                            SUM(IFNULL(imprs, 0)) AS total_imprs,
-                                            SUM(IFNULL(result, 0)) AS total_result,
-                                            SUM(IFNULL(click, 0)) AS total_click,
-                                            IFNULL(SUM(cost) / NULLIF(SUM(imprs), 0) * 1000, 0) AS total_cpm,
-                                            IFNULL(SUM(cost) / NULLIF(SUM(click), 0), 0) AS total_cpc,
-                                            IFNULL(SUM(cost) / NULLIF(SUM(result), 0), 0) AS total_cpr,
-                                            IFNULL(SUM(click) / NULLIF(SUM(imprs), 0) * 100, 0) AS total_ctr
-                                        FROM adsdata
-                                        WHERE date BETWEEN '$startDate' AND '$endDate'
-                                        GROUP BY adsgroupid
-                                    ) AS aggregated
-                                    ON adsgroupdata.adsgroupid = aggregated.adsgroupid
-                                    SET 
-                                        adsgroupdata.cost = aggregated.total_cost,
-                                        adsgroupdata.reach = aggregated.total_reach,
-                                        adsgroupdata.imprs = aggregated.total_imprs,
-                                        adsgroupdata.result = aggregated.total_result,
-                                        adsgroupdata.click = aggregated.total_click,
-                                        adsgroupdata.cpm = aggregated.total_cpm,
-                                        adsgroupdata.cpc = aggregated.total_cpc,
-                                        adsgroupdata.cpr = aggregated.total_cpr,
-                                        adsgroupdata.ctr = aggregated.total_ctr
-                                    ";
-
-                                    // Execute the update query
-                                    if (!$conn->query($sqlUpdateAdGroupData)) {
-                                        die("Error updating ad group data: " . $conn->error);
-                                    }
-
                                     ?>
 
                                     <tr>
@@ -2011,7 +1987,7 @@ session_start();
 
                                     $campaignId = isset($_GET['selectedcampaigns']) ? $_GET['selectedcampaigns'] : "";
 
-                                    // Filter ad group data by campaign ID
+                                    // --------------------------------- Aggregate ad group data based on ads ----------------------
                                     $sqlSelectAdsGroupData = "
                                                     SELECT 
                                                         adsgroupdata.adsgroupid,
@@ -2226,6 +2202,7 @@ session_start();
                                 <tfoot class="table-footer">
 
                                     <?php
+                                    // ------------------------- Filter based on aggregation of ads data --------------------------
                                     $startDate = $startdate;
                                     $endDate = $enddate;
 
@@ -2270,7 +2247,7 @@ session_start();
                                         ];
                                     }
 
-                                    // Count total ads within the date range
+                                    // ------------------------------ Count total ads within the date range ---------------------------
                                     $sqlCountAdsGroup = "
                                         SELECT COUNT(DISTINCT adsgroupdata.adsgroupid) AS totalcount
                                         FROM adsgroupdata
@@ -2288,6 +2265,44 @@ session_start();
                                     } else {
                                         $totalAdsGroup = 0;
                                     }
+
+                                    // --------------------------------- Update adsgroupdata with aggregated metrics from adsdata ----------------------
+                                    $sqlUpdateAdGroupData = "
+                                    UPDATE adsgroupdata
+                                    LEFT JOIN (
+                                        SELECT 
+                                            adsgroupid,
+                                            SUM(IFNULL(cost, 0)) AS total_cost,
+                                            SUM(IFNULL(reach, 0)) AS total_reach,
+                                            SUM(IFNULL(imprs, 0)) AS total_imprs,
+                                            SUM(IFNULL(result, 0)) AS total_result,
+                                            SUM(IFNULL(click, 0)) AS total_click,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(imprs), 0) * 1000, 0) AS total_cpm,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(click), 0), 0) AS total_cpc,
+                                            IFNULL(SUM(cost) / NULLIF(SUM(result), 0), 0) AS total_cpr,
+                                            IFNULL(SUM(click) / NULLIF(SUM(imprs), 0) * 100, 0) AS total_ctr
+                                        FROM adsdata
+                                        WHERE date BETWEEN '$startDate' AND '$endDate'
+                                        GROUP BY adsgroupid
+                                    ) AS aggregated
+                                    ON adsgroupdata.adsgroupid = aggregated.adsgroupid
+                                    SET 
+                                        adsgroupdata.cost = aggregated.total_cost,
+                                        adsgroupdata.reach = aggregated.total_reach,
+                                        adsgroupdata.imprs = aggregated.total_imprs,
+                                        adsgroupdata.result = aggregated.total_result,
+                                        adsgroupdata.click = aggregated.total_click,
+                                        adsgroupdata.cpm = aggregated.total_cpm,
+                                        adsgroupdata.cpc = aggregated.total_cpc,
+                                        adsgroupdata.cpr = aggregated.total_cpr,
+                                        adsgroupdata.ctr = aggregated.total_ctr
+                                    ";
+                                    
+                                    // Execute the update query
+                                    if (!$conn->query($sqlUpdateAdGroupData)) {
+                                        die("Error updating ad group data: " . $conn->error);
+                                    }
+
                                     ?>
                                     <tr>
                                         <td colspan="3" class="footer-col total-ads">
@@ -2839,11 +2854,11 @@ session_start();
 
                                     $sqlSelectFooter = "
                                         SELECT 
-                                            SUM(cost) AS totalcost, 
-                                            SUM(reach) AS totalreach, 
-                                            SUM(imprs) AS totalimprs, 
-                                            SUM(result) AS totalresult, 
-                                            SUM(click) AS totalclick,
+                                            SUM(IFNULL(adsdata.cost, 0)) AS totalcost, 
+                                            SUM(IFNULL(adsdata.reach, 0)) AS totalreach, 
+                                            SUM(IFNULL(adsdata.imprs, 0)) AS totalimprs, 
+                                            SUM(IFNULL(adsdata.result, 0)) AS totalresult, 
+                                            SUM(IFNULL(adsdata.click, 0)) AS totalclick,
                                             IFNULL(SUM(cost) / NULLIF(SUM(imprs), 0) * 1000, 0) AS totalcpm,
                                             IFNULL(SUM(cost) / NULLIF(SUM(click), 0), 0) AS totalcpc,
                                             IFNULL(SUM(cost) / NULLIF(SUM(result), 0), 0) AS totalcpr,
@@ -2857,11 +2872,11 @@ session_start();
                                         $campaignId = isset($matches[0]) ? $matches[0] : "";
                                         $sqlSelectFooter = "
                                                             SELECT 
-                                                                SUM(adsdata.cost) AS totalcost, 
-                                                                SUM(adsdata.reach) AS totalreach, 
-                                                                SUM(adsdata.imprs) AS totalimprs, 
-                                                                SUM(adsdata.result) AS totalresult, 
-                                                                SUM(adsdata.click) AS totalclick,
+                                                                SUM(IFNULL(adsdata.cost, 0)) AS totalcost, 
+                                                                SUM(IFNULL(adsdata.reach, 0)) AS totalreach, 
+                                                                SUM(IFNULL(adsdata.imprs, 0)) AS totalimprs, 
+                                                                SUM(IFNULL(adsdata.result, 0)) AS totalresult, 
+                                                                SUM(IFNULL(adsdata.click, 0)) AS totalclick,
                                                                 IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.imprs), 0) * 1000, 0) AS totalcpm,
                                                                 IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.click), 0), 0) AS totalcpc,
                                                                 IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.result), 0), 0) AS totalcpr,
@@ -2948,55 +2963,55 @@ session_start();
 
                                         <td class="footer-col cost-col">
                                             <div class="d-flex justify-content-end align-items-center">
-                                                <span><?php echo number_format($adsFooterRow["totalcost"], 2, '.', ',') ?></span>
+                                                <span><?php echo number_format($adsFooterRow["totalcost"] ?? 0, 2, '.', ',') ?></span>
                                             </div>
                                         </td>
 
                                         <td class="footer-col reach-col">
                                             <div class="d-flex justify-content-end align-items-center">
-                                                <span><?php echo number_format($adsFooterRow["totalreach"], 0, '.', ',') ?></span>
+                                                <span><?php echo number_format($adsFooterRow["totalreach"] ?? 0, 0, '.', ',') ?></span>
                                             </div>
                                         </td>
 
                                         <td class="footer-col impr-col">
                                             <div class="d-flex justify-content-end align-items-center">
-                                                <span><?php echo number_format($adsFooterRow["totalimprs"], 0, '.', ',') ?></span>
+                                                <span><?php echo number_format($adsFooterRow["totalimprs"] ?? 0, 0, '.', ',') ?></span>
                                             </div>
                                         </td>
 
                                         <td class="footer-col res-col">
                                             <div class="d-flex justify-content-end align-items-center">
-                                                <span><?php echo number_format($adsFooterRow["totalresult"], 0, '.', ',') ?></span>
+                                                <span><?php echo number_format($adsFooterRow["totalresult"] ?? 0, 0, '.', ',') ?></span>
                                             </div>
                                         </td>
 
                                         <td class="footer-col cpm-col">
                                             <div class="d-flex justify-content-end align-items-center">
-                                                <span><?php echo number_format($adsFooterRow["totalcpm"], 2, '.', ',') ?></span>
+                                                <span><?php echo number_format($adsFooterRow["totalcpm"] ?? 0, 2, '.', ',') ?></span>
                                             </div>
                                         </td>
 
                                         <td class="footer-col cpc-col">
                                             <div class="d-flex justify-content-end align-items-center">
-                                                <span><?php echo number_format($adsFooterRow["totalcpc"], 2, '.', ',') ?></span>
+                                                <span><?php echo number_format($adsFooterRow["totalcpc"] ?? 0, 2, '.', ',') ?></span>
                                             </div>
                                         </td>
 
                                         <td class="footer-col cpr-col">
                                             <div class="d-flex justify-content-end align-items-center">
-                                                <span><?php echo number_format($adsFooterRow["totalcpr"], 2, '.', ',') ?></span>
+                                                <span><?php echo number_format($adsFooterRow["totalcpr"] ?? 0, 2, '.', ',') ?></span>
                                             </div>
                                         </td>
 
                                         <td class="footer-col clicks-col">
                                             <div class="d-flex justify-content-end align-items-center">
-                                                <span><?php echo number_format($adsFooterRow["totalclick"], 0, '.', ',') ?></span>
+                                                <span><?php echo number_format($adsFooterRow["totalclick"] ?? 0, 0, '.', ',') ?></span>
                                             </div>
                                         </td>
 
                                         <td class="footer-col ctr-col">
                                             <div class="d-flex justify-content-end align-items-center">
-                                                <span><?php echo number_format($adsFooterRow["totalctr"], 2) . '%' ?></span>
+                                                <span><?php echo number_format($adsFooterRow["totalctr"] ?? 0, 2) . '%' ?></span>
                                             </div>
                                         </td>
 
