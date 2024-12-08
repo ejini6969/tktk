@@ -4987,6 +4987,15 @@ session_start();
                 const adsText = $(".opt3 .ads-text");
                 adsText.text("Ads in 1 campaign");
 
+                 // Save state to localStorage
+                localStorage.setItem('selectedCampaignRowId', rowId);
+                localStorage.setItem('campaignAdsGroupText', "Ad groups in 1 campaign");
+                localStorage.setItem('campaignAdsText', "Ads in 1 campaign");
+                localStorage.setItem('activeCampaignTab', 'table-2');
+                localStorage.setItem('campaignCheckboxState', JSON.stringify({
+                    [rowId]: true,
+                    allCheckbox: true
+                }));
             }, delay);
 
         }
@@ -5012,6 +5021,13 @@ session_start();
 
                 const adsText = $(".opt3 .ads-text");
                 adsText.text("Ad");
+
+                 // Remove corresponding localStorage items
+                localStorage.removeItem('selectedCampaignRowId');
+                localStorage.removeItem('campaignAdsGroupText');
+                localStorage.removeItem('campaignAdsText');
+                localStorage.removeItem('activeCampaignTab');
+                localStorage.removeItem('campaignCheckboxState');
             }, delay);
         }
 
@@ -5302,6 +5318,14 @@ session_start();
                 adsText.text("Ads in 1 ad group");
             }, delay);
 
+            localStorage.setItem('selectedRowId', rowId);
+            localStorage.setItem('adsText', "Ads in 1 ad group");
+            localStorage.setItem('activeTab', 'table-3');
+            localStorage.setItem('checkboxState', JSON.stringify({
+                [rowId]: true,
+                allCheckbox: true
+            }));
+
         }
 
         function cancelAdGroup() {
@@ -5323,6 +5347,12 @@ session_start();
 
                 const adsText = $(".opt3 .ads-text");
                 adsText.text("Ad");
+
+                // Remove corresponding localStorage items
+                localStorage.removeItem('selectedRowId');
+                localStorage.removeItem('adsText');
+                localStorage.removeItem('activeTab');
+                localStorage.removeItem('checkboxState');
             }, delay);
         }
 
@@ -6386,6 +6416,7 @@ session_start();
 
         // ----------------------------------------------- Apply button to save date to Database -----------------------------------
         document.querySelector('.date-apply').addEventListener('click', function() {
+            
             const dateElement = document.querySelector('.date-element');
             const dateSubmenu = document.querySelector('.date-submenu');
             const selectedDates = document.querySelectorAll('.select-date');
@@ -6469,6 +6500,81 @@ session_start();
                 dateSubmenu.classList.add('d-none');
                 dateSubmenu.classList.remove('vi-zoom-in-top-leave-active');
             }, 300);
+        });
+
+        // ============================================================ Restore states set previously ===========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // --------------------------------------------- Campaign Restore -------------------------------------------------
+            // Restore the campaign checkbox state
+            const campaignCheckboxState = JSON.parse(localStorage.getItem('campaignCheckboxState'));
+            if (campaignCheckboxState) {
+                Object.keys(campaignCheckboxState).forEach(id => {
+                    const checkbox = document.querySelector(`#${id} #cbx-checkbox`);
+                    if (checkbox) checkbox.checked = campaignCheckboxState[id];
+                });
+
+                const allCheckbox = document.getElementById("all-campaign-checkbox");
+                if (allCheckbox) allCheckbox.checked = campaignCheckboxState.allCheckbox;
+            }
+
+            // Restore the active campaign tab
+            const activeCampaignTab = localStorage.getItem('activeCampaignTab');
+            if (activeCampaignTab) {
+                $('.options-box').removeClass('active-tab');
+                $(`.options-box[data-selected='${activeCampaignTab}']`).addClass('active-tab');
+
+                $('.table-wrapper').addClass('d-none');
+                $(`.${activeCampaignTab}-content`).removeClass('d-none');
+            }
+
+            // Restore the campaign ads group and ads text
+            const campaignAdsGroupText = localStorage.getItem('campaignAdsGroupText');
+            if (campaignAdsGroupText) {
+                const adsGroupText = $(".opt2 .ads-group-text");
+                if (adsGroupText) adsGroupText.text(campaignAdsGroupText);
+            }
+
+            const campaignAdsText = localStorage.getItem('campaignAdsText');
+            if (campaignAdsText) {
+                const adsText = $(".opt3 .ads-text");
+                if (adsText) adsText.text(campaignAdsText);
+
+                const selectedCampaigns = $("#select-campaigns-num");
+                if (selectedCampaigns) selectedCampaigns.css("display", "flex");
+            }
+
+            // ------------------------------------------- Ads Group Restore ---------------------------------------------
+            // Restore the selected row checkbox state
+            const checkboxState = JSON.parse(localStorage.getItem('checkboxState'));
+            if (checkboxState) {
+                Object.keys(checkboxState).forEach(id => {
+                    const checkbox = document.querySelector(`#${id} #cbx-checkbox`);
+                    if (checkbox) checkbox.checked = checkboxState[id];
+                });
+
+                const allCheckbox = document.getElementById("all-ads-group-checkbox");
+                if (allCheckbox) allCheckbox.checked = checkboxState.allCheckbox;
+            }
+
+            // Restore the active tab
+            const activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                $('.options-box').removeClass('active-tab');
+                $(`.options-box[data-selected='${activeTab}']`).addClass('active-tab');
+
+                $('.table-wrapper').addClass('d-none');
+                $(`.${activeTab}-content`).removeClass('d-none');
+            }
+
+            // Restore the ads text
+            const adsTextValue = localStorage.getItem('adsText');
+            if (adsTextValue) {
+                const adsText = $(".opt3 .ads-text");
+                if (adsText) adsText.text(adsTextValue);
+
+                const selectedAdGroup = $("#select-ads-group-num");
+                if (selectedAdGroup) selectedAdGroup.css("display", "flex");
+            }
         });
 
 
