@@ -2680,3 +2680,27 @@ a {
 .index_deepLinkSwitch_emYar {
     margin-right: 8px;
 }
+
+.vi-button:focus, .vi-button:hover {
+    background-color: #e5e5e6;
+    border-color: #009995;
+}
+
+.vi-button--text:hover, .vi-button--text:focus {
+    color: #006663;
+    text-decoration: none;
+
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.vi-button--text
+{
+    color: #017976;
+    cursor: pointer;
+}
+
+.content_generateBtn_nhoCv:hover, .content_generateBtn_nhoCv:focus {
+    color: #5c5d5f;
+    text-decoration: none;
+}
