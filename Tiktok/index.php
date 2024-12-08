@@ -1370,6 +1370,9 @@ session_start();
                                 <tbody class="table-content">
 
                                     <?php
+                                    ini_set('display_errors', 1);
+                                    ini_set('display_startup_errors', 1);
+                                    error_reporting(E_ALL);
                                     // ~~~~~~~~~~~~~~~~ Substatus ~~~~~~~~~~~~~~~~
                                     function getSubStatusTextCampaigns($statusValue)
                                     {
@@ -1401,8 +1404,28 @@ session_start();
                                     }
 
                                     // ~~~~~~~~~~~~~~ PHP get Row Id and insert data (FOR EACH ROW) ~~~~~~~~~~~~~~~~
-                                    $sqlSelectCampaignsData = "SELECT * FROM campaigndata WHERE date BETWEEN '$startdate' AND '$enddate'";
-                                    $campaignsDataResult = $conn->query($sqlSelectCampaignsData);
+                                    $sqlSelectCampaignsData = "
+                                    SELECT 
+                                        campaigndata.campaignid,
+                                        campaigndata.campaignname,
+                                        campaigndata.onoff,
+                                        campaigndata.status,
+                                        SUM(IFNULL(adsdata.cost, 0)) AS cost,
+                                        SUM(IFNULL(adsdata.reach, 0)) AS reach,
+                                        SUM(IFNULL(adsdata.imprs, 0)) AS imprs,
+                                        SUM(IFNULL(adsdata.result, 0)) AS result,
+                                        SUM(IFNULL(adsdata.click, 0)) AS click,
+                                        IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.imprs), 0) * 1000, 0) AS cpm,
+                                        IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.click), 0), 0) AS cpc,
+                                        IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.result), 0), 0) AS cpr,
+                                        IFNULL(SUM(adsdata.click) / NULLIF(SUM(adsdata.imprs), 0) * 100, 0) AS ctr
+                                    FROM campaigndata
+                                    LEFT JOIN adsgroupdata ON campaigndata.campaignid = adsgroupdata.campaignid
+                                    LEFT JOIN adsdata ON adsgroupdata.adsgroupid = adsdata.adsgroupid
+                                    WHERE adsdata.date BETWEEN '$startdate' AND '$enddate' OR adsdata.date IS NULL
+                                    GROUP BY campaigndata.campaignid
+                                ";
+                                $campaignsDataResult = $conn->query($sqlSelectCampaignsData);
                                     while ($campaignsDataRow = $campaignsDataResult->fetch_assoc()) {
                                         $isOnOff = $campaignsDataRow['onoff'] == 1 ? 'checked' : '';
                                         $bgClass = $campaignsDataRow['onoff'] == 1 ? 'on-off-dark-bg' : '';
