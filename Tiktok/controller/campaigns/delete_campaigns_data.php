@@ -9,7 +9,7 @@ include("../../auth/connect.php");
 if (isset($_POST['rowId'])) {
     $rowId = str_replace("campaigns-rw-", "", $conn->real_escape_string($_POST['rowId']));
 
-    $deleteSql = "DELETE FROM campaigndata WHERE id = $rowId";
+    $deleteSql = "DELETE FROM campaigndata WHERE campaignid = $rowId";
 
     if ($conn->query($deleteSql) === TRUE) {
         echo json_encode(["status" => "success", "message" => "Campaign row deleted successfully"]);

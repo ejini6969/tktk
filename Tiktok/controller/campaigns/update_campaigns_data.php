@@ -10,6 +10,7 @@ include("../../auth/connect.php");
 
 if (isset($_POST['edit'])) {
 
+    $campaignid = $conn->real_escape_string($_POST['campaignid']);
     $onoff = isset($_POST['onoff']) ? 1 : 0;
     $campaignname = $conn->real_escape_string($_POST['campaignname']);
     $status = $conn->real_escape_string($_POST['delivery']);
@@ -19,9 +20,9 @@ if (isset($_POST['edit'])) {
     $cost = (float)$_POST['cost'];
     $clicks = (int)$_POST['clicks'];
 
-    $rowId = str_replace("campaigns-rw-", "", $conn->real_escape_string($_POST['id']));
+    // $rowId = str_replace("campaigns-rw-", "", $conn->real_escape_string($_POST['id']));
 
-    $sql = "UPDATE campaigndata SET onoff = '$onoff', campaignname = '$campaignname', status = '$status', result = '$results', imprs = '$imprs', reach = '$reach', cost = '$cost', click = '$clicks' WHERE id = $rowId";
+    $sql = "UPDATE campaigndata SET campaignid = '$campaignid', onoff = '$onoff', campaignname = '$campaignname', status = '$status', result = '$results', imprs = '$imprs', reach = '$reach', cost = '$cost', click = '$clicks' WHERE campaignid = $campaignid";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(["status" => "success", "message" => "New campaign data updated with ID: $rowId"]);
         header('Location: ../../index.php');

@@ -11,7 +11,7 @@ include("../../auth/connect.php");
 if (isset($_POST['rowId'])) {
     $rowId = str_replace("campaigns-rw-", "", $conn->real_escape_string($_POST['rowId']));
 
-    $sql = "SELECT * FROM campaigndata WHERE id = $rowId";
+    $sql = "SELECT * FROM campaigndata WHERE campaignid = $rowId";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

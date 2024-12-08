@@ -10,6 +10,7 @@ include("../../auth/connect.php");
 
 if (isset($_POST['create'])) {
 
+    $campaignid = $conn->real_escape_string($_POST['campaignid']);
     $onoff = isset($_POST['onoff']) ? 1 : 0;
     $campaignname = $conn->real_escape_string($_POST['campaignname']);
     $status = $conn->real_escape_string($_POST['delivery']);
@@ -19,8 +20,13 @@ if (isset($_POST['create'])) {
     $cost = (float)$_POST['cost']; 
     $clicks = (int)$_POST['clicks'];
 
-    $sql = "INSERT INTO campaigndata (onoff, campaignname, status, result, imprs, reach, cost, click)
-            VALUES ($onoff, '$campaignname', '$status', $results, $imprs, $reach, $cost, $clicks)";
+    $sqlSelectDate = "SELECT * FROM daterange WHERE userid = {$_SESSION['userid']}";
+    $dateResult = $conn->query($sqlSelectDate);
+    $dateRow = $dateResult->fetch_assoc();
+    $date = date('Y-m-d', strtotime($dateRow['enddate']));
+
+    $sql = "INSERT INTO campaigndata (campaignid, onoff, campaignname, status, result, imprs, reach, cost, click, date)
+            VALUES ('$campaignid', $onoff, '$campaignname', '$status', $results, $imprs, $reach, $cost, $clicks, '$date')";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'New campaign data added successfully!']);
         exit();

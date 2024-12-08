@@ -1406,7 +1406,7 @@ session_start();
                                     while ($campaignsDataRow = $campaignsDataResult->fetch_assoc()) {
                                         $isOnOff = $campaignsDataRow['onoff'] == 1 ? 'checked' : '';
                                         $bgClass = $campaignsDataRow['onoff'] == 1 ? 'on-off-dark-bg' : '';
-                                        $rowId   = $campaignsDataRow['id'];
+                                        $rowId   = $campaignsDataRow['campaignid'];
                                     ?>
                                         <tr class="campaigns-rw-<?php echo $rowId; ?>" id="campaigns-rw-<?php echo $rowId; ?>" onmouseover="showCampaignsTools('campaigns-rw-<?php echo $rowId; ?>')" onmouseout="hideCampaignsTools('campaigns-rw-<?php echo $rowId; ?>')">
                                             <td class="content-col cbx-col">
@@ -1943,12 +1943,21 @@ session_start();
                                     }
 
                                     // ~~~~~~~~~~~~~~ PHP get Row Id and insert data (FOR EACH ROW) ~~~~~~~~~~~~~~~~
+                                    $campaignId = isset($_GET['selectedcampaigns']) ? $_GET['selectedcampaigns'] : "";
+
+                                    // Filter ad group data by campaign ID
                                     $sqlSelectAdsGroupData = "SELECT * FROM adsgroupdata WHERE date BETWEEN '$startdate' AND '$enddate'";
+                                    if ($campaignId != "") {
+                                        preg_match('/\d+$/', $campaignId, $matches);
+                                        $campaignId = isset($matches[0]) ? $matches[0] : "";
+                                        $sqlSelectAdsGroupData .= " AND campaignid = '$campaignId'";
+                                    }
+
                                     $adsGroupDataResult = $conn->query($sqlSelectAdsGroupData);
                                     while ($adsGroupDataRow = $adsGroupDataResult->fetch_assoc()) {
                                         $isOnOff = $adsGroupDataRow['onoff'] == 1 ? 'checked' : '';
                                         $bgClass = $adsGroupDataRow['onoff'] == 1 ? 'on-off-dark-bg' : '';
-                                        $rowId   = $adsGroupDataRow['id'];
+                                        $rowId   = $adsGroupDataRow['adsgroupid'];
                                     ?>
 
                                         <tr class="ads-group-rw-<?php echo $rowId; ?>" id="ads-group-rw-<?php echo $rowId; ?>" onmouseover="showAdsGroupTools('ads-group-rw-<?php echo $rowId; ?>')" onmouseout="hideAdsGroupTools('ads-group-rw-<?php echo $rowId; ?>')">
@@ -2132,6 +2141,8 @@ session_start();
                                     $startDate = $startdate;
                                     $endDate = $enddate;
 
+                                    $campaignId = isset($_GET['selectedcampaigns']) ? $_GET['selectedcampaigns'] : "";
+                                    
                                     $sqlSelectFooter = "
                                         SELECT 
                                             SUM(cost) AS totalcost, 
@@ -2146,6 +2157,12 @@ session_start();
                                         FROM adsgroupdata
                                         WHERE date BETWEEN '$startDate' AND '$endDate'
                                     ";
+
+                                    if ($campaignId != "") {
+                                        preg_match('/\d+$/', $campaignId, $matches);
+                                        $campaignId = isset($matches[0]) ? $matches[0] : "";
+                                        $sqlSelectFooter .= " AND campaignid = '$campaignId'";
+                                    }
 
                                     $adsGroupFooterResult = $conn->query($sqlSelectFooter);
                                     if ($adsGroupFooterResult && $adsGroupFooterResult->num_rows > 0) {
@@ -2494,12 +2511,33 @@ session_start();
                                     }
 
                                     // ~~~~~~~~~~~~~~ PHP get Row Id and insert data (FOR EACH ROW) ~~~~~~~~~~~~~~~~
-                                    $sqlSelectAdsData = "SELECT * FROM adsdata where date BETWEEN '$startdate' and '$enddate'";
+                                    $campaignId = isset($_GET['selectedcampaigns']) ? $_GET['selectedcampaigns'] : "";
+                                    $adGroupId = isset($_GET['selectedadsgroupid']) ? $_GET['selectedadsgroupid'] : "";
+                                    $sqlSelectAdsData = "SELECT * FROM adsdata WHERE date BETWEEN '$startdate' AND '$enddate'";
+                                    
+                                    // Apply adgroupid filter if provided
+                                    if ($campaignId != "") {
+                                        preg_match('/\d+$/', $campaignId, $matches);
+                                        $campaignId = isset($matches[0]) ? $matches[0] : "";
+                                        $sqlSelectAdsData = "
+                                                SELECT adsdata.* 
+                                                FROM adsdata
+                                                INNER JOIN adsgroupdata ON adsdata.adsgroupid = adsgroupdata.adsgroupid
+                                                LEFT JOIN campaigndata ON adsgroupdata.campaignid = campaigndata.campaignid
+                                                WHERE adsdata.date BETWEEN '$startdate' AND '$enddate'
+                                                AND campaigndata.campaignid = '$campaignId'
+                                        ";
+                                    } else if ($adGroupId != "") {
+                                        preg_match('/\d+$/', $adGroupId, $matches);
+                                        $adGroupId = isset($matches[0]) ? $matches[0] : "";
+                                        $sqlSelectAdsData .= " AND adsgroupid = '$adGroupId'";
+                                    } 
+
                                     $adsDataResult = $conn->query($sqlSelectAdsData);
                                     while ($adsDataRow = $adsDataResult->fetch_assoc()) {
                                         $isOnOff = $adsDataRow['onoff'] == 1 ? 'checked' : '';
                                         $bgClass = $adsDataRow['onoff'] == 1 ? 'on-off-dark-bg' : '';
-                                        $rowId   = $adsDataRow['id'];
+                                        $rowId   = $adsDataRow['adsid'];
                                     ?>
 
                                         <tr class="ads-rw-<?php echo $rowId; ?>" id="ads-rw-<?php echo $rowId; ?>" onmouseover="showAdsTools('ads-rw-<?php echo $rowId; ?>')" onmouseout="hideAdsTools('ads-rw-<?php echo $rowId; ?>')">
@@ -2598,7 +2636,7 @@ session_start();
                                             <td class="content-col ad-grp-name-col">
                                                 <div class="d-flex justify-content-start align-items-center">
                                                     <a href="#">
-                                                        <input type="text" value="<?php echo $adsDataRow['adgroupname'] ?>" disabled>
+                                                        <input type="text" value="<?php echo $adsDataRow['adsgroupname'] ?>" disabled>
                                                     </a>
                                                 </div>
                                             </td>
@@ -2702,6 +2740,9 @@ session_start();
                                     $startDate = $startdate;
                                     $endDate = $enddate;
 
+                                    $campaignId = isset($_GET['selectedcampaigns']) ? $_GET['selectedcampaigns'] : "";
+                                    $adGroupId = isset($_GET['selectedadsgroupid']) ? $_GET['selectedadsgroupid'] : "";
+
                                     $sqlSelectFooter = "
                                         SELECT 
                                             SUM(cost) AS totalcost, 
@@ -2716,6 +2757,32 @@ session_start();
                                         FROM adsdata
                                         WHERE date BETWEEN '$startDate' AND '$endDate'
                                     ";
+
+                                    if ($campaignId != "") {
+                                        preg_match('/\d+$/', $campaignId, $matches);
+                                        $campaignId = isset($matches[0]) ? $matches[0] : "";
+                                        $sqlSelectFooter = "
+                                                            SELECT 
+                                                                SUM(adsdata.cost) AS totalcost, 
+                                                                SUM(adsdata.reach) AS totalreach, 
+                                                                SUM(adsdata.imprs) AS totalimprs, 
+                                                                SUM(adsdata.result) AS totalresult, 
+                                                                SUM(adsdata.click) AS totalclick,
+                                                                IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.imprs), 0) * 1000, 0) AS totalcpm,
+                                                                IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.click), 0), 0) AS totalcpc,
+                                                                IFNULL(SUM(adsdata.cost) / NULLIF(SUM(adsdata.result), 0), 0) AS totalcpr,
+                                                                IFNULL(SUM(adsdata.click) / NULLIF(SUM(adsdata.imprs), 0) * 100, 0) AS totalctr
+                                                            FROM adsdata
+                                                            INNER JOIN adsgroupdata ON adsdata.adsgroupid = adsgroupdata.adsgroupid
+                                                            LEFT JOIN campaigndata ON adsgroupdata.campaignid = campaigndata.campaignid
+                                                            WHERE adsdata.date BETWEEN '$startDate' AND '$endDate'
+                                                            AND campaigndata.campaignid = '$campaignId'
+                                                        ";
+                                    } else if ($adGroupId != "") {
+                                        preg_match('/\d+$/', $adGroupId, $matches);
+                                        $adGroupId = isset($matches[0]) ? $matches[0] : "";
+                                        $sqlSelectFooter .= " AND adsgroupid = '$adGroupId'";
+                                    }
 
                                     $adsFooterResult = $conn->query($sqlSelectFooter);
                                     if ($adsFooterResult && $adsFooterResult->num_rows > 0) {
@@ -3827,6 +3894,11 @@ session_start();
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label for="app-grp-name" class="col-form-label">Campaign ID:</label>
+                                        <input type="text" class="form-control" name="campaignid" id="campaignid"
+                                            autocomplete="off" placeholder="Campaign ID">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="app-name" class="col-form-label">Campaign Name:</label>
                                         <input type="text" class="form-control" name="campaignname" id="campaignname" autocomplete="off"
                                             placeholder="Campaign Name (2nd Col)">
@@ -3922,6 +3994,11 @@ session_start();
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label for="app-grp-id" class="col-form-label">Ads Group ID:</label>
+                                        <input type="text" class="form-control" name="adsgroupid" id="adsgroupid"
+                                            autocomplete="off" placeholder="Ads Group ID">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="app-name" class="col-form-label">Ads Group Name:</label>
                                         <input type="text" class="form-control" name="adsgroupname" id="adsgroupname" autocomplete="off"
                                             placeholder="Ads Group Name (2nd Col)">
@@ -3935,9 +4012,9 @@ session_start();
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="app-grp-name" class="col-form-label">Ad Group ID:</label>
-                                        <input type="text" class="form-control" name="adsgroupid" id="adsgroupid"
-                                            autocomplete="off" placeholder="Ads Group ID (4th Col)">
+                                        <label for="app-grp-name" class="col-form-label">Campaign ID:</label>
+                                        <input type="text" class="form-control" name="campaignid" id="campaignid"
+                                            autocomplete="off" placeholder="Campaign ID">
                                     </div>
                                     <div class="form-group mb">
                                         <label for="app-name" class="col-form-label">Results:</label>
@@ -4025,6 +4102,11 @@ session_start();
                                         <input type="file" class="form-control" name="videoname" id="videoname">
                                     </div>
                                     <div class="form-group">
+                                        <label for="app-id" class="col-form-label">Ads ID:</label>
+                                        <input type="text" class="form-control" name="adsid" id="adsid"
+                                            autocomplete="off" placeholder="Ads ID">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="app-name" class="col-form-label">AdsName:</label>
                                         <input type="text" class="form-control" name="adsname" id="adsname" autocomplete="off"
                                             placeholder="Ads Name (2nd Col)">
@@ -4038,7 +4120,12 @@ session_start();
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="app-grp-name" class="col-form-label">Ad Group Name:</label>
+                                        <label for="app-grp-id" class="col-form-label">Ads Group ID:</label>
+                                        <input type="text" class="form-control" name="adsgroupid" id="adsgroupid"
+                                            autocomplete="off" placeholder="Ads Group ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="app-grp-name" class="col-form-label">Ads Group Name:</label>
                                         <input type="text" class="form-control" name="adsgroupname" id="adsgroupname"
                                             autocomplete="off" placeholder="Ads Group Name (4th Col)">
                                     </div>
@@ -4737,31 +4824,8 @@ session_start();
             const delay = Math.floor(Math.random() * 1500) + 500;
 
             setTimeout(() => {
-                const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
-                const allCheckbox = document.getElementById("all-campaign-checkbox");
-                checkbox.checked = true;
-                allCheckbox.checked = true;
-
-                const campaignTab = $(".options-box[data-selected='table-1']");
-                const adsGroupTab = $(".options-box[data-selected='table-2']");
-
-                $('.options-box').removeClass('active-tab');
-                adsGroupTab.addClass('active-tab');
-
-                $('.table-wrapper').addClass('d-none');
-                $('.table-2-content').removeClass('d-none');
-
-                const selectedCampaigns = $("#select-campaigns-num");
-                selectedCampaigns.css("display", "flex");
-
-                const adsGroupText = $(".opt2 .ads-group-text");
-                adsGroupText.text("Ad groups in 1 campaign");
-
-                const adsText = $(".opt3 .ads-text");
-                adsText.text("Ads in 1 campaign");
-
                  // Save state to localStorage
-                localStorage.setItem('selectedCampaignRowId', rowId);
+                localStorage.setItem('selectedCampaigns', rowId);
                 localStorage.setItem('campaignAdsGroupText', "Ad groups in 1 campaign");
                 localStorage.setItem('campaignAdsText', "Ads in 1 campaign");
                 localStorage.setItem('activeCampaignTab', 'table-2');
@@ -4769,6 +4833,16 @@ session_start();
                     [rowId]: true,
                     allCheckbox: true
                 }));
+
+                 // Add campaign ID to the URL and reload the page
+                const urlParams = new URLSearchParams(window.location.search);
+                urlParams.set('selectedcampaigns', rowId); 
+                window.location.search = urlParams.toString();
+                
+                setTimeout(function(){
+                    window.location.reload();
+                }, delay + Math.floor(Math.random() * 1000))
+
             }, delay);
 
         }
@@ -4796,11 +4870,19 @@ session_start();
                 adsText.text("Ad");
 
                  // Remove corresponding localStorage items
-                localStorage.removeItem('selectedCampaignRowId');
+                localStorage.removeItem('selectedCampaigns');
                 localStorage.removeItem('campaignAdsGroupText');
                 localStorage.removeItem('campaignAdsText');
                 localStorage.removeItem('activeCampaignTab');
                 localStorage.removeItem('campaignCheckboxState');
+
+                // Remove 'selectedcampaigns' from the URL query string
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('selectedcampaigns')) {
+                    urlParams.delete('selectedcampaigns'); // Remove the query parameter
+                    const newUrl = window.location.pathname + '?' + urlParams.toString();
+                    window.history.replaceState(null, '', newUrl); // Update the URL without reloading
+                }
             }, delay);
         }
 
@@ -4809,6 +4891,7 @@ session_start();
         function addNewRowCampaigns() {
             let formData = new FormData();
 
+            formData.append('campaignid', Math.floor(100000000000 + Math.random() * 9000000000).toString());
             formData.append('create', 1);
             formData.append('onoff', 1);
             formData.append('campaignname', 'Sample Campaign Name');
@@ -4941,6 +5024,7 @@ session_start();
                         // alert(data.message);
                         console.error(data.message);
                     } else {
+                        $(`#add-row-modal-${rowId} #campaignid`).val(data.campaignid);
                         $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
                         $(`#add-row-modal-${rowId} #campaignname`).val(data.campaignname);
                         $(`#add-row-modal-${rowId} #delivery`).val(data.status);
@@ -5070,35 +5154,32 @@ session_start();
             const delay = Math.floor(Math.random() * 1500) + 500;
 
             setTimeout(() => {
-                const checkbox = document.querySelector(`#${rowId} #cbx-checkbox`);
-                const allCheckbox = document.getElementById("all-ads-group-checkbox");
-                checkbox.checked = true;
-                allCheckbox.checked = true;
+                localStorage.setItem('selectedAdsGroupId', rowId);
+                localStorage.setItem('adsText', "Ads in 1 ad group");
+                localStorage.setItem('activeTab', 'table-3');
+                localStorage.setItem('checkboxState', JSON.stringify({
+                    [rowId]: true,
+                    allCheckbox: true
+                }));
 
-                const adsGroupTab = $(".options-box[data-selected='table-2']");
-                const adTab = $(".options-box[data-selected='table-3']");
+                // ================================================ Store selectedadgroup from localstorage -> PHP (filter)=========================================
+                const selectedAdsGroupId = localStorage.getItem('selectedAdsGroupId');
+                if (selectedAdsGroupId) {
+                    const urlParams = new URLSearchParams(window.location.search);
 
-                $('.options-box').removeClass('active-tab');
-                adTab.addClass('active-tab');
+                    // Check if 'selectedadsgroupid' already exists and matches 'selectedAdsGroupId'
+                    if (urlParams.get('selectedadsgroupid') !== selectedAdsGroupId) {
+                        urlParams.set('selectedadsgroupid', selectedAdsGroupId); // Add or update 'selectedadgroupid' in the URL
+                        window.location.search = urlParams.toString(); // Reload the page with the updated query string
+                    }
+                }
 
-                $('.table-wrapper').addClass('d-none');
-                $('.table-3-content').removeClass('d-none');
-
-                const selectedAdGroup = $("#select-ads-group-num");
-                selectedAdGroup.css("display", "flex");
-
-                const adsText = $(".opt3 .ads-text");
-                adsText.text("Ads in 1 ad group");
+                setTimeout(function(){
+                    window.location.reload();
+                }, delay + Math.floor(Math.random() * 1000))
             }, delay);
-
-            localStorage.setItem('selectedRowId', rowId);
-            localStorage.setItem('adsText', "Ads in 1 ad group");
-            localStorage.setItem('activeTab', 'table-3');
-            localStorage.setItem('checkboxState', JSON.stringify({
-                [rowId]: true,
-                allCheckbox: true
-            }));
-
+            
+            
         }
 
         function cancelAdGroup() {
@@ -5122,10 +5203,18 @@ session_start();
                 adsText.text("Ad");
 
                 // Remove corresponding localStorage items
-                localStorage.removeItem('selectedRowId');
+                localStorage.removeItem('selectedAdsGroupId');
                 localStorage.removeItem('adsText');
                 localStorage.removeItem('activeTab');
                 localStorage.removeItem('checkboxState');
+
+                 // Remove 'selectedadsgroupid' from the URL query string
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('selectedadsgroupid')) {
+                    urlParams.delete('selectedadsgroupid'); // Remove the query parameter
+                    const newUrl = window.location.pathname + '?' + urlParams.toString();
+                    window.history.replaceState(null, '', newUrl); // Update the URL without reloading
+                }
             }, delay);
         }
 
@@ -5136,10 +5225,11 @@ session_start();
             let formData = new FormData();
 
             formData.append('create', 1);
+            formData.append('adsgroupid', Math.floor(100000000000 + Math.random() * 9000000000).toString())
             formData.append('onoff', 1);
             formData.append('adsgroupname', 'Ad Group Name 1');
             formData.append('delivery', 'Active');
-            formData.append('adsgroupid', '16534534645751');
+            formData.append('campaignid', '102951234568');
             formData.append('results', 100);
             formData.append('imprs', 5000);
             formData.append('reach', 3000);
@@ -5269,10 +5359,11 @@ session_start();
                         console.error("Error: " + data.message)
                         // alert(data.message);
                     } else {
+                        $(`#add-row-modal-${rowId} #adsgroupid`).val(data.adsgroupid);
                         $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
                         $(`#add-row-modal-${rowId} #adsgroupname`).val(data.adsgroupname);
                         $(`#add-row-modal-${rowId} #delivery`).val(data.status);
-                        $(`#add-row-modal-${rowId} #adsgroupid`).val(data.adsgroupid);
+                        $(`#add-row-modal-${rowId} #campaignid`).val(data.campaignid);
                         $(`#add-row-modal-${rowId} #results`).val(data.result);
                         $(`#add-row-modal-${rowId} #imprs`).val(data.imprs);
                         $(`#add-row-modal-${rowId} #reach`).val(data.reach);
@@ -5397,16 +5488,18 @@ session_start();
             let formData = new FormData();
 
             formData.append('create', 1);
+            formData.append('adsid', Math.floor(1000000000 + Math.random() * 9000000000).toString());
             formData.append('onoff', 1);
             formData.append('adsname', 'Sample Ad Name');
             formData.append('delivery', 'Active');
+            formData.append('adsgroupid', '987651234568');
             formData.append('adsgroupname', 'Sample Group');
             formData.append('results', 100);
             formData.append('imprs', 5000);
             formData.append('reach', 3000);
             formData.append('cost', 120.50);
             formData.append('clicks', 150);
-            formData.append('videoname', 'dummy_video.mp4');
+            formData.append('videoname', 'video.mp4');
 
             $.ajax({
                 url: "controller/ads/add_ads_data.php",
@@ -5547,10 +5640,12 @@ session_start();
                         console.error(data.message);
                         // alert(data.message);
                     } else {
+                        $(`#add-row-modal-${rowId} #adsid`).val(data.adsid);
                         $(`#add-row-modal-${rowId} #onoff`).prop('checked', data.onoff == 1);
                         $(`#add-row-modal-${rowId} #adsname`).val(data.adsname);
                         $(`#add-row-modal-${rowId} #delivery`).val(data.status);
-                        $(`#add-row-modal-${rowId} #adsgroupname`).val(data.adgroupname);
+                        $(`#add-row-modal-${rowId} #adsgroupid`).val(data.adsgroupid);
+                        $(`#add-row-modal-${rowId} #adsgroupname`).val(data.adsgroupname);
                         $(`#add-row-modal-${rowId} #results`).val(data.result);
                         $(`#add-row-modal-${rowId} #imprs`).val(data.imprs);
                         $(`#add-row-modal-${rowId} #reach`).val(data.reach);
@@ -6349,6 +6444,8 @@ session_start();
                 if (selectedAdGroup) selectedAdGroup.css("display", "flex");
             }
         });
+
+        
 
 
         // =========================================================== change footer question mark hover ==============================================================

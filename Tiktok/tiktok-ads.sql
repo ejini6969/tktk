@@ -27,34 +27,41 @@ SET time_zone = "+00:00";
 -- Table structure for table `adsdata`
 --
 
-CREATE TABLE `adsdata` (
-  `id` int(11) NOT NULL,
-  `onoff` tinyint(1) DEFAULT NULL,
-  `adsname` varchar(255) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
-  `adgroupname` varchar(255) DEFAULT NULL,
-  `imprs` int(11) DEFAULT NULL,
-  `cost` decimal(10,2) DEFAULT NULL,
-  `reach` int(11) DEFAULT NULL,
-  `result` int(11) DEFAULT NULL,
-  `cpm` decimal(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED,
-  `cpc` decimal(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED,
-  `cpr` decimal(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED,
-  `click` int(11) DEFAULT NULL,
-  `ctr` decimal(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED,
-  `videoname` varchar(255) NOT NULL,
-  `date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE adsdata (
+  adsid VARCHAR(255) PRIMARY KEY, 
+  onoff TINYINT(1) DEFAULT NULL,
+  adsname VARCHAR(255) DEFAULT NULL,
+  status VARCHAR(255) DEFAULT NULL,
+  adsgroupid VARCHAR(255) NOT NULL, 
+  adgroupname VARCHAR(255) DEFAULT NULL,
+  imprs INT(11) DEFAULT NULL,
+  cost DECIMAL(10,2) DEFAULT NULL,
+  reach INT(11) DEFAULT NULL,
+  result INT(11) DEFAULT NULL,
+  cpm DECIMAL(10,2) GENERATED ALWAYS AS (cost / imprs * 1000) STORED,
+  cpc DECIMAL(10,2) GENERATED ALWAYS AS (cost / click) STORED,
+  cpr DECIMAL(10,2) GENERATED ALWAYS AS (cost / result) STORED,
+  click INT(11) DEFAULT NULL,
+  ctr DECIMAL(10,2) GENERATED ALWAYS AS (click / imprs * 100) STORED,
+  videoname VARCHAR(255) NOT NULL,
+  date DATE DEFAULT NULL,
+  FOREIGN KEY (adsgroupid) REFERENCES adsgroupdata(adsgroupid) ON DELETE CASCADE
+);
+
+
+
 
 --
 -- Dumping data for table `adsdata`
 --
 
-INSERT INTO `adsdata` (`id`, `onoff`, `adsname`, `status`, `adgroupname`, `imprs`, `cost`, `reach`, `result`, `click`, `videoname`, `date`) VALUES
-(1, 1, '1203-1203', 'Not delivering', 'GROUP of Conda', 12, 23.50, 11, 19, 33, 'video2.mp4', '2024-12-03'),
-(32, 0, '1204-1204', 'Active', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video3.mp4', '2024-12-04'),
-(33, 1, '1205-1205', 'Active', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video.mp4', '2024-12-05'),
-(35, 1, '1206-1206', 'Active', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video2.mp4', '2024-12-06');
+INSERT INTO `adsdata` 
+(`adsid`, `onoff`, `adsname`, `status`, `adsgroupid`, `adgroupname`, `imprs`, `cost`, `reach`, `result`, `click`, `videoname`, `date`) 
+VALUES
+('123451234567', 1, '1203-1203', 'Not delivering', '987651234567', 'GROUP of Conda', 12, 23.50, 11, 19, 33, 'video2.mp4', '2024-12-03'),
+('123451234568', 0, '1204-1204', 'Active', '987651234568', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video3.mp4', '2024-12-04'),
+('123451234569', 1, '1205-1205', 'Active', '987651234569', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video.mp4', '2024-12-05')
+
 
 --
 -- Triggers `adsdata`
@@ -98,36 +105,34 @@ DELIMITER ;
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `adsgroupdata`
---
-
 CREATE TABLE `adsgroupdata` (
-  `id` int(11) NOT NULL,
-  `onoff` tinyint(1) DEFAULT 0,
-  `adsgroupname` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
-  `adsgroupid` bigint(20) NOT NULL,
-  `cost` decimal(10,2) NOT NULL,
-  `reach` int(11) NOT NULL,
-  `imprs` int(11) NOT NULL,
-  `result` int(11) NOT NULL,
-  `click` int(11) NOT NULL,
-  `cpm` decimal(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED,
-  `cpc` decimal(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED,
-  `cpr` decimal(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED,
-  `ctr` decimal(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED,
-  `date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `adsgroupid` VARCHAR(255) PRIMARY KEY, 
+  `onoff` TINYINT(1) DEFAULT 0, 
+  `adsgroupname` VARCHAR(255) NOT NULL, 
+  `status` VARCHAR(255) NOT NULL, 
+  `campaignid` VARCHAR(255) NOT NULL, 
+  `cost` DECIMAL(10,2) NOT NULL, 
+  `reach` INT(11) NOT NULL, 
+  `imprs` INT(11) NOT NULL, 
+  `result` INT(11) NOT NULL, 
+  `click` INT(11) NOT NULL, 
+  `cpm` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED, 
+  `cpc` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED, 
+  `cpr` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED, 
+  `ctr` DECIMAL(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED, 
+  `date` DATE DEFAULT NULL, 
+  FOREIGN KEY (`campaignid`) REFERENCES `campaigndata`(`campaignid`) ON DELETE CASCADE
+);
 
 --
 -- Dumping data for table `adsgroupdata`
 --
-
-INSERT INTO `adsgroupdata` (`id`, `onoff`, `adsgroupname`, `status`, `adsgroupid`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) VALUES
-(1, 1, 'dgdfgdgdf', 'Inactive', 23435345344, 37.00, 8, 3, 2, 11, '2024-12-03'),
-(6, 1, 'Ad Group Name 1', 'Not delivering', 16534534645751, 120.50, 3000, 5000, 100, 150, NULL),
-(7, 1, 'Ad Group Name 1', 'Active', 16534534645751, 120.50, 3000, 5000, 100, 150, NULL);
+INSERT INTO `adsgroupdata` 
+(`adsgroupid`, `onoff`, `adsgroupname`, `status`, `campaignid`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) 
+VALUES
+('23435345344', 1, 'dgdfgdgdf', 'Inactive', '102951234567', 37.00, 8, 3, 2, 11, '2024-12-03'),
+('16534534645751', 1, 'Ad Group Name 1', 'Not delivering', '102951234568', 120.50, 3000, 5000, 100, 150, NULL),
+('16534534645752', 1, 'Ad Group Name 1', 'Active', '102951234569', 120.50, 3000, 5000, 100, 150, NULL);
 
 --
 -- Triggers `adsgroupdata`
@@ -194,30 +199,34 @@ INSERT INTO `ad_user` (`id`, `username`) VALUES
 --
 
 CREATE TABLE `campaigndata` (
-  `id` int(11) NOT NULL,
-  `onoff` tinyint(1) DEFAULT 0,
-  `campaignname` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
-  `cost` decimal(10,2) NOT NULL,
-  `reach` int(11) NOT NULL,
-  `imprs` int(11) NOT NULL,
-  `result` int(11) NOT NULL,
-  `click` int(11) NOT NULL,
-  `cpm` decimal(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED,
-  `cpc` decimal(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED,
-  `cpr` decimal(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED,
-  `ctr` decimal(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED,
-  `date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `campaignid` VARCHAR(255) PRIMARY KEY NOT NULL,
+  `onoff` TINYINT(1) DEFAULT 0, 
+  `campaignname` VARCHAR(255) NOT NULL, 
+  `status` VARCHAR(255) NOT NULL, 
+  `cost` DECIMAL(10,2) NOT NULL, 
+  `reach` INT(11) NOT NULL, 
+  `imprs` INT(11) NOT NULL, 
+  `result` INT(11) NOT NULL, 
+  `click` INT(11) NOT NULL, 
+  `cpm` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED, 
+  `cpc` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED, 
+  `cpr` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED, 
+  `ctr` DECIMAL(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED, 
+  `date` DATE DEFAULT NULL
+)
+
 
 --
 -- Dumping data for table `campaigndata`
 --
 
-INSERT INTO `campaigndata` (`id`, `onoff`, `campaignname`, `status`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) VALUES
-(1, 0, 'DOUBLE CAMPAIGN', 'Inactive', 37.00, 8, 3, 2, 11, NULL),
-(2, 1, 'dfgdgd', 'Active', 120.50, 3000, 5000, 11, 150, NULL),
-(5, 1, 'Sample Campaign Name', 'Not delivering', 120.50, 3000, 5000, 100, 150, NULL);
+INSERT INTO `campaigndata` 
+(`campaignid`, `onoff`, `campaignname`, `status`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) 
+VALUES
+('102951234567', 0, 'DOUBLE CAMPAIGN', 'Inactive', 37.00, 8, 3, 2, 11, NULL),
+('102951234568', 1, 'Campaign 2', 'Active', 120.50, 3000, 5000, 11, 150, NULL),
+('102951234569', 1, 'Campaign 3', 'Active', 150.00, 4000, 7000, 15, 200, NULL);
+
 
 --
 -- Triggers `campaigndata`

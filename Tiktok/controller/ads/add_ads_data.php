@@ -10,10 +10,12 @@ include("../../auth/connect.php");
 
 if (isset($_POST['create'])) {
 
+    $adsid = $conn->real_escape_string($_POST['adsid']);
     $onoff = isset($_POST['onoff']) ? 1 : 0;
     $videoname = $conn->real_escape_string($_POST['videoname']);
     $adsname = $conn->real_escape_string($_POST['adsname']);
     $status = $conn->real_escape_string($_POST['delivery']);
+    $adsgroupid = $conn->real_escape_string($_POST['adsgroupid']);
     $adsgroupname = $conn->real_escape_string($_POST['adsgroupname']);
     $results = (int)$_POST['results']; 
     $imprs = (int)$_POST['imprs'];
@@ -26,8 +28,8 @@ if (isset($_POST['create'])) {
     $dateRow = $dateResult->fetch_assoc();
     $date = date('Y-m-d', strtotime($dateRow['enddate']));
 
-    $sql = "INSERT INTO adsdata (onoff, videoname, adsname, status, adgroupname, result, imprs, reach, cost, click, date)
-            VALUES ($onoff, '$videoname', '$adsname', '$status', '$adsgroupname', $results, $imprs, $reach, $cost, $clicks, '$date')";
+    $sql = "INSERT INTO adsdata (adsid, onoff, videoname, adsname, status, adsgroupid, adsgroupname, result, imprs, reach, cost, click, date)
+            VALUES ('$adsid', $onoff, '$videoname', '$adsname', '$status', '$adsgroupid', '$adsgroupname', $results, $imprs, $reach, $cost, $clicks, '$date')";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(['status' => 'success', 'message' => 'New ad data added successfully!']);
         exit();

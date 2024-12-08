@@ -9,7 +9,7 @@ include("../../auth/connect.php");
 if (isset($_POST['rowId'])) {
     $rowId = str_replace("ads-group-rw-", "", $conn->real_escape_string($_POST['rowId']));
 
-    $deleteSql = "DELETE FROM adsgroupdata WHERE id = $rowId";
+    $deleteSql = "DELETE FROM adsgroupdata WHERE adsgroupid = $rowId";
 
     if ($conn->query($deleteSql) === TRUE) {
         echo json_encode(["status" => "success", "message" => "Ad group row deleted successfully"]);

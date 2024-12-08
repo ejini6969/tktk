@@ -29,24 +29,35 @@ CREATE TABLE timezone(
 INSERT INTO timezone(timezone) VALUES('kuala_lumpur');
 
 /* ---------------------------------------------------------------- CAMPAIGN DATA --------------------------------------------------------- */
-CREATE TABLE campaigndata(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    onoff TINYINT(1) DEFAULT 0,
-    campaignname VARCHAR(255) NOT NULL,
-    status VARCHAR(255) NOT NULL,
-    cost DECIMAL(10, 2) NOT NULL,
-    reach INT NOT NULL,
-    imprs INT NOT NULL,
-    result INT NOT NULL,
-    click INT NOT NULL,
-    cpm DECIMAL(10, 2) GENERATED ALWAYS AS (cost / imprs * 1000) STORED,
-    cpc DECIMAL(10, 2) GENERATED ALWAYS AS (cost / click) STORED,
-    cpr DECIMAL(10, 2) GENERATED ALWAYS AS (cost / result) STORED,
-    ctr DECIMAL(10, 2) GENERATED ALWAYS AS (click / imprs * 100) STORED
-);
+CREATE TABLE `campaigndata` (
+  `campaignid` VARCHAR(255) PRIMARY KEY NOT NULL,
+  `onoff` TINYINT(1) DEFAULT 0, 
+  `campaignname` VARCHAR(255) NOT NULL, 
+  `status` VARCHAR(255) NOT NULL, 
+  `cost` DECIMAL(10,2) NOT NULL, 
+  `reach` INT(11) NOT NULL, 
+  `imprs` INT(11) NOT NULL, 
+  `result` INT(11) NOT NULL, 
+  `click` INT(11) NOT NULL, 
+  `cpm` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED, 
+  `cpc` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED, 
+  `cpr` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED, 
+  `ctr` DECIMAL(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED, 
+  `date` DATE DEFAULT NULL
+)
 
-INSERT INTO campaigndata(onoff, campaignname, status, cost, reach, imprs, result, click) 
-VALUES (0, "DOUBLE CAMPAIGN", "Inactive", 37, 8, 3, 2, 11);
+
+--
+-- Dumping data for table `campaigndata`
+--
+
+INSERT INTO `campaigndata` 
+(`campaignid`, `onoff`, `campaignname`, `status`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) 
+VALUES
+('102951234567', 0, 'DOUBLE CAMPAIGN', 'Inactive', 37.00, 8, 3, 2, 11, NULL),
+('102951234568', 1, 'Campaign 2', 'Active', 120.50, 3000, 5000, 11, 150, NULL),
+('102951234569', 1, 'Campaign 3', 'Active', 150.00, 4000, 7000, 15, 200, NULL);
+
 
 CREATE TABLE totalcampaigndata(
     totalcost DECIMAL(10, 2) NOT NULL,
@@ -132,25 +143,35 @@ END;
 DELIMITER ;
 
 /* ---------------------------------------------------------------- AD GROUP DATA --------------------------------------------------------- */
-CREATE TABLE adsgroupdata(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    onoff TINYINT(1) DEFAULT 0,
-    adsgroupname VARCHAR(255) NOT NULL,
-    status VARCHAR(255) NOT NULL,
-    adsgroupid BIGINT NOT NULL,
-    cost DECIMAL(10, 2) NOT NULL,
-    reach INT NOT NULL,
-    imprs INT NOT NULL,
-    result INT NOT NULL,
-    click INT NOT NULL,
-    cpm DECIMAL(10, 2) GENERATED ALWAYS AS (cost / imprs * 1000) STORED,
-    cpc DECIMAL(10, 2) GENERATED ALWAYS AS (cost / click) STORED,
-    cpr DECIMAL(10, 2) GENERATED ALWAYS AS (cost / result) STORED,
-    ctr DECIMAL(10, 2) GENERATED ALWAYS AS (click / imprs * 100) STORED
+CREATE TABLE `adsgroupdata` (
+  `adsgroupid` VARCHAR(255) PRIMARY KEY, 
+  `onoff` TINYINT(1) DEFAULT 0, 
+  `adsgroupname` VARCHAR(255) NOT NULL, 
+  `status` VARCHAR(255) NOT NULL, 
+  `campaignid` VARCHAR(255) NOT NULL, 
+  `cost` DECIMAL(10,2) NOT NULL, 
+  `reach` INT(11) NOT NULL, 
+  `imprs` INT(11) NOT NULL, 
+  `result` INT(11) NOT NULL, 
+  `click` INT(11) NOT NULL, 
+  `cpm` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `imprs` * 1000) STORED, 
+  `cpc` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `click`) STORED, 
+  `cpr` DECIMAL(10,2) GENERATED ALWAYS AS (`cost` / `result`) STORED, 
+  `ctr` DECIMAL(10,2) GENERATED ALWAYS AS (`click` / `imprs` * 100) STORED, 
+  `date` DATE DEFAULT NULL, 
+  FOREIGN KEY (`campaignid`) REFERENCES `campaigndata`(`campaignid`) ON DELETE CASCADE
 );
 
-INSERT INTO adsgroupdata(onoff, adsgroupname, status, adsgroupid, cost, reach, imprs, result, click) 
-VALUES (0, "DOUBLE ADS", "Inactive", "167435678345123", 37, 8, 3, 2, 11);
+--
+-- Dumping data for table `adsgroupdata`
+--
+INSERT INTO `adsgroupdata` 
+(`adsgroupid`, `onoff`, `adsgroupname`, `status`, `campaignid`, `cost`, `reach`, `imprs`, `result`, `click`, `date`) 
+VALUES
+('23435345344', 1, 'dgdfgdgdf', 'Inactive', '102951234567', 37.00, 8, 3, 2, 11, '2024-12-03'),
+('16534534645751', 1, 'Ad Group Name 1', 'Not delivering', '102951234568', 120.50, 3000, 5000, 100, 150, NULL),
+('16534534645752', 1, 'Ad Group Name 1', 'Active', '102951234569', 120.50, 3000, 5000, 100, 150, NULL);
+
 
 CREATE TABLE totaladsgroupdata(
     totalcost DECIMAL(10, 2) NOT NULL,
@@ -236,29 +257,34 @@ END;
 DELIMITER ;
 
 /* ----------------------------------------------------------------------------- ADS DATA ----------------------------------------------------------------------- */
-CREATE TABLE adsdata(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    onoff TINYINT(1) DEFAULT 0,
-    videoname VARCHAR(255) NOT NULL,
-    adsname VARCHAR(255) NOT NULL,
-    status VARCHAR(255) NOT NULL,
-    adgroupname VARCHAR(255) NOT NULL,
-    cost DECIMAL(10, 2) NOT NULL,
-    reach INT NOT NULL,
-    imprs INT NOT NULL,
-    result INT NOT NULL,
-    click INT NOT NULL,
-    cpm DECIMAL(10, 2) GENERATED ALWAYS AS (cost / imprs * 1000) STORED,
-    cpc DECIMAL(10, 2) GENERATED ALWAYS AS (cost / click) STORED,
-    cpr DECIMAL(10, 2) GENERATED ALWAYS AS (cost / result) STORED,
-    ctr DECIMAL(10, 2) GENERATED ALWAYS AS (click / imprs * 100) STORED
+CREATE TABLE adsdata (
+  adsid VARCHAR(255) PRIMARY KEY, 
+  onoff TINYINT(1) DEFAULT NULL,
+  adsname VARCHAR(255) DEFAULT NULL,
+  status VARCHAR(255) DEFAULT NULL,
+  adsgroupid VARCHAR(255) NOT NULL, 
+  adgroupname VARCHAR(255) DEFAULT NULL,
+  imprs INT(11) DEFAULT NULL,
+  cost DECIMAL(10,2) DEFAULT NULL,
+  reach INT(11) DEFAULT NULL,
+  result INT(11) DEFAULT NULL,
+  cpm DECIMAL(10,2) GENERATED ALWAYS AS (cost / imprs * 1000) STORED,
+  cpc DECIMAL(10,2) GENERATED ALWAYS AS (cost / click) STORED,
+  cpr DECIMAL(10,2) GENERATED ALWAYS AS (cost / result) STORED,
+  click INT(11) DEFAULT NULL,
+  ctr DECIMAL(10,2) GENERATED ALWAYS AS (click / imprs * 100) STORED,
+  videoname VARCHAR(255) NOT NULL,
+  date DATE DEFAULT NULL,
+  FOREIGN KEY (adsgroupid) REFERENCES adsgroupdata(adsgroupid) ON DELETE CASCADE
 );
 
-INSERT INTO adsdata(onoff, videoname, adsname, status, adgroupname, cost, reach, imprs, result, click) 
-VALUES (1, "video3.mp4", "ONE AND ONLY ADS", "Active", "GROUP of Conda", 23.5, 11, 12, 19, 33);
+INSERT INTO `adsdata` 
+(`adsid`, `onoff`, `adsname`, `status`, `adsgroupid`, `adgroupname`, `imprs`, `cost`, `reach`, `result`, `click`, `videoname`, `date`) 
+VALUES
+('123451234567', 1, '1203-1203', 'Not delivering', '987651234567', 'GROUP of Conda', 12, 23.50, 11, 19, 33, 'video2.mp4', '2024-12-03'),
+('123451234568', 0, '1204-1204', 'Active', '987651234568', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video3.mp4', '2024-12-04'),
+('123451234569', 1, '1205-1205', 'Active', '987651234569', 'Sample Group', 5000, 120.50, 3000, 100, 150, 'video.mp4', '2024-12-05')
 
-INSERT INTO adsdata(onoff, videoname, adsname, status, adgroupname, cost, reach, imprs, result, click) 
-VALUES (0, "video2.mp4", "DOUBLE ADS", "Inactive", "TIKTOK FTW", 37, 8, 3, 2, 11);
 
 CREATE TABLE totaladsdata(
     totalcost DECIMAL(10, 2) NOT NULL,
