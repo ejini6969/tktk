@@ -14,6 +14,7 @@ if (isset($_POST['edit'])) {
     $onoff = isset($_POST['onoff']) ? 1 : 0;
     $adsname = $conn->real_escape_string($_POST['adsname']);
     $domainname = $conn->real_escape_string($_POST['domainname']);
+    $adstext = $conn->real_escape_string($_POST['adstext']);
     $status = $conn->real_escape_string($_POST['delivery']);
     $adsgroupid = $conn->real_escape_string($_POST['adsgroupid']);
     $adsgroupname = $conn->real_escape_string($_POST['adsgroupname']);
@@ -32,7 +33,7 @@ if (isset($_POST['edit'])) {
 
         if ($file_error === UPLOAD_ERR_OK) {
             // No error, proceed with the upload
-            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/work (DB)/img/";
+            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/img/";
             $videoname = basename($_FILES['videoname']['name']);
             $target_file = $target_dir . $videoname;
 
@@ -70,7 +71,7 @@ if (isset($_POST['edit'])) {
         die("Error: No file uploaded.");
     }
 
-    $sql = "UPDATE adsdata SET adsid = '$adsid', onoff = '$onoff', videoname = '$videoname', adsname = '$adsname', domainname = '$domainname', status = '$status', adsgroupid = '$adsgroupid', adsgroupname = '$adsgroupname', result = '$results', imprs = '$imprs', reach = '$reach', cost = '$cost', click = '$clicks' WHERE adsid = '$adsid'";
+    $sql = "UPDATE adsdata SET adsid = '$adsid', onoff = '$onoff', videoname = '$videoname', adsname = '$adsname', domainname = '$domainname', adstext = '$adstext', status = '$status', adsgroupid = '$adsgroupid', adsgroupname = '$adsgroupname', result = '$results', imprs = '$imprs', reach = '$reach', cost = '$cost', click = '$clicks' WHERE adsid = '$adsid'";
     if ($conn->query($sql) === TRUE) {
         echo json_encode(["status" => "success", "message" => "New ad data updated with ID: $adsid"]);
         header('Location: ../../index.php');

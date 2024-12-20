@@ -9,185 +9,152 @@
     --ix-preview-box-padding-horizontal-neg: -16px;
 }
 
-
+/* ---------------------------------------------------------------------------- Edit Ad Panel ------------------------------------------------------------- */
 .edit-tag
 {
-    top: 70px;
-    width: 1168px;
-    box-shadow: rgba(171, 187, 204, 0.6) 0px 2px 20px 0px;
-    right: 0px;
-    z-index: 90;
-}
-
-.sideslip
-{
     background-color:  #f8f8f9;
+    box-shadow: rgba(171, 187, 204, 0.6) 0px 2px 20px 0px;
+    width: 1168px;
     bottom: 0;
+    right: 0px;
     position: fixed;
+    z-index: 1000;
 }
 
+/* --------------------------------------------------------------------------- Left sidebar --------------------------------------------------------------- */
 .side-left
 {
     width: 48px !important;
     background-color:  white;
 }
 
-
-.content
-{
-    width: 100% ;
-}
-
-.tab-item-close
+.side-left .tab-item-close
 {
     margin-bottom: 8px;
     padding: 0 8px;
     padding-top: 4px;
 }
 
-.tab-item-close .close-btn
+.side-left .tab-item-close .close-btn
 {
-    width: 32px;
-    height: 32px;
     background: #262627;
     border-radius: 4px;
+    color: white;
+    height: 32px;
+    width: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
     cursor: pointer;
 }
 
- .close-btn:hover {
+.side-left .tab-item-close .close-btn:hover {
     background: #353536;
     color: white;
 }
 
-.tab-item:hover
+.side-left .tab-item-close .close-btn .close-button__icon
 {
-    background: #ececed;
-}
-
-.close-button__icon
-{
-    width: 16px;
     height: 16px;
+    width: 16px;
 }
 
-.tab-item-others
+.side-left .tab-item-others
 {
     padding: 8px;
 }
 
-.tab-item--active
+.side-left .tab-item-others .tab-item
 {
-    color: #017976;
-    background-color: #e8fbf9;
-}
-
-.tab-item
-{
-    width: 32px;
-    height: 32px;
     border-radius: 4px;
+    height: 32px;
+    width: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
 
-.tab-item__icon
+.side-left .tab-item-others .tab-item:hover
+{
+    background: #ececed;
+}
+
+.side-left .tab-item-others .tab-item--active
+{
+    background-color: #e8fbf9;
+    color: #017976;
+}
+
+.side-left .tab-item-others .tab-item .tab-item__icon
 {
     font-size: 14px;
-    width: 14px;
     height: 14px;
+    width: 14px;
     fill: currentColor;
     overflow: hidden;
 }
 
-.creation-app
+/* --------------------------------------------------------------------------- Edit Ad Content --------------------------------------------------------------- */
+/* ---------------------------------------------- Edit Ad Content Header ------------------------------------- */
+.content
 {
     background-color:#f6f6f6;
+    width: 100%;
 }
 
-.index_creationContent_sDXMS
+.content .creationContent
 {
     display: flex;
     flex: 1;
     justify-content: center;
-    background-color: #f6f6f6;
     height: 100%;
+    background-color:#f6f6f6;
 }
 
-.index_editCreative_KssUQ {
+.content .creationContent .editCreative {
     display: flex;
     flex-direction: column;
     width: 100%;
     min-width: 772px;
 }
 
-.index_editTitle_Bm3Ny {
-    position: sticky;
+.content .creationContent .editCreative .editTitle {
+    background: white;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 64px;
+    height: 64px;
     top: 0;
-    z-index: 4;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    position: sticky;
     padding: 18px 32px;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 64px;
-    background: white;
 }
 
-.index_editTitleText_fDLPl {
+.content .creationContent .editCreative .editTitle .editTitleText {
     color: #121415;
     line-height: 30px;
 }
 
-.index_editTitleId_w0jhq {
-    color: #6d6e70;
+.content .creationContent .editCreative .editTitle .editTitleId {
     font-size: 12px;
+    color: #6d6e70;
 }
 
-.index_creativeGateway_QieEM {
+/* ---------------------------------------------- Edit Ad Content Header ------------------------------------- */
+.creativeGateway {
+    height: 100%;
+    width: 100%;
+    display: flex;
     flex: 1;
+    justify-content: center;
     padding: 16px 16px 0;
     overflow-y: auto;
 }
 
-.index_container_QB1YE
-{
-    display: flex;
-    min-height: 100%;
-}
-
-.index_wrapper_MbXmy {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    min-height: 400px;
-}
-
-.index_infraPreviewContent_oXXGi {
-    min-width: 772px;
-}
-
-.index_content_KjME1 {
-    min-width: 772px;
-    max-width: 1120px;
-}
-
-.index_normalCreative_tS2ek
-{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.index_content_KjME1 .infra-preview-form-wrapper {
+.creativeGateway .infra-preview-form-wrapper {
     width: 772px;
 }
 
@@ -196,13 +163,13 @@
 }
 
 .index_container_qIZOO {
-    position: relative;
-    width: 100%;
-    margin-bottom: 16px;
-    padding: 32px 48px 32px;
-    color: #121415;
     background-color: white;
     border-radius: 4px;
+    color: #121415;
+    width: 100%;
+    position: relative;
+    margin-bottom: 16px;
+    padding: 32px 48px 32px;
 }
 
 .card-container--mini .card-container__body-wrapper--mini
@@ -224,41 +191,6 @@
     align-items: center;
     cursor: auto;
 }
-
-
-/* .vi-switch {
-    display: inline-flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    position: relative;
-    font-size: 14px;
-    line-height: 22px;
-    height: 22px;
-    vertical-align: middle;
-}
-
-.vi-switch.is-disabled .vi-switch__core {
-    border-color: #f2f3f3;
-    background-color: #f2f3f3;
-
-}
-
-.vi-switch__core {
-    margin: 0;
-    position: relative;
-    width: 44px;
-    height: 22px;
-    border: 1px solid #d3d4d5 !important;
-    outline: 0;
-    border-radius: 12px;
-    box-sizing: border-box;
-    background: #d3d4d5 !important;
-    -webkit-transition: border-color .3s, background-color .3s;
-    transition: border-color .3s, background-color .3s;
-    vertical-align: middle;
-} */
-
 
 .index_title_gRuIn {
     font-weight: 500;
